@@ -10,7 +10,7 @@ exclude:
 
 # Site settings
 title: lexusalex.github.io
-subtitle: "In looking for my way in Web development"
+subtitle: ""
 email: alexsey_89@bk.ru
 name: Alexsey Shmelev
 description: >
@@ -50,6 +50,7 @@ ga_tracking_id: "1"
 descriptions:
   - cat: "About"
     desc: "Обо мне"
+
   - cat: "Virtualization"
     desc: "Виртуализация"
 
