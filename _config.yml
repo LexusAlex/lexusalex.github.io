@@ -50,6 +50,8 @@ ga_tracking_id: "1"
 descriptions:
   - cat: "About"
     desc: "Обо мне"
+  - cat: "Virtualization"
+    desc: "Виртуализация"
 
 # Social icons and sharing options
 #
