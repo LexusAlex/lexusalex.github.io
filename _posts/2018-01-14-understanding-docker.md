@@ -6,7 +6,7 @@ author: Алексей Шмелев
 categories: virtualization
 tags:	docker
 comments: true
-cover:  "/assets/docker/docker.png"
+cover:  "/assets/docker/docker.jpeg"
 ---
 
 # Эксперименты
