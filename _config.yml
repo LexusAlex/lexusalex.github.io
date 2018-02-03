@@ -51,8 +51,11 @@ descriptions:
   - cat: "About"
     desc: "Обо мне"
 
-  - cat: "Virtualization"
+  - cat: "Docker"
     desc: "Виртуализация"
+
+  - cat: "Linux"
+    desc: "Linux"
 
 # Social icons and sharing options
 #

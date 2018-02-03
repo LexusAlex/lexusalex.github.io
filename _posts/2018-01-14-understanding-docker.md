@@ -3,8 +3,7 @@ layout: post
 title:  Понимая Docker
 date:   2018-01-14
 author: Алексей Шмелев
-categories: virtualization
-tags:	docker
+categories: docker
 comments: true
 cover:  "/assets/docker/docker.jpeg"
 ---
