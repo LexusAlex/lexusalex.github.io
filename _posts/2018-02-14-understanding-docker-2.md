@@ -5,7 +5,7 @@ date:   2018-02-14
 author: Алексей Шмелев
 categories: docker
 comments: true
-cover:  "/assets/docker/docker.png"
+cover:  "/assets/docker/docker.jpeg"
 ---
 
 В предыдущий [раз](https://lexusalex.github.io/docker/2018/01/14/understanding-docker.html) рассмотрели базовое использование Докера.
