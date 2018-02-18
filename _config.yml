@@ -57,6 +57,9 @@ descriptions:
   - cat: "Linux"
     desc: "Linux"
 
+  - cat: "Services"
+    desc: "Полезные сервисы"
+
 # Social icons and sharing options
 #
 # Social settings are used in two places:
