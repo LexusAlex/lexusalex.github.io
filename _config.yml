@@ -60,6 +60,9 @@ descriptions:
   - cat: "Services"
     desc: "Полезные сервисы"
 
+  - cat: "Development"
+    desc: "Разработка"
+
 # Social icons and sharing options
 #
 # Social settings are used in two places:
