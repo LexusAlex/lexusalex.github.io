@@ -51,8 +51,8 @@ Funct\Collection\pluck(
 [https://github.com/danielstjules/Stringy](https://github.com/danielstjules/Stringy)
 
 ### Morphos
-
-Морфология для сайта, прям не библиотека а клад, имеет подробную документацию.
+ 
+Морфология для сайта, не библиотека , а клад, имеет подробную документацию.
 
 Немного примеров (В документации больше информации)
 ~~~php
