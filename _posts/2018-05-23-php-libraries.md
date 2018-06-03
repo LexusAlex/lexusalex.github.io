@@ -15,6 +15,7 @@ tags: php libraries
     - [Stringy - работа со строками](#stringy)
     - [Morphos - морфология для сайта](#morphos)
     - [Faker - генератор фейковых данных](#faker)
+    - [Str - работа со строками в ООП стиле](#str) 
 - **Дата и время**
     - [Carbon - манипуляция с датой и временем](#carbon) 
       
@@ -124,9 +125,16 @@ string(264) "1531468991 (один миллиард пятьсот тридцат
 
 ### Faker
 
-Генератор фейковых данных, незаменим при тестировании
+Генератор фейковых данных, незаменим при тестировании, генерирует имена, адреса, просто строки любой длины, электронные адреса,
+user agent, цвета, имена файлов, идентификаторы и другое
 
-[https://github.com/wapmorgan/Morphos](https://github.com/wapmorgan/Morphos)
+[https://github.com/fzaninotto/Faker](https://github.com/fzaninotto/Faker)
+
+### Str
+
+Работа со строками в ООП стиле
+
+[https://github.com/fe3dback/str](https://github.com/fe3dback/str)
 
 # Дата и время
 
