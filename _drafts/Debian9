@@ -1,0 +1,278 @@
+от суперпользователя
+
+nano /etc/apt/sources.list
+
+
+deb http://security.debian.org/debian-security stretch/updates main
+deb-src http://security.debian.org/debian-security stretch/updates main
+
+deb http://mirror.yandex.ru/debian stretch main
+deb-src http://mirror.yandex.ru/debian stretch main
+
+deb http://mirror.yandex.ru/debian stretch-updates main
+deb-src http://mirror.yandex.ru/debian stretch-updates main
+
+deb http://mirror.yandex.ru/debian/ stretch-proposed-updates main non-free contrib
+deb-src http://mirror.yandex.ru/debian/ stretch-proposed-updates main non-free contrib
+
+
+
+apt-get install sudo
+adduser alex sudo
+
+перезагрузка системы reboot, теперь можно зайти под своим пользователем
+
+sudo /sbin/ifconfig
+
+sudo nano /etc/network/interfaces
+
+настроить автополучение адреса
+auto enp0s3
+iface enp0s3 inet dhcp
+
+sudo systemctl restart networking перегрузить сеть
+
+apt-get install openssh-server
+
+ssh alex@192.168.0.100
+
+apt-get install vim git
+
+init 0
+
+
+
+
+
+Настройка после установки
+
+Обновление
+apt-get update
+apt-get upgrade
+
+reboot перезагрузка сервера
+
+apt-get install sudo
+adduser alex sudo
+
+apt-get install net-tools
+sudo apt install htop
+
+ssh alex@192.168.0.100
+
+Устновка apache
+
+Enabling module mpm_event.
+Enabling module authz_core.
+Enabling module authz_host.
+Enabling module authn_core.
+Enabling module auth_basic.
+Enabling module access_compat.
+Enabling module authn_file.
+Enabling module authz_user.
+Enabling module alias.
+Enabling module dir.
+Enabling module autoindex.
+Enabling module env.
+Enabling module mime.
+Enabling module negotiation.
+Enabling module setenvif.
+Enabling module filter.
+Enabling module deflate.
+Enabling module status.
+Enabling module reqtimeout.
+Enabling conf charset.
+Enabling conf localized-error-pages.
+Enabling conf other-vhosts-access-log.
+Enabling conf security.
+Enabling conf serve-cgi-bin.
+Enabling site 000-default.
+Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service → /lib/systemd/system/apache2.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/apache-htcacheclean.service → /lib/systemd/system/apache-htcacheclean.service.
+Обрабатываются триггеры для libc-bin (2.24-11+deb9u3) …
+Обрабатываются триггеры для systemd (232-25+deb9u3) …
+
+
+
+
+php fpm 
+
+sudo apt-get install php7.2-fpm
+[sudo] пароль для alex: 
+Чтение списков пакетов… Готово
+Построение дерева зависимостей       
+Чтение информации о состоянии… Готово
+Предлагаемые пакеты:
+  php-pear
+НОВЫЕ пакеты, которые будут установлены:
+  php7.2-fpm
+обновлено 0, установлено 1 новых пакетов, для удаления отмечено 0 пакетов, и 0 пакетов не обновлено.
+Необходимо скачать 1 435 kБ архивов.
+После данной операции, объём занятого дискового пространства возрастёт на 4 556 kB.
+Пол:1 https://packages.sury.org/php stretch/main i386 php7.2-fpm i386 7.2.7-1+0~20180622080745.23+stretch~1.gbpfd8e2e [1 435 kB]
+Получено 1 435 kБ за 6с (206 kБ/c)                                             
+Выбор ранее не выбранного пакета php7.2-fpm.
+(Чтение базы данных … на данный момент установлено 31966 файлов и каталогов.)
+Подготовка к распаковке …/php7.2-fpm_7.2.7-1+0~20180622080745.23+stretch~1.gbpfd8e2e_i386.deb …
+Распаковывается php7.2-fpm (7.2.7-1+0~20180622080745.23+stretch~1.gbpfd8e2e) …
+Настраивается пакет php7.2-fpm (7.2.7-1+0~20180622080745.23+stretch~1.gbpfd8e2e) …
+
+Creating config file /etc/php/7.2/fpm/php.ini with new version
+php_invoke: Enabled module gettext for fpm sapi
+php_invoke: Enabled module sysvmsg for fpm sapi
+php_invoke: Enabled module pdo for fpm sapi
+php_invoke: Enabled module calendar for fpm sapi
+php_invoke: Enabled module tokenizer for fpm sapi
+php_invoke: Enabled module fileinfo for fpm sapi
+php_invoke: Enabled module opcache for fpm sapi
+php_invoke: Enabled module sockets for fpm sapi
+php_invoke: Enabled module ctype for fpm sapi
+php_invoke: Enabled module readline for fpm sapi
+php_invoke: Enabled module iconv for fpm sapi
+php_invoke: Enabled module sysvsem for fpm sapi
+php_invoke: Enabled module phar for fpm sapi
+php_invoke: Enabled module sysvshm for fpm sapi
+php_invoke: Enabled module posix for fpm sapi
+php_invoke: Enabled module json for fpm sapi
+php_invoke: Enabled module ftp for fpm sapi
+php_invoke: Enabled module shmop for fpm sapi
+php_invoke: Enabled module exif for fpm sapi
+NOTICE: Not enabling PHP 7.2 FPM by default.
+NOTICE: To enable PHP 7.2 FPM in Apache2 do:
+NOTICE: a2enmod proxy_fcgi setenvif
+NOTICE: a2enconf php7.2-fpm
+NOTICE: You are seeing this message because you have apache2 package installed.
+Created symlink /etc/systemd/system/multi-user.target.wants/php7.2-fpm.service → /lib/systemd/system/php7.2-fpm.service.
+Обрабатываются триггеры для systemd (232-25+deb9u3) …
+Обрабатываются триггеры для man-db (2.7.6.1-2) …
+
+sudo apt install libapache2-mod-fcgid
+Чтение списков пакетов… Готово
+Построение дерева зависимостей       
+Чтение информации о состоянии… Готово
+НОВЫЕ пакеты, которые будут установлены:
+  libapache2-mod-fcgid
+обновлено 0, установлено 1 новых пакетов, для удаления отмечено 0 пакетов, и 0 пакетов не обновлено.
+Необходимо скачать 70,9 kБ архивов.
+После данной операции, объём занятого дискового пространства возрастёт на 206 kB.
+Пол:1 http://mirror.yandex.ru/debian stretch/main i386 libapache2-mod-fcgid i386 1:2.3.9-1+b1 [70,9 kB]
+Получено 70,9 kБ за 0с (480 kБ/c)               
+Выбор ранее не выбранного пакета libapache2-mod-fcgid.
+(Чтение базы данных … на данный момент установлено 31990 файлов и каталогов.)
+Подготовка к распаковке …/libapache2-mod-fcgid_1%3a2.3.9-1+b1_i386.deb …
+Распаковывается libapache2-mod-fcgid (1:2.3.9-1+b1) …
+Настраивается пакет libapache2-mod-fcgid (1:2.3.9-1+b1) …
+apache2_invoke: Enable module fcgid
+
+
+a2enmod, a2dismod, a2ensite, a2dissite, a2enconf, a2disconf
+
+service apache2 restart
+
+ps auxf
+
+Все новые процессы рождаются клонированием уже от уже запущенных процессов
+
+apache2.conf Главный конфиг сервера
+
+conf-available разные конфиги
+conf-enabled @ на включенные конфиги
+
+mods-available установленные модули
+mods-enabled @ на включенные модули
+
+sites-available конфиги виртуальных хостов
+sites-enabled @ на активированные конфиги вирт хостов
+
+envvars пути для окружения
+magic скрипты для модуля mime-magic
+ports.conf порты для входящих соединений
+
+
+sudo a2enconf name включить конфиг
+sudo a2disconf name выключить конфиг
+sudo a2enmod 
+sudo a2dismod
+sudo a2ensite
+sudo a2dissite
+
+
+sudo /etc/init.d/apache2
+sudo apache2ctl
+sudo apache2
+
+
+sudo apache2ctl start           Запуск Apache2 демона
+sudo apache2ctl stop            Остановка Apache2 демона
+sudo apache2ctl graceful-stop   Мягкая остановка Apache2 демона
+sudo apache2ctl restart         Перезапуск Apache2 демона
+sudo apache2ctl graceful        Мягкий перезапуск Apache2 демона
+sudo apache2ctl fullstatus      Вывести полный отчет статуса Apache2
+sudo apache2ctl status          Вывести отчет статуса Apache2
+sudo apache2ctl configtest      Тестирование конфигурации Apache2
+sudo apache2ctl startssl        Запуск Apache2 с ssl
+sudo apache2ctl help            Выводит справку к apache2ctl
+
+
+sudo apache2 -d "/etc/apache2" переопределить значение ServerRoot
+
+sudo apache2 -f "/etc/apache2/my-config.conf" применить директивы из файла my-config.conf перед стартом сервера. Путь может быть относительным от ServerRoot
+
+sudo apache2 -C directive_name выполнить указанную директиву перед чтением конфигурационных файлов
+sudo apache2 -c directive_name выполнить указанную директиву после чтения конфигурационных файлов
+
+sudo apache2 -D parameter установить параметр в директиве <IfDefine> для игнорирования или использования при старте/перезапуске сервера
+
+sudo apache2 -e debug|info|notice|warn|error|crit|alert|emerg установить log_level при старте сервера, удобно при диагностике
+sudo apache2 -E file_path  записать сообщения об ошибках при старте сервера в указанный файл file_path
+
+sudo apache2 -k start|restart|grace-ful|stop|graceful-stop выполнить соответствующие действие
+sudo apache2 -k start пример запуска сервера
+
+sudo apache2 -R directory_paht задать директорию для общих объектов,если сервер собран с SHARED_CORE правилами
+
+sudo apache2 -h вывод краткой помощи для команды apache2
+
+sudo apache2 -l выводит список модулей с которыми собран сервер, за исключением динамически загруженных модулей через LoadModule директиву в конфигах
+sudo apache2 -L выводит список директив загруженной конфигурации с ожидаемыми аргументами и места где эта директива действительна
+
+Тестирование конфигурации:
+sudo apache2 -t                    выполнить тестирование конфигурации
+sudo apache2 -t -D DUMP_MODULES    тестирование конфигурации и вывод списка всех загруженных модулей
+sudo apache2 -M                    синоним для t -D DUMP_MODULES выводит список статически загружаемых модулей и всех модулей
+sudo apache2 -t -D DUMP_RUN_CFG    тестирование конфигурации и вывод настроек конфигурации, примененной при старте сервера
+sudo apache2 -t -D DUMP_VHOSTS     тестирование конфигурации и вывод примененных при старте сервера настроек конфигурации виртуальных хостов
+sudo apache2 -S                    синоним для -t -D DUMP_VHOSTS -D DUMP_RUN_CFG выводит настройки виртуальных хостов
+
+sudo apache2 -v                    выводит только версию Apache
+sudo apache2 -V                    выводит версию Apache и параметры сборки
+
+sudo apache2 -X                    запустить Apache в режиме отладки из консоли
+sudo apache2 -T                    запуск без DocumentRoot(s) проверки
+
+
+
+sudo apt-get install php7.0
+Чтение списков пакетов… Готово
+Построение дерева зависимостей       
+Чтение информации о состоянии… Готово
+Будут установлены следующие дополнительные пакеты:
+  libapache2-mod-php7.0 php-common php7.0-cli php7.0-common php7.0-json php7.0-opcache php7.0-readline psmisc
+Предлагаемые пакеты:
+  php-pear
+НОВЫЕ пакеты, которые будут установлены:
+  libapache2-mod-php7.0 php-common php7.0 php7.0-cli php7.0-common php7.0-json php7.0-opcache php7.0-readline
+  psmisc
+обновлено 0, установлено 9 новых пакетов, для удаления отмечено 0 пакетов, и 0 пакетов не обновлено.
+Необходимо скачать 3 816 kБ архивов.
+После данной операции, объём занятого дискового пространства возрастёт на 13,9 MB.
+
+В процессе будет включен модуль prefork
+
+Creating config file /etc/php/7.0/apache2/php.ini with new version
+Module mpm_event disabled.
+Enabling module mpm_prefork.
+apache2_switch_mpm Switch to prefork
+apache2_invoke: Enable module php7.0
+Настраивается пакет php7.0 (7.0.27-0+deb9u1) …
+
