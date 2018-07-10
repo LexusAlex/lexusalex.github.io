@@ -15,7 +15,9 @@ tags: php libraries
     - [Stringy - работа со строками](#stringy)
     - [Morphos - морфология для сайта](#morphos)
     - [Faker - генератор фейковых данных](#faker)
-    - [Str - работа со строками в ООП стиле](#str) 
+    - [Str - работа со строками в ООП стиле](#str)
+    - [Tiny php - обфускация строки](#tiny-php)
+    - [Uuid - генератор уникальных универсальных идентификаторов](#uuid)
 - **Дата и время**
     - [Carbon - манипуляция с датой и временем](#carbon) 
       
@@ -135,6 +137,21 @@ user agent, цвета, имена файлов, идентификаторы и
 Работа со строками в ООП стиле
 
 [https://github.com/fe3dback/str](https://github.com/fe3dback/str)
+
+### Tiny php
+
+Обфускация строки
+
+[https://github.com/zackkitzmiller/tiny-php](https://github.com/zackkitzmiller/tiny-php)
+
+### Uuid
+
+Генератор универсальных уникальных идентификаторов.
+
+[https://github.com/ramsey/uuid](https://github.com/ramsey/uuid)
+
+Для хранения в бд используйте поле двоичный объект, не храните как строка
+[https://www.percona.com/blog/2014/12/19/store-uuid-optimized-way/](https://www.percona.com/blog/2014/12/19/store-uuid-optimized-way/)
 
 # Дата и время
 
