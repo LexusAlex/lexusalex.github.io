@@ -88,7 +88,7 @@ h1, h2, h3, h4, h5, h6 {
   text-rendering: optimizeLegibility;
 }
 h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 h2 {
   margin-top: 1rem;
@@ -288,7 +288,7 @@ tbody tr:nth-child(odd) th {
  */
 
 .container {
-  max-width: 38rem;
+  max-width: 40rem;
   padding-left:  1rem;
   padding-right: 1rem;
   margin-left:  auto;
@@ -349,7 +349,7 @@ tbody tr:nth-child(odd) th {
 /* Meta data line below post title */
 .post-date {
   display: block;
-  margin-top: -.5rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   color: #9a9a9a;
 }

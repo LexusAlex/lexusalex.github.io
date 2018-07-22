@@ -13,3 +13,4 @@ title: О блоге
 
 * [Почта](mailto:alexsey_89@bk.ru)
 * [Github](https://github.com/LexusAlex)
+* [VK](https://vk.com/id297664343)

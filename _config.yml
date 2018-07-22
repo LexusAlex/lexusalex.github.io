@@ -20,6 +20,7 @@ author:
 # This is the list of pages to include in the header of the website.
 pages_list:
   О блоге: '/about'
+  Книги: '/books'
   Архив записей: '/archive'
   Лента: '/atom.xml'
 
