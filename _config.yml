@@ -2,7 +2,7 @@
 permalink:        pretty
 
 # Setup
-title:            lexusalex.github.io
+title:            lexusalex.ru
 tagline:          'Pair is not a function'
 paginate:         15
 paginate_path:    "page:num"
@@ -10,12 +10,12 @@ highlighter:      rouge
 future:           false
 show_drafts:      false
 
-url:              https://lexusalex.github.io
-shorturl:         lexusalex.github.io
+url:              http://lexusalex.ru
+shorturl:         lexusalex.ru
 
 author:
   name:           Алексей Шмелев
-  url:            lexusalex.github.io
+  url:            lexusalex.ru
 
 # This is the list of pages to include in the header of the website.
 pages_list:
