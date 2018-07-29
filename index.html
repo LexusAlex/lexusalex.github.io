@@ -12,7 +12,8 @@ title: Home
       </a>
     </h1>
 
-    <span class="post-date">{{ post.date | date_to_string }}
+      <time class="post-date" datetime='{{ post.date | date:"%Y-%m-%d" }}'>
+          {% include date.html date=post.date %}
        <ul class="tag-box inline" style="float:right">
             {% capture tags %}
               {% for tag in post.tags %}
@@ -25,7 +26,7 @@ title: Home
                 <li><a href="/tags#{{ tag | cgi_escape }}">{{ tag }}</a></li>
             {% endfor %}
        </ul>
-   </span>
+      </time>
 
     {{ post.excerpt }}
   </div>

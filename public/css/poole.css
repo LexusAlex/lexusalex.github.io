@@ -67,7 +67,7 @@ body {
 
 /* No `:visited` state is required by default (browsers will use `a`) */
 a {
-  color: #268bd2;
+  color: #34495e;
   text-decoration: none;
 }
 a strong {
@@ -82,13 +82,13 @@ a:focus {
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
-  font-weight: bold;
-  line-height: 1.25;
-  color: #313131;
+  font-weight: 300;
+  line-height: 1em;
+  color: #34495e;
   text-rendering: optimizeLegibility;
 }
 h1 {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 }
 h2 {
   margin-top: 1rem;
@@ -433,8 +433,8 @@ a.pagination-item:hover {
 
 .tag-box {
   list-style: none;
-  margin: 0;
-  padding: 4px 0;
+  margin-top: -6px;
+  padding: 0 0;
   overflow: hidden;
   *zoom: 1;
 }
@@ -472,6 +472,9 @@ a.pagination-item:hover {
   font-size: 0.625rem;
 }
 
+.tag-box a:hover {
+  color: #46637f;
+}
 .signed-image
 {
   color: #999;
@@ -533,3 +536,48 @@ a.pagination-item:hover {
 .jssora05r:hover { background-position: -190px -40px; }
 .jssora05l.jssora05ldn { background-position: -250px -40px; }
 .jssora05r.jssora05rdn { background-position: -310px -40px; }
+
+.search {
+  position: relative;
+}
+
+
+.search .input {
+  text-align: center;
+  font-weight: 400;
+  line-height: 2.5em;
+  padding: 0 2.4em;
+  width: 100%;
+}
+
+.dropdown, .dropdown li, .dropdown a {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+}
+
+.dropdown li {
+  border-bottom: 1px solid #eee;
+  display: block;
+}
+
+.dropdown {
+  background-color: #fff;
+  box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+  position: absolute;
+  top: 100%;
+  margin-top: 4px;
+  padding: 0;
+}
+
+dropdown a, .dropdown .no-results {
+  font-size: 18px;
+  padding: .6em 1.2em;
+  text-decoration: none;
+  transition: background-color .2s ease, color .2s ease;
+}
+
+.dropdown a:hover, .dropdown a:focus, .dropdown a:active {
+  background-color: #34495e;
+  color: #fff;
+}

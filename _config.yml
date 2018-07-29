@@ -1,5 +1,7 @@
 # Permalinks
 permalink:        pretty
+timezone: Europe/Moscow
+language: ru
 
 # Setup
 title:            lexusalex.ru
@@ -12,6 +14,7 @@ show_drafts:      false
 
 url:              http://lexusalex.ru
 shorturl:         lexusalex.ru
+baseurl:          ""
 
 author:
   name:           Алексей Шмелев

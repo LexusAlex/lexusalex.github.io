@@ -4,7 +4,8 @@ layout: default
 
 <div class="post">
   <h1 class="post-title">{{ page.title }}</h1>
-  <span class="post-date">{{ page.date | date_to_string }}
+  <time class="post-date" datetime='{{ page.date | date:"%Y-%m-%d" }}'>
+  {% include date.html date=page.date %}
     <ul class="tag-box inline" style="float:right;font-size:0.875em">
     {% capture tags %}
       {% for tag in page.tags %}
@@ -17,6 +18,6 @@ layout: default
       <li><a href="/tags#{{ tag | cgi_escape }}">{{ tag }}</a></li>
     {% endfor %}
     </ul>
-  </span>
+  </time>
   {{ content }}
 </div>
