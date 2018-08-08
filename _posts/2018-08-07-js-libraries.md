@@ -1,6 +1,6 @@
 --- 
 layout: post 
-title: Полезные библиотеки Js 
+title: Полезные JavaScript библиотеки 
 permalink: js-libraries
 tags: javascript libraries
 --- 
