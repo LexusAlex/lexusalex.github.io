@@ -5,7 +5,7 @@ permalink: js-libraries
 tags: javascript libraries
 --- 
 
-Так же как и с [php](http://lexusalex.ru/php-libraries) буду собирать полезный код на js, чтобы не писать изобретать свой велосипед.
+Так же как и с [php](http://lexusalex.ru/php-libraries) буду собирать полезный код на js, чтобы не изобретать свой велосипед.
 
 
 ## Содержание
