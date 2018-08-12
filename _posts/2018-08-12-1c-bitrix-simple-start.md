@@ -57,7 +57,7 @@ test.php phpinfo
 
 После того когда все установилось, можно приступать к установке чистого битрикса.
 
-Нужно открыть фаил установки который лежит по адресу [http://127.0.0.1/bitrixsetup.php](http://127.0.0.1/bitrixsetup.php), установить 1с-bitrix
+Нужно открыть файл установки который лежит по адресу [http://127.0.0.1/bitrixsetup.php](http://127.0.0.1/bitrixsetup.php), установить 1с-bitrix
 
 В процессе установки будут запрошены данные для базы данных, в данном случае они такие:
 
@@ -83,12 +83,12 @@ docker build --tag lexusalex/bitrix-scratch .
 ~~~
 
 Создаем контейнер для базы данных основывыясь на образе bianjp/mariadb-alpine, 
-при этом пробрасывая внутрь хост машины диреторию с данными mysql `/home/alex/docker/bitrix-scratch/mysql-data`, ее меняем на свою, здесь указываем порты, имя пользователя бд,название бд
+при этом пробрасывая внутрь хост машины директорию с данными mysql `/home/alex/docker/bitrix-scratch/mysql-data`, ее меняем на свою, здесь указываем порты, имя пользователя бд,название бд
 ~~~bash
 docker run --name bitrix-scratch-db -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=bitrix-scratch -v /home/alex/docker/bitrix-scratch/mysql-data:/var/lib/mysql -d bianjp/mariadb-alpine
 ~~~
 
-Запускаем нас контейнер из образа `lexusalex/bitrix-scratch`, тоже указываем порт, директорию внутри хост машины откуда будут подхватываться файлы
+Запускаем наш контейнер из образа `lexusalex/bitrix-scratch`, тоже указываем порт, директорию внутри хост машины, откуда будут подхватываться файлы
 
 ~~~bash
 docker run --name bitrix-scratch --link bitrix-scratch-db -p 80:80 -d -v "$PWD":/var/www/localhost/htdocs lexusalex/bitrix-scratch
@@ -107,7 +107,7 @@ docker exec -ti bitrix-scratch sh -c "cd /var/www/localhost/htdocs && wget -P /v
 
 Мы тут конечно не учитывали особенности каждого конкретного проекта, здесь все настравивается и конфигурируется.
 
-В итоге развернуть чистый битрикс занимает буквально несколько минут, при этом особо не настраивая его
+В итоге развернуть чистый битрикс занимает буквально несколько минут, при этом особо его не настраивая.
 
 ----
 
