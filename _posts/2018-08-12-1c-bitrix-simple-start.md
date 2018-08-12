@@ -15,7 +15,7 @@ tags: 1c-bitrix php linux docker
 
 **Установка докер**
 
-Здесь все зависит от вашей ОС, я работаю в Ubuntu(что и вам советую) в моем случае инструкция здесь [https://docs.docker.com/install/linux/docker-ce/ubuntu/](https://docs.docker.com/install/linux/docker-ce/ubuntu/), для windows и macOS есть отдельные инталяторы
+Здесь все зависит от вашей ОС, я работаю в Ubuntu(что и вам советую) в моем случае инструкция здесь [https://docs.docker.com/install/linux/docker-ce/ubuntu/](https://docs.docker.com/install/linux/docker-ce/ubuntu/), для windows и macOS есть отдельные инcталяторы
 
 Проверим, что докер установлен:
 
@@ -28,7 +28,7 @@ Docker version 17.05.0-ce, build 89658be
 
 **Клонирование репозитория**
 
-Склонировать репозиторий [https://github.com/LexusAlex/bitrix-scratch](https://github.com/LexusAlex/bitrix-scratch)
+Склонировать мой репозиторий [https://github.com/LexusAlex/bitrix-scratch](https://github.com/LexusAlex/bitrix-scratch)
 
 Клонируем его куда-нибудь на свой диск 
 `git clone https://github.com/LexusAlex/bitrix-scratch bitrix-project`
