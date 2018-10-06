@@ -3,6 +3,7 @@ layout: post
 title: Россия.Мичуринск
 permalink: russia-michurinsk
 tags: Россия города 
+comments: true
 
 --- 
 
@@ -122,5 +123,4 @@ tags: Россия города
 <span class="signed-image">Стадион Локомотив</span>
 
 
-----
 

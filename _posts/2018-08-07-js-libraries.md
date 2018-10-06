@@ -3,6 +3,7 @@ layout: post
 title: Полезные JavaScript библиотеки 
 permalink: js-libraries
 tags: javascript libraries
+comments: true
 --- 
 
 Так же как и с [php](http://lexusalex.ru/php-libraries) буду собирать полезный код на js, чтобы не изобретать свой велосипед.
@@ -46,5 +47,4 @@ tags: javascript libraries
 
 [http://morrisjs.github.io/morris.js/](http://morrisjs.github.io/morris.js/)
 
-----
 

@@ -3,6 +3,7 @@ layout: post
 title: Полезные библиотеки в php 
 permalink: php-libraries
 tags: php libraries
+comments: true
 --- 
 
 Собираю в одном месте полезные библиотеки и функции в php, дабы иметь все под рукой.
@@ -181,5 +182,5 @@ Carbon::now()->addHour(5)->subDays(6)->addMinutes(30); // что удобно м
 
 UPD 10.07.2018 Добавлены библиотеки tiny-php, uuid
 
-----
+
 

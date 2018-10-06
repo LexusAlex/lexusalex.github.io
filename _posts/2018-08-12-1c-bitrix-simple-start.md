@@ -3,6 +3,7 @@ layout: post
 title: 1C-битрикс быстрый старт в докере
 permalink: 1c-bitrix-simple-start
 tags: 1c-bitrix php linux docker
+comments: true
 --- 
 
 ![1c-bitrix](/assets/images/2018-08-12-1c-bitrix-simple-start/1C-Bitrix.png "1c-bitrix")
@@ -109,5 +110,4 @@ docker exec -ti bitrix-scratch sh -c "cd /var/www/localhost/htdocs && wget -P /v
 
 В итоге развернуть чистый битрикс занимает буквально несколько минут, при этом особо его не настраивая.
 
-----
 

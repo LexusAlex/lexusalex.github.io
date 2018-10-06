@@ -4,13 +4,16 @@ timezone: Europe/Moscow
 language: ru
 
 # Setup
-title:            lexusalex.ru
+title:            Блог Алексея Шмелева
 tagline:          'Pair is not a function'
-paginate:         15
+paginate:         10
+version:          0.0.1
 paginate_path:    "page:num"
 highlighter:      rouge
 future:           false
 show_drafts:      false
+description: >
+  Pair is not a function
 
 url:              http://lexusalex.ru
 shorturl:         lexusalex.ru

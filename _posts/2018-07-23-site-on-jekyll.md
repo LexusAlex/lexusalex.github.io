@@ -3,6 +3,7 @@ layout: post
 title: Сайт на Jekyll
 permalink: site-on-jekyll
 tags: github jekyll
+comments: true
 
 --- 
 
@@ -28,5 +29,4 @@ Jekyll - это удобный генератор статических сай�
 1. [Markdown](https://guides.github.com/features/mastering-markdown/) синтаксис
 1. [Плагины](https://jekyllrb.com/docs/plugins/) для расширения фунциональности
 
-----
 
