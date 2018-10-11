@@ -1,7 +1,7 @@
 --- 
 layout: post 
 title: Тестирование кода. Идеология
-permalink: php-test-code-ideology
+permalink: test-code-ideology
 tags: testCode php
 comments: true
 
