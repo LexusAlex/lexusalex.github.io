@@ -50,7 +50,7 @@ Funct\Collection\pluck(
 
 ### Stringy
 
-Большой набор функций для работы со строками
+Большой набор функций для работы со строками, на все случаи жизни
 
 [https://github.com/danielstjules/Stringy](https://github.com/danielstjules/Stringy)
 
