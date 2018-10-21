@@ -4,7 +4,6 @@ title: Россия.Мичуринск
 permalink: russia-michurinsk
 tags: Россия города 
 comments: true
-visible: false
 
 --- 
 
