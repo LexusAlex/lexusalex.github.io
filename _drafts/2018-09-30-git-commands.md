@@ -303,7 +303,7 @@ git merge fix
 
 ### tag
 
-Ссылка на коммит, просто метка на коммит
+tag это просто ссылка на коммит, просто метка на коммит
 
 ~~~bash
 # Создает тег. Тег будет всегда указывать на заданный коммит
@@ -335,6 +335,15 @@ git log master
 
 # Показать кол-во последних коммитов
 git log -1
+
+# Вывести коммиты в сокращенном формате id коммита(полное или сокращенное) - название
+git log --pretty=oneline
+git log --pretty=oneline --abbrev-commit
+git log --oneline
+
+# Вывод коммитов по формату, ключи указаны в документации
+git log --pretty=format:"%h - %an, %ar : %s%d"
+
 
 ~~~
 
@@ -390,37 +399,8 @@ git branch --unset-upstream # завершить процесс переимен
 
 
 
-Prompt Structure
 
-By default, the general appearance of the prompt is::
-
-(<branch> <upstream branch> <branch tracking>|<local status>)
-
-The symbols are as follows:
-
-    Local Status Symbols
-        ✔: repository clean
-        ●n: there are n staged files
-        ✖n: there are n files with merge conflicts
-        ✖-n: there are n staged files waiting for removal
-        ✚n: there are n changed but unstaged files
-        …n: there are n untracked files
-        ⚑n: there are n stash entries
-    Upstream branch
-        Shows the remote tracking branch
-        Disabled by default
-        Enable by setting GIT_PROMPT_SHOW_UPSTREAM=1
-    Branch Tracking Symbols
-        ↑n: ahead of remote by n commits
-        ↓n: behind remote by n commits
-        ↓m↑n: branches diverged, other by m commits, yours by n commits
-        L: local branch, not remotely tracked
-    Branch Symbol:
-    When the branch name starts with a colon :, it means it's actually a hash, not a branch (although it should be pretty clear, unless you name your branches like hashes :-)
-
-
-
-https://github.com/nicothin/web-development/tree/master/git
+ 
 
 
 https://ru.stackoverflow.com/questions/431839/%D0%92-%D1%87%D0%B5%D0%BC-%D1%80%D0%B0%D0%B7%D0%BD%D0%B8%D1%86%D0%B0-%D0%BC%D0%B5%D0%B6%D0%B4%D1%83-git-add-add-a-add-u-%D0%B8-add
