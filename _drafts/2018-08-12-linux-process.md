@@ -403,3 +403,6 @@ Zombie - процесс еще сузествует, но по факту его
 
 ----
 
+$ command -x 1 [-x 2 args] {-x n | --long-options i } args ...
+
+cnt + j (^j) или enter
