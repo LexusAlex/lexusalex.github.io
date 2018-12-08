@@ -107,3 +107,20 @@ username:      password: UID: GID: GECOS: home: shell
 Дерево каталогов,
 Псевдофайловая система
 Файловая система
+
+Утилиты для сети
+
+Сетевые интерфейсы
+
+tcpdump
+traceroute
+ping
+ifconfig
+netstat
+route
+arp
+
+Сетевой сокет - ip + port
+127.0.0.1  Mask:255.0.0.0
+
+доступ клюбым адрессам
