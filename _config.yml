@@ -5,6 +5,7 @@ language: ru
 
 # Setup
 title:            Блог Алексея Шмелева
+tagline:          'Pair is not a function'
 paginate:         10
 version:          0.0.1
 paginate_path:    "page:num"
