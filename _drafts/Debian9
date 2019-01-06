@@ -55,7 +55,7 @@ reboot перезагрузка сервера
 apt-get install sudo
 adduser alex sudo
 
-apt-get install net-tools
+apt-get install net-tools sudo
 sudo apt install htop
 
 ssh alex@192.168.0.100
