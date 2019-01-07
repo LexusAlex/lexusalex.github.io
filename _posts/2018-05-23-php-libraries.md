@@ -23,7 +23,8 @@ comments: true
 - **Дата и время**
     - [Carbon - манипуляция с датой и временем](#carbon)
 - **Инструменты**
-    - [PHP_CodeSniffer - инструмент позволяющий найти проблемы в коде](#php-codesniffer) 
+    - [PHP_CodeSniffer - инструмент позволяющий найти проблемы в коде](#php-codesniffer)
+    - [Phploc - статистика php проекта](#phploc)
       
 ----    
 # Универсальные
@@ -199,11 +200,19 @@ Php-codeSniffer предназначен для того чтобы отлови
 
 [https://github.com/squizlabs/PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 
+### phploc
+
+Отображает статистику php проекта
+
+[https://github.com/sebastianbergmann/phploc](https://github.com/sebastianbergmann/phploc)
+
 Данный список буду дополнять по мере нахождения чего-либо интересного.
 
 UPD 10.07.2018 Добавлены библиотеки tiny-php, uuid
 
 UPD 31.12.2018 Добавлены библиотеки unit converter, php-codeSniffer
+
+UPD 08.01.2019 Добавлена библиотека phploc
 
 
 
