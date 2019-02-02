@@ -25,6 +25,7 @@ comments: true
 - **Инструменты**
     - [PHP_CodeSniffer - инструмент позволяющий найти проблемы в коде](#php-codesniffer)
     - [Phploc - статистика php проекта](#phploc)
+    - [VfsStream - виртуальная файловая система](#vfsStream)
       
 ----    
 # Универсальные
@@ -206,6 +207,12 @@ Php-codeSniffer предназначен для того чтобы отлови
 
 [https://github.com/sebastianbergmann/phploc](https://github.com/sebastianbergmann/phploc)
 
+### vfsStream
+
+Виртуальная файловая система, подходит для тестов phpunit
+
+[https://github.com/mikey179/vfsStream](https://github.com/mikey179/vfsStream)
+
 Данный список буду дополнять по мере нахождения чего-либо интересного.
 
 UPD 10.07.2018 Добавлены библиотеки tiny-php, uuid
@@ -213,6 +220,8 @@ UPD 10.07.2018 Добавлены библиотеки tiny-php, uuid
 UPD 31.12.2018 Добавлены библиотеки unit converter, php-codeSniffer
 
 UPD 08.01.2019 Добавлена библиотека phploc
+
+UPD 02.02.2019 Добавлена библиотека vfsStream
 
 
 
