@@ -25,7 +25,7 @@ comments: true
 - **Инструменты**
     - [PHP_CodeSniffer - инструмент позволяющий найти проблемы в коде](#php-codesniffer)
     - [Phploc - статистика php проекта](#phploc)
-    - [VfsStream - виртуальная файловая система](#vfsStream)
+    - [VfsStream - виртуальная файловая система](#vfs-stream)
       
 ----    
 # Универсальные
@@ -207,7 +207,7 @@ Php-codeSniffer предназначен для того чтобы отлови
 
 [https://github.com/sebastianbergmann/phploc](https://github.com/sebastianbergmann/phploc)
 
-### vfsStream
+### vfs-stream
 
 Виртуальная файловая система, подходит для тестов phpunit
 
