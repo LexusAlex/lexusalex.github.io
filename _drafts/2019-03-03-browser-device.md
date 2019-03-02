@@ -4,7 +4,6 @@ title: Устройство браузеров
 permalink: browser-device
 tags: browsers
 --- 
-
 Блочная модель
 
 ![box-model](/assets/images/browser/box_model/box_model_1.png "box-model")
