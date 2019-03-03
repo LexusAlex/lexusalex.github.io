@@ -6,7 +6,7 @@ tags: php libraries
 comments: true
 --- 
 
-Собираю в одном месте полезные библиотеки и функции в php, дабы иметь все под рукой.
+Собираю в одном месте полезные библиотеки, функции в php, дабы иметь все под рукой.
 
 
 ## Содержание
@@ -26,6 +26,10 @@ comments: true
     - [PHP_CodeSniffer - инструмент позволяющий найти проблемы в коде](#php-codesniffer)
     - [Phploc - статистика php проекта](#phploc)
     - [VfsStream - виртуальная файловая система](#vfs-stream)
+    - [Buzz - легкий http клиент](#buzz)
+- **Руководства**
+    - [Документация и руководства](#doc)
+   
       
 ----    
 # Универсальные
@@ -213,6 +217,19 @@ Php-codeSniffer предназначен для того чтобы отлови
 
 [https://github.com/mikey179/vfsStream](https://github.com/mikey179/vfsStream)
 
+### buzz
+
+Легковесный HTTP-клиент.
+
+[https://github.com/kriswallsmith/Buzz](https://github.com/kriswallsmith/Buzz)
+
+# Руководства и документация
+
+### doc
+
+1. [Оффициальная документация по php](http://docs.php.net/manual/ru/)
+1. [Руководство по PHPUnit](https://phpunit.readthedocs.io/ru/latest/index.html)
+
 Данный список буду дополнять по мере нахождения чего-либо интересного.
 
 UPD 10.07.2018 Добавлены библиотеки tiny-php, uuid
@@ -222,6 +239,8 @@ UPD 31.12.2018 Добавлены библиотеки unit converter, php-codeS
 UPD 08.01.2019 Добавлена библиотека phploc
 
 UPD 02.02.2019 Добавлена библиотека vfsStream
+
+UPD 03.03.2019 Добавлена библиотека Buzz, создан подраздел с документацией
 
 
 
