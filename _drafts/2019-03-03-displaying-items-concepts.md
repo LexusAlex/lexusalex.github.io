@@ -1,11 +1,17 @@
 ---
 layout: post 
-title: Устройство браузеров. Отображение элементов
-permalink: browser-device-displaying-items
+title: Отображение элементов.Основные понятия
+permalink: displaying-items-concepts
 tags: browsers
 --- 
 
-Важно понимать тонкости работы браузеров, но начнем мы с того как браузер отображает элементы
+Как же браузер отображает элементы, хочу внести ясность 
+
+Примерное содержание
+
+Блочная модель
+
+
 
 ### Блочная модель
 
@@ -19,10 +25,17 @@ tags: browsers
 - Размер окна просмотра (viewport)
 - Внешняя информация, размер замещаемых элементов
 
+Контент - образует ширина и высота элемента
+padding - отступ от контента до рамки
+border - рамка
+margin - внешний отступ от других элементов
 
 
+https://webref.ru/course/block-model/properties
 
 ![box-model](/assets/images/browser/box_model/box_model_1.png "box-model")
+
+По умолчани все элементы являются строчными
 
 
 https://www.youtube.com/watch?v=LVqg3N7QYVU
