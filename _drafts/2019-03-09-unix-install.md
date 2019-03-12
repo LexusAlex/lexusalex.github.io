@@ -235,3 +235,39 @@ initrm - начальный фаил
 
 параметры ядра
 
+----
+
+загрузчик ОС
+
+0 1 2 Stage этапы загрузки
+
+LILO
+
+MBR stage 0
+PBR stage 1
+OS partition stage 2
+
+
+/sbin/lilo - инсталятор загрузчика
+/etc/lilo.conf
+/boot/map
+
+Строит карту загрузки, рабоатет с номерами блоков
+
+
+GRUB - не имеет к линуксу никакого отношения
+
+MBR stage 0
+PBR stage 1
+OS partition stage 2
+
+/boot/grub/ stage 1 512b
+/boot/grub/ stage 2 ~100kb неизвесно где помещется
+/boot/grub/<fs> stage 2 ~100kb неизвесно где помещется
+
+Взаимеодействуем со вторым шагом
+
+/sbin/grub - инсталятор загрузчика
+/boot/grub/menu.lst
+
+На этапе загрузке можно сообщить загрузчику
