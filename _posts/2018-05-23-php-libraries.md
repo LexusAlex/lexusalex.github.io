@@ -20,6 +20,7 @@ comments: true
     - [Str - работа со строками в ООП стиле](#str)
     - [Tiny php - обфускация строки](#tiny-php)
     - [Uuid - генератор уникальных универсальных идентификаторов](#uuid)
+    - [Php-ulid - генератор уникальных идентификаторов с возможностью сортировки](#php-ulid)
 - **Дата и время**
     - [Carbon - манипуляция с датой и временем](#carbon)
 - **Инструменты**
@@ -27,6 +28,7 @@ comments: true
     - [Phploc - статистика php проекта](#phploc)
     - [VfsStream - виртуальная файловая система](#vfs-stream)
     - [Buzz - легкий http клиент](#buzz)
+    - [PsySH - интерактивный дебаггер php](#psysh)
 - **Руководства**
     - [Документация и руководства](#doc)
    
@@ -170,6 +172,14 @@ user agent, цвета, имена файлов, идентификаторы и
 Для хранения в бд используйте поле двоичный объект, не храните как строка
 [https://www.percona.com/blog/2014/12/19/store-uuid-optimized-way/](https://www.percona.com/blog/2014/12/19/store-uuid-optimized-way/)
 
+### Php-ulid
+
+Вместо обычного UUID, в качестве идентификаторов можно использовать ULID, 
+который обладает рядом преимуществ, в частности, лексически монотонно возрастает, 
+а значит его можно удобно сортировать.
+
+[https://github.com/robinvdvleuten/php-ulid](https://github.com/robinvdvleuten/php-ulid)
+
 # Дата и время
 
 ### Carbon
@@ -223,6 +233,14 @@ Php-codeSniffer предназначен для того чтобы отлови
 
 [https://github.com/kriswallsmith/Buzz](https://github.com/kriswallsmith/Buzz)
 
+### psysh
+
+Интерактивный php дебаггер и консоль разработчика
+
+[https://psysh.org/](https://psysh.org/)
+
+[Что такое PsySH](https://ru.hexlet.io/blog/posts/php-psysh-ili-chto-takoe-repl-exploratory-development)
+
 # Руководства и документация
 
 ### doc
@@ -241,6 +259,8 @@ UPD 08.01.2019 Добавлена библиотека phploc
 UPD 02.02.2019 Добавлена библиотека vfsStream
 
 UPD 03.03.2019 Добавлена библиотека Buzz, создан подраздел с документацией
+
+UPD 10.05.2019 Добавлена библиотека Php-ulid и дебаггер psysh
 
 
 
