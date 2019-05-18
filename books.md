@@ -23,8 +23,13 @@ title: Хорошие книги
   }
 </style>
 
-Здесь собираю список книг которые заслуживают внимания. 
 
+<div class="heading heading_main">
+    <h1 class="heading__text">Хорошие книги</h1>
+</div>
+<p>
+    Здесь собираю список книг которые заслуживают внимания. 
+</p>
 <div class="books-container">
 
     <div class="books-item">

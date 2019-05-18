@@ -1,52 +1,22 @@
 ---
-layout: default2
+layout: default3
 ---
 
-<div class="post">
-  <h1 class="post-title">{{ page.title }}</h1>
-  <time class="post-date" datetime='{{ page.date | date:"%Y-%m-%d" }}'>
-  {% include date.html date=page.date %}
-    <ul class="tag-box inline" style="float:right;font-size:0.875em">
-    {% capture tags %}
-      {% for tag in page.tags %}
-        {{ tag }}
-      {% endfor %}
-    {% endcapture %}
-    {% assign sortedtags = tags | split:' ' | sort %}
+<div class="content__container container">
+    <section class="post _with-comments" itemtype="http://schema.org/BlogPosting" itemscope="">
+        <time datetime='{{ page.date | date:"%Y-%m-%d" }}' itemprop="datePublished">{% include date.html date=page.date %}</time>
+        <header class="post__heading">
+            <h1 class="post__heading-title" itemprop="headline">{{ page.title }}</h1>
+        </header>
+        <article class="post__content" itemprop="articleBody">
+            {{ content }}
+        </article>
+    </section>
 
-    {% for tag in sortedtags %}
-      <li><a href="/tags#{{ tag | cgi_escape }}">{{ tag }}</a></li>
-    {% endfor %}
-    </ul>
-  </time>
-  {{ content }}
+    {% if page.comments %}
+    <div class="comments">
+        <h2>Комментарии</h2>
+        {% include comments.html %}
+    </div>
+    {% endif %}
 </div>
-
-{% include related.html %}
-
-{% if page.comments %}
-<div class="comments">
-  <h2>Комментарии</h2>
-  {% include comments.html %}
-</div>
-{% endif %}
-
-<script src="{{ '/public/js/viewer.js' | prepend: site.baseurl }}"></script>
-<link href="{{ '/public/css/viewer.css' | prepend: site.baseurl }}" rel="stylesheet">
-<script type="text/javascript">
-    $('.post img').each(function(){
-        new Viewer(this, {
-            fullscreen: true,
-            title: true,
-            navbar: false,
-            rotable: true,
-            keyboard: true,
-            scalable: false,
-            movable: false,
-            zoomable: false,
-            rotatable: false,
-            backdrop: false,
-            toolbar: false
-        });
-    });
-</script>
