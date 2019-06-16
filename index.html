@@ -1,0 +1,51 @@
+---
+layout: default
+title: LexusAlex
+---
+
+{% assign postsByYear = site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
+{% for year in postsByYear %}
+    <div class="row justify-content-center">
+        <div class="col-lg-1">
+            <div class="year-name text-center text-lg-right">{{ year.name }}</div>
+        </div>
+        <div class="col-lg-7 col-sm-12">
+            {% for post in year.items %}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="post-heading">
+                            <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 text-left">
+                        <div class="post-date">{% include date.html date=post.date %}</div>
+                    </div>
+                    <div class="col text-left text-sm-right">
+                        <div class="post-tags">
+                            {% capture tags %}
+                            {% for tag in post.tags %}
+                            {{ tag }}
+                            {% endfor %}
+                            {% endcapture %}
+                            {% assign sortedtags = tags | split:' ' | sort %}
+
+                            {% for tag in sortedtags %}
+                            {{ tag }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="post-preview">
+                            {{ post.summary }}
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
