@@ -39,6 +39,12 @@ layout: default
                 </div>
             {% endif %}
             {{ content }}
+
+            {% if page.comments %}
+            <div class="comments">
+                {% include comments.html %}
+            </div>
+            {% endif %}
         </article>
     </div>
 </div>
