@@ -10,6 +10,8 @@ cover_url: "/images/jekyll/jekyll.jpg"
 is_navigate: true
 ---
 
+Мануал создан с целью помочь в изучении системы контроля версий git
+
 ## Что такое git
 
 Git это система для хранения кода проекта
@@ -28,6 +30,10 @@ Git доступен для всех операционных систем.
 https://ru.hexlet.io/courses/intro_to_git/lessons/intro/theory_unit#lesson
 
 https://learn.javascript.ru/screencast/git
+
+https://github.com/nicothin/web-development/tree/master/git
+
+https://github.com/Yunique/Git
 
 
 Темы
