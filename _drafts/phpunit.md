@@ -23,12 +23,49 @@ is_navigate: true
 
 ## Установка
 
-В настоящее время (июнь 2019) поддерживаются две версии phpunit, но доступны и более
-старые версии.
+В настоящее время (июнь 2019) поддерживаются две версии phpunit 7 и 8, 
+но доступны и более [старые версии](https://phpunit.de/supported-versions.html).
 
-Какую версию устанавливать зависит от используемой версии php.
+Какую версию устанавливать зависит от используемой у вас на сервере версии php.
 
-[Версии phpunit](https://phpunit.de/supported-versions.html)
+Важно учесть, то что к примеру если тесты написаны под phpunit 7, в 8 версии они могут
+не запустится. Смотрите документацию.
+
+В 2019 году де факто стандартным и предпочитаемым способом установки библиотек, является
+установка через пакетный менеджер [composer](https://getcomposer.org/).
+
+Добавляем phpunit в секцию `require-dev`
+
+~~~bash
+composer require --dev phpunit/phpunit ^8
+~~~
+
+Соответственно phpunit нужно запускать только в dev окружении проекта
+На боевом сервере выполнить `composer update --no-dev` для запрета установки пакетов из секции `require-dev`
+
+~~~bash
+./vendor/bin/phpunit --version # проверим установленную версию phpunit
+PHPUnit 8.2.3 by Sebastian Bergmann and contributors.
+
+./vendor/bin/phpunit --check-version # проверка c предупреждением что установлена не последняя версия фреймворка
+PHPUnit 8.2.2 by Sebastian Bergmann and contributors.
+
+You are not using the latest version of PHPUnit.
+The latest version is PHPUnit 8.2.3.
+~~~
+
+Существует еще также альтернативный способ установки, там где менеджера пакетов composer
+
+~~~bash
+# скачать архив
+wget -O phpunit https://phar.phpunit.de/phpunit-8.phar
+# сделать фаил исполняемым
+chmod +x phpunit
+# запустить из указанного места
+./phpunit
+~~~
+
+## Соглашения по написанию тестов
 
 Ссылки
 

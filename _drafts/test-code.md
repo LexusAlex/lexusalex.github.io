@@ -30,3 +30,8 @@
 
 Чем больше проверок тем лучше
 Любой warning нужно отслеживать
+
+Тема статьи по новой библиотеке
+Мутационное тестирование
+https://habr.com/ru/company/mailru/blog/457888/
+https://infection.github.io/guide/
