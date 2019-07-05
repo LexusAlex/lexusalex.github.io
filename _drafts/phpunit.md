@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Библиотеки php : phpunit
+title: Библиотеки php phpunit
 permalink: php-phpunit
 tags: phpunit php
 comments: true
