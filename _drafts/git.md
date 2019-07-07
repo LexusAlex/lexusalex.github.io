@@ -35,6 +35,8 @@ https://github.com/nicothin/web-development/tree/master/git
 
 https://github.com/Yunique/Git
 
+https://github.com/yiisoft/yii2/blob/master/docs/internals-ru/git-workflow.md workflow
+
 
 Темы
 
