@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Чистые функции
-permalink: pure_functions
+permalink: pure-functions
 tags: php
 comments: true
 subtitle: Что такое чистые функции
