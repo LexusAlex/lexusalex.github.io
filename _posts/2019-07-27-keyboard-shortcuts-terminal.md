@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Полезные комбинации клавиш в терминале
-permalink: bash-keyboard-shortcuts
+permalink: keyboard-shortcuts-terminal
 tags: linux bash
 comments: true
 subtitle:
