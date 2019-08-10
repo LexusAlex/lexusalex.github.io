@@ -31,8 +31,8 @@ random_int(1, 100); // 82
 <?php
 // пример расширяющий предыдущий
 // при каждом новом вызове функция с одинаковым входным параметром функция возвращает разный результат
-function nondeterministic($int) 
-{
+function nondeterministic($int) {
+ 
    return random_int(1,1000) + date('d') + $int;
 }
 
@@ -73,18 +73,18 @@ array_key_last([2,3,7]); // 2 . функция вернет последний �
 ~~~php
 <?php
 // обращение к глобальной переменной
-function side_effect1()
-{
+function side_effect1() {
+    
     return $_SERVER['PATH']; // /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 }
 // запись в фаил
-function side_effect2()
-{
+function side_effect2() {
+    
     file_put_contents('file.txt', 'Текст для записи', FILE_APPEND); // создание и запись в фаил file.txt
 }
 // печать на экран
-function side_effect3()
-{
+function side_effect3() {
+    
     echo 'text'; // text
 }
 ~~~
