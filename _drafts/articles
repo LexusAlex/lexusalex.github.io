@@ -2,4 +2,7 @@
 
 phpunit
 docker
+php array
+php function
+php objects
 sicp
