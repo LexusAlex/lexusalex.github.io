@@ -28,6 +28,9 @@ layout: default
             <p>
                 {{ page.subtitle }}
             </p>
+            {% if page.cover_url %}
+                <img src="{{ page.cover_url }}" alt="">
+            {% endif %}
             {% if page.is_navigate %}
                 <div class="row">
                     <div class="col-12">
