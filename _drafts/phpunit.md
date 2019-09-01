@@ -6,7 +6,7 @@ tags: phpunit php
 comments: true
 subtitle: Как начать использовать phpunit у себя в проекте
 summary:  Как начать использовать phpunit у себя в проекте
-cover_url: "/images/jekyll/jekyll.jpg"
+cover_url: "/assets/images/articles/phpunit/phpunit.png"
 is_navigate: true
 ---
 
@@ -14,23 +14,24 @@ is_navigate: true
 
 [phpunit](https://phpunit.de) - это фреймворк для написания юнит тестов
 
-Если кратко то юнит тестирование позволяет проверить проект на работоспособность.
+Если кратко то юнит тесты позволяют держать под контролем работоспособность проекта.
 
 При этом тесты дают ряд преимуществ :
 - При написании нового функционала тесты помогают сохранить в рабочем состоянии существующий код
 - Проверить работоспособность проекта можно буквально запуском одной команды
-- Автоматизированные тесты приучают к декомпозиции задачи, что в целом полезно
+- Автоматизированные тесты приучают к декомпозиции задачи, что в целом полезно для разработчика
 
 ### Версии phpunit
 
 По историческим причинам версия phpunit напрямую зависит от версии php которая установлена у вас на сервере.
 
-В момент написания этой статьи (июль 2019) актуальными и поддерживаемыми являются версии phpunit 7 и 8.
+В момент написания этой статьи (август 2019) актуальными и поддерживаемыми являются версии phpunit 7 и 8.
 
-Из таблицы с [официального](https://phpunit.de/supported-versions.html) можно сделать вывод, что если вы используете к примеру
-php 7.0, то будет использоваться версия phpunit 6 или phpunit 5. Если ваша версия php 5.3, то phpunit 4.
+Из таблицы с [официального сайта](https://phpunit.de/supported-versions.html) можно сделать вывод, 
+что если вы используете к примеру php 7.0, то будет использоваться версия phpunit 6 или phpunit 5. 
+Если ваша версия php 5.3, то phpunit 4.
 
-Важно учесть, то что к примеру если тесты написаны под phpunit 7, в 8 версии они могут
+Важно учесть, то что если тесты написаны под phpunit 7, в 8 версии они могут
 не запустится. Используйте одну мажорную версию и смотрите документацию.
 
 Спискок текущих версий и их поддержку удобно смотреть на сайте [https://packagist.org/packages/phpunit/phpunit](https://packagist.org/packages/phpunit/phpunit)
@@ -53,26 +54,26 @@ composer require --dev phpunit/phpunit ^8
 > На боевом сервере для того убрать phpunit из автозагрузки
   необходимо выполнить `composer update --no-dev` для запрета установки пакетов из секции `require-dev`.
 
-Я буду использовать php 7.3 и phpunit 8.2.4.
+Я буду использовать php 7.3.4 и phpunit 8.3.4.
 
 Проверим установленную версию phpunit:
 
 ~~~bash
 ./vendor/bin/phpunit --version
-PHPUnit 8.2.4 by Sebastian Bergmann and contributors.
+PHPUnit 8.3.4 by Sebastian Bergmann and contributors.
 ~~~
 
 Если есть необходимость проверить что установлена последняя версия фреймворка, существует ключ `--check-version`:
 
 ~~~bash
 ./vendor/bin/phpunit --check-version
-PHPUnit 8.2.3 by Sebastian Bergmann and contributors.
+PHPUnit 8.3.3 by Sebastian Bergmann and contributors.
 
 You are not using the latest version of PHPUnit.
-The latest version is PHPUnit 8.2.4.
+The latest version is PHPUnit 8.3.4.
 ~~~
 
-Если в проекте не используется composer cуществует также альтернативный способ установки phpunit:
+Если в проекте не используется composer cуществует также альтернативный способ установки phpunit.
 
 ~~~bash
 # скачать phar архив
@@ -84,7 +85,9 @@ chmod +x phpunit
 ~~~
 
 Можно так же установить глобально для всей системы (что не рекомендуется) переместив файл командой 
-`sudo mv phpunit /usr/local/bin/phpunit` теперь команда phpunit будет доступна глобально
+`sudo mv phpunit /usr/local/bin/phpunit` теперь команда phpunit будет доступна глобально.
+
+Как видим способов установки масса.
 
 ### Соглашения по написанию тестов
 
@@ -123,19 +126,25 @@ chmod +x phpunit
 ./vendor/bin/phpunit --generate-configuration
 ~~~
 
-Сгенерированный xml фаил конфигурации по умолчанию выглядит так:
+Будет сгенерирован xml фаил конфигурации по умолчанию.
+Я немного дополнил дефолтный фаил, он выглядит так:
 
 ~~~xml
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/8.2/phpunit.xsd"
-         bootstrap="vendor/autoload.php"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/8.3/phpunit.xsd"
+         bootstrap="./tests/bootstrap.php"
          executionOrder="depends,defects"
          forceCoversAnnotation="true"
          beStrictAboutCoversAnnotation="true"
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTodoAnnotatedTests="true"
-         verbose="true">
+         verbose="true"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         stopOnFailure="false">
     <testsuites>
         <testsuite name="default">
             <directory suffix="Test.php">tests</directory>
@@ -150,7 +159,7 @@ chmod +x phpunit
 </phpunit>
 ~~~
 
-Опции можно найти в документации
+Множество опций можно найти в [документации](https://phpunit.readthedocs.io/en/8.3/configuration.html)
 
 
 ### Вывод тестов
@@ -168,7 +177,7 @@ chmod +x phpunit
 Помимо обозначения в выводе будет и другая информация:
 
 ~~~bash
-PHPUnit 8.2.3 by Sebastian Bergmann and contributors.
+PHPUnit 8.3.4 by Sebastian Bergmann and contributors.
 
 Runtime:       PHP 7.3.4
 Configuration: /test-phpunit/phpunit.xml
@@ -183,10 +192,8 @@ OK (2 tests, 2 assertions)
 
 ### Настройки
 
-У утилиты `./vendor/bin/phpunit` имеется [множество ключей](https://phpunit.readthedocs.io/en/8.2/textui.html), 
+У утилиты `./vendor/bin/phpunit` имеется [множество ключей](https://phpunit.readthedocs.io/en/8.3/textui.html), 
 но указывать их каждый раз неудобно. Гораздо лучше задать их один раз в конфигурационном файле `phpunit.xml`
-
-
 
 ### Принципы тестирования
 
