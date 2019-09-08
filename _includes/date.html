@@ -1,4 +1,4 @@
-{{ include.date | date: "%-d" }}
+{{ include.date | date: "%d" }}
 {% assign m = include.date | date: "%-m" %}
 {% case m %}
     {% when '1' %}Января
@@ -14,4 +14,4 @@
     {% when '11' %}Ноября
     {% when '12' %}Декабря
 {% endcase %}
-{{ include.date | date: "%Y" }}
+{{ include.date | date: "%Y" }} г.
