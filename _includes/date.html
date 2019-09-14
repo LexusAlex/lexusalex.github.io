@@ -14,4 +14,7 @@
     {% when '11' %}Ноября
     {% when '12' %}Декабря
 {% endcase %}
-{{ include.date | date: "%Y" }} г.
+{{ include.date | date: "%Y" }}
+{% if include.date %}
+г.
+{% endif %}
