@@ -2,7 +2,7 @@
 
 Работа с исходным кодом
 editorconfig, вокруг кода
-Работа с фреймворкаим, установка и настройка
+Работа с фреймворками, установка и настройка, урок 1
 phpunit
 docker
 php array
@@ -10,3 +10,6 @@ php array
 php function
 php objects
 sicp
+
+DDD
+https://5minphp.ru/page/2/

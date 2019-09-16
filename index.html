@@ -19,13 +19,13 @@ title: LexusAlex
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-sm-5 text-left">
+                    <div class="col-8 col-sm-5 text-left">
                         <div class="post-date">
                             <img width="20" height="20" class="rounded-circle" src="{{ site.baseurl }}/assets/images/calendar.svg" title="Дата" alt="date">
                             {% include date.html date=post.date %}
                         </div>
                     </div>
-                    <div class="col-3 col-xl-2 col-md-2 col-sm-2 text-left">
+                    <div class="col-4 col-xl-2 col-md-2 col-sm-2 text-left">
                         <div class="post-date">
                             <img width="20" height="20" class="rounded-circle" src="{{ site.baseurl }}/assets/images/clock.svg" title="Время на чтение" alt="time">
                             {% assign minutes = post.content | strip_html | number_of_words | divided_by: 180 %}
