@@ -4,20 +4,79 @@ title: Composer - менеджер зависимостей php
 permalink: php-composer
 tags: php composer
 comments: true
-subtitle: Как использовать переменные окружения в php.
-summary:  Как использовать переменные окружения в php.
+subtitle: Использование пакетного менеджера composer для управления зависимостями проекта
+summary:  Использование пакетного менеджера composer для управления зависимостями проекта
 is_navigate: true
+cover_url: "/assets/images/articles/composer/composer.png"
 ---
 
-Composer занимает особое место в инфраструктуре php.
+Типичное php приложение зависит от другого кода. 
+Часто бывает, что код необходимо использовать сразу в нескольких проектах.
+В операционных системах зависимостями управляет **пакетный менеджер** .
+Пакетный менеджер управляет библиотеками, зависимостями между версиями библиотек, так же является автоматизированным
+средством управления то есть установкой, обновлением и удалением библиотек.
 
--   [Composer](https://getcomposer.org/) - менеджер зависимостей php
--   [packagist.org](https://packagist.org/) - репозиторий пакетов
+В php пакетным менеджером пакетов явлется [composer](https://getcomposer.org/) . 
+Он умеет подключать файлы и работать с зависимостями пакетов.
 
+_Данное руководство можно отнести к руководству по работе с менеджерами пакетов в общем_
+
+### Определения
+
+1. Библиотека (Пакет) - законченная программа которую мы используем в проекте как зависимость.
+2. Версия библиотеки - библиотка обязательно должна иметь номер версии, так как библиотеки зависят от версий друг друга.
+3. Репозиторий - Хранилище библиотек. В php это - [packagist.org](https://packagist.org/).
+4. Локальная установка - означает что пакет ставится локально для проекта.
+5. Глобальная установка - означает что пакет ставится глобально для всей системы как обычная программа.
+
+### Установка composer
+
+Перед началом установки в операционной системе (я использую ubuntu) уже должны стоять следующие пакеты:
+
+- curl
+- php
+- git
+- unzip
+
+Composer написан на php и упакован в [phar архив](https://www.php.net/manual/ru/intro.phar.php).
+Его можно поставить локально в как часть проекта или глобально для использования во всей системе.
+
+#### Локальная установка
 
 ~~~bash
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" # качаем инсталятор
+php -r "if (hash_file('sha384', 'composer-setup.php') === 'a5c698ffe4b8e849a443b120cd5ba38043260d5c4023dbf93e1558871f1f07f58274fc6f4c93bcfd858c6bd0775cd8d1') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" # сравниваем хеш файла
+# далее можно указать опции установки
+php composer-setup.php # установка с опциями по умолчанию
+php composer-setup.php --install-dir=/usr/local/bin # установка в указанную директорию
+php composer-setup.php --filename=composer # имя конечного файла
+php composer-setup.php --version=1.0.0-alpha8 # установить конкретную версию
+~~~
 
-bash-4.4# composer
+После установки будет скачан архив `composer.phar` который уже можно использовать
+
+Также можно загрузить файл `composer.phar` вручную (например на хостинг) с [официального сайта](https://getcomposer.org/download/) или
+воспользоваться утилитой `curl -sS https://getcomposer.org/installer -o composer-setup.php`
+
+#### Глобальная установка
+
+Чтобы использовать composer глобально нужно переместить файл `composer.phar` 
+в директорию `/usr/local/bin/` ,например командой `mv composer.phar /usr/local/bin/composer`
+Теперь composer будет доступен глобально и его можно запускать просто как обычную unix утилиту.
+
+Так же composer доступен в репозиториях пакетов операционных систем например в [ubuntu](https://packages.ubuntu.com/disco/composer)
+Устанавиливается он как обычная программа `apt-get install composer` в ubuntu или `apk add composer` в alpine linux 
+
+Способ установки зависит от ситуации.
+
+[Мануал по установке composer](https://getcomposer.org/doc/00-intro.md)
+
+### Запуск
+
+Управление всеми зависимостями осуществлятся утилитой `composer`.
+Если вы устанавливали composer локально в проект запустите `php composer.phar`
+При запуске утилиты будет выведен список возможны команд :
+~~~bash
    ______
   / ____/___  ____ ___  ____  ____  ________  _____
  / /   / __ \/ __ `__ \/ __ \/ __ \/ ___/ _ \/ ___/
@@ -83,55 +142,33 @@ Available commands:
   validate             Validates a composer.json and composer.lock.
   why                  Shows which packages cause the given package to be installed.
   why-not              Shows which packages prevent the given package from being installed.
-
 ~~~
 
-### Установка composer
-
-Перед началом установки в системе должны стоять следующие пакеты:
-
-- curl
-- php
-- git
-- unzip
-
-Composer можно поставить локально в проект или глобально для всей системы.
-
-Поставим локально в проект.
+Проверим версию composer, у меня в системе установлена локальная и глобальная версия (версия на сентябрь 2019) менеджера :
 
 ~~~bash
-# скачаем установщик
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-# сравним хэш файла
-php -r "if (hash_file('sha384', 'composer-setup.php') === '93b54496392c062774670ac18b134c3b3a95e5a5e5c8f1a9f115f203b75bf9a129d5daa8ba6a13e2cc8a1da0806388a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-# установка с опциями по умолчанию
-php composer-setup.php
-
-All settings correct for using Composer
-Downloading...
-
-Composer (version 1.8.0) successfully installed to: /var/www/html/composer.phar
-Use it: php composer.phar
+composer -V && php composer.phar -V
+# Composer version 1.9.0 2019-08-02 20:55:32
+# Composer version 1.9.0 2019-08-02 20:55:32
 ~~~
 
-Скачался архив `composer.phar`, запустить composer можно, так как указано выше `php composer.phar`
+### Установка пакетов
 
-Теперь поставим глобально для всей системы.
+Пакеты можно устанавливать глобально для всей системы или локально для проекта.
 
-Запустим инсталятор `composer-setup.php` с дополнительными опциями
-`php composer-setup.php --install-dir=/usr/local/bin --filename=composer`, где
-- --version - версия composer которую нужно установить
-- --filename - название исполняемого файла
-- --install-dir - директория куда устанавливать
+#### Глобально
 
-Еще вариант переместить файл `composer.phar` в директорию `/usr/local/bin/` ,командой `mv composer.phar /usr/local/bin/composer`
+Для глобальной установки пакета используется ключ `global` , что позволяет ставить пакет в домашнюю директорию текущего пользователя
 
-Теперь composer запускать просто как обычную unix утилиту.
+~~~bash
+composer global require "squizlabs/php_codesniffer=*"
 
-Так же есть вариант установки composer через пакетный менеджер, например `apt-get install composer` или так `curl -sS https://getcomposer.org/installer -o composer-setup.php`
-Способ установки зависит от ситуации.
+php /root/.composer/vendor/bin/phpcs --standard=PSR12 /php-tests/index.php
 
-[Мануал по установке composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
+export PATH=$PATH:/root/.composer/vendor/bin/ 
+
+~~~
+
 
 
 ### Создание проекта
