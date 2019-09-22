@@ -21,15 +21,16 @@ cover_url: "/assets/images/articles/composer/composer.png"
 
 _Данное руководство можно отнести к руководству по работе с менеджерами пакетов в общем_
 
-### Определения
+## Определения
 
 1. Библиотека (Пакет) - законченная программа которую мы используем в проекте как зависимость.
 2. Версия библиотеки - библиотка обязательно должна иметь номер версии, так как библиотеки зависят от версий друг друга.
 3. Репозиторий - Хранилище библиотек. В php это - [packagist.org](https://packagist.org/).
 4. Локальная установка - означает что пакет ставится локально для проекта.
 5. Глобальная установка - означает что пакет ставится глобально для всей системы как обычная программа.
+6. Проект (Приложение) - это конечный продукт который использует зависимости
 
-### Установка composer
+## Установка composer
 
 Перед началом установки в операционной системе (я использую ubuntu) уже должны стоять следующие пакеты:
 
@@ -41,9 +42,10 @@ _Данное руководство можно отнести к руковод
 Composer написан на php и упакован в [phar архив](https://www.php.net/manual/ru/intro.phar.php).
 Его можно поставить локально в как часть проекта или глобально для использования во всей системе.
 
-#### Локальная установка
+### Локальная установка
 
 ~~~bash
+#!/usr/bin/env php
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" # качаем инсталятор
 php -r "if (hash_file('sha384', 'composer-setup.php') === 'a5c698ffe4b8e849a443b120cd5ba38043260d5c4023dbf93e1558871f1f07f58274fc6f4c93bcfd858c6bd0775cd8d1') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" # сравниваем хеш файла
 # далее можно указать опции установки
@@ -58,7 +60,7 @@ php composer-setup.php --version=1.0.0-alpha8 # установить конкр�
 Также можно загрузить файл `composer.phar` вручную (например на хостинг) с [официального сайта](https://getcomposer.org/download/) или
 воспользоваться утилитой `curl -sS https://getcomposer.org/installer -o composer-setup.php`
 
-#### Глобальная установка
+### Глобальная установка
 
 Чтобы использовать composer глобально нужно переместить файл `composer.phar` 
 в директорию `/usr/local/bin/` ,например командой `mv composer.phar /usr/local/bin/composer`
@@ -71,11 +73,11 @@ php composer-setup.php --version=1.0.0-alpha8 # установить конкр�
 
 [Мануал по установке composer](https://getcomposer.org/doc/00-intro.md)
 
-### Запуск
+## Запуск
 
 Управление всеми зависимостями осуществлятся утилитой `composer`.
 Если вы устанавливали composer локально в проект запустите `php composer.phar`
-При запуске утилиты будет выведен список возможны команд :
+При запуске утилиты будет выведен список опций и возможные команды :
 ~~~bash
    ______
   / ____/___  ____ ___  ____  ____  ________  _____
@@ -101,77 +103,147 @@ Options:
       --no-cache                 Prevent use of the cache
   -v|vv|vvv, --verbose           Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
 
-Available commands:
-  about                Shows the short information about Composer.
-  archive              Creates an archive of this composer package.
-  browse               Opens the package's repository URL or homepage in your browser.
-  check-platform-reqs  Check that platform requirements are satisfied.
-  clear-cache          Clears composer's internal package cache.
-  clearcache           Clears composer's internal package cache.
-  config               Sets config options.
-  create-project       Creates new project from a package into given directory.
-  depends              Shows which packages cause the given package to be installed.
-  diagnose             Diagnoses the system to identify common errors.
-  dump-autoload        Dumps the autoloader.
-  dumpautoload         Dumps the autoloader.
-  exec                 Executes a vendored binary/script.
-  global               Allows running commands in the global composer dir ($COMPOSER_HOME).
-  help                 Displays help for a command
-  home                 Opens the package's repository URL or homepage in your browser.
-  i                    Installs the project dependencies from the composer.lock file if present, or falls back on the composer.json.
-  info                 Shows information about packages.
-  init                 Creates a basic composer.json file in current directory.
-  install              Installs the project dependencies from the composer.lock file if present, or falls back on the composer.json.
-  licenses             Shows information about licenses of dependencies.
-  list                 Lists commands
-  outdated             Shows a list of installed packages that have updates available, including their latest version.
-  prohibits            Shows which packages prevent the given package from being installed.
-  remove               Removes a package from the require or require-dev.
-  require              Adds required packages to your composer.json and installs them.
-  run                  Runs the scripts defined in composer.json.
-  run-script           Runs the scripts defined in composer.json.
-  search               Searches for packages.
-  self-update          Updates composer.phar to the latest version.
-  selfupdate           Updates composer.phar to the latest version.
-  show                 Shows information about packages.
-  status               Shows a list of locally modified packages, for packages installed from source.
-  suggests             Shows package suggestions.
-  u                    Upgrades your dependencies to the latest version according to composer.json, and updates the composer.lock file.
-  update               Upgrades your dependencies to the latest version according to composer.json, and updates the composer.lock file.
-  upgrade              Upgrades your dependencies to the latest version according to composer.json, and updates the composer.lock file.
-  validate             Validates a composer.json and composer.lock.
-  why                  Shows which packages cause the given package to be installed.
-  why-not              Shows which packages prevent the given package from being installed.
 ~~~
 
-Проверим версию composer, у меня в системе установлена локальная и глобальная версия (версия на сентябрь 2019) менеджера :
+Возможные команды:
+1. about                - Shows the short information about Composer.
+1. archive              - Creates an archive of this composer package.
+1. browse               - Opens the package's repository URL or homepage in your browser.
+1. check-platform-reqs  - Check that platform requirements are satisfied.
+1. clear-cache          - Clears composer's internal package cache.
+1. clearcache           - Clears composer's internal package cache.
+1. config               - Sets config options.
+1. create-project       - Creates new project from a package into given directory.
+1. depends              - Shows which packages cause the given package to be installed.
+1. diagnose             - Diagnoses the system to identify common errors.
+1. dump-autoload        - Dumps the autoloader.
+1. dumpautoload         - Dumps the autoloader.
+1. exec                 - Executes a vendored binary/script.
+1. [global](#Глобально)               - Allows running commands in the global composer dir ($COMPOSER_HOME).
+1. help                 - Displays help for a command
+1. home                 - Opens the package's repository URL or homepage in your browser.
+1. i                    - Installs the project dependencies from the composer.lock file if present, or falls back on the composer.json.
+1. info                 - Shows information about packages.
+1. init                 - Creates a basic composer.json file in current directory.
+1. install              - Installs the project dependencies from the composer.lock file if present, or falls back on the composer.json.
+1. licenses             - Shows information about licenses of dependencies.
+1. list                 - Lists commands
+1. outdated             - Shows a list of installed packages that have updates available, including their latest version.
+1. prohibits            - Shows which packages prevent the given package from being installed.
+1. remove               - Removes a package from the require or require-dev.
+1. require              - Adds required packages to your composer.json and installs them.
+1. run                  - Runs the scripts defined in composer.json.
+1. run-script           - Runs the scripts defined in composer.json.
+1. search               - Searches for packages.
+1. self-update          - Updates composer.phar to the latest version.
+1. selfupdate           - Updates composer.phar to the latest version.
+1. show                 - Shows information about packages.
+1. status               - Shows a list of locally modified packages, for packages installed from source.
+1. suggests             - Shows package suggestions.
+1. u                    - Upgrades your dependencies to the latest version according to composer.json, and updates the composer.lock file.
+1. update               - Upgrades your dependencies to the latest version according to composer.json, and updates the composer.lock file.
+1. upgrade              - Upgrades your dependencies to the latest version according to composer.json, and updates the composer.lock file.
+1. validate             - Validates a composer.json and composer.lock.
+1. why                  - Shows which packages cause the given package to be installed.
+1. why-not              - Shows which packages prevent the given package from being installed.
+
+
+Проверим версию composer, у меня в системе установлена локальная и глобальная версия (версия на сентябрь 2019 - 1.9.0) менеджера :
 
 ~~~bash
+#!/usr/bin/env php
 composer -V && php composer.phar -V
 # Composer version 1.9.0 2019-08-02 20:55:32
 # Composer version 1.9.0 2019-08-02 20:55:32
 ~~~
 
-### Установка пакетов
+## Установка пакетов
 
-Пакеты можно устанавливать глобально для всей системы или локально для проекта.
+Пакеты можно устанавливать глобально для всей системы или локально одного проекта.
 
-#### Глобально
+### Глобально
 
-Для глобальной установки пакета используется ключ `global` , что позволяет ставить пакет в домашнюю директорию текущего пользователя
+Для установки пакетов используется ключ `require`, а для глобальной установки пакета используется ключ `global`, 
+что позволяет ставить пакет в домашнюю директорию текущего пользователя.
+
+Установим библиотеку [php_codesniffer](https://packagist.org/packages/squizlabs/php_codesniffer) которая содержит
+консольные утилиты для проверки php кода на соответствие стандартам, например мы хотим иметь глобальный доступ к
+данной библиотеке.
 
 ~~~bash
 composer global require "squizlabs/php_codesniffer=*"
-
-php /root/.composer/vendor/bin/phpcs --standard=PSR12 /php-tests/index.php
-
-export PATH=$PATH:/root/.composer/vendor/bin/ 
-
 ~~~
 
+В данном случае composer сделает следующее :
+1. Создаст скрытую директорию `.composer` в домашней директории пользователя в моем варианте это `/root/.composer`
+2. Создаст там фаил `composer.json`
+3. Загрузит информацию о пакете из репозитория
+4. Обновит и загрузит зависимости пакета
+5. Скачает (Обновит, откатит или удалит) и установит сам пакет в директорию `vendor`
+6. Запишет дерево зависимостей в фаил `composer.lock`
+7. Сгенерирует файлы автозагрузки 
+
+После установки библиотека `squizlabs/php_codesniffer` сразу же готова к использованию :
+
+~~~bash
+php /root/.composer/vendor/bin/phpcs --standard=PSR12 /php-tests/index.php
+~~~
+
+Чтобы каждый раз не писать длинный путь настроим переменную окружения `$PATH`.
+Для этого в один из файлов в домашней директории пользователя, bash будет грузить их в следующем порядке:
+
+- .bashrc
+- .bash_profile
+- .profile
+
+Добавим строку :
+
+~~~bash
+export PATH=$PATH:/root/.composer/vendor/bin/
+~~~
+
+Выходим из терминала. Команда доступна как обычная программа : 
+
+~~~bash
+phpcs --standard=PSR12 tests/
+~~~
+
+Если что-то пошло не так проверьте переменную окружения `$PATH` и путь до исполняемого файла :
+
+~~~bash
+echo $PATH
+# /root/.composer/vendor/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+which phpcs
+# /root/.composer/vendor/bin/phpcs
+~~~
+
+Обычно глобально пакеты ставятся редко, в основном их используют локально
+
+### Локально
+
+Теперь установим другую библиотеку например фреймворк для тестирования [phpunit](https://packagist.org/packages/phpunit/phpunit)
+но уже локально в проект
+
+~~~bash
+composer require phpunit/phpunit
+~~~
+
+Порядок действий будет следующий:
+
+1. Добавляется зависимости в фаил `composer.json`
+2. Загружается информация о пакете из репозитория
+3. Загружаются зависимости пакета в директорию `vendor`
+4. Загрузка и установка пакета в директорию `vendor`
+5. Пишется дерево зависимостей в фаил `composer.lock`
+6. Генерируются файлы автозагрузки
+
+Если пакет уже был загружен он будет браться из кеша.
 
 
-### Создание проекта
+
+
+
+## Создание проекта
 
 Создание проекта сводиться к созданию конфигурационного файла зависимостей `composer.json` в формате json.
 Создать его можно вручную или через командную строку, выполнив `composer init`, во втором случае будут заданы вопросы и
@@ -290,7 +362,7 @@ export PATH=$PATH:/root/.composer/vendor/bin/
 24. `autoload` - автозагрузка файлов
 25. `autoload-dev` - автозагрузка файлов для разработки
 
-### Управление зависимостями
+## Управление зависимостями
 
 Для указания пакетов от которых зависит наш проект используется секция `require` и `require-dev` (для разработки и тестирования) в `composer.json`
 
@@ -298,7 +370,7 @@ export PATH=$PATH:/root/.composer/vendor/bin/
 1. На сайте [packagist.org](https://packagist.org/?query=yii2)
 2. С помощью команды `composer search yii2`
 
-### Версионирование пакетов
+## Версионирование пакетов
 
 Номер версии пакета состоит из трех составляющих и строиться по формату 0.0.0 (Мажорная версия.минорная версия.патч).
 
@@ -314,7 +386,7 @@ export PATH=$PATH:/root/.composer/vendor/bin/
 
 [Спецификация](https://semver.org/lang/ru/)
 
-### Типы версий
+## Типы версий
 
 1.  `1.0.2` - будет установлена точная версия пакета
 2.  `>=1.0`, `<=5.4.6`, `>3.0`, `<5.6` `!=3.8`, - будет установлена версия которая подходит под условие
@@ -352,7 +424,7 @@ composer global require phpunit/phpunit # установить глобальн�
 composer global remove phploc/phploc # удалить глобальный пакет из системы
 ~~~
 
-### Автозагрузка
+## Автозагрузка
 
 Типичный composer пакет состоит из файлов и директорий:
 - `src` - исходные файлы проекта
@@ -412,7 +484,7 @@ Composer сам умеет загружать все необходимые фа
 
 Чтобы все заработало нужно в файле, который является точкой входа в приложения прописать `require __DIR__ . '/vendor/autoload.php';`
 
-### Обновление зависимостей
+## Обновление зависимостей
 
 Чтобы установить зависимости из `composer.json` в только что склонированном проекте, существует команда
 
