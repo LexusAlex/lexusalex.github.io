@@ -16,10 +16,10 @@ cover_url: "/assets/images/articles/composer/composer.png"
 Пакетный менеджер управляет библиотеками, зависимостями между версиями библиотек, так же является автоматизированным
 средством управления то есть установкой, обновлением и удалением библиотек.
 
-В php пакетным менеджером пакетов явлется [composer](https://getcomposer.org/) . 
+В php пакетным менеджером пакетов явлется [composer](https://getcomposer.org/). 
 Он умеет подключать файлы и работать с зависимостями пакетов.
 
-_Данное руководство можно отнести к руководству по работе с менеджерами пакетов в общем_
+_Данное руководство можно отнести к руководству по работе с менеджерами пакетов в общем смысле_
 
 ## Определения
 
@@ -106,56 +106,293 @@ Options:
 ~~~
 
 Возможные команды:
-1. about                - Shows the short information about Composer.
-1. archive              - Creates an archive of this composer package.
-1. browse               - Opens the package's repository URL or homepage in your browser.
-1. check-platform-reqs  - Check that platform requirements are satisfied.
-1. clear-cache          - Clears composer's internal package cache.
-1. clearcache           - Clears composer's internal package cache.
-1. config               - Sets config options.
-1. create-project       - Creates new project from a package into given directory.
-1. depends              - Shows which packages cause the given package to be installed.
-1. diagnose             - Diagnoses the system to identify common errors.
-1. dump-autoload        - Dumps the autoloader.
-1. dumpautoload         - Dumps the autoloader.
-1. exec                 - Executes a vendored binary/script.
-1. [global](#Глобально)               - Allows running commands in the global composer dir ($COMPOSER_HOME).
-1. help                 - Displays help for a command
-1. home                 - Opens the package's repository URL or homepage in your browser.
-1. i                    - Installs the project dependencies from the composer.lock file if present, or falls back on the composer.json.
-1. info                 - Shows information about packages.
-1. init                 - Creates a basic composer.json file in current directory.
-1. install              - Installs the project dependencies from the composer.lock file if present, or falls back on the composer.json.
-1. licenses             - Shows information about licenses of dependencies.
-1. list                 - Lists commands
-1. outdated             - Shows a list of installed packages that have updates available, including their latest version.
-1. prohibits            - Shows which packages prevent the given package from being installed.
-1. remove               - Removes a package from the require or require-dev.
-1. require              - Adds required packages to your composer.json and installs them.
-1. run                  - Runs the scripts defined in composer.json.
-1. run-script           - Runs the scripts defined in composer.json.
-1. search               - Searches for packages.
-1. self-update          - Updates composer.phar to the latest version.
-1. selfupdate           - Updates composer.phar to the latest version.
-1. show                 - Shows information about packages.
-1. status               - Shows a list of locally modified packages, for packages installed from source.
-1. suggests             - Shows package suggestions.
-1. u                    - Upgrades your dependencies to the latest version according to composer.json, and updates the composer.lock file.
-1. update               - Upgrades your dependencies to the latest version according to composer.json, and updates the composer.lock file.
-1. upgrade              - Upgrades your dependencies to the latest version according to composer.json, and updates the composer.lock file.
-1. validate             - Validates a composer.json and composer.lock.
-1. why                  - Shows which packages cause the given package to be installed.
-1. why-not              - Shows which packages prevent the given package from being installed.
+1. about                    - Shows the short information about Composer.
+1. archive                  - Creates an archive of this composer package.
+1. browse                   - Opens the package's repository URL or homepage in your browser.
+1. check-platform-reqs      - Check that platform requirements are satisfied.
+1. clear-cache              - Clears composer's internal package cache.
+1. clearcache               - Clears composer's internal package cache.
+1. config                   - Sets config options.
+1. create-project           - Creates new project from a package into given directory.
+1. depends                  - Shows which packages cause the given package to be installed.
+1. diagnose                 - Diagnoses the system to identify common errors.
+1. dump-autoload            - Dumps the autoloader.
+1. dumpautoload             - Dumps the autoloader.
+1. exec                     - Executes a vendored binary/script.
+1. [global](#Глобально)     - Allows running commands in the global composer dir ($COMPOSER_HOME).
+1. help                     - Displays help for a command
+1. home                     - Opens the package's repository URL or homepage in your browser.
+1. i                        - Installs the project dependencies from the composer.lock file if present, or falls back on the composer.json.
+1. info                     - Shows information about packages.
+1. [init](#Генерация-файла-composer.json)                     - Creates a basic composer.json file in current directory.
+1. install                  - Installs the project dependencies from the composer.lock file if present, or falls back on the composer.json.
+1. licenses                 - Shows information about licenses of dependencies.
+1. list                     - Lists commands
+1. outdated                 - Shows a list of installed packages that have updates available, including their latest version.
+1. prohibits                - Shows which packages prevent the given package from being installed.
+1. remove                   - Removes a package from the require or require-dev.
+1. require                  - Adds required packages to your composer.json and installs them.
+1. run                      - Runs the scripts defined in composer.json.
+1. run-script               - Runs the scripts defined in composer.json.
+1. search                   - Searches for packages.
+1. self-update              - Updates composer.phar to the latest version.
+1. selfupdate               - Updates composer.phar to the latest version.
+1. show                     - Shows information about packages.
+1. status                   - Shows a list of locally modified packages, for packages installed from source.
+1. suggests                 - Shows package suggestions.
+1. u                        - Upgrades your dependencies to the latest version according to composer.json, and updates the composer.lock file.
+1. update                   - Upgrades your dependencies to the latest version according to composer.json, and updates the composer.lock file.
+1. upgrade                  - Upgrades your dependencies to the latest version according to composer.json, and updates the composer.lock file.
+1. validate                 - Validates a composer.json and composer.lock.
+1. why                      - Shows which packages cause the given package to be installed.
+1. why-not                  - Shows which packages prevent the given package from being installed.
 
 
-Проверим версию composer, у меня в системе установлена локальная и глобальная версия (версия на сентябрь 2019 - 1.9.0) менеджера :
+Проверим версию composer, у меня в системе установлена локальная и глобальная версия (версия на сентябрь 2019 - 1.9.0) проверим их две:
 
 ~~~bash
-#!/usr/bin/env php
 composer -V && php composer.phar -V
 # Composer version 1.9.0 2019-08-02 20:55:32
 # Composer version 1.9.0 2019-08-02 20:55:32
 ~~~
+
+## composer.json
+
+Это управляющий и описательный файл проекта одновременно. Он создается в корне проекта и определяет, 
+что это за проект, какие в нём пространства имён, классы, включаемые файлы, зависимости и т.д.
+Это ключевой и самый важный файл для работы менеджера.
+У каждого пакета зарегистрированного на [packagist.org](https://packagist.org/) есть собственный `composer.json`,
+лежащий в корне каждого пакета.
+В свою очередь по этим файлам менеджер смотрит, какие какому пакету требуются зависимые пакеты для работы. 
+
+Данные в файле представлены в формате [json](https://www.json.org/json-ru) - это специальный формат для предоставления
+структурированных данных. Важно иметь ввиду что формат строг к синтаксическим ошибкам. Для проверки на корректность
+можно воспользоваться одним из json валидаторов например [jsonlint.com](https://jsonlint.com/)
+
+Фаил `composer.json` выглядит следующим образом :
+
+~~~json
+{
+    "name": "vendor-name/project-name",
+    "description": "This is a very cool package!",
+    "version": "0.3.0",
+    "type": "library",
+    "keywords": ["logging", "cool", "awesome"],
+    "homepage": "https://jolicode.com",
+    "time": "2012-12-21",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Xavier Lacot",
+            "email": "xlacot@jolicode.com",
+            "homepage": "http://www.lacot.org",
+            "role": "Developer"
+        },
+        {
+            "name": "Benjamin Clay",
+            "email": "bclay@jolicode.com",
+            "homepage": "https://github.com/ternel",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "support@exemple.org",
+        "issues": "https://github.com/jolicode/jane/issues",
+        "forum": "http://www.my-forum.com/",
+        "wiki": "http://www.my-wiki.com/",
+        "irc": "irc://irc.freenode.org/composer",
+        "source": "https://github.com/jolicode/jane",
+        "docs": "https://github.com/jolicode/jane/wiki"
+    },
+    "require": {
+        "monolog/monolog": "1.0.*",
+        "joli/ternel": "@dev",
+        "joli/ternel-bundle": "@stable",
+        "joli/semver": "^2.0",
+        "joli/package": ">=1.0 <1.1",
+        "acme/foo": "dev-master#2eb0c097"
+    },
+    "require-dev": {
+        "debug/dev-only": "1.0.*"
+    },
+    "conflict": {
+        "another-vendor/conflict": "1.0.*"
+    },
+    "replace": {
+        "debug/dev-only": "1.0.*"
+    },
+    "provide": {
+        "debug/dev-only": "1.0.*"
+    },
+    "suggest": {
+        "jolicode/gif-exception-bundle": "For fun!"
+    },
+    "autoload": {
+        "psr-4": {
+            "Monolog\\": "src/",
+            "Vendor\\Namespace\\": ""
+        },
+        "psr-0": {
+            "Monolog": "src/",
+            "Vendor\\Namespace": ["src/", "lib/"],
+            "Pear_Style": "src/",
+            "": "src/"
+        },
+        "classmap": ["src/", "lib/", "Something.php"],
+        "files": ["src/MyLibrary/functions.php"]
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "MyPackage\\Tests": "test/"
+        }
+    },
+    "target-dir": "Symfony/Component/Yaml",
+    "minimum-stability": "stable",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.example.com"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Seldaek/monolog"
+        },
+        {
+            "type": "pear",
+            "url": "http://pear2.php.net"
+        },
+        {
+            "type": "package",
+            "package": {
+              "name": "smarty/smarty",
+              "version": "3.1.7",
+              "dist": {
+                "url": "http://www.smarty.net/Smarty-3.1.7.zip",
+                "type": "zip"
+              },
+              "source": {
+                "url": "http://smarty-php.googlecode.com/svn/",
+                "type": "svn",
+                "reference": "tags/Smarty_3_1_7/distribution/"
+              }
+            }
+        },
+        {
+            "type": "artifact",
+            "url": "path/to/directory/with/zips/"
+        },
+        {
+            "type": "path",
+            "url": "../../packages/my-package"
+        },
+        {
+            "packagist.org": false
+        }
+    ],
+    "config": {
+        "process-timeout": 300,
+        "use-include-path": false,
+        "preferred-install": "auto",
+        "store-auths": "prompt",
+        "github-protocols": ["git", "https", "http"],
+        "github-oauth": {"github.com": "oauthtoken"},
+        "gitlab-oauth": {"gitlab.com": "oauthtoken"},
+        "github-domains": ["enterprise-github.me.com"],
+        "gitlab-domains": ["enterprise-gitlab.me.com"],
+        "github-expose-hostname": true,
+        "disable-tls": false,
+        "cafile": "/var/certif.ca",
+        "capath": "/var/",
+        "http-basic": {"me.io":{"username":"foo","password":"bar"}},
+        "platform": {"php": "5.4", "ext-something": "4.0"},
+        "vendor-dir": "vendor",
+        "bin-dir": "bin",
+        "data-dir": "/home/ternel/here",
+        "cache-dir": "$home/cache",
+        "cache-files-dir": "$cache-dir/files",
+        "cache-repo-dir": "$cache-dir/repo",
+        "cache-vcs-dir": "$cache-dir/vcs",
+        "cache-files-ttl": 15552000,
+        "cache-files-maxsize": "300MiB",
+        "bin-compat": "auto",
+        "prepend-autoloader": true,
+        "autoloader-suffix": "pony",
+        "optimize-autoloader": false,
+        "sort-packages": false,
+        "classmap-authoritative": false,
+        "notify-on-install": true,
+        "discard-changes": false,
+        "archive-format": "tar",
+        "archive-dir": "."
+    },
+    "archive": {
+        "exclude": ["/foo/bar", "baz", "/*.test", "!/foo/bar/baz"]
+    },
+    "prefer-stable": true,
+    "scripts": {
+        "pre-install-cmd": "MyVendor\\MyClass::doSomething",
+        "post-install-cmd": [
+            "MyVendor\\MyClass::warmCache",
+            "phpunit -c app/"
+        ],
+        "pre-update-cmd": "MyVendor\\MyClass::doSomething",
+        "post-update-cmd": "MyVendor\\MyClass::doSomething",
+        "pre-status-cmd": "MyVendor\\MyClass::doSomething",
+        "post-status-cmd": "MyVendor\\MyClass::doSomething",
+        "pre-package-install": "MyVendor\\MyClass::doSomething",
+        "post-package-install": [
+            "MyVendor\\MyClass::postPackageInstall"
+        ],
+        "pre-package-update": "MyVendor\\MyClass::doSomething",
+        "post-package-update": "MyVendor\\MyClass::doSomething",
+        "pre-package-uninstall": "MyVendor\\MyClass::doSomething",
+        "post-package-uninstall": "MyVendor\\MyClass::doSomething",
+        "pre-autoload-dump": "MyVendor\\MyClass::doSomething",
+        "post-autoload-dump": "MyVendor\\MyClass::doSomething",
+        "post-root-package-install": "MyVendor\\MyClass::doStuff",
+        "post-create-project-cmd": "MyVendor\\MyClass::doThis",
+        "pre-archive-cmd": "MyVendor\\MyClass::doSomething",
+        "post-archive-cmd": "MyVendor\\MyClass::doSomething"
+    },
+    "extra": { "key": "value" },
+    "bin": ["./bin/toto"]
+}
+~~~
+
+## Создание проекта
+
+Создание проекта сводиться к созданию в корне файла `composer.json`, я предпочитаю создать файл руками но можно выполнить команду
+`composer init`
+
+### Генерация файла composer.json
+
+~~~bash
+composer init
+~~~
+
+После этого запустится генератор базового файла `composer.json` для заполнения базовых настроек проекта :
+
+    Welcome to the Composer config generator
+    This command will guide you through creating your composer.json config.
+
+Достаточно просто сформировать базовый шаблон (просто нажимая `Enter`), все опции впоследствии поправить вручную.
+
+~~~json
+{
+    "name": "root/test",
+    "authors": [
+        {
+            "name": "alex",
+            "email": "alex@example.com"
+        }
+    ],
+    "require": {}
+}
+~~~
+
+### Название пакета
+
+Имя пакета состоит из пары `vendor-name/project-name`
 
 ## Установка пакетов
 
@@ -202,7 +439,7 @@ php /root/.composer/vendor/bin/phpcs --standard=PSR12 /php-tests/index.php
 export PATH=$PATH:/root/.composer/vendor/bin/
 ~~~
 
-Выходим из терминала. Команда доступна как обычная программа : 
+Выходим из терминала. Команда станет доступна как обычная программа : 
 
 ~~~bash
 phpcs --standard=PSR12 tests/
@@ -217,11 +454,11 @@ which phpcs
 # /root/.composer/vendor/bin/phpcs
 ~~~
 
-Обычно глобально пакеты ставятся редко, в основном их используют локально
+Обычно глобально пакеты ставятся редко, в основном их используют локально для проекта.
 
 ### Локально
 
-Теперь установим другую библиотеку например фреймворк для тестирования [phpunit](https://packagist.org/packages/phpunit/phpunit)
+Теперь установим другую библиотеку например фреймворк для тестирования [phpunit](https://packagist.org/packages/phpunit/phpunit),
 но уже локально в проект
 
 ~~~bash
@@ -238,6 +475,10 @@ composer require phpunit/phpunit
 6. Генерируются файлы автозагрузки
 
 Если пакет уже был загружен он будет браться из кеша.
+
+
+
+
 
 
 
