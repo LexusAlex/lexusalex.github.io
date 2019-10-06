@@ -105,7 +105,7 @@ Options:
 
 ~~~
 
-Возможные команды:
+Возможные команды командной строки:
 1. about                    - Shows the short information about Composer.
 1. archive                  - Creates an archive of this composer package.
 1. browse                   - Opens the package's repository URL or homepage in your browser.
@@ -124,9 +124,9 @@ Options:
 1. home                     - Opens the package's repository URL or homepage in your browser.
 1. i                        - Installs the project dependencies from the composer.lock file if present, or falls back on the composer.json.
 1. info                     - Shows information about packages.
-1. [init](#Генерация-файла-composer.json)                     - Creates a basic composer.json file in current directory.
+1. [init](#Генерация-файла-composer.json) - Creates a basic composer.json file in current directory.
 1. install                  - Installs the project dependencies from the composer.lock file if present, or falls back on the composer.json.
-1. licenses                 - Shows information about licenses of dependencies.
+1. [licenses](#Лицензия-на-код-(licence)) - Shows information about licenses of dependencies.
 1. list                     - Lists commands
 1. outdated                 - Shows a list of installed packages that have updates available, including their latest version.
 1. prohibits                - Shows which packages prevent the given package from being installed.
@@ -372,7 +372,7 @@ composer -V && php composer.phar -V
 composer init
 ~~~
 
-После этого запустится генератор базового файла `composer.json` для заполнения базовых настроек проекта :
+После этого запустится генератор базового файла `composer.json` для интерактивного заполнения базовых настроек проекта :
 
     Welcome to the Composer config generator
     This command will guide you through creating your composer.json config.
@@ -395,7 +395,9 @@ composer init
 
 Ничего не мешает создать этот фаил руками, что я и предпочитаю.
 
-## Название пакета (name)
+Подробнее об опциях команды `init` в [докуменации](https://getcomposer.org/doc/03-cli.md#init)
+
+### Название пакета (name)
 
 Чтобы дать возможность утановить пакет ему нужно дать имя. 
 Название или имя пакета состоит из пары `vendor-name/project-name` оно указывается в ключе `name`
@@ -415,7 +417,7 @@ composer init
 
 Поле является обязательным для опубликованных библиотек.
 
-## Описание пакета (description)
+### Описание пакета (description)
 
 Текстовое описание вашего пакета, указывается в поле `description`. Например :
 
@@ -426,7 +428,7 @@ composer init
 Текст будет использоваться для поиска.
 Поле является обязательным для опубликованных библиотек.
 
-## Версия пакета (version)
+### Версия пакета (version)
 
 В большинстве случаев поле можно опустить и рекомендуется это делать, указывается в ключе `version`. 
 Это строка с указанием номера версии пакета например :
@@ -441,7 +443,7 @@ composer init
 
 Не изучил где можно использовать этот ключ.
 
-## Тип пакета (type)
+### Тип пакета (type)
 
 Исходя из типа composer пакета, у него может быть разное поведение. Используются для настраиваемой логики установки. 
 Задается в ключе `type`.
@@ -464,7 +466,7 @@ Composer использует следующие стандартные типы
 
 Рекомендуется оставить стандартный тип `library` если вам не нужна пользовательская логика во время установки.
 
-## Ключевые слова (keywords)
+### Ключевые слова (keywords)
 
 Набор ключевых слов используемых для поиска пакета. Устанавливается массив значений в поле `keywords` например :
 
@@ -473,7 +475,7 @@ Composer использует следующие стандартные типы
 
 Поле необязательно.
 
-## Домашняя страница (homepage)
+### Домашняя страница (homepage)
 
 URL адрес проекта например :
 
@@ -481,7 +483,7 @@ URL адрес проекта например :
 
 Поле необязательно к заполнению.
 
-## Дата выпуска версии (time)
+### Дата выпуска версии (time)
 
 Дата выхода версии. Поле `time` Дата дожна быть в одном из форматов :
 
@@ -491,7 +493,7 @@ URL адрес проекта например :
 
 Поле необязательно к заполнению.
 
-## Лицензия на код (licence)
+### Лицензия на код (licence)
 
 Лицензия на пакет. Наиболее распростаненными лицензиями являются :
 
@@ -510,16 +512,148 @@ URL адрес проекта например :
 - MIT
 - proprietary
 
+Полный список лицензий находися на сайте [https://spdx.org/licenses/](https://spdx.org/licenses/).
+
+Можно перечислить лицензии в виде массива например :
+
+~~~json
+{
+ "license": [
+ "BSD-2-Clause",
+ "GPL-3.0+",
+ "MIT"
+ ]
+}
+~~~
+
+Типы лицензий популярных пакетов :
+
+- yii2 - BSD-3-Clause
+- symfony - MIT
+- laravel - MIT
+- phpnit -  BSD-3-Clause 
+
+Проверить тип лицензии каждого установленного пакета можно командой :
+
+~~~bash
+composer licenses
+
+# Name: lexusalex/php-tests
+# Version: No version set (parsed as 1.0.0)
+# Licenses: MIT
+# Dependencies:
+
+# Name                                Version  License       
+# doctrine/instantiator               1.2.0    MIT
+# ...
+~~~
+
+Будет выведена информация о текущем пакете и информация о зависимостях с указанием имени, версии и лицензии пакета.
+
+Возможные опции команды:
+
+- `composer licenses` или `composer licenses --format=text` - выводить информацию о лицензиях в текстовом виде (по умолчанию)
+- `composer licenses --format=json` - выводить информацию о лицензиях в формате `json`
+- `composer licenses --no-dev` - не выводить информацию о лицензиях пакетов расположенных в секции `require-dev`
+
+
+Поле рекомендуется заполнять.
+
+### Авторы пакета (authors)
+
+Масссив объектов с информации об аторах пакета имеет формат :
+
+- `name` - Настоящее имя автора
+- `email` - Электронная поята автора
+- `homepage` - Веб сайт автора
+- `role` - Роль автора в проекте
+
+Пример:
+
+~~~json
+{
+"authors": [
+        {
+            "name": "Qiang Xue",
+            "email": "qiang.xue@gmail.com",
+            "homepage": "http://www.yiiframework.com/",
+            "role": "Founder and project lead"
+        },
+        {
+            "name": "Alexander Makarov",
+            "email": "sam@rmcreative.ru",
+            "homepage": "http://rmcreative.ru/",
+            "role": "Core framework development"
+        },
+        {
+            "name": "Boudewijn Vahrmeijer",
+            "email": "info@dynasource.eu",
+            "homepage": "http://dynasource.eu",
+            "role": "Core framework development"
+        },
+        {
+            "name": "Sebastian Bergmann",
+            "email": "sebastian@phpunit.de",
+            "role": "lead"
+        },
+        {
+            "name": "Fabien Potencier",
+            "email": "fabien@symfony.com"
+        },
+        {
+            "name": "Symfony Community",
+            "homepage": "https://symfony.com/contributors"
+        }
+    ]
+}
+~~~
+
+Ключ `authors` рекомендуется заполнять
+
+### Информация для поддержки проекта (support)
+
+В ключе `support` содержится объект с ссылкам на ресурсы где можно получить информацию о пакете
+
+Например в фреймворке yii2 этот ключ выглядит следующим образом :
+
+~~~json
+{
+  "support": {
+      "issues": "https://github.com/yiisoft/yii2/issues?state=open",
+      "forum": "http://www.yiiframework.com/forum/",
+      "wiki": "http://www.yiiframework.com/wiki/",
+      "irc": "irc://irc.freenode.net/yii",
+      "source": "https://github.com/yiisoft/yii2"
+  }
+}
+~~~
+
+Возможные значения :
+
+- email: адрес электронной почты для получения поддержки.
+- issues: URL-адрес для для проблем.
+- forum: URL-адрес форума.
+- wiki: URL-адрес на вики статью.
+- irc: IRC-канал для поддержки, как irc://server/channel.
+- source: URL-адрес для просмотра исходного кода.
+- docs: URL-адрес для документации.
+- rss: URL-адрес для RSS-канала.
+- chat: URL-адрес для чат канала.
+
+Поле необязательно к заполнению
 
 
 ## Установка пакетов
 
+Основное предназначение composer - это установка пакетов. 
 Пакеты можно устанавливать глобально для всей системы или локально одного проекта.
 
 ### Глобально
 
-Для установки пакетов используется ключ `require`, а для глобальной установки пакета используется ключ `global`, 
+Для установки пакетов используется команда `require`, а для глобальной установки пакета используется команда `global`, 
 что позволяет ставить пакет в домашнюю директорию текущего пользователя.
+
+Команда `global` используется в составе для запуска таких команд как `require`, `remove`, `install`, `update`
 
 Установим библиотеку [php_codesniffer](https://packagist.org/packages/squizlabs/php_codesniffer) которая содержит
 консольные утилиты для проверки php кода на соответствие стандартам, например мы хотим иметь глобальный доступ к
@@ -572,18 +706,18 @@ which phpcs
 # /root/.composer/vendor/bin/phpcs
 ~~~
 
-Обычно глобально пакеты ставятся редко, в основном их используют локально для проекта.
+Обычно, глобально пакеты ставятся редко, в основном их используют локально для проекта.
 
 ### Локально
 
 Теперь установим другую библиотеку например фреймворк для тестирования [phpunit](https://packagist.org/packages/phpunit/phpunit),
-но уже локально в проект
+но уже локально в проект :
 
 ~~~bash
 composer require phpunit/phpunit
 ~~~
 
-Порядок действий будет следующий:
+Порядок действий будет следующий :
 
 1. Добавляется зависимости в фаил `composer.json`
 2. Загружается информация о пакете из репозитория
@@ -592,7 +726,78 @@ composer require phpunit/phpunit
 5. Пишется дерево зависимостей в фаил `composer.lock`
 6. Генерируются файлы автозагрузки
 
+Подробнее каждый шаг установки мы разберем в разделе [Зависимости](#Зависимости)
+
 Если пакет уже был загружен он будет браться из кеша.
+
+### Зависимости
+
+Зависимости пакетов прописываются в двух секциях файла `composer.json` :
+
+- `require` - пакеты от которых зависит ваше приложение
+- `require-dev` - пакеты которые используются на этапе разработки или тестирования проекта.
+
+Пример как могут выглядеть данные секции :
+
+~~~json
+{
+    "require": {
+        "vendor/package":  "1.3.2", 
+        "vendor/package":  ">=1.3.2", 
+        "vendor/package":  "<1.3.2", 
+        "vendor/package":  "1.3.*", 
+        "vendor/package":  "~1.3.2", 
+        "vendor/package":  "~1.3", 
+        "vendor/package":  "^1.3.2", 
+        "vendor/package":  "^0.3.2"
+    }
+}
+~~~
+
+Для установки пакетов используется команда `require`
+
+Например теперь установим библиотеку [carbon](https://packagist.org/packages/nesbot/carbon) для работы и датой и временем локально
+Запускать установку будем в режиме дебага, чтобы видеть что происходит.
+
+~~~bash
+composer require nesbot/carbon -vvv
+~~~
+
+По шагам разберем что происходит :
+
+1. Происходит чтение файла `composer.json`
+2. Происходит загрузка `composer.json`
+3. Проверка файла с сертификатами `/etc/ssl/certs/ca-certificates.crt`
+4. Выполнение рядя внутренних команд composer связанных с git
+5. Чтение глобального файла `composer.json` в домашней директории текущего пользователя, у меня он лежит здесь `/root/.composer/composer.json`
+6. Загрузка глобального файла `composer.json`
+7. Чтение файлов установленных библиотек `/php-tests/vendor/composer/installed.json` и `/root/.composer/vendor/composer/installed.json`
+8. Отображение системной информации к примеру `Running 1.9.0 (2019-08-02 20:55:32) with PHP 7.3.4 on Linux / 4.15.0-62-generic`
+9. Загрузка основного файла со списком пакетов с [https://repo.packagist.org/packages.json](https://repo.packagist.org/packages.json)
+10. Проверка закешированных списков пакетов `/root/.composer/cache/repo/https---repo.packagist.org/p-provider-2018.json`
+11. Выгрузка и запись в кеш [http://repo.packagist.org/p/provider-2018%2409a0861e4cc4191edeb25def71937aab0c5c39ec080e3b8386325c1550fe64b4.json](http://repo.packagist.org/p/provider-2018%2409a0861e4cc4191edeb25def71937aab0c5c39ec080e3b8386325c1550fe64b4.json) при последующих запросах данные уже не будут запрошены, а будут браться из кеша
+12. Выгрузка и запись в кеш зависимостей нашей устанавливаемой библиотеки [http://repo.packagist.org/p/nesbot/carbon%24851184481d07d9a44e2bfbc87f737424edd8af6d78875158b34cc66eb0a9026c.json](http://repo.packagist.org/p/nesbot/carbon%24851184481d07d9a44e2bfbc87f737424edd8af6d78875158b34cc66eb0a9026c.json)
+13. Определение текущей версии библиотеки `Using version ^2.25 for nesbot/carbon`
+14. Обновление секции `require` в `composer.json`
+15. Чтение и загрузка `composer.json`
+16. Выполнение рядя внутренних команд composer связанных с git
+17. Далее происходит поочередная загрузка локальных и глобальных файлов `composer.json` и `/vendor/composer/installed.json`
+18. Загрузка информации о пакетах. В данный момент у нас они уже загружены, они будут взяты из кеша
+19. Загрузка зависимых пакетов в данном случае это пакет [http://repo.packagist.org/p/symfony/translation%24078b6f1caf6f8088a43926d3bdb4430e1793a10cfda338ea90536d8cea7c462b.json](http://repo.packagist.org/p/symfony/translation%24078b6f1caf6f8088a43926d3bdb4430e1793a10cfda338ea90536d8cea7c462b.json)
+20. Анализ и разрешение зависимостей
+21. Вывод информации что будет сейчас сделано `Package operations: 4 installs, 0 updates, 0 removals`
+22. Будет скачано 4 пакета. Один который нам нужен и три зависимых от него, так же все будет записано в кеш
+23. Перечисление пакетов предлагаемых к установке
+24. Запись файла `composer.lock`
+25. Генерация файлов автозагрузки
+
+
+
+
+
+
+
+
 
 
 
@@ -898,3 +1103,4 @@ http://composer.json.jolicode.com/
 
 https://ru.hexlet.io/courses/php-setup-environment/lessons/composer/theory_unit
 http://present.wpdom.com/articles.php?id=16
+https://habr.com/ru/company/mailru/blog/346488/
