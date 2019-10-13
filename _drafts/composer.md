@@ -858,6 +858,8 @@ Cклонируем пакет `git clone https://github.com/yiisoft/yii2.git yi
 
 http://codinghamster.info/php/stability-paketov-v-composer-problemy-i-reshenia/
 
+TODO
+
 ## Ограничения версии 
 
 В `composer.json` в секции `require` возможно указать конкретную версию пакета или диапазон (ограничение) версий:
@@ -893,6 +895,9 @@ composer require "phpunit/phpunit:~8" # 8.4.1
 ~~~
 
 Удобный сервис для вывода диапазона версий [https://semver.mwl.be/](https://semver.mwl.be/)
+
+## Автозагрузка
+
 
 ## Поиск пакетов
 
