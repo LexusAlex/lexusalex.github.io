@@ -55,6 +55,6 @@ function create($user) {
 
 ## Ссылки по теме
 
-[(CQRS) на практике](https://blog.byndyu.ru/2014/07/command-and-query-responsibility.html)
-[На переднем крае - CQRS для обычного приложения](https://msdn.microsoft.com/ru-ru/magazine/mt147237.aspx)
-[Разделение функций на команды и запросы](https://bespoyasov.ru/blog/commands-and-queries/)
+- [(CQRS) на практике](https://blog.byndyu.ru/2014/07/command-and-query-responsibility.html)
+- [На переднем крае - CQRS для обычного приложения](https://msdn.microsoft.com/ru-ru/magazine/mt147237.aspx)
+- [Разделение функций на команды и запросы](https://bespoyasov.ru/blog/commands-and-queries/)
