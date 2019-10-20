@@ -764,7 +764,7 @@ composer require phpunit/phpunit
 composer require nesbot/carbon -vvv
 ~~~
 
-По шагам разберем что происходит :
+По шагам разберем что тут происходит :
 
 1. Происходит чтение файла `composer.json`
 2. Происходит загрузка `composer.json`
@@ -897,6 +897,8 @@ composer require "phpunit/phpunit:~8" # 8.4.1
 Удобный сервис для вывода диапазона версий [https://semver.mwl.be/](https://semver.mwl.be/)
 
 ## Автозагрузка
+
+Composer может автоматически загружать файлы без необходимости подключения файлов через `require()` или `include()`
 
 
 ## Поиск пакетов
