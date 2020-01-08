@@ -10,7 +10,7 @@ is_navigate: true
 ---
 
 Linux - это многопользовательская, многозадачная операционная система.
-Права пользователей на системные ресурсы постоены на дискреционной модели исходя из которой определяют
+Права пользователей на системные ресурсы постоены на дискреционной модели исходя из которой определяется
 доступ к этим ресурсам.
 
 ## Пользователи и группы
@@ -508,6 +508,22 @@ alex     pts/6    :0.0             11:57    0.00s  0.02s  0.00s w
 ~~~bash
 sudo -i
 ~~~
+
+docker run -it --name ubuntu-18.04 -p 127.0.0.1:22:22 ubuntu:latest
+docker run -it --name debian-10 debian:10
+docker run -it --name centos-8 centos:8
+docker run -it --name alpine-3 alpine:3
+docker run -it --name fedora-31 fedora:31
+
+docker exec -it ubuntu-18.04 /bin/bash
+
+apt-get update && apt-get install ssh vim -y
+service ssh start
+useradd -p 456 -m alex
+
+useradd -p 123 -m test
+
+ssh alex@172.17.0.2
 
 ## Утилиты для манипуляции пользователями и группами
 
