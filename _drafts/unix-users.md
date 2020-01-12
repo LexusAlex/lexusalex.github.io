@@ -516,6 +516,10 @@ docker run -it --name alpine-3 alpine:3
 docker run -it --name fedora-31 fedora:31
 
 docker exec -it ubuntu-18.04 /bin/bash
+docker exec -it debian-10 /bin/bash
+docker exec -it centos-8 /bin/bash
+docker exec -it alpine-3 /bin/ash
+docker exec -it fedora-31 /bin/bash
 
 apt-get update && apt-get install ssh vim -y
 service ssh start
@@ -529,7 +533,31 @@ ssh alex@172.17.0.2
 
 ### Пользователь
 
-useradd
+#### useradd
+
+ubuntu
+~~~bash
+useradd -D 
+GROUP=100
+HOME=/home
+INACTIVE=-1
+EXPIRE=
+SHELL=/bin/sh
+SKEL=/etc/skel
+CREATE_MAIL_SPOOL=no
+~~~
+centos
+~~~bash
+useradd -D 
+GROUP=100
+HOME=/home
+INACTIVE=-1
+EXPIRE=
+SHELL=/bin/bash
+SKEL=/etc/skel
+CREATE_MAIL_SPOOL=yes
+~~~
+
 usermod
 userdel
 pwck
@@ -546,6 +574,3 @@ groupadd
 groupdel
 groupmod
 gpasswd
-
-
-46 минута
