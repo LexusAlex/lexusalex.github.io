@@ -16,7 +16,6 @@ Linux является многозадачной многопользовате
 
 Любой объект в linux имеет своего владельца. 
 Доступ к этим объектам осуществляется на основании [дискреционной модели](http://www.dataved.ru/2014/02/controlled-access-models.html)
-(об этом напишу отдельную статью).
 
 Пользователи и группы хранятся в файлах данных в каталоге `/etc` :
 ~~~bash
@@ -67,7 +66,7 @@ www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
     - Возможно наличие несколько пользователей с одним и тем же UID, что позволяет иметь сразу несколько имен для входа.
     - Допустимые значения UID зависят от системы, в общем случае от 0 до 65535.
     - Суперпользователь всегда имеет идентификатор 0.
-    - Пользователю nobody обычно присваивается идентификатор 65534.
+    - Пользователю nobody обычно присваивается идентификатор 65534
     - Диапазон UID от 1 до 999 резервируются под системные нужды и зависит от дистрибутива.
     - Пример : 0
 4. **GID** - Идентификатор основной группы пользователя
@@ -98,7 +97,10 @@ www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
 
 ![passwd](/assets/images/articles/unix/unix-user/passwd.png "passwd")
 
+Командой `vipw` возможно отредактироовать фаил `/etc/passwd`
 
+
+## Теневые пароли /etc/shadow
 Эксперименты
 Создать пользователя больше 32 символов
 Создать 
@@ -115,3 +117,5 @@ Alpine
 
 https://habr.com/ru/post/110012/
 https://sonikelf.ru/polzovatel-root-i-drugie-polzovateli-gruppy-v-linux/#vsyakoe-raznoe-o-mnogopolzovatelskoj-linux-i-administratorskom-akkaunte-root
+
+https://interface31.ru/tech_it/2019/12/linux-nachinayushhim-chast-6-upravlenie-pol-zovatelyami-i-gruppami.html
