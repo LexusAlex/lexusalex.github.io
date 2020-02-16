@@ -6,6 +6,7 @@ tags: php functions
 comments: true
 summary:  Что такое чистые функции
 is_navigate: false
+cover_url: "/assets/images/articles/glass.png"
 ---
 
 Функции в современных языках программирования играют огромную роль. 

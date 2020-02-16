@@ -7,6 +7,7 @@ comments: true
 subtitle: Как использовать переменные окружения в php.
 summary:  Как использовать переменные окружения в php.
 is_navigate: true
+cover_url: "/assets/images/articles/php.png"
 ---
 
 ### Переменные окружения в linux

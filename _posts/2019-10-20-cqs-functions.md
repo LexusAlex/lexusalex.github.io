@@ -7,6 +7,7 @@ comments: true
 subtitle: Разделяем функций на команды и запросы
 summary:  Разделяем функций на команды и запросы
 is_navigate: true
+cover_url: "/assets/images/articles/cq.png"
 ---
 
 Существует принцип [Command-query separation](https://ru.wikipedia.org/wiki/CQRS) который гласит, что функция представляет из
