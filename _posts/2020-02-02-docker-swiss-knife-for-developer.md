@@ -7,7 +7,7 @@ comments: true
 summary: Как влиться вместе с docker в процесс контейнеризированной разработки
 subtitle: Docker - универсальный инструмент для разработчика
 is_navigate: true
-cover_url: "/assets/images/articles/docker/docker.png"
+cover_url: "/assets/images/articles/docker.png"
 ---
 
 В сети периодически натыкаюсь на вопросы про docker [к примеру](https://qna.habr.com/q/697294), в связи с этим
