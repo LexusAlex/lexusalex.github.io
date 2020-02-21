@@ -7,24 +7,27 @@ title: Алексей Шмелев
 {% for year in postsByYear %}
     <div class="row justify-content-center">
         <div class="col-lg-1">
-            <div class="year-name text-center text-lg-right">{{ year.name }}</div>
+            <div class="year-name text-center text-lg-right text-success">{{ year.name }}</div>
         </div>
         <div class="col-lg-7 col-sm-12">
             {% for post in year.items %}
-
             <div class="card border-success mb-3" style="">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-12 col-sm-4 col-md-4 col-xl-3">
+                        <div class="col-12 col-sm-4 col-md-4 col-xl-3 d-none d-sm-block">
                             {% if post.cover_url %}
-                            <img class="card-img-top" src="{{ post.cover_url }}" alt="{{ post.title }}">
+                                <img class="card-img-top" src="{{ post.cover_url }}" alt="{{ post.title }}">
                             {% endif %}
                         </div>
                         <div class="col-12 col-sm-8 col-md-8 col-xl-9">
                             <h2 class="post-heading card-title">
                                 <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>
                             </h2>
-                            <p class="post-preview card-text mt-3 text-success">{{ post.summary }}</p>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="post-preview card-text mt-3 text-success">{{ post.summary }}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -96,13 +99,17 @@ title: Алексей Шмелев
 <div class="row justify-content-center">
     <div class="col-8 text-center">
         <h4>
-            {% if paginator.previous_page %}
-                <a href="{% if paginator.previous_page == 1%}/{% else %}/page{{ paginator.previous_page }}{% endif %}">&larr;</a>
-            {% endif %}
-                <span class="page_number ">Страница {{ paginator.page }} из {{ paginator.total_pages }}</span>
-            {% if paginator.next_page %}
-            <a href="/page{{ paginator.next_page }}">&rarr;</a>
-            {% endif %}
+            <div class="card border-success">
+                <div class="card-body" style="font-size: 20px">
+                    {% if paginator.previous_page %}
+                        <a class="text-success" href="{% if paginator.previous_page == 1%}/{% else %}/page{{ paginator.previous_page }}{% endif %}">&laquo;</a>
+                    {% endif %}
+                        <span class="page_number ">Страница {{ paginator.page }} из {{ paginator.total_pages }}</span>
+                    {% if paginator.next_page %}
+                    <a class="text-success" href="/page{{ paginator.next_page }}">&raquo;</a>
+                    {% endif %}
+                </div>
+            </div>
         </h4>
     </div>
 </div>
