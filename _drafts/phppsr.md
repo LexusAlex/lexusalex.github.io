@@ -136,3 +136,5 @@ cover_url: "/assets/images/articles/php.png"
     ```
 26.
 https://vk.com/@degler222-standarty-kodirovaniya-php-psr
+https://elisdn.ru/blog/134/four-pillars-of-psrs
+https://github.com/jbboehr/php-psr
