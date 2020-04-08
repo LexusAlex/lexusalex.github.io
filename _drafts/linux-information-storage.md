@@ -266,14 +266,14 @@ Number  Start (sector)    End (sector)  Size       Code  Name
 
 Разберемся пока как создавать пустые разделы в разметке дисков созданных выше
 
-MBR поддерживает создание только 4 разделов, 3 первичных и один расширенный
+MBR поддерживает создание только 4 разделов, 3 первичных и один расширенный. В расширенном можно создавать сколько угодно разделов
 
 ```bash
 Command (m for help): n # создаем раздел
 Partition type
    p   primary (0 primary, 0 extended, 4 free)
    e   extended (container for logical partitions)
-Select (default p): p # создаем первичный раздел
+Select (default p): p # создаем первичный или расширенный раздел
 Partition number (1-4, default 1): 1 # выбираем его номер
 First sector (2048-4194303, default 2048): 2048 # выбираем первый сектор начала раздела
 Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-4194303, default 4194303): +100M # Создадим раздел на 100 МБ
@@ -309,54 +309,194 @@ Device     Boot  Start     End Sectors  Size Id Type
 /dev/sdb2       206848  411647  204800  100M 83 Linux
 /dev/sdb3       411648  616447  204800  100M 83 Linux
 /dev/sdb4       616448 4194303 3577856  1,7G  5 Extended
-/dev/sdb5       618496 4194303 3575808  1,7G 83 Linux
 ```
 
-Список доступных типов разделов
+Тоже самое создадим для диска с разметкой GPT, на все доступное пространство
 
 ```bash
-sudo fdisk /dev/sdb
+Disk /dev/sdc: 4194304 sectors, 2.0 GiB
+Model: VMware Virtual S
+Sector size (logical/physical): 512/512 bytes
+Disk identifier (GUID): 54DCF470-42CC-4AA5-8102-67C65E6283D5
+Partition table holds up to 128 entries
+Main partition table begins at sector 2 and ends at sector 33
+First usable sector is 34, last usable sector is 4194270
+Partitions will be aligned on 2-sector boundaries
+Total free space is 0 sectors (0 bytes)
 
-Welcome to fdisk (util-linux 2.33.1).
-Changes will remain in memory only, until you decide to write them.
-Be careful before using the write command.
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048          206847   100.0 MiB   8300  Linux filesystem
+   2          206848          411647   100.0 MiB   8300  Linux filesystem
+   3          411648          616447   100.0 MiB   8300  Linux filesystem
+   4          616448         4194270   1.7 GiB     8300  Linux filesystem
+   5              34            2047   1007.0 KiB  8300  Linux filesystem
+```
+Другие возможные действия с разделами :
 
+- a поставить флаг загрузочного раздела
+- b редактирование вложенной метки диска BSD
+- c переключение флага dos-совместимости
+- d удалить раздел
+- F показать свободное неразмеченное пространство
+- l список известных типов разделов
+- t изменение типа раздела
+- v проверка таблицы разделов
+- i вывести информацию о разделе
+- u переключение показ на цилинды / секторы
 
-Command (m for help): l
- 0  Empty           24  NEC DOS         81  Minix / old Lin bf  Solaris        
- 1  FAT12           27  Hidden NTFS Win 82  Linux swap / So c1  DRDOS/sec (FAT-
- 2  XENIX root      39  Plan 9          83  Linux           c4  DRDOS/sec (FAT-
- 3  XENIX usr       3c  PartitionMagic  84  OS/2 hidden or  c6  DRDOS/sec (FAT-
- 4  FAT16 <32M      40  Venix 80286     85  Linux extended  c7  Syrinx         
- 5  Extended        41  PPC PReP Boot   86  NTFS volume set da  Non-FS data    
- 6  FAT16           42  SFS             87  NTFS volume set db  CP/M / CTOS / .
- 7  HPFS/NTFS/exFAT 4d  QNX4.x          88  Linux plaintext de  Dell Utility   
- 8  AIX             4e  QNX4.x 2nd part 8e  Linux LVM       df  BootIt         
- 9  AIX bootable    4f  QNX4.x 3rd part 93  Amoeba          e1  DOS access     
- a  OS/2 Boot Manag 50  OnTrack DM      94  Amoeba BBT      e3  DOS R/O        
- b  W95 FAT32       51  OnTrack DM6 Aux 9f  BSD/OS          e4  SpeedStor      
- c  W95 FAT32 (LBA) 52  CP/M            a0  IBM Thinkpad hi ea  Rufus alignment
- e  W95 FAT16 (LBA) 53  OnTrack DM6 Aux a5  FreeBSD         eb  BeOS fs        
- f  W95 Ext'd (LBA) 54  OnTrackDM6      a6  OpenBSD         ee  GPT            
-10  OPUS            55  EZ-Drive        a7  NeXTSTEP        ef  EFI (FAT-12/16/
-11  Hidden FAT12    56  Golden Bow      a8  Darwin UFS      f0  Linux/PA-RISC b
-12  Compaq diagnost 5c  Priam Edisk     a9  NetBSD          f1  SpeedStor      
-14  Hidden FAT16 <3 61  SpeedStor       ab  Darwin boot     f4  SpeedStor      
-16  Hidden FAT16    63  GNU HURD or Sys af  HFS / HFS+      f2  DOS secondary  
-17  Hidden HPFS/NTF 64  Novell Netware  b7  BSDI fs         fb  VMware VMFS    
-18  AST SmartSleep  65  Novell Netware  b8  BSDI swap       fc  VMware VMKCORE 
-1b  Hidden W95 FAT3 70  DiskSecure Mult bb  Boot Wizard hid fd  Linux raid auto
-1c  Hidden W95 FAT3 75  PC/IX           bc  Acronis FAT32 L fe  LANstep        
-1e  Hidden W95 FAT1 80  Old Minix       be  Solaris boot    ff  BBT
+### Сектор и Блок
+
+Наименьший адресуемый элемент блочного устройства это сектор. Размер сектора это число степень двойки.
+Самый частый размер сектора 512 байт. Сектор (аппаратный сектор) - это оснополагающий элемент блочного устройства.
+
+Блок (блок файловой системы) — это абстракция файловой системы, то есть все обращения к файловым системам могут выполняться только с данными, кратными размеру блока.
+
+Получается физические устройства адресуются на уровне секторов, а ядро операционной системы выполняет все операции в блоках.
+Размер блока не может быть меньше размера сектора, и должен быть кратен размеру сектора.
+Наиболее часто встречающиеся размер блока 512 б, 1024 б, 2048 б, 4096 б. Ядро так же требует чтобы размер блока был не больше чем размер страницы памяти 
+
+В итоге операции на блоках являются надстройками над секторами.
+
+Определим размер блока файловой системы для уже созданных разделов c файловой системой :
+
+```bash
+sudo tune2fs -l /dev/sda1 | grep -i 'block size'
+Block size:               4096 # ext4
+
+sudo tune2fs -l /dev/sdb1 | grep -i 'block size'
+Block size:               1024 # ext2
+```
+Размер сектора :
+
+```bash
+sudo fdisk /dev/sdb1 -l
+Disk /dev/sdb1: 100 MiB, 104857600 bytes, 204800 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
 ```
 
-https://www.alv.me/Nakopiteli-v-linux-modeli-imenovaniya/
-
-### Сектор / Блок
-
-Диск разделяется на блоки
-
+Раздел `/dev/sdb1 ` у нас объемом 100 MБ (104857600 байт) в нем создана файловая система `ext2` с размером блока 1024 байта.
+Получаем 104857600 / 1024 = 102400 возможных блоков на файловой системе и 104857600 / 512 = 204800 секторов на жестком диске
+ 
 ### Файловая система
+
+Для того, чтобы на раздел можно было записать данные, нужно создать в нем файловую систему. 
+Для этого используется одна из утилит `mkfs.*.`
+
+Файловая система состоит из следующих частей :
+
+1. Блок начальной загрузки - блок содержит информацию применяемую для загрузки операционной системы. Самой файловой системой он не используется.
+2. Суперблок - единичный блок содержит информацию о параметрах файловой системы.
+3. Таблица индексных дескрипторов - список файлов и информации о них.
+4. Блоки данных - пространсво файловой системы для хранения файлов и каталогов.
+
+Размер блока как описано выше бывает разный. Это зависит от типа файловой системы.
+
+>> Если вы планируете хранить на диске файлы большого размера имеет смысл задать блок большего размера
+
+Файловая система ext2 разбивает все доступное пространство раздела на блоки равного размера. 
+В каждой группе блоков содержится копия суперблока (теперь через одну группу), таблица индексных дескрипторов, и блоки данных для группы блоков.
+
+В качестве примера имеем том на 50М
+
+```bash
+Device     Boot  Start    End Sectors Size Id Type
+/dev/sdd1         2048 104447  102400  50M 83 Linux
+```
+То есть 
+
+- 50 мегабайт = 52428800 байт
+- допустим 1 блок = 1024 байта, тогда (52428800 / 1024) = 51200 блоков
+- 8 * 1024 = 8192 блоков в группе
+- 51200 / 8192 = 6.26 ~ 7 групп блоков 
+
+
+#### Суперблок
+#### Таблица индексных дескрипторов
+
+1 файл содержит 1 запись в таблице индексных дескрипторов
+#### Блоки данных
+
+
+
+
+Создадим файловую систему `ext2` на первом разделе диска
+
+```bash
+sudo mkfs -L ext2-filesystem -v /dev/sdd1
+mke2fs 1.44.5 (15-Dec-2018)
+fs_types for mke2fs.conf resolution: 'ext2', 'small'
+Filesystem label=ext2-filesystem
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+Stride=0 blocks, Stripe width=0 blocks
+12824 inodes, 51200 blocks
+2560 blocks (5.00%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=52428800
+7 block groups
+8192 blocks per group, 8192 fragments per group
+1832 inodes per group
+Filesystem UUID: d1dc116e-0d0f-40ec-9d58-eb0b7f8f18d9
+Superblock backups stored on blocks: 
+        8193, 24577, 40961
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Writing superblocks and filesystem accounting information: done
+
+sudo tune2fs -l /dev/sdd1
+[sudo] пароль для alex: 
+tune2fs 1.44.5 (15-Dec-2018)
+Filesystem volume name:   ext2-filesystem
+Last mounted on:          <not available>
+Filesystem UUID:          d1dc116e-0d0f-40ec-9d58-eb0b7f8f18d9
+Filesystem magic number:  0xEF53
+Filesystem revision #:    1 (dynamic)
+Filesystem features:      ext_attr resize_inode dir_index filetype sparse_super large_file
+Filesystem flags:         signed_directory_hash 
+Default mount options:    user_xattr acl
+Filesystem state:         clean
+Errors behavior:          Continue
+Filesystem OS type:       Linux
+Inode count:              12824
+Block count:              51200
+Reserved block count:     2560
+Free blocks:              48764
+Free inodes:              12813
+First block:              1
+Block size:               1024
+Fragment size:            1024
+Reserved GDT blocks:      199
+Blocks per group:         8192
+Fragments per group:      8192
+Inodes per group:         1832
+Inode blocks per group:   229
+Filesystem created:       Wed Apr  8 18:59:51 2020
+Last mount time:          n/a
+Last write time:          Wed Apr  8 18:59:51 2020
+Mount count:              0
+Maximum mount count:      -1
+Last checked:             Wed Apr  8 18:59:51 2020
+Check interval:           0 (<none>)
+Reserved blocks uid:      0 (user root)
+Reserved blocks gid:      0 (group root)
+First inode:              11
+Inode size:               128
+Default directory hash:   half_md4
+Directory Hash Seed:      7af3622b-1305-43f5-b69e-aa4b4919cfe4
+
+```
+
+
+В расширяемом разделе не хорошо создавать файловую систему.
+
+
+
+
+https://www.linux16.ru/notes/nastrojka-zhestkix-diskov-cherez-tune2fs-v-linux.html
 
 Находиться внутри тома
 
@@ -368,6 +508,14 @@ https://www.alv.me/Nakopiteli-v-linux-modeli-imenovaniya/
 
 ### Монтирование
 
+### Тип фаил
+
+### Тип директория
+
+### Тип символьная ссылка
+
+### Тип именованный канал
+
 
 
 Файловая система
@@ -377,11 +525,7 @@ https://www.alv.me/Nakopiteli-v-linux-modeli-imenovaniya/
 Корневая фс
 Монтирование
 
-blockdev 
-udev
-https://itsecforu.ru/2018/11/26/%D0%BA%D0%B0%D0%BA-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C-udev-%D0%B4%D0%BB%D1%8F-%D0%BE%D0%B1%D0%BD%D0%B0%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B8-%D1%83/
-sysfs
-http://mydebianblog.blogspot.com/2013/02/sysfs-linux.html
+
 
 https://debianinstall.ru/tipy-fajlov-linux/
 https://habr.com/ru/company/flant/blog/354802/
