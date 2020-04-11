@@ -2,6 +2,7 @@
 layout: post
 title: О блоге
 comments: true
+summary: Алексей Шмелев - о блоге
 ---
 
 Шмелев Алексей / LexusAlex / Программист из Чехова
