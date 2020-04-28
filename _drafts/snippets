@@ -2,3 +2,11 @@ Php
 
 Получить равнозначную замену цифру на букву
 strtr(count($sort[0]), "123456789", "ABCDEFGHI")
+
+Bash
+
+Сортировка каталогов по размеру
+du -sh /var/www/* | sort -hr
+
+Рекурсивное сжатие изображений
+find /var/www/iblock_parser_comment/ -type f -regex ".*\(jpg\|jpeg\|JPG\|Jpeg\)" -exec jpegoptim -t --max=85 {} \;
