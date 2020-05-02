@@ -256,28 +256,32 @@ dpkg -L passwd | grep /usr/sbin/ | sort
 /usr/sbin/chpasswd
 /usr/sbin/cpgr
 /usr/sbin/cppw
-/usr/sbin/groupadd
-/usr/sbin/groupdel
-/usr/sbin/groupmod
-/usr/sbin/grpck
-/usr/sbin/grpconv
-/usr/sbin/grpunconv
+
+/usr/sbin/groupadd создание группы
+/usr/sbin/groupdel - удаление группы
+/usr/sbin/groupmod - модификация группы
+/usr/sbin/grpck - проверка целостности групп
+/usr/sbin/grpconv - конвертор из старого в новое хранилище
+/usr/sbin/grpunconv - конвертор из старого в новое хранилище
 /usr/sbin/newusers
-/usr/sbin/pwck
-/usr/sbin/pwconv
-/usr/sbin/pwunconv
-/usr/sbin/useradd
-/usr/sbin/userdel
-/usr/sbin/usermod
+/usr/sbin/pwck - проверка на корректность файлов passwd и shadow
+
+/usr/sbin/pwconv - конвертор из публичной части в закрытую
+/usr/sbin/pwunconv - конвертор из закрытой части в публичную
+
+/usr/sbin/useradd - создать пользователя
+/usr/sbin/userdel - удалить пользователя
+/usr/sbin/usermod - изменить пользователя
+
 /usr/sbin/vigr
 /usr/sbin/vipw
 
 dpkg -L passwd | grep /usr/bin/ | sort
-/usr/bin/chage
+/usr/bin/chage - смена возрастов паролей
 /usr/bin/chfn
 /usr/bin/chsh
 /usr/bin/expiry
-/usr/bin/gpasswd
+/usr/bin/gpasswd - админимтаторы могут добавить в группу
 /usr/bin/passwd
 ~~~
 
@@ -294,104 +298,20 @@ delgroup
 
 centos
 
+### Профиль по умолчанию
+
+<img src="../assets/images/articles/linux/users/profile_user.png" alt="Профиль пользователя">
+
+Копируются они при создании пользовтеля
+/etc
+/etc/skel/ шаблон с которого все копируется
+$HOME
+
 ссылка на одну команду 
 
 ls -la /usr/sbin/useradd /usr/sbin/adduser
 lrwxrwxrwx. 1 root root      7 ноя  9 02:05 /usr/sbin/adduser -> useradd
 -rwxr-xr-x. 1 root root 241752 ноя  9 02:05 /usr/sbin/useradd
-
-
-cat /etc/passwd
-root:x:0:0:root:/root:/bin/bash
-bin:x:1:1:bin:/bin:/sbin/nologin
-daemon:x:2:2:daemon:/sbin:/sbin/nologin
-adm:x:3:4:adm:/var/adm:/sbin/nologin
-lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
-sync:x:5:0:sync:/sbin:/bin/sync
-shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
-halt:x:7:0:halt:/sbin:/sbin/halt
-mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
-operator:x:11:0:operator:/root:/sbin/nologin
-games:x:12:100:games:/usr/games:/sbin/nologin
-ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
-nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
-dbus:x:81:81:System message bus:/:/sbin/nologin
-systemd-coredump:x:999:997:systemd Core Dumper:/:/sbin/nologin
-systemd-resolve:x:193:193:systemd Resolver:/:/sbin/nologin
-tss:x:59:59:Account used by the trousers package to sandbox the tcsd daemon:/dev/null:/sbin/nologin
-polkitd:x:998:996:User for polkitd:/:/sbin/nologin
-libstoragemgmt:x:997:994:daemon account for libstoragemgmt:/var/run/lsm:/sbin/nologin
-cockpit-ws:x:996:993:User for cockpit-ws:/nonexisting:/sbin/nologin
-sssd:x:995:991:User for sssd:/:/sbin/nologin
-sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
-chrony:x:994:990::/var/lib/chrony:/sbin/nologin
-alex:x:1000:1000:alex:/home/alex:/bin/bash
-
-debian
-
-cat /etc/passwd
-root:x:0:0:root:/root:/bin/bash
-daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
-bin:x:2:2:bin:/bin:/usr/sbin/nologin
-sys:x:3:3:sys:/dev:/usr/sbin/nologin
-sync:x:4:65534:sync:/bin:/bin/sync
-games:x:5:60:games:/usr/games:/usr/sbin/nologin
-man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
-lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
-mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
-news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
-uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
-proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
-www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
-backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
-list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
-irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
-gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
-nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
-_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
-systemd-timesync:x:101:102:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
-systemd-network:x:102:103:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
-systemd-resolve:x:103:104:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
-messagebus:x:104:110::/nonexistent:/usr/sbin/nologin
-sshd:x:105:65534::/run/sshd:/usr/sbin/nologin
-alex:x:1000:1000:alex,,,:/home/alex:/bin/bash
-systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
-test:x:1001:1001:,,,:/home/test:/bin/bash
-Debian-exim:x:106:112::/var/spool/exim4:/usr/sbin/nologin
-
-ubuntu
-
-root:x:0:0:root:/root:/bin/bash
-daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
-bin:x:2:2:bin:/bin:/usr/sbin/nologin
-sys:x:3:3:sys:/dev:/usr/sbin/nologin
-sync:x:4:65534:sync:/bin:/bin/sync
-games:x:5:60:games:/usr/games:/usr/sbin/nologin
-man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
-lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
-mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
-news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
-uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
-proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
-www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
-backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
-list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
-irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
-gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
-nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
-systemd-network:x:100:102:systemd Network Management,,,:/run/systemd/netif:/usr/sbin/nologin
-systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd/resolve:/usr/sbin/nologin
-syslog:x:102:106::/home/syslog:/usr/sbin/nologin
-messagebus:x:103:107::/nonexistent:/usr/sbin/nologin
-_apt:x:104:65534::/nonexistent:/usr/sbin/nologin
-lxd:x:105:65534::/var/lib/lxd/:/bin/false
-uuidd:x:106:110::/run/uuidd:/usr/sbin/nologin
-dnsmasq:x:107:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
-landscape:x:108:112::/var/lib/landscape:/usr/sbin/nologin
-pollinate:x:109:1::/var/cache/pollinate:/bin/false
-alex:x:1000:1000:alex:/home/alex:/bin/bash
-sshd:x:110:65534::/run/sshd:/usr/sbin/nologin
-
 
 
 
