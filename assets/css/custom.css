@@ -87,6 +87,12 @@ hr {
     font-weight: bold;
 }
 
+.top_links {
+    font-family: "Ubuntu", "Georgia", "Times", serif;
+    color: #000;
+    margin-right: 10px;
+}
+
 .links_footer {
     font-family: "Ubuntu", "Georgia", "Times", serif;
     color: #000;
