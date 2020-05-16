@@ -10,3 +10,10 @@ du -sh /var/www/* | sort -hr
 
 Рекурсивное сжатие изображений
 find /var/www/iblock_parser_comment/ -type f -regex ".*\(jpg\|jpeg\|JPG\|Jpeg\)" -exec jpegoptim -t --max=85 {} \;
+
+Массовое сжатие pdf bash скрипт
+
+#!/bin/bash
+for file in *.pdf; do
+ gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile="./comp/$file" $file
+done

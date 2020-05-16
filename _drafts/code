@@ -1,0 +1,239 @@
+Вид главной страницы
+<?php
+$array = array (
+    2521 =>
+        array (
+            'id' => '2521',
+            'name' => '1. Устройство, принцип работы и технические характеристики тракторов ',
+            'parent_id' => '193',
+            'hours' => 0.0,
+            'position' => '2',
+            'type' => '1',
+            'segment' => '1',
+            'education_type' => '3',
+            'time' => 0,
+            'date' => '',
+            'type_string' => 'Самоподготовка',
+        ),
+    2522 =>
+        array (
+            'id' => '2522',
+            'name' => 'Классификация и общее устройство тракторов',
+            'parent_id' => '193',
+            'hours' => 2.0000000000000004,
+            'position' => '3',
+            'type' => '2',
+            'segment' => '1',
+            'education_type' => '3',
+            'time' => 0,
+            'date' => '',
+            'type_string' => 'Аудиторное занятие',
+        ),
+    2523 =>
+        array (
+            'id' => '2523',
+            'name' => 'Двигатели тракторов',
+            'parent_id' => '193',
+            'hours' => 2.0000000000000004,
+            'position' => '4',
+            'type' => '2',
+            'segment' => '1',
+            'education_type' => '3',
+            'time' => 0,
+            'date' => '',
+            'type_string' => 'Аудиторное занятие',
+        ),
+    2524 =>
+        array (
+            'id' => '2524',
+            'name' => 'Шасси тракторов',
+            'parent_id' => '193',
+            'hours' => 2.0000000000000004,
+            'position' => '5',
+            'type' => '2',
+            'segment' => '1',
+            'education_type' => '3',
+            'time' => 0,
+            'date' => '',
+            'type_string' => 'Аудиторное занятие',
+        ),
+    2525 =>
+        array (
+            'id' => '2525',
+            'name' => 'Электрооборудование тракторов',
+            'parent_id' => '193',
+            'hours' => 2.0000000000000004,
+            'position' => '6',
+            'type' => '2',
+            'segment' => '1',
+            'education_type' => '3',
+            'time' => 0,
+            'date' => '',
+            'type_string' => 'Аудиторное занятие',
+        ),
+    2526 =>
+        array (
+            'id' => '2526',
+            'name' => 'Классификация и общее устройство тракторов',
+            'parent_id' => '193',
+            'hours' => 2.0000000000000004,
+            'position' => '7',
+            'type' => '1',
+            'segment' => '1',
+            'education_type' => '3',
+            'time' => 0,
+            'date' => '',
+            'type_string' => 'Самоподготовка',
+        ),
+    2527 =>
+        array (
+            'id' => '2527',
+            'name' => 'Двигатели тракторов',
+            'parent_id' => '193',
+            'hours' => 2.0000000000000004,
+            'position' => '8',
+            'type' => '1',
+            'segment' => '1',
+            'education_type' => '3',
+            'time' => 0,
+            'date' => '',
+            'type_string' => 'Самоподготовка',
+        ),
+    2528 =>
+        array (
+            'id' => '2528',
+            'name' => 'Шасси тракторов',
+            'parent_id' => '193',
+            'hours' => 2.0000000000000004,
+            'position' => '9',
+            'type' => '1',
+            'segment' => '1',
+            'education_type' => '3',
+            'time' => 0,
+            'date' => '',
+            'type_string' => 'Самоподготовка',
+        ),
+    2529 =>
+        array (
+            'id' => '2529',
+            'name' => 'Электрооборудование тракторов',
+            'parent_id' => '193',
+            'hours' => 2.0000000000000004,
+            'position' => '10',
+            'type' => '1',
+            'segment' => '1',
+            'education_type' => '3',
+            'time' => 0,
+            'date' => '',
+            'type_string' => 'Самоподготовка',
+        ),
+    2555 =>
+        array (
+            'id' => '2555',
+            'name' => 'Электрооборудование тракторов',
+            'parent_id' => '193',
+            'hours' => 0.5,
+            'position' => '10',
+            'type' => '1',
+            'segment' => '1',
+            'education_type' => '3',
+            'time' => 0,
+            'date' => '',
+            'type_string' => 'Самоподготовка',
+        ),
+    2577 =>
+        array (
+            'id' => '2577',
+            'name' => 'Электрооборудование тракторов',
+            'parent_id' => '193',
+            'hours' => 0.5,
+            'position' => '10',
+            'type' => '1',
+            'segment' => '1',
+            'education_type' => '3',
+            'time' => 0,
+            'date' => '',
+            'type_string' => 'Самоподготовка',
+        ),
+    2588 =>
+        array (
+            'id' => '2588',
+            'name' => 'Электрооборудование тракторов',
+            'parent_id' => '193',
+            'hours' => 0.5,
+            'position' => '10',
+            'type' => '1',
+            'segment' => '1',
+            'education_type' => '3',
+            'time' => 0,
+            'date' => '',
+            'type_string' => 'Самоподготовка',
+        ),
+    2599 =>
+        array (
+            'id' => '2599',
+            'name' => 'Электрооборудование тракторов',
+            'parent_id' => '193',
+            'hours' => 0.5,
+            'position' => '10',
+            'type' => '1',
+            'segment' => '1',
+            'education_type' => '3',
+            'time' => 0,
+            'date' => '',
+            'type_string' => 'Самоподготовка',
+        ),
+);
+//echo '<pre>';
+//print_r($array);
+?>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <td>#пп</td>
+        <td>Вид занятий</td>
+        <td>Содержание занятий</td>
+        <td>Часы</td>
+        <td>Подпись</td>
+    </tr>
+    <?php
+    $sum = 0;
+    $rowspan = 0;
+    $ids = [];
+    $id = 0;
+
+    // определяем кол-во ячеек в каждой группе
+    foreach ($array as $item => $value) {
+        $sum += intval($value['hours']);
+        $rowspan++;
+
+        if ($rowspan == 1) {
+            $id = $value['id'];
+        }
+        $ids[$id] = $rowspan;
+        if ($sum == 8) {
+            $rowspan = 0;
+            $sum = 0;
+        }
+    }
+
+    // выводим
+    foreach ($array as $item => $value) {
+        echo '<tr>';
+        if (array_key_exists($value['id'], $ids)) {
+            echo '<td rowspan="'.$ids[$value['id']].'"></td>';
+        }
+
+        echo '<td>'.$value['type_string'].'</td>';
+        echo '<td>'.$value['name'].'</td>';
+        echo '<td>'.$value['hours'].'</td>';
+        if (array_key_exists($value['id'], $ids)) {
+            echo '<td rowspan="'.$ids[$value['id']].'"></td>';
+        }
+        echo '</tr>';
+
+    }
+
+
+    ?>
+</table>
