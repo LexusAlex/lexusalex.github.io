@@ -1,5 +1,35 @@
+---
+layout: post
+title: Программировние на bash
+permalink: php-standards-recommendations 
+tags: psr php
+comments: true
+subtitle: Какие существуют стандарты кодирования в php
+summary: Какие существуют стандарты кодирования в php
+is_navigate: true
+cover_url: "/assets/images/articles/php.png"
+---
+
+### Подстановки
+
+#### Подстановка имен файлов
+
+- `*` метасимвол означающий сколько угодно и каких угодно символов
+- `?` любой символ, но один
+- `~` домашний каталог
+- `\` специальный символ для отмены значений других символов
+
+#### Экранирование
+
+- `\m` одиночное
+-  `'mmmmmm'` множественное условное
+-  `"mmmmmm"` множественное сильное экранирует все
+
+
+11 минута
 Программирование на bash
 
+https://habr.com/ru/company/ruvds/blog/325522/
 $ command -x 1 [-x 2 args] {-x n | --long-options i } args ...
 
 ~ - домашний каталог
