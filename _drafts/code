@@ -237,3 +237,33 @@ $array = array (
 
     ?>
 </table>
+
+// разлиновка таблицы в трактористах
+$COUNT_HOURS = 0;
+						$sum = 0;
+                        $rowspan = 0;
+                        $ids = [];
+                        $id = 0;
+						foreach ($plan as $key => $params)
+						{
+						    // определяем кол-во ячеек в каждой группе
+                            foreach ($params["items"] as $item => $value) {
+                                $sum += intval($value['hours']);
+                                $rowspan++;
+
+                                if ($rowspan == 1) {
+                                    $id = $value['id'];
+                                }
+                                $ids[$id] = $rowspan;
+                                if ($sum == 8) {
+                                    $rowspan = 0;
+                                    $sum = 0;
+                                }
+                            }
+
+if (array_key_exists($item['id'], $ids)) {
+     $html .= '<td rowspan="'.$ids[$item['id']].'" style="font-size:'.$font_size.'px;text-align:'.$align.';">'.$ids[$item['id']].'</td>';
+}
+
+
+if ($group->params['constructor_education_group_settings_id'] == 16)
