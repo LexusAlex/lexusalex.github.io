@@ -73,3 +73,5 @@ wc -c /mnt/ext4/file /mnt/ext2/file
 
 ```
 На физическом уровне размер сектора диска всегда равен 512 байт.
+
+https://ps-group.github.io/compilers/fsm
