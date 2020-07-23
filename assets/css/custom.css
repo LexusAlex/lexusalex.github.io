@@ -71,12 +71,12 @@ hr {
 }
 
 .header {
-    border-bottom: 1px solid #eee;
+    border-bottom: 3px solid #eee;
     padding: 0.4rem;
 }
 
 .footer {
-    border-top: 1px solid #eee;
+    border-top: 3px solid #eee;
     padding: 0.4rem;
 }
 
