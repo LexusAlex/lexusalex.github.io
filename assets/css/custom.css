@@ -24,31 +24,31 @@
 }
 
 .post-title {
-    font-family: "Helvetica Neue", "Arial", sans-serif;
+    font-family: "Ubuntu", "Georgia", "Times", serif;
     line-height: 1.3;
     color: #000;
     font-size: 1.5rem;
 }
 
 .post-title-page {
-    font-family: "Helvetica Neue", "Arial", sans-serif;
+    font-family: "Ubuntu", "Georgia", "Times", serif;
     font-size: 2.1rem;
-    line-height: 1.2;
+    line-height: 1.0;
     color: #000;
     font-weight: bold;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    border-bottom: 1px solid #adb5bd;
     padding-bottom: 1rem;
 }
 
 .post-date, .post-tags {
     font-family: "Ubuntu", "Georgia", "Times", serif;
-    /*padding-top: 0.8rem;*/
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
 }
 
 p {
-    font-family: "Lora", "Georgia", "Times", serif;
+    font-family: "Arial", sans-serif;
     font-size: 1.3rem;
     font-weight: 400;
     line-height: 1.5;
@@ -56,6 +56,7 @@ p {
 
 .post-preview {
     font-family: "Ubuntu", "Georgia", "Times", serif;
+    font-size: 1rem;
 }
 
 .post-navigate {
@@ -63,7 +64,7 @@ p {
 }
 
 .post-navigate ol{
-    font-family: "Lora", "Georgia", "Times", serif;
+    font-family: "Ubuntu", "Georgia", "Times", serif;
 }
 hr {
     margin-top: 0;
@@ -105,6 +106,7 @@ hr {
 
 h1 ,h2, h3, h4, h5, h6 {
     font-family: "Helvetica Neue", "Arial", sans-serif;
+    font-family: "Ubuntu", "Georgia", "Times", serif;
     color: #000;
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -138,7 +140,7 @@ h6 {
 }
 
 ol, ul {
-    font-family: "Lora", "Georgia", "Times", serif;
+    font-family: "Arial", sans-serif;
     font-size: 1.2rem;
 }
 

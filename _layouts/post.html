@@ -25,23 +25,27 @@ layout: default
                 </div>
             </div>
             <h1 class="post-title-page">{{ page.title }}</h1>
-            <p>
-                {{ page.subtitle }}
-            </p>
-            {% if page.cover_url %}
-                <img src="{{ page.cover_url }}" alt="">
-            {% endif %}
-            {% if page.is_navigate %}
-                <div class="row">
-                    <div class="col-12">
-                        <section class="post-navigate">
-                            <div class="text-center"><b>Содержание</b></div>
-                            {% include toc.html html=content %}
-                        </section>
+            <div class="row">
+                <div class="col-12">
+                    {% if page.is_navigate %}
+                    <div class="row">
+                        <div class="col-12">
+                            <section class="post-navigate">
+                                <div class="text-center">Содержание</div>
+                                {% include toc.html html=content %}
+                            </section>
+                        </div>
                     </div>
+                    {% endif %}
                 </div>
-            {% endif %}
-
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    {% if page.cover_url %}
+                    <img class="rounded img-thumbnail" src="{{ page.cover_url }}" alt="{{ page.title }}">
+                    {% endif %}
+                </div>
+            </div>
             {{ content }}
 
             {% if page.comments %}
