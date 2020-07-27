@@ -8,7 +8,7 @@ summary: Алексей Шмелев - программист из Чехова.
 {% for year in postsByYear %}
     <div class="row justify-content-center">
         <div class="col-lg-1">
-            <div class="year-name text-center text-lg-right">{{ year.name }}</div>
+            <div class="year-name text-center text-lg-right text-success">{{ year.name }}</div>
         </div>
         <div class="col-lg-7 col-sm-12">
             {% for post in year.items %}
@@ -47,14 +47,16 @@ summary: Алексей Шмелев - программист из Чехова.
                     <div class="row">
                         <div class="col-12 col-sm-4 col-md-4 col-xl-3 d-none d-sm-block">
                             {% if post.cover_url %}
+                            <a href="{{ post.url }}" title="{{ post.title }}">
                                 <img class="rounded img-thumbnail card-img-top" src="{{ post.cover_url }}" alt="{{ post.title }}">
+                            </a>
                             {% endif %}
                         </div>
                         <div class="col-12 col-sm-8 col-md-8 col-xl-9">
                             <div class="row">
                                 <div class="col-12">
                                     <p class="post-preview card-text text-dark">{{ post.summary }}</p>
-                                    <a href="{{ post.url }}" class="btn btn-sm btn-success">Читать далее...</a>
+                                    <a href="{{ post.url }}" class="btn btn-sm btn-success" style="text-decoration:none">Читать далее...</a>
                                 </div>
                             </div>
                         </div>
