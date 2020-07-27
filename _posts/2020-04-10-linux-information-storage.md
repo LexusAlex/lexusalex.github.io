@@ -5,7 +5,7 @@ permalink: linux-Information-storage
 tags: linux
 comments: true
 subtitle: Как хранится информация на дисковых устройствах
-summary:  Как хранится информация на дисковых устройствах
+summary:  Рассмотрим процесс хранения информации на дисковых накопителях в linux. Какие типы устройств бывают, где они хранятся и как с ними взаимодействует операционная система. 
 is_navigate: true
 cover_url: "/assets/images/articles/linux/disk.png"
 ---

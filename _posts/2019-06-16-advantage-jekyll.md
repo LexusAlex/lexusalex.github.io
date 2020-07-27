@@ -5,7 +5,7 @@ permalink: advantage-jekyll
 tags: jekyll github github-pages
 comments: true
 subtitle: Почему я выбрал jekyll для создания блога
-summary: Почему я выбрал jekyll для создания блога
+summary: Почему я выбрал jekyll для создания блога.
 is_navigate: false
 cover_url: "/assets/images/articles/jekyll.png"
 ---

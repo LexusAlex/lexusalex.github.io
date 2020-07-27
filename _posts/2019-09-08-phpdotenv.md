@@ -4,8 +4,8 @@ title: Библиотеки php - phpdotenv
 permalink: php-phpdotenv
 tags: php environment linux
 comments: true
-subtitle: Как использовать переменные окружения в php.
-summary:  Как использовать переменные окружения в php.
+subtitle: phpdotenv или как использовать переменные окружения в php.
+summary:  phpdotenv или как использовать переменные окружения в php.
 is_navigate: true
 cover_url: "/assets/images/articles/php.png"
 ---

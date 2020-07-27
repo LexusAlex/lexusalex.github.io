@@ -5,7 +5,7 @@ permalink: git-server-on-the-local-network
 tags: git linux
 comments: true
 subtitle: Разворачиваем простой git сервер на debian
-summary: Небольшой мануал как развернуть git сервер у себя в локальной сети
+summary: Небольшой мануал, о том как развернуть git сервер у себя в локальной сети.
 cover_url: "/assets/images/articles/git/git-server.png"
 is_navigate: true
 ---

@@ -4,7 +4,7 @@ title: Чистые функции
 permalink: pure-functions
 tags: php functions
 comments: true
-summary:  Что такое чистые функции
+summary:  Что такое чистые функции и побочные эффекты.
 is_navigate: false
 cover_url: "/assets/images/articles/glass.png"
 ---

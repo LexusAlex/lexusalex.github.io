@@ -5,7 +5,7 @@ permalink: cqs-functions
 tags: functions php
 comments: true
 subtitle: Разделяем функций на команды и запросы
-summary:  Разделяем функций на команды и запросы
+summary:  Описание принципа command query separation который разделяет все функции на команды и запросы.
 is_navigate: true
 cover_url: "/assets/images/articles/cq.png"
 ---

@@ -4,7 +4,7 @@ title: Docker - швецарский нож для разработчика
 permalink: docker-swiss-knife-for-developer
 tags: docker linux php mariadb
 comments: true
-summary: Как влиться вместе с docker в процесс контейнеризированной разработки
+summary: Немного о docker - как об универсальном инструменте разработчика.
 subtitle: Docker - универсальный инструмент для разработчика
 is_navigate: true
 cover_url: "/assets/images/articles/docker.png"

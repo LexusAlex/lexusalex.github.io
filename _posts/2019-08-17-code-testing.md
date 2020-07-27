@@ -5,7 +5,7 @@ permalink: code-testing
 tags: tests programming
 comments: true
 subtitle: Что же такое тестирование кода и зачем это нужно, в чем преимущества и недостатки.
-summary: Что такое тестирование кода
+summary: Тестирование кода. Что это такое. Зачем оно нужно. Какими должны быть тесты.
 is_navigate: true
 cover_url: "/assets/images/articles/testing.png"
 ---

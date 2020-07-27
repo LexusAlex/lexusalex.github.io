@@ -5,7 +5,7 @@ permalink: linux-expanding-partition
 tags: linux
 comments: true
 subtitle: Столкнулся с проблемой расширения корневого раздела сервера linux работающего в облаке.
-summary:  Как расширить раздел linux на уже работающем боевом сервере без его остановки
+summary:  Как расширить раздел linux на уже работающем боевом сервере без его остановки.
 is_navigate: false
 cover_url: "/assets/images/articles/linux/part.png"
 ---
