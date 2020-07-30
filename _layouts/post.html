@@ -31,7 +31,6 @@ layout: default
                     <div class="row">
                         <div class="col-12">
                             <section class="post-navigate">
-                                <div class="text-center">Содержание</div>
                                 {% include toc.html html=content %}
                             </section>
                         </div>
@@ -46,6 +45,7 @@ layout: default
                     {% endif %}
                 </div>
             </div>
+            <br>
             {{ content }}
 
             {% if page.comments %}
