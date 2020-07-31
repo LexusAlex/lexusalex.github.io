@@ -78,10 +78,10 @@ function side_effect1() {
     
     return $_SERVER['PATH']; // /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 }
-// запись в фаил
+// запись в файл
 function side_effect2() {
     
-    file_put_contents('file.txt', 'Текст для записи', FILE_APPEND); // создание и запись в фаил file.txt
+    file_put_contents('file.txt', 'Текст для записи', FILE_APPEND); // создание и запись в файл file.txt
 }
 // печать на экран
 function side_effect3() {
@@ -97,7 +97,7 @@ function side_effect3() {
 1. `connect()` - подключение к базе данных
 2. `request()` - запрос к базе данных
 3. `calculate()` - обработка результата
-4. `print()` - вывод результата на экран или запись в фаил
+4. `print()` - вывод результата на экран или запись в файл
 
 Мы вынесли чистый код обработки результата в функцию `calculate()`. 
 Функцию `calculate()` удобно тестировать, так как мы четко знаем что она делает и чем управляет

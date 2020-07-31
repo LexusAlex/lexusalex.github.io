@@ -12,7 +12,7 @@ cover_url: "/assets/images/articles/linux/part.png"
 
 ## Способ 1
 
-Имеем раздел `/dev/sda1` c файловой системой `ext4` на котором точка монтирования файловой системы :
+Имеем раздел `/dev/sda1` с файловой системой `ext4` на котором точка монтирования файловой системы:
 
 ```bash
 df -h -T /dev/sda1
@@ -46,7 +46,7 @@ sda      8:0    0    6G  0 disk
 └─sda1   8:1    0    3G  0 part /
 sr0     11:0    1  335M  0 rom  
 ```
-Как видим размер диска увеличился и составляет 6G, но размер раздела остался по прежнему 3G.
+Как видим размер диска увеличился и составляет 6G, но размер раздела остался по-прежнему 3G.
 
 Задачу решает утилита [growpart](https://manpages.debian.org/jessie/cloud-utils/growpart.1.en.html), которая заполняет таблицу разделов всем доступным пространством.
 
@@ -57,7 +57,7 @@ apt-get install cloud-utils
 ```
 ### Внимание перед дальнейшими действиями сделайте бекап сервера, действия по расширению раздела выполняете на свой страх и риск!!!
 
-Теперь нужно указать диск и номер раздела, например :
+Теперь нужно указать диск и номер раздела, например:
 
 ```bash
 growpart /dev/sda 1
@@ -74,7 +74,7 @@ Filesystem at /dev/sda1 is mounted on /; on-line resizing required
 old_desc_blocks = 1, new_desc_blocks = 1
 The filesystem on /dev/sda1 is now 1572603 (4k) blocks long.
 ```
-Проверяем размер раздела :
+Проверяем размер раздела:
 
 ```bash
 df -h -T /dev/sda1
@@ -85,7 +85,7 @@ df -h -T /dev/sda1
 
 ## Способ 2
 
-Итак имеем диск размером 7G:
+Итак, имеем диск размером 7G:
 
 ```bash
 df -h -T /dev/sda1
@@ -113,7 +113,7 @@ Selected partition 1
 Partition 1 has been deleted.
 ```
 Создаем новый primary раздел, следуя подсказкам.
-Здесь мы :
+Здесь мы:
 1. Создаем новый primary раздел.
 2. Указываем его номер.
 3. Указываем первый сектор диска.
@@ -140,7 +140,7 @@ The partition table has been altered.
 Syncing disks.
 ```
 
-Проверяем теперь :
+Проверяем теперь:
 
 ```bash
 df -h -T /dev/sda1
@@ -158,7 +158,7 @@ Filesystem at /dev/sda1 is mounted on /; on-line resizing required
 old_desc_blocks = 1, new_desc_blocks = 2
 The filesystem on /dev/sda1 is now 2621184 (4k) blocks long.
 ```
-Проверяем :
+Проверяем:
 
 ```bash
 df -h -T /dev/sda1
