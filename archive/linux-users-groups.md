@@ -95,7 +95,7 @@ www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
 
 >> Большинство платформ поддерживают как минимум 7 полей. Существуют системы где полей может быть 5 и 10
 
-![passwd](/assets/images/articles/unix/unix-user/passwd.png "passwd")
+![passwd](/archive/images/articles/unix/unix-user/passwd.png "passwd")
 
 Командой `vipw` возможно отредактироовать фаил `/etc/passwd`
 

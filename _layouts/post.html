@@ -2,57 +2,28 @@
 layout: default
 ---
 
-<div class="row justify-content-center">
-    <div class="col-12 col-md-8 col-sm-12">
-        <article>
-            <div class="row">
-                <div class="col-12 col-sm-4 text-left">
-                    <div class="post-date">{% include date.html date=page.date %}</div>
-                </div>
-                <div class="col text-left text-sm-right">
-                    <div class="post-tags">
-                        {% capture tags %}
-                        {% for tag in page.tags %}
-                        {{ tag }}
-                        {% endfor %}
-                        {% endcapture %}
-                        {% assign sortedtags = tags | split:' ' | sort %}
-
-                        {% for tag in sortedtags %}
-                        {{ tag }}
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-            <h1 class="post-title-page">{{ page.title }}</h1>
-            <div class="row">
-                <div class="col-12">
-                    {% if page.is_navigate %}
-                    <div class="row">
-                        <div class="col-12">
-                            <section class="post-navigate">
-                                {% include toc.html html=content %}
-                            </section>
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    {% if page.cover_url %}
-                    <img class="rounded img-thumbnail" src="{{ page.cover_url }}" alt="{{ page.title }}">
-                    {% endif %}
-                </div>
-            </div>
-            <br>
-            {{ content }}
-
-            {% if page.comments %}
-            <div class="comments">
-                {% include comments.html %}
-            </div>
-            {% endif %}
-        </article>
+<div class="simple-headline">
+    <h1>{{ page.title }}</h1>
+    <div class="simple-headline-date dt-published">{% include date.html date=page.date %}</div>
+</div>
+{% if page.cover_url %}
+    <div class="simple-headline-image">
+        <img src="{{ page.cover_url }}" alt="" class="the-cover" data-action="zoom">
+    </div>
+{% endif %}
+<div class="post">
+    {% if page.is_navigate %}
+        <!--<div class="block-text">
+            {% include toc.html html=content %}
+        </div>-->
+    {% endif %}
+    <div class="block-text">
+        {{ content }}
+        <br>
+        {% if page.comments %}
+        <div class="comments">
+            {% include comments.html %}
+        </div>
+        {% endif %}
     </div>
 </div>

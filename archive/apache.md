@@ -269,5 +269,5 @@ apt-get -y install apache2
 После установки если перейти по адресу IP сервера, то увидим стартовую страницу **Apache2 Debian Default Page**, 
 свидетельствующую о том что сервер установлен и готов к использованию.
 
-![debian](/assets/images/articles/apache/debian.png "debian apache")
+![debian](/archive/images/articles/apache/debian.png "debian apache")
 

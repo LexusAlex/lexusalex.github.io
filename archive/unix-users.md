@@ -249,7 +249,7 @@ www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
 
 Соотношение временных параметров указано на рисунке :
 
-![/etc/shadow](/assets/images/articles/unix/unix-user/shadow.png "/etc/shadow")
+![/etc/shadow](/archive/images/articles/unix/unix-user/shadow.png "/etc/shadow")
 
 Примеры:
 ~~~bash

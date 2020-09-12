@@ -197,7 +197,7 @@ https://interface31.ru/tech_it/2019/12/linux-nachinayushhim-chast-6-upravlenie-p
 9. flag
     Это поле зарезервировано для использования в будущем.
 
-<img src="../assets/images/articles/linux/users/ages.png" alt="Временная диаграмма">
+<img src="images/articles/linux/users/ages.png" alt="Временная диаграмма">
 
 Примеры : 
 - `nvidia-persistenced:*:17614:0:99999:7:::`
@@ -300,7 +300,7 @@ centos
 
 ### Профиль по умолчанию
 
-<img src="../assets/images/articles/linux/users/profile_user.png" alt="Профиль пользователя">
+<img src="images/articles/linux/users/profile_user.png" alt="Профиль пользователя">
 
 Копируются они при создании пользовтеля
 /etc
@@ -371,7 +371,7 @@ lrwxrwxrwx. 1 root root      7 ноя  9 02:05 /usr/sbin/adduser -> useradd
 
 Эти правила действуют для трех групп каждого из субъектов
 
-<img src="../assets/images/articles/linux/files/access-mode.png" alt="Профиль пользователя">
+<img src="images/articles/linux/files/access-mode.png" alt="Профиль пользователя">
 
 1. SUID SGID T Дополнительные атрибуты
 2. Владелец rwx

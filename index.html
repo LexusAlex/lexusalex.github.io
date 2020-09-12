@@ -1,126 +1,25 @@
 ---
 layout: default
-title: Блог Алексея Шмелева
-summary: Алексей Шмелев - программист из Чехова. Заметки разработчика.
+title: Блог lexusalex.ru
+summary: Авторский блог о технологиях и вокруг них.
 ---
 
 {% assign postsByYear = paginator.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
 {% for year in postsByYear %}
-    <div class="row justify-content-center">
-        <div class="col-lg-1">
-            <div class="year-name text-center text-lg-right text-success">{{ year.name }}</div>
-        </div>
-        <div class="col-lg-7 col-sm-12">
-            {% for post in year.items %}
-            <div class="mb-3">
-                <div class="">
-                    <div class="row">
-                        <div class="col-12">
-                            <h2 class="post-heading card-title">
-                                <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-5 col-sm-5 col-md-5 col-xl-5">
-                            <div class="post-date text-sm-left">
-                                <img width="17" height="17" class="rounded-circle" src="{{ site.baseurl }}/assets/images/calendar.svg" title="Дата заметки" alt="date">
-                                {% include date.html date=post.date %}
-                            </div>
-                        </div>
-                        <div class="col-7 col-sm-7 col-md-7 col-xl-7">
-                            <div class="post-tags text-right text-sm-right">
-                                <img width="17" height="17" class="rounded-circle" src="{{ site.baseurl }}/assets/images/tag.svg" title="Теги" alt="tags">
-                                {% capture tags %}
-                                {% for tag in post.tags %}
-                                {{ tag }}
-                                {% endfor %}
-                                {% endcapture %}
-                                {% assign sortedtags = tags | split:' ' | sort %}
-
-                                {% for tag in sortedtags %}
-                                {{ tag }}
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3 col-sm-4 col-md-4 col-xl-3 d-sm-block">
-                            {% if post.cover_url %}
-                            <a href="{{ post.url }}" title="{{ post.title }}">
-                                <img class="rounded img-thumbnail card-img-top" src="{{ post.cover_url }}" alt="{{ post.title }}">
-                            </a>
-                            {% endif %}
-                        </div>
-                        <div class="col-9 col-sm-8 col-md-8 col-xl-9">
-                            <div class="row">
-                                <div class="col-12">
-                                    <p class="post-preview card-text text-dark">{{ post.summary }}</p>
-                                    <a href="{{ post.url }}" class="btn btn-sm btn-success" style="text-decoration:none">Читать далее...</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div style="border-bottom: 1px dashed #ddd;">&nbsp;</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-                        <!--<div class="row">
-                            <div class="col-12 col-sm-6 col-xl-6">
-                                <div class="post-date">
-                                    <img width="17" height="17" class="rounded-circle" src="{{ site.baseurl }}/assets/images/calendar.svg" title="Дата" alt="date">
-                                    % include date.html date=post.date %}
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-xl-6 text-left text-sm-right">
-                                <div class="post-date">
-                                    <img width="17" height="17" class="rounded-circle" src="{{ site.baseurl }}/assets/images/clock.svg" title="Время на чтение" alt="time">
-                                    {% assign minutes = post.content | strip_html | number_of_words | divided_by: 180 %}
-                                    {% if minutes == 0 %}
-                                    {% assign minutes = 1 %}
-                                    {% endif %}
-                                    {{minutes}} <span class="d-xl-inline-flex d-lg-none d-md-inline-flex d-sm-none">мин.</span>
-                                </div>
-                            </div>
-                        </div>-->
-
-
-                                <!--<div class="post-tags text-right">
-                                    <img width="17" height="17" class="rounded-circle" src="{{ site.baseurl }}/assets/images/tag.svg" title="Теги" alt="tags">
-                                    {% capture tags %}
-                                    {% for tag in post.tags %}
-                                    {{ tag }}
-                                    {% endfor %}
-                                    {% endcapture %}
-                                    {% assign sortedtags = tags | split:' ' | sort %}
-
-                                    {% for tag in sortedtags %}
-                                    {{ tag }}
-                                    {% endfor %}
-                                </div>-->
-
-            {% endfor %}
-        </div>
+<div class="stories-block stories-block__4x">
+    <div class="stories-block__header">
+        <div class="year">{{ year.name }}</div>
     </div>
-{% endfor %}
-<div class="row justify-content-center">
-    <div class="col-8 text-center">
-        <h4>
-            <div class="">
-                <div class="card-body" style="font-size: 20px">
-                    {% if paginator.previous_page %}
-                        <a class="text-success" href="{% if paginator.previous_page == 1%}/{% else %}/page{{ paginator.previous_page }}{% endif %}">&laquo;</a>
-                    {% endif %}
-                        <span class="page_number ">Страница {{ paginator.page }} из {{ paginator.total_pages }}</span>
-                    {% if paginator.next_page %}
-                    <a class="text-success" href="/page{{ paginator.next_page }}">&raquo;</a>
-                    {% endif %}
-                </div>
-            </div>
-        </h4>
-    </div>
+    {% for post in year.items %}
+        <a href="{{ post.url }}" class="story story_orientation_vertical h-entry" style="background-image: url('{{ post.cover_url }}');">
+            <span class="ratio-2-3"></span>
+            <span class="story__views">
+                <i class="fas fa-calendar" aria-hidden="true"></i>&nbsp;{% include date.html date=post.date %}
+            </span>
+            <span class="story__info">
+                <span class="story__title">{{ post.title }}</span>
+            </span>
+        </a>
+    {% endfor %}
 </div>
+{% endfor %}
