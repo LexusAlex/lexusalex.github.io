@@ -7,6 +7,7 @@ comments: true
 subtitle: Управление пользователями в Unix
 summary:  Управление пользователями в Unix
 is_navigate: true
+published: false
 ---
 
 Linux - это многопользовательская, многозадачная операционная система.

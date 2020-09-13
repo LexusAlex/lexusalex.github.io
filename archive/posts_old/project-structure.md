@@ -8,6 +8,7 @@ subtitle: Какие существуют стандарты кодирован�
 summary: Какие существуют стандарты кодирования в php
 is_navigate: true
 cover_url: "/assets/images/articles/php.png"
+published: false
 ---
 
 HTTP

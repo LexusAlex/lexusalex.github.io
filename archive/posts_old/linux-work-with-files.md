@@ -8,6 +8,7 @@ subtitle: Linux. Работа с файлами
 summary:  Linux. Работа с файлами
 is_navigate: true
 cover_url: "/assets/images/articles/linux/part.png"
+published: false
 ---
 
 [Часть 1 - Linux. Хранение информации](https://lexusalex.ru/linux-Information-storage)

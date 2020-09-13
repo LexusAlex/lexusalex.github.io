@@ -7,6 +7,7 @@ comments: true
 subtitle: История UNIX и стандарты
 summary:  История UNIX и стандарты
 is_navigate: true
+published: false
 ---
 
 ### ANSI

@@ -8,6 +8,7 @@ subtitle: Что же такое тестирование кода и зачем
 summary: Тестирование кода. Что это такое. Зачем оно нужно. Какими должны быть тесты.
 is_navigate: true
 cover_url: "/assets/images/articles/testing.png"
+published: false
 ---
 
 ## Вводная

@@ -7,6 +7,7 @@ comments: true
 summary: В поисках удобной структуры php проекта.
 is_navigate: true
 cover_url: "/assets/images/articles/php.png"
+published: false
 ---
 
 Приступая к очередному проекту на php задумался, существует ли "правильная" структура проекта.

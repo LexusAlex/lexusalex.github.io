@@ -8,6 +8,7 @@ subtitle: Почему я выбрал jekyll для создания блога
 summary: Почему я выбрал jekyll для создания блога.
 is_navigate: false
 cover_url: "/assets/images/articles/jekyll.png"
+published: false
 ---
 
 Назрела необходимость завести блог, хотел просто писать статьи.

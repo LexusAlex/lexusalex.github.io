@@ -3,6 +3,7 @@ layout: post
 title: Объекты в php
 permalink: php-objects
 tags: php
+published: false
 ---
 
 ## Содержание

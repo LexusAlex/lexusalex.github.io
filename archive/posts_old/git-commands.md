@@ -4,6 +4,7 @@ title: Команды git
 permalink: git-commands
 tags: git github
 comments: true
+published: false
 
 ---
 

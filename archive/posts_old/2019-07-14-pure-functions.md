@@ -7,6 +7,7 @@ comments: true
 summary:  Что такое чистые функции и побочные эффекты.
 is_navigate: false
 cover_url: "/assets/images/articles/glass.png"
+published: false
 ---
 
 Функции в современных языках программирования играют огромную роль. 

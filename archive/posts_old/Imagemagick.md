@@ -7,6 +7,7 @@ subtitle: ImageMagick это бесплатный многоплатформен
 summary: ImageMagick это бесплатный многоплатформенный комплекс утилит, созданный для обработки фотографий
 cover_url: "/images/jekyll/jekyll.jpg"
 is_navigate: true
+published: false
 ---
 
 

@@ -8,6 +8,7 @@ subtitle:
 summary: Работаем в терминале быстро и эффективно
 is_navigate: true
 cover_url: "/assets/images/articles/keyboard.png"
+published: false
 ---
 
 ### Ввод команд

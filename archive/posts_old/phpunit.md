@@ -8,6 +8,7 @@ subtitle: Как начать использовать phpunit у себя в п
 summary:  Как начать использовать phpunit у себя в проекте
 cover_url: "/assets/images/articles/phpunit/phpunit.png"
 is_navigate: true
+published: false
 ---
 
 ### Что это

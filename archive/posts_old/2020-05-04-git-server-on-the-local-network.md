@@ -8,6 +8,7 @@ subtitle: Разворачиваем простой git сервер на debian
 summary: Небольшой мануал, о том как развернуть git сервер у себя в локальной сети.
 cover_url: "/assets/images/articles/git/git-server.png"
 is_navigate: true
+published: false
 ---
 
 GIT сейчас является самой популярной системой контроля версий исходного кода.

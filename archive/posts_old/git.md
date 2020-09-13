@@ -8,6 +8,7 @@ subtitle: Git - распределенная система управления
 summary: Инструкция как начать использовать git
 cover_url: "/images/jekyll/jekyll.jpg"
 is_navigate: true
+published: false
 ---
 
 Мануал создан с целью помочь в изучении системы контроля версий git

@@ -8,6 +8,7 @@ subtitle: phpdotenv или как использовать переменные 
 summary:  phpdotenv или как использовать переменные окружения в php.
 is_navigate: true
 cover_url: "/assets/images/articles/php.png"
+published: false
 ---
 
 ### Переменные окружения в linux

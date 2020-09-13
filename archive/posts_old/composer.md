@@ -8,6 +8,7 @@ subtitle: Использование пакетного менеджера compo
 summary:  Использование пакетного менеджера composer для управления зависимостями проекта
 is_navigate: true
 cover_url: "/assets/images/articles/composer/composer.png"
+published: false
 ---
 
 Типичное php приложение зависит от другого кода. 
