@@ -1,3 +1,6 @@
+---
+published: false
+---
 http
 Клиент http://164.16.98.23 request
 Сервер http://87.250.250.242/ response

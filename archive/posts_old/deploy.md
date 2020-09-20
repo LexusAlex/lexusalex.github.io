@@ -1,3 +1,6 @@
+---
+published: false
+---
 git push
 
 код попадает на github

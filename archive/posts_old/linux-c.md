@@ -1,3 +1,6 @@
+---
+published: false
+---
 /lib/x86_64-linux-gnu/libc.so.6 Получить версию библиотеки с
 
 https://www.youtube.com/watch?v=P18_wphhrQ4&t=2471s

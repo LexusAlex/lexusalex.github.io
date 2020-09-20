@@ -1,3 +1,6 @@
+---
+published: false
+---
 docker run --name debian-ssh -it -p 22:22 -d debian:10
 docker exec -it debian-ssh /bin/bash
 
