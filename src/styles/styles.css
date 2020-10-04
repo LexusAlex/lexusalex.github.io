@@ -1,0 +1,10 @@
+@import 'main/normalize.css';
+@import 'main/fonts.css';
+@import 'main/box-sizing.css';
+@import 'main/base.css';
+
+@import 'blocks/page.css';
+@import 'blocks/header.css';
+@import 'blocks/footer.css';
+@import 'blocks/main.css';
+@import 'blocks/posts.css';

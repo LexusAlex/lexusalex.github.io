@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html class="page" lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>
+        {{ title }}{% if page.url != '/' %} — Lexusalex.ru{% endif %}
+    </title>
+
+    <meta name="description" content="">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="lexusalex.ru/">
+    <meta property="og:site_name" content="Авторский блог о веб технологиях и вокруг них">
+    <meta property="og:url" content="https://lexusalex.ru/">
+    <meta property="og:image" content="https://lexusalex.ru/images/static/720.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="lexusalex.ru">
+    <meta name="twitter:description" content="Авторский блог о веб технологиях и вокруг них">
+    <meta name="twitter:site" content="https://lexusalex.ru/">
+    <meta name="twitter:image" content="https://lexusalex.ru/images/static/720.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="/images/static/128.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/static/32.png">
+
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="page__body">
+{{ content | safe }}
+<script src="/scripts.js"></script>
+</body>
+</html>
