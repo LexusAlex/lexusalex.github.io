@@ -4,6 +4,8 @@ layout: page.njk
 
 {% include 'header.njk' %}
 
-{{ content | safe }}
-
+<div class="post">
+    <h1>{{ title }}</h1>
+    {{ content | safe }}
+</div>
 {% include 'footer.njk' %}

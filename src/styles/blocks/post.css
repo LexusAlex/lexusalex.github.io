@@ -1,0 +1,17 @@
+.post {
+    padding: 0;
+    font-size: 19px;
+    font-family: Rubik,serif;
+    color: rgba(0,0,0,.86);
+    line-height: 1.5em;
+    word-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    background-color: #fff;
+    max-width: 720px;
+    margin: 0 0 30px;
+}
+
+.post h1 {
+    font-family: Ubuntu, Rubik,serif;
+    text-align: center;
+}

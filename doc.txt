@@ -3,7 +3,7 @@ npm install -dev @11ty/eleventy
 npm install -dev gulp @babel/core @babel/preset-env gulp-babel gulp-postcss gulp-replace gulp-uglify html-minifier postcss postcss-csso postcss-import pretty-data
 https://github.com/noveogroup-amorgunov/amorgunov.com
 https://amorgunov.com/
-
+npm install -dev @11ty/eleventy-plugin-syntaxhighlight
 gulp styles:compress
 
 https://github.com/khawkins98/gulp-eleventy-example/blob/master/gulpfile.js
