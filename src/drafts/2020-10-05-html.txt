@@ -1,9 +1,148 @@
 ---
 number: 1
-title: "HTML. Необходимый минимум"
+title: "HTML. Контекст использования"
 published: true
 date: 2020-10-05
 description: "Основное в html"
 tags: articles
 layout: article.njk
 ---
+
+Мало где можно найти информацию, в каком контексте использовать теги html.
+
+## Общая информация
+
+**Глобальные атрибуты**
+
+## Заголовки
+
+### h1, h2, h3, h4, h5, h6 
+
+Заголовки используются в первую очередь для создания структуры текста.
+
+**Особенности:**
+- Заголовки различают по рангам от `h1` до `h6`.
+- Желательно чтобы заголовок `h1` был один на странице, это важно для поисковых систем и экранных читалок.
+- Сейчас рекомендуют вернуться к сквозной иерархии заголовков на странице.
+- Не пропускайте уровни заголовков на странице.
+- Внутри тега `article` или `section` заголовки можно начинать с `h1`.
+- Не стоит определять ранг заголовка по размеру текста на странице, крупный текст не всегда заголовок.
+
+**Стили по умолчанию:**
+
+```css
+h1 {
+    display: block;
+    font-size: 2em;
+    margin: 0 0.67em 0 0.67em;
+    font-weight: bold;
+   }
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin: 0 0.83em 0 0.83em;
+    font-weight: bold;
+    }
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin: 0 1em 0 1em;
+    font-weight: bold;
+}
+h4 {
+    display: block;
+    margin: 0 1.33em 0 1.33em;
+    font-weight: bold;
+}
+h5 {
+    display: block;
+    font-size: .83em;
+    margin: 0 1.67em 0 1.67em;
+    font-weight: bold;
+}
+h6 {
+    display: block;
+    font-size: .67em;
+    margin: 0 2.33em 0 2.33em;
+    font-weight: bold;
+}
+
+```
+
+**Пример 1**
+
+```html
+<h1>Заголовок 0</h1>
+<h2>Заголовок 1</h2>
+<h2>Заголовок 2</h2>
+<h2>Заголовок 3</h2>
+<h3>Заголовок 3.1</h3>
+<h4>Заголовок 3.2</h4>
+<h5>Заголовок 3.3</h5>
+<h6>Заголовок 3.4</h6>
+<h2>Заголовок 4</h2>
+```
+
+**Пример 2**
+
+```html
+<h1>Заголовок 0</h1>
+<section>
+    <h1>Заголовок 1</h1>
+</section>
+<section>
+    <h1>Заголовок 2</h1>
+</section>
+<section>
+    <h1>Заголовок 3</h1>
+    <section>
+        <h1>Заголовок 3.1</h1>
+        <section>
+            <h1>Заголовок 3.2</h1>
+            <section>
+                <h1>Заголовок 3.3</h1>
+                <section>
+                    <h1>Заголовок 3.4</h1>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>
+<section>
+    <h1>Заголовок 4</h1>
+</section>
+```
+
+**Пример 3**
+
+```html
+<h1>Заголовок 0</h1>
+<section>
+    <h2>Заголовок 1</h2>
+</section>
+<section>
+    <h2>Заголовок 2</h2>
+</section>
+<section>
+    <h2>Заголовок 3</h2>
+    <section>
+        <h3>Заголовок 3.1</h3>
+        <section>
+            <h4>Заголовок 3.2</h4>
+            <section>
+                <h5>Заголовок 3.3</h5>
+                <section>
+                    <h6>Заголовок 3.4</h6>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>
+<section>
+    <h2>Заголовок 4</h2>
+</section>
+```
+<img src="/images/articles/html/headers1.png" alt="Пример заголовков" data-action="zoom">
+
+Семантически все примеры дают один результат.
+
