@@ -1,4 +1,4 @@
 # Lexusalex.ru
 
 ---
-Работает на [Eleventy](https://www.11ty.io/).
+Сайт работает на [Eleventy](https://www.11ty.io/).
