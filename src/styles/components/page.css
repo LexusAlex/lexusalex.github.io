@@ -1,0 +1,37 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    max-width: 60em;
+    margin: auto;
+    overflow-x: hidden;
+    padding: 0 1rem;
+}
+
+.page__header,
+.page__footer {
+    flex: none;
+}
+
+.page__content {
+    flex: 1 0 auto;
+}
+
+.dated-table {
+    border-collapse: collapse;
+    max-width: 100%;
+    table-layout: fixed;
+}
+
+.dated-table td:first-child {
+    color: var(--color-text-muted);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+}
+
+a:not(.link_unstyled) {
+    border-bottom: thin solid rgba(0, 94, 165, 0.2);
+    color: var(--color-link);
+    text-decoration: none;
+}

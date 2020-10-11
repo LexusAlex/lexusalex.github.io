@@ -1,0 +1,26 @@
+---
+layout: base.njk
+---
+
+{% include 'header.njk' %}
+<nav>
+    <a href="/"><span aria-hidden="true">←</span> Главная</a>
+</nav>
+
+<article class="article" itemtype="http://schema.org/BlogPosting" itemscope="">
+    <header  class="article__header">
+        <time datetime="{{ date | dateToIsoString }}" itemprop="datePublished">
+            {% formatDate date %}
+        </time>
+        <h1 itemprop="name headline">{{ title }}</h1>
+    </header>
+
+    <div class="content" itemprop="articleBody">
+        <p class="description">
+            {{ description }}
+        </p>
+        {{ content | safe }}
+    </div>
+</article>
+
+{% include 'footer.njk' %}

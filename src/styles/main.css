@@ -1,0 +1,14 @@
+:root {
+    height: 100%;
+    box-sizing: border-box;
+    font-size: 1.125rem;
+    line-height: 1.4;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}

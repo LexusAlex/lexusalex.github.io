@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>{{ title }}{% if title %} · {% endif %}Алексей Шмелев</title>
+
+    <meta name="description" content="{{ description }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+
+    {% if cover %}
+        <meta property="og:image" content="{{ cover.url }}">
+    {% endif %}
+
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div class="page">
+        {{ content | safe }}
+    </div>
+</body>
+</html> 
