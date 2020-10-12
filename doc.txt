@@ -23,3 +23,4 @@ https://github.com/khawkins98/gulp-eleventy-example/blob/master/gulpfile.js
 11. Прописываем стили добавляя каждый блок в отдельный файл
 12. Подключаем шрифты
 13. устанавлиываем подсветку синтаксиса кода npm install -dev highlight.js
+14. устанавливаем библиотечку для зуммнга фото npm install medium-zoom
