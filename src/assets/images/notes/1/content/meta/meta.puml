@@ -1,0 +1,14 @@
+@startuml
+
+card group1 [
+base
+link
+meta
+noscript
+script
+style
+template
+title
+]
+
+@enduml
