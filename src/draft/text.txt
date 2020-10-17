@@ -1,0 +1,211 @@
+#### Категории
+#### Дочерние категории
+#### Особенности
+#### Стили по умолчанию
+#### Примеры
+##### Пример 1
+##### Пример 2
+##### Пример 3
+
+
+## Категории тегов
+
+**Экспериментальный раздел**
+
+В HTML 5 типы контента были расширены, теперь они делятся на группы.
+
+<figure>
+ <img src="/assets/images/notes/1/content/categories.png" alt="Категории тегов" data-action="zoom">
+ <figcaption><em>Категории тегов</em></figcaption>
+</figure>
+
+Каждый элемент может принадлежать некоторому количеству категорий контента. Не существует
+четкого отношения между элементами категорий. Так же элемент может не принадлежать не к
+одной категории.
+
+### Flow content - Потоковый контент
+
+Элементы, которые могут быть в теге `body`, являются в своем роде "основными", куда
+вкладываются другие элементы.
+
+```text
+a          audio     button    canvas    em
+details    dialog    embed     fieldset  i
+figure     form      iframe    img       mark
+input      label     link      meta      ins
+meter      object    picture   progress  wbr
+select     svg       textarea  video     br
+abbr       b         bdi       bdo       del
+blockquote cite      code      data      dfn
+datalist   kbd       p         pre       hr
+q          ruby      s         samp      map
+small      span      strong    sup       area
+sub        time      u         var       dl
+ol         ul        noscript  output
+script     table     template  text
+````
+
+### Meta content - Метаданные
+
+Данные для браузеров, все что в `head`
+
+```text
+base     link
+meta     noscript
+script   style
+template title
+```
+### Sectioning content - Секции
+
+Крупные смысловые разделы документа
+
+```text
+article
+aside
+nav
+section
+```
+
+### Heading content -  Заголовки
+
+```text
+h1
+h2
+h3
+h4
+h5
+h6
+```
+
+### Phrasing content - Фразовый контент
+
+Оформление текста
+
+```text
+a        abbr   area   map      audio
+b        bdi    bdo    br       button
+canvas   cite   code   data     datalist
+del      dfn    em     embed    i
+iframe   img    input  ins      kbd
+label    link   mark   meta     meter
+noscript object output picture  progress
+q        ruby   s      samp     script
+select   slot   small  span     strong
+sup      sub    svg    template textarea
+time     u      var    video    wbr
+```
+
+### Embedded content - Встраиваемый контент
+
+Видео, аудио, изображения
+
+```text
+audio
+canvas
+embed
+iframe
+img
+object
+picture
+svg
+video
+```
+
+### Interactive content - Интерактивный контент
+
+Элементы с которыми взаимодействует пользователь
+
+```text
+a
+audio
+button
+details
+embed
+iframe
+img
+input
+label
+object
+select
+textarea
+video
+```
+
+### Palpable content
+```text
+a
+abbr
+address
+article
+aside
+audio
+b
+bdi
+bdo
+blockquote
+button
+canvas
+cite
+code
+data
+detail
+s
+dfn
+div
+dl
+emembed
+fieldset
+figure
+footer
+form
+h1
+h2
+h3
+h4
+h5
+h6
+header
+i
+iframe
+img
+input
+ins
+kbd
+label
+main
+map
+mark
+meter
+nav
+object
+ol
+output
+p
+pre
+progress
+q
+ruby
+s
+samp
+section
+select
+small
+span
+strong
+sub
+sup
+svg
+table
+area
+time
+u
+ul
+var
+video
+```
+
+### Script-supporting elements
+
+```text
+script template
+```

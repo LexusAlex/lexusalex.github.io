@@ -36,6 +36,9 @@ blockquote cite {
 code {
     font-family: 'Fira Code', 'Courier New', Courier, monospace;
     font-size: 0.75em;
+    background-color: rgba(220,220,220,.5);
+    padding: 0 2px;
+    word-wrap: break-word;
 }
 figure {
     max-width: 32em;
@@ -109,10 +112,6 @@ p {
     font-size: 1.25rem;
 }
 
-
-:matches(h1, h2, h3, h4, h5, h6):not(.visuallyhidden) + p {
-    margin-top: -0.75rem;
-}
 
 :matches(section, article) {
     padding: 1.25rem 0;
