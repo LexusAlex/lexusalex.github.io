@@ -28,7 +28,11 @@
 }
 
 .notes__item_time {
-    color: white;
+    color: black;
+}
+
+.notes__item_link {
+    border: none !important;
 }
 
 .article__header {
