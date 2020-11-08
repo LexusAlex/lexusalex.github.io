@@ -1,0 +1,13 @@
+---
+layout: note.njk
+tags: notes
+number : 1
+title: Windows
+description: 
+date: 2020-10-18 22:35:00 +3
+image: /assets/images/notes/1/main.png
+---
+
+1. Программа для того, чтобы сделать загрузочную флешку
+
+Rufos - https://rufus.ie/ru_RU.html

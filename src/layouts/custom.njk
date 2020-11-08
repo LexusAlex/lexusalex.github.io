@@ -1,0 +1,20 @@
+---
+layout: base.njk
+---
+
+{% include 'header.njk' %}
+
+<article class="article" itemtype="http://schema.org/BlogPosting" itemscope="">
+    <header  class="article__header">
+        <h1 itemprop="name headline">{{ title }}</h1>
+    </header>
+
+    <div class="content" itemprop="articleBody">
+        <p class="description">
+            {{ description }}
+        </p>
+        {{ content | safe }}
+    </div>
+</article>
+
+{% include 'footer.njk' %}
