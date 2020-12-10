@@ -6,7 +6,7 @@ image: /assets/images/notes/1/main.png
 
 ### Алексей Шмелев / lexusalex
 
-<figure>
+<figure style="border: none">
      <img width="200px" height="200px" src="/assets/images/static/720.png" alt="Алексей Шмелев"  data-action="zoom">
 </figure>
 
