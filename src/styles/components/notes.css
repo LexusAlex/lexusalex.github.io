@@ -35,6 +35,11 @@
     border: none !important;
 }
 
+.notes__item_tags {
+    color: black;
+    font-style: italic;
+}
+
 .article__header {
     width: 65%;
     margin-bottom: 1rem;

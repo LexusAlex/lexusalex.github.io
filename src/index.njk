@@ -13,10 +13,11 @@ permalink: index.html
                 <h2 class="content_year">{{ year }}</h2>
                 <div class="notes">
                     {% for post in posts %}
-                        <div class="notes__item" style='background-image: url("{{ post.data.image }}")'>
+                        <a class="notes__item" style='background-image: url("{{ post.data.image }}")' href="{{ post.url }}">
                             <time class="notes__item_time" datetime="{{ post.date | dateToIsoString }}">{% formatDate post.date %}</time>
-                            <a class="notes__item_link" href="{{ post.url }}">{{ post.data.title }}</a> {{ '★' if 'favouriteNotes' in post.data.tags }}
-                        </div>
+                            {{ post.data.title }}
+                            <small class="notes__item_tags">{{ post.data.themes}}</small>
+                        </a>
                     {% endfor %}
                 </div>
                 {#<table class="dated-table">
