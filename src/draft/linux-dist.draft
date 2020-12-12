@@ -46,3 +46,5 @@ Are you sure you want to continue connecting (yes/no)?
 ssh-keygen -l -f /etc/ssh/ssh_host_ecdsa_key.pub
 256 SHA256:ZaSFNInJ8V0y2aPb/2tZwRQEeRVC8txSlZyjTdgkhLY root@testFreeBSD (ECDSA)
 
+https://hackware.ru/?p=9939
+
