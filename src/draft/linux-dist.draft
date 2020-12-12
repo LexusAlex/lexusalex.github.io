@@ -1,0 +1,48 @@
+Freebsd
+https://mirror.yandex.ru/freebsd/releases/ISO-IMAGES/12.2/FreeBSD-12.2-RELEASE-amd64-disc1.iso
+Debian
+https://mirror.yandex.ru/debian-cd/current/amd64/bt-cd/debian-10.7.0-amd64-netinst.iso.torrent
+CentOs   https://mirror.yandex.ru/centos/8/BaseOS/x86_64/os/
+https://mirror.yandex.ru/centos/8/isos/x86_64/CentOS-8.3.2011-x86_64-boot.torrent
+Ubuntu
+https://ftp.yandex.ru/ubuntu-releases/20.04.1/ubuntu-20.04.1-live-server-amd64.iso.torrent
+
+
+Free bsd 192.168.88.232
+centos 192.168.88.231
+ubuntu 192.168.88.230
+debian 192.168.88.229
+
+Freebsd
+pkg
+pkg update
+pkg install ssh
+
+http://dev-blogs.com/sudo-user-in-freebsd/
+
+
+
+
+debian
+Установка sudo
+sudo
+su -
+apt-get install sudo
+usermod -aG sudo alex
+
+sudo apt install ssh
+
+Freebsd
+
+
+ssh alex@192.168.88.232
+
+ssh alex@192.168.88.232
+The authenticity of host '192.168.88.232 (192.168.88.232)' can't be established.
+ECDSA key fingerprint is SHA256:ZaSFNInJ8V0y2aPb/2tZwRQEeRVC8txSlZyjTdgkhLY.
+Are you sure you want to continue connecting (yes/no)?
+
+Проверка отпечатка
+ssh-keygen -l -f /etc/ssh/ssh_host_ecdsa_key.pub
+256 SHA256:ZaSFNInJ8V0y2aPb/2tZwRQEeRVC8txSlZyjTdgkhLY root@testFreeBSD (ECDSA)
+
