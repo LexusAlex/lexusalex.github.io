@@ -32,7 +32,6 @@
 
 a:not(.link_unstyled) {
     border-bottom: thin solid rgba(0, 94, 165, 0.2);
-    color: var(--color-link);
     text-decoration: none;
 }
 
