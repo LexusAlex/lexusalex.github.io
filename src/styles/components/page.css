@@ -8,6 +8,12 @@
     overflow-x: hidden;
     padding: 0 1rem;
 }
+a:not(.notes__item),footer a {
+    box-shadow: 0 4px 0 0 rgba(0,123,193,.25);
+    color: #007bc1;
+    text-decoration: none;
+}
+
 
 .page__header,
 .page__footer {
@@ -31,7 +37,6 @@
 }
 
 a:not(.link_unstyled) {
-    border-bottom: thin solid rgba(0, 94, 165, 0.2);
     text-decoration: none;
 }
 
@@ -46,4 +51,8 @@ a:not(.link_unstyled) {
     display: inline-block;
     margin-right: 0.5em;
     margin-bottom: 0.5em;
+}
+
+footer {
+    padding: 20px 40px;
 }
