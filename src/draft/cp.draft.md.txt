@@ -1,0 +1,64 @@
+---
+layout: note.njk
+tags: notes
+number : 3
+title: Команда cp
+description: Копирование файлов и директорий в linux
+date: 2020-12-10 21:20:00 +3
+image: /assets/images/notes/2/main.png
+themes: linux
+---
+
+Команда cp позволяет вызвать одноименную утилиту, предназначенную для копирования файлов и директорий. 
+При этом оригиналы файлов и директорий остаются нетронутыми, а их копии могут иметь аналогичные или отличающиеся имена 
+и располагаться как в той же директории (при условии изменения имени копии), 
+так и в другой директории и даже в другой файловой системе.
+
+```shell
+cp test.txt text2.txt
+
+```
+Теперь скопируем файл от лица другого пользователя, например от `root`
+
+```shell
+sudo cp test.txt test3.txt
+
+ls -l
+-rw-rw-r-- 1 alex alex 3 дек 16 21:49 test2.txt
+-rw-r--r-- 1 root root 3 дек 16 22:00 test3.txt
+-rw-rw-r-- 1 alex alex 3 дек 14 22:31 test.txt
+```
+
+Как видим права и атрибуты исходного файла `test.txt` в файле `text3.txt` не сохраняются, 
+чтобы это исправить воспользуемся ключом `-p` или `--preserve`, который сохранит все или указанные атрибуты в файле назначения.
+
+```shell script
+sudo cp -p test.txt test4.txt
+sudo cp --preserve=mode,ownership,timestamps test.txt test5.txt
+
+ls -l
+
+-rw-rw-r-- 1 alex alex 3 дек 16 21:49 test2.txt
+-rw-r--r-- 1 root root 3 дек 16 22:00 test3.txt
+-rw-rw-r-- 1 alex alex 3 дек 14 22:31 test4.txt
+-rw-rw-r-- 1 alex alex 3 дек 14 22:31 test5.txt
+-rw-rw-r-- 1 alex alex 3 дек 14 22:31 test.txt
+```
+
+Теперь скопируем несколько файлов в другую директорию. Здесь важный момент, директория `test2` должна быть создана иначе ошибка
+
+```shell script
+cp -p test.txt test2.txt test3.txt ../test2
+````
+
+Проделаем все то же самое, но при этом, копируя, целую директорию. Чтобы скопировать директорию нужно указать флаг рекурсии `-r` или `-R`
+
+```shell script
+cp -r test/ test2
+```
+
+
+https://losst.ru/kopirovanie-fajlov-v-linux#%D0%A3%D1%82%D0%B8%D0%BB%D0%B8%D1%82%D0%B0_%D0%BA%D0%BE%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F_%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2_cp
+https://habr.com/ru/company/ruvds/blog/471092/
+https://linux-faq.ru/page/komanda-cp
+
