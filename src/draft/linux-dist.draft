@@ -12,13 +12,19 @@ Fedora
 https://mirror.yandex.ru/fedora/linux/releases/33/Server/x86_64/iso/Fedora-Server-netinst-x86_64-33-1.2.iso
 
 
+https://mirror.yandex.ru/slackware/slackware64-14.2/
+
 
 Free bsd 192.168.88.232
 centos 192.168.88.231
 ubuntu 192.168.88.230
 debian 192.168.88.229
 alpine 192.168.88.240
+fedora 192.168.88.237
+slackware 192.168.88.240
 
+
+ssh-keygen -f "/home/alex/.ssh/known_hosts" -R 192.168.88.237
 Freebsd
 pkg
 pkg update
