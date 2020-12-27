@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Миграции в php · Алексей Шмелев</title>
+
+    <meta name="description" content="Используем миграции базы данных в php на примере библиотеки phinx">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Миграции в php">
+    <meta property="og:description" content="Используем миграции базы данных в php на примере библиотеки phinx">
+
+    
+
+    <link rel="stylesheet" href="/index.css">
+    <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(47811625, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47811625" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <div class="page">
+        
+<header class="header page__header">
+    <div class="header__title">Алексей Шмелев</div>
+    <ul class="navigation">
+        <li class="navigation__item"><a class="link" href="/">Главная</a>
+        <li class="navigation__item"><a class="link" href="/about/index.html">Обо мне</a>
+    </ul>
+</header>
+
+<article class="article" itemtype="http://schema.org/BlogPosting" itemscope="">
+    <header  class="article__header">
+        <time datetime="2020-12-27T09:30:00.000Z" itemprop="datePublished">
+            27 декабря 2020 г.
+        </time>
+        <h1 itemprop="name headline">Миграции в php</h1>
+    </header>
+
+    <div class="content" itemprop="articleBody">
+        <p class="description">
+            Используем миграции базы данных в php на примере библиотеки phinx
+        </p>
+        <p>В более или менее крупном проекте если над ним работают несколько человек, нужно каким-то образом поддерживать схему базы данных в актуальном состоянии.</p>
+<p>Для этого удобно использовать подход с миграциями.</p>
+<p>Миграции представляют собой список изменений в схеме базы данных.</p>
+<p>В простейшем случае это каталог <code>migrations</code> с набором файлов с sql командами которые нужно выполнить.</p>
+<pre class="language-text"><code class="language-text">/migrations<br>    0001.php<br>    0002.php<br>    0003.php<br>    0004.php<br>    0005.php<br>    0006.php</code></pre>
+<p>Чаще всего их представляют в виде классов, с методами:</p>
+<ol>
+<li>up() - запускает миграцию</li>
+<li>down() - откатывает миграцию</li>
+</ol>
+<p>Например.</p>
+<pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span><br><span class="token comment">// migrations/0001.php</span><br><br><span class="token keyword">class</span> <span class="token class-name">Migration0001</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">up</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token variable">$sql</span> <span class="token operator">=</span> <span class="token single-quoted-string string">'CREATE TABLE IF NOT EXISTS `tree` (<br>          `id` INT NOT NULL AUTO_INCREMENT,<br>          `parent_id` INT NULL,<br>          `text` VARCHAR(255) NOT NULL,<br>          PRIMARY KEY (`id`),<br>        ) CHARACTER SET utf8 COLLATE utf8_general_ci;'</span><span class="token punctuation">;</span><br><br>        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">db</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token variable">$sql</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">down</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token variable">$sql</span> <span class="token operator">=</span> <span class="token single-quoted-string string">'DROP TABLE `tree`'</span><span class="token punctuation">;</span><br>        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">db</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token variable">$sql</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Запустить миграции можно командой <code>migrate up</code>, а откатить <code>migrate down</code></p>
+<p>Таким образом работать намного приятнее, чем заходить через phpmyadmin и вручную править схему базу данных.</p>
+<p>Можно написать велосипед самому, но лучше для этих целей использовать уже написанный инструмент такой как <a href="https://phinx.org/">phinx</a></p>
+<h2>Установка и настройка phinx</h2>
+<p>Phinx - это библиотека для работы с миграциями, которая не привязана к определенному фреймворку.</p>
+<p>Ее можно использовать и прикрутить к любому проекту.</p>
+<p>Устанавливаем библиотеку стандартно через <code>composer</code></p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">composer</span> require robmorgan/phinx</code></pre>
+<p>Теперь стала доступна команда <code>vendor/bin/phinx</code>.</p>
+<p>Прежде чем создавать миграции нужно создать конфигурационный файл, делается это командой <code>phinx init</code>.</p>
+<p>При этом можно указать один из форматов конфигурационного файла, в результате будет сгенерирован шаблон по умолчанию.</p>
+<pre class="language-shell"><code class="language-shell">phinx init --format yml<br>phinx init --format yaml<br>phinx init --format php<br>phinx init --format json</code></pre>
+<p>Выглядит он следующим образом.</p>
+<pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span><br><span class="token keyword">return</span><br><span class="token punctuation">[</span><br>    <span class="token single-quoted-string string">'paths'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><br>        <span class="token single-quoted-string string">'migrations'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'%%PHINX_CONFIG_DIR%%/db/migrations'</span><span class="token punctuation">,</span><br>        <span class="token single-quoted-string string">'seeds'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'%%PHINX_CONFIG_DIR%%/db/seeds'</span><br>    <span class="token punctuation">]</span><span class="token punctuation">,</span><br>    <span class="token single-quoted-string string">'environments'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><br>        <span class="token single-quoted-string string">'default_migration_table'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'phinxlog'</span><span class="token punctuation">,</span><br>        <span class="token single-quoted-string string">'default_environment'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'development'</span><span class="token punctuation">,</span><br>        <span class="token single-quoted-string string">'production'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><br>            <span class="token single-quoted-string string">'adapter'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'mysql'</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'host'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'localhost'</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'name'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'production_db'</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'user'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'root'</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'pass'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">''</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'port'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'3306'</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'charset'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'utf8'</span><span class="token punctuation">,</span><br>        <span class="token punctuation">]</span><span class="token punctuation">,</span><br>        <span class="token single-quoted-string string">'development'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><br>            <span class="token single-quoted-string string">'adapter'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'mysql'</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'host'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'localhost'</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'name'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'development_db'</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'user'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'root'</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'pass'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">''</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'port'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'3306'</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'charset'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'utf8'</span><span class="token punctuation">,</span><br>        <span class="token punctuation">]</span><span class="token punctuation">,</span><br>        <span class="token single-quoted-string string">'testing'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><br>            <span class="token single-quoted-string string">'adapter'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'mysql'</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'host'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'localhost'</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'name'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'testing_db'</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'user'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'root'</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'pass'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">''</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'port'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'3306'</span><span class="token punctuation">,</span><br>            <span class="token single-quoted-string string">'charset'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'utf8'</span><span class="token punctuation">,</span><br>        <span class="token punctuation">]</span><br>    <span class="token punctuation">]</span><span class="token punctuation">,</span><br>    <span class="token single-quoted-string string">'version_order'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'creation'</span><br><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+<p>Phinx поддерживает работу с разными окружениями, для всех типов окружений желательно иметь по отдельной базе данных:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> template<span class="token punctuation">;</span><br><span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> template_test<span class="token punctuation">;</span><br><span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> template_dev<span class="token punctuation">;</span></code></pre>
+<p>Заполняем параметры подключения, либо всех окружений, или какого-нибудь одного. В процессе использования можно выбрать в каком окружении запускать миграции.</p>
+<p>Проверяем конфигурационный файл на валидность <code>phinx test</code></p>
+<h2>Создание миграций</h2>
+<p>Для создания миграций используется команда <code>create</code>, которая создает файлы формата <code>YYYYMMDDHHMMSS_name.php</code>.</p>
+<p>По дефолту в них будет создан метод <code>change()</code>, он нужен для одновременного <a href="https://book.cakephp.org/phinx/0/en/migrations.html#the-change-method">накатывания и откатывания миграций</a></p>
+<pre class="language-shell"><code class="language-shell">phinx create <span class="token comment"># db/migrations/20201226133424.php</span><br>phinx create CreateTableTree <span class="token comment"># db/migrations/20201226133635_create_table_tree.php</span></code></pre>
+<blockquote>
+<p>Важно не изменять старые миграции, нужно всегда создавать новые, это убережет от проблем в будущем.</p>
+</blockquote>
+<h3>Метод up</h3>
+<p>Phinx имеет свой собственный Query Buider, который позволяет конструировать sql запросы через php код.
+В <a href="https://book.cakephp.org/phinx/0/en/migrations.html#writing-migrations">документации</a> по этому вопросу все расписано.</p>
+<p>Но мы будем делать все руками и писать чистый sql.</p>
+<p>Метод up выполняет накатывание миграций, в данном случае создание таблицы <code>tree</code></p>
+<pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span><br><span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">up</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token variable">$sql</span> <span class="token operator">=</span> <span class="token single-quoted-string string">'CREATE TABLE IF NOT EXISTS `tree` (<br>          `id` INT NOT NULL AUTO_INCREMENT,<br>          `parent_id` INT NULL,<br>          `text` VARCHAR(255) NOT NULL,<br>          `description` VARCHAR(255) NOT NULL,<br>          `type` INT NOT NULL,<br>          PRIMARY KEY (`id`),<br>          FOREIGN KEY (parent_id) REFERENCES tree (id)<br>            ON UPDATE CASCADE<br>            ON DELETE CASCADE<br>        ) CHARACTER SET utf8 COLLATE utf8_general_ci;'</span><span class="token punctuation">;</span><br><br>        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token variable">$sql</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span></code></pre>
+<p>Запускаем миграции</p>
+<pre class="language-shell"><code class="language-shell">phinx migrate <span class="token comment"># По умолчанию будут выполнены миграции в окружении по умолчанию из конфига</span><br>phinx migrate -e development <span class="token comment"># Указываем конкретное окружение</span><br>phinx migrate -e development -e testing -e production <span class="token comment"># Либо все три окружения</span><br>phinx migrate -t <span class="token number">20201226144507</span> <span class="token comment"># Выполняем все миграции до указанной временной метки</span><br>phinx migrate --dry-run <span class="token comment"># Показывать все запросы которые будут выполнены в базе данных, используется для проверок</span></code></pre>
+<p>Будут выполнены все еще не выполненные миграции в порядке их создания.</p>
+<p>Информация о выполненных миграциях будет храниться в таблице <code>phinxlog</code>.</p>
+<h3>Метод down</h3>
+<p>Теперь научимся откатывать миграции.</p>
+<p>При откатывании миграции будет запущен метод <code>down</code>. В нашем случае - это удаление таблицы <code>tree</code>.</p>
+<pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span><br><span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">down</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token variable">$sql</span> <span class="token operator">=</span> <span class="token single-quoted-string string">'DROP TABLE `tree`'</span><span class="token punctuation">;</span><br><br>        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token variable">$sql</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span></code></pre>
+<pre class="language-shell"><code class="language-shell">phinx rollback <span class="token comment"># Будет откатана последняя примененная миграция</span><br>phinx rollback -e development <span class="token comment"># Указываем окружение где откатывать миграции</span><br>phinx rollback -t <span class="token number">20201226144507</span> <span class="token comment"># Откатить миграции после указанной временной метки</span><br>phinx rollback -t <span class="token number">0</span> <span class="token comment"># Откатить все миграции</span><br>phinx rollback -e development -d <span class="token number">2020</span> <span class="token comment"># Откатить все миграции за 2020 год</span><br>phinx rollback -e development -d <span class="token number">202001</span> <span class="token comment"># Указываем определенную временную метку</span><br>phinx rollback -e development -d <span class="token number">20200103</span><br>phinx rollback -e development -d <span class="token number">2020010312</span><br>phinx rollback -e development -d <span class="token number">202001031205</span><br>phinx rollback -e development -d <span class="token number">20200103120530</span><br>phinx rollback -e development --dry-run <span class="token comment"># Просмотреть какие запросы будут выполнены при откате миграции</span></code></pre>
+<h2>Статус миграций</h2>
+<p>Наглядно отобразить список выполненных миграций можно командой</p>
+<pre class="language-shell"><code class="language-shell">phinx status -e development<br><br>Status  <span class="token punctuation">[</span>Migration ID<span class="token punctuation">]</span>  Started              Finished             Migration Name <br>----------------------------------------------------------------------------------<br>     up  <span class="token number">20201226133635</span>  <span class="token number">2020</span>-12-26 <span class="token number">15</span>:30:52  <span class="token number">2020</span>-12-26 <span class="token number">15</span>:30:52  CreateTableTree<br>     up  <span class="token number">20201226144507</span>  <span class="token number">2020</span>-12-26 <span class="token number">15</span>:30:52  <span class="token number">2020</span>-12-26 <span class="token number">15</span>:30:52  CreateTableTree2<br>   down  <span class="token number">20201226144512</span>                                            CreateTableTree3<br>   down  <span class="token number">20201226144516</span>                                            CreateTableTree4</code></pre>
+<h2>Блокируем попытки отката миграций</h2>
+<p>Бывает необходимость запретить возможность откатывать миграции, для этого существует команда <code>breakpoint</code></p>
+<pre class="language-shell"><code class="language-shell">phinx breakpoint <span class="token comment"># Поставим breakpoint последней примененной миграции</span><br>phinx breakpoint -t <span class="token number">20201226144512</span> <span class="token comment"># Поставить breakpoint по временной метке</span><br>phinx breakpoint -r <span class="token comment"># Удалить breakpoint у всех миграций</span></code></pre>
+<h2>Вставка данных</h2>
+<p>Phinx поддерживает не только изменение структуры базы данных, но и вставку данных, здесь это называется <code>seeds</code></p>
+<p>Создать файл можно командой.</p>
+<pre class="language-shell"><code class="language-shell">phinx seed:create TestData <span class="token comment"># Создать класс</span></code></pre>
+<p>Их можно запускать несколько раз.</p>
+<p>Будет создан файл <code>/db/seeds/TestData.php</code> с методом <code>run()</code>. Там и нужно писать весь код по добавлению данных.</p>
+<p>Теперь запустим файл.</p>
+<pre class="language-shell"><code class="language-shell">phinx seed:run <span class="token comment"># Запустить все найденные классы, что не очень</span><br>phinx seed:run -s TestData <span class="token comment"># Запустить определенный файл или файлы</span></code></pre>
+<p>Данный механизм удобно использовать для добавления тестовых и фейковый данных.</p>
+<h2>Полезные ссылки</h2>
+<ol>
+<li><a href="https://phinx.org/">Сайт библиотеки</a></li>
+<li><a href="https://book.cakephp.org/phinx/0/en/index.html">Документация</a></li>
+<li><a href="https://github.com/cakephp/phinx">Репозиторий</a></li>
+</ol>
+
+    </div>
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://lexusalex-ru.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</article>
+
+<footer>
+    <p>
+        Работает на <a href="https://www.11ty.dev/">Eleventy</a> - 2020
+    </p>
+</footer>
+    </div>
+    <script src="/assets/js/medium-zoom.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script id="dsq-count-scr" src="//lexusalex-ru.disqus.com/count.js" async></script>
+</body>
+</html> 
