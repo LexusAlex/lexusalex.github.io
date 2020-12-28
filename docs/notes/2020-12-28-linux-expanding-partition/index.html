@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Расширение раздела диска в linux · Алексей Шмелев</title>
+
+    <meta name="description" content="Столкнулся с проблемой расширения корневого раздела сервера linux работающего в облаке. Каким же образом можно расширить раздел linux на уже работающем боевом сервере без его остановки.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Расширение раздела диска в linux">
+    <meta property="og:description" content="Столкнулся с проблемой расширения корневого раздела сервера linux работающего в облаке. Каким же образом можно расширить раздел linux на уже работающем боевом сервере без его остановки.">
+
+    
+
+    <link rel="stylesheet" href="/index.css">
+    <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(47811625, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47811625" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <div class="page">
+        
+<header class="header page__header">
+    <div class="header__title">Алексей Шмелев</div>
+    <ul class="navigation">
+        <li class="navigation__item"><a class="link" href="/">Главная</a>
+        <li class="navigation__item"><a class="link" href="/about/index.html">Обо мне</a>
+    </ul>
+</header>
+
+<article class="article" itemtype="http://schema.org/BlogPosting" itemscope="">
+    <header  class="article__header">
+        <time datetime="2020-12-28T19:08:00.000Z" itemprop="datePublished">
+            28 декабря 2020 г.
+        </time>
+        <h1 itemprop="name headline">Расширение раздела диска в linux</h1>
+    </header>
+
+    <div class="content" itemprop="articleBody">
+        <p class="description">
+            Столкнулся с проблемой расширения корневого раздела сервера linux работающего в облаке. Каким же образом можно расширить раздел linux на уже работающем боевом сервере без его остановки.
+        </p>
+        <h2>Способ 1</h2>
+<p>Имеем раздел <code>/dev/sda1</code> с файловой системой <code>ext4</code> на котором точка монтирования файловой системы:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">df</span> -h -T /dev/sda1<br>Файловая система Тип  Размер Использовано  Дост Использовано% Cмонтировано в<br>/dev/sda1        ext4   <span class="token number">2</span>,9G         977M  <span class="token number">1</span>,8G           <span class="token number">36</span>% /</code></pre>
+<p>Необходимо расширить этот раздел до 6G, при этом не останавливая сервер, сервер должен работать.</p>
+<p>В настройках виртуальной машины добавляем + 3G места. Проверяем командой <code>fdisk -l</code>:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">fdisk</span> -l<br>Disk /dev/sda: <span class="token number">6</span> GiB, <span class="token number">6442450944</span> bytes, <span class="token number">12582912</span> sectors<br>Disk model: VMware Virtual S<br>Units: sectors of <span class="token number">1</span> * <span class="token number">512</span> <span class="token operator">=</span> <span class="token number">512</span> bytes<br>Sector size <span class="token punctuation">(</span>logical/physical<span class="token punctuation">)</span>: <span class="token number">512</span> bytes / <span class="token number">512</span> bytes<br>I/O size <span class="token punctuation">(</span>minimum/optimal<span class="token punctuation">)</span>: <span class="token number">512</span> bytes / <span class="token number">512</span> bytes<br>Disklabel type: dos<br>Disk identifier: 0xbfb02ac1<br><br>Device     Boot Start     End Sectors Size Id Type<br>/dev/sda1  *     <span class="token number">2048</span> <span class="token number">6289407</span> <span class="token number">6287360</span>   3G <span class="token number">83</span> Linux</code></pre>
+<p>или командой <code>lsblk</code>:</p>
+<pre class="language-bash"><code class="language-bash">lsblk<br>NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT<br>sda      <span class="token number">8</span>:0    <span class="token number">0</span>    6G  <span class="token number">0</span> disk <br>└─sda1   <span class="token number">8</span>:1    <span class="token number">0</span>    3G  <span class="token number">0</span> part /<br>sr0     <span class="token number">11</span>:0    <span class="token number">1</span>  335M  <span class="token number">0</span> rom  </code></pre>
+<p>Как видим размер диска увеличился и составляет 6G, но размер раздела остался по-прежнему 3G.</p>
+<p>Задачу решает утилита <a href="https://manpages.debian.org/jessie/cloud-utils/growpart.1.en.html">growpart</a>, которая заполняет таблицу разделов всем доступным пространством.</p>
+<p>Устанавливаем утилиту:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">apt-get</span> <span class="token function">install</span> cloud-utils <span class="token comment"># Debian</span><br>yum <span class="token function">install</span> cloud-utils-growpart <span class="token comment"># CentOs</span></code></pre>
+<h3>Внимание перед дальнейшими действиями сделайте бекап сервера, действия по расширению раздела выполняете на свой страх и риск!!!</h3>
+<p>Теперь нужно указать диск и номер раздела, например:</p>
+<pre class="language-bash"><code class="language-bash">growpart /dev/sda <span class="token number">1</span><br>CHANGED: <span class="token assign-left variable">partition</span><span class="token operator">=</span><span class="token number">1</span> <span class="token assign-left variable">start</span><span class="token operator">=</span><span class="token number">2048</span> old: <span class="token assign-left variable">size</span><span class="token operator">=</span><span class="token number">6287360</span> <span class="token assign-left variable">end</span><span class="token operator">=</span><span class="token number">6289408</span> new: <span class="token assign-left variable">size</span><span class="token operator">=</span><span class="token number">12580831</span>,end<span class="token operator">=</span><span class="token number">12582879</span></code></pre>
+<p>Программа напишет новый размер диска.</p>
+<p>Теперь уже расширяем файловую систему на все пространство увеличенного раздела для этого используем утилиту <code>resize2fs</code> :</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> resize2fs /dev/sda1<br>resize2fs <span class="token number">1.44</span>.5 <span class="token punctuation">(</span><span class="token number">15</span>-Dec-2018<span class="token punctuation">)</span><br>Filesystem at /dev/sda1 is mounted on /<span class="token punctuation">;</span> on-line resizing required<br>old_desc_blocks <span class="token operator">=</span> <span class="token number">1</span>, new_desc_blocks <span class="token operator">=</span> <span class="token number">1</span><br>The filesystem on /dev/sda1 is now <span class="token number">1572603</span> <span class="token punctuation">(</span>4k<span class="token punctuation">)</span> blocks long.</code></pre>
+<p>Проверяем размер раздела:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">df</span> -h -T /dev/sda1<br>Файловая система Тип  Размер Использовано  Дост Использовано% Cмонтировано в<br>/dev/sda1        ext4   <span class="token number">5</span>,9G         980M  <span class="token number">4</span>,7G           <span class="token number">18</span>% /</code></pre>
+<p>Задача решена.</p>
+<h2>Способ 2</h2>
+<p>Итак, имеем диск размером 7G:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">df</span> -h -T /dev/sda1<br>Файловая система Тип  Размер Использовано  Дост Использовано% Cмонтировано в<br>/dev/sda1        ext4   <span class="token number">6</span>,9G         983M  <span class="token number">5</span>,6G           <span class="token number">15</span>% /</code></pre>
+<p>Расширим диск до 10G. Смотрим характеристики диска командой <code>fdisk</code></p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">fdisk</span> /dev/sda<br><span class="token punctuation">..</span>.<br>Command <span class="token punctuation">(</span>m <span class="token keyword">for</span> <span class="token builtin class-name">help</span><span class="token punctuation">)</span>: p<br>Disk /dev/sda: <span class="token number">10</span> GiB, <span class="token number">10737418240</span> bytes, <span class="token number">20971520</span> sectors<br><span class="token punctuation">..</span>.<br>Device     Boot Start      End  Sectors Size Id Type<br>/dev/sda1  *     <span class="token number">2048</span> <span class="token number">14680030</span> <span class="token number">14677983</span>   7G <span class="token number">83</span> Linux</code></pre>
+<h3>Внимание перед дальнейшими действиями сделайте бекап сервера, действия по расширению раздела выполняете на свой страх и риск!!!</h3>
+<p>&quot;Удаляем&quot; раздел</p>
+<pre class="language-bash"><code class="language-bash">Command <span class="token punctuation">(</span>m <span class="token keyword">for</span> <span class="token builtin class-name">help</span><span class="token punctuation">)</span>: d<br>Selected partition <span class="token number">1</span><br>Partition <span class="token number">1</span> has been deleted.</code></pre>
+<p>Создаем новый primary раздел, следуя подсказкам.
+Здесь мы:</p>
+<ol>
+<li>Создаем новый primary раздел.</li>
+<li>Указываем его номер.</li>
+<li>Указываем первый сектор диска.</li>
+<li>Указываем последний сектор диска.</li>
+<li>Записываем изменения.</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">Command <span class="token punctuation">(</span>m <span class="token keyword">for</span> <span class="token builtin class-name">help</span><span class="token punctuation">)</span>: n<br>Partition <span class="token builtin class-name">type</span><br>   p   primary <span class="token punctuation">(</span><span class="token number">0</span> primary, <span class="token number">0</span> extended, <span class="token number">4</span> <span class="token function">free</span><span class="token punctuation">)</span><br>   e   extended <span class="token punctuation">(</span>container <span class="token keyword">for</span> logical partitions<span class="token punctuation">)</span><br>Select <span class="token punctuation">(</span>default p<span class="token punctuation">)</span>: p<br>Partition number <span class="token punctuation">(</span><span class="token number">1</span>-4, default <span class="token number">1</span><span class="token punctuation">)</span>: <span class="token number">1</span><br>First sector <span class="token punctuation">(</span><span class="token number">2048</span>-20971519, default <span class="token number">2048</span><span class="token punctuation">)</span>: <span class="token number">2048</span><br>Last sector, +/-sectors or +/-size<span class="token punctuation">{</span>K,M,G,T,P<span class="token punctuation">}</span> <span class="token punctuation">(</span><span class="token number">2048</span>-20971519, default <span class="token number">20971519</span><span class="token punctuation">)</span>: <span class="token number">20971519</span><br><br>Created a new partition <span class="token number">1</span> of <span class="token builtin class-name">type</span> <span class="token string">'Linux'</span> and of size <span class="token number">10</span> GiB.<br>Partition <span class="token comment">#1 contains a ext4 signature.</span><br>Do you want to remove the signature? <span class="token punctuation">[</span>Y<span class="token punctuation">]</span>es/<span class="token punctuation">[</span>N<span class="token punctuation">]</span>o: No<br><br>Command <span class="token punctuation">(</span>m <span class="token keyword">for</span> <span class="token builtin class-name">help</span><span class="token punctuation">)</span>: w<br><br>The partition table has been altered.<br>Syncing disks.</code></pre>
+<p>Проверяем теперь:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">df</span> -h -T /dev/sda1<br>Файловая система Тип  Размер Использовано  Дост Использовано% Cмонтировано в<br>/dev/sda1        ext4   <span class="token number">6</span>,9G         983M  <span class="token number">5</span>,6G           <span class="token number">15</span>% /</code></pre>
+<p>Как видим ничего не поменялось.</p>
+<p>Перечитаем разделы командой <code>sudo partprobe</code> и расширим том все той же командой <code>resize2fs</code> :</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> resize2fs /dev/sda1<br>resize2fs <span class="token number">1.44</span>.5 <span class="token punctuation">(</span><span class="token number">15</span>-Dec-2018<span class="token punctuation">)</span><br>Filesystem at /dev/sda1 is mounted on /<span class="token punctuation">;</span> on-line resizing required<br>old_desc_blocks <span class="token operator">=</span> <span class="token number">1</span>, new_desc_blocks <span class="token operator">=</span> <span class="token number">2</span><br>The filesystem on /dev/sda1 is now <span class="token number">2621184</span> <span class="token punctuation">(</span>4k<span class="token punctuation">)</span> blocks long.</code></pre>
+<p>Проверяем:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">df</span> -h -T /dev/sda1<br>Файловая система Тип  Размер Использовано  Дост Использовано% Cмонтировано в<br>/dev/sda1        ext4   <span class="token number">9</span>,8G         983M  <span class="token number">8</span>,4G           <span class="token number">11</span>% /</code></pre>
+<p>В итоге мы на лету расширили корневой раздел.</p>
+<p>Я не призываю делать так, и это всего лишь варианты решения данной задачи.</p>
+
+    </div>
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://lexusalex-ru.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</article>
+
+<footer>
+    <p>
+        Работает на <a href="https://www.11ty.dev/">Eleventy</a> - 2020
+    </p>
+</footer>
+    </div>
+    <script src="/assets/js/medium-zoom.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script id="dsq-count-scr" src="//lexusalex-ru.disqus.com/count.js" async></script>
+</body>
+</html> 
