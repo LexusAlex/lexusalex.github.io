@@ -15,11 +15,11 @@ permalink: index.html
                 <div class="notes">
                     {% for post in posts %}
                         <style>
-                            .notes__item#atricle_{{ post.data.number }}:hover {
-                                background-image: url("{{ post.data.gradient }}") !important;
+                            .notes__item:hover {
+                                background-image: url("{{ post.data.image}}") !important;
                             }
                         </style>
-                        <a id="atricle_{{ post.data.number }}" class="notes__item" style='background-image: url("{{ post.data.image }}");border: 4px #{{ post.data.border }} solid' href="{{ post.url }}">
+                        <a id="atricle_{{ post.data.number }}" class="notes__item" style='background-image: url("{{ post.data.gradient }}");border: 4px #{{ post.data.border }} solid' href="{{ post.url }}">
                             <time class="notes__item_time" datetime="{{ post.date | dateToIsoString }}">{% formatDate post.date %}</time>
                             {{ post.data.title }}
                             <small class="notes__item_tags">{{ post.data.themes}}</small>
