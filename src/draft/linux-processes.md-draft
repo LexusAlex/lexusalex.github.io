@@ -1,0 +1,55 @@
+---
+layout: note.njk
+tags: notes
+number : 5
+title: Процессы в linux
+description:  
+date: 2020-12-28 22:08:00 +3
+themes: linux
+image: /assets/images/notes/4/main.png
+---
+
+Процесс — это виртуальная среда для выполнения программы, части программы или нескольких программ.
+
+Процесс это черная коробка с программой и всеми ее библиотеками.
+Так же в процесс попадает текст программы (CODE r-x), Данные (DATA RWDATA), Стэк (Stack), Куча (Heap)
+
+Виртуальная среда находится в виртуальной памяти
+
+Посмотрим из чего состоит программа ls
+
+```shell
+file /bin/ls
+/bin/ls: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=eca98eeadafddff44caf37ae3d4b227132861218, stripped
+```
+
+От каких расширяемых библиотек зависит
+
+```shell
+ldd /bin/ls
+        linux-vdso.so.1 =>  (0x00007ffe20537000) # воображаемая библиотека
+        libselinux.so.1 => /lib/x86_64-linux-gnu/libselinux.so.1 (0x00007f235209b000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f2351cd1000)
+        libpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007f2351a61000)
+        libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f235185d000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007f23522bd000)
+        libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f2351640000)
+```
+
+```shell
+file -L /lib/x86_64-linux-gnu/libc.so.6
+/lib/x86_64-linux-gnu/libc.so.6: ELF 64-bit LSB shared object, x86-64, version 1 (GNU/Linux), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=c4fd86ec1eed57a09c79ce601f6c6e3796f574df, for GNU/Linux 2.6.32, stripped
+
+file -L /bin/ls
+/bin/ls: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=eca98eeadafddff44caf37ae3d4b227132861218, stripped
+
+
+````
+
+Библиотека может зависеть от другой библиотеки.
+
+```shell
+top 
+```
+
+https://habr.com/ru/post/423049/

@@ -7,6 +7,8 @@ description: Столкнулся с проблемой расширения к�
 date: 2020-12-28 22:08:00 +3
 themes: linux
 image: /assets/images/notes/4/main.png
+gradient: /assets/images/notes/4/main2.png
+border: ffbe00
 ---
 
 ## Способ 1
