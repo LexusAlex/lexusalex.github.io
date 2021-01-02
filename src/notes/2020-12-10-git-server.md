@@ -7,7 +7,7 @@ description: Разворачиваем git сервер на debian
 date: 2020-12-10 21:20:00 +3
 image: /assets/images/notes/2/main.png
 themes: linux git ssh
-color: ff3623
+color: F9DC24
 ---
 
 GIT сейчас является самой популярной системой контроля версий исходного кода.

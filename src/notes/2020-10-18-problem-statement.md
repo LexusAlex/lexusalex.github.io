@@ -7,7 +7,7 @@ description: Мысли про постановку задачи
 date: 2020-10-18 22:35:00 +3
 image: /assets/images/notes/1/main.png
 themes: tasks
-color: 979797
+color: EB8A44
 ---
 
 ## Заголовок задачи

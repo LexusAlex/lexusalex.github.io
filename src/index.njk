@@ -13,10 +13,15 @@ permalink: index.html
                 <h2 class="content_year">{{ year }}</h2>
                 <div class="notes">
                     {% for post in posts %}
+                        <style>
+                            #atricle_{{ post.data.number }}:hover {
+                                background-image: url("{{ post.data.image}}") !important;
+                            }
+                        </style>
                         <a id="atricle_{{ post.data.number }}" class="notes__item" style='background-color: #{{ post.data.color }};box-shadow: 0 5px 10px #{{ post.data.color }};' href="{{ post.url }}">
                             <time class="notes__item_time" datetime="{{ post.date | dateToIsoString }}">{% formatDate post.date %}</time>
                             {{ post.data.title }}
-                            <small class="notes__item_tags">{{ post.data.themes}}</small>
+                            <small class="notes__item_tags">{{ post.data.themes}} ({{ post.data.number }})</small>
                         </a>
                     {% endfor %}
                 </div>
