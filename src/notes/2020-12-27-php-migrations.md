@@ -8,7 +8,7 @@ date: 2020-12-27 12:30:00 +3
 themes: php sql
 image: /assets/images/notes/3/main.png
 gradient: /assets/images/notes/3/main2.png
-border: ff9a00
+color: ff9a00
 ---
 
 В более или менее крупном проекте если над ним работают несколько человек, нужно каким-то образом поддерживать схему базы данных в актуальном состоянии.
