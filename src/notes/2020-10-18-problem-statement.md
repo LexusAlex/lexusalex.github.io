@@ -6,7 +6,6 @@ title: Постановка задач
 description: Мысли про постановку задачи
 date: 2020-10-18 22:35:00 +3
 image: /assets/images/notes/1/main.png
-gradient: /assets/images/notes/1/main2.png
 themes: tasks
 color: 979797
 ---

@@ -7,7 +7,6 @@ description: Используем миграции базы данных в php 
 date: 2020-12-27 12:30:00 +3
 themes: php sql
 image: /assets/images/notes/3/main.png
-gradient: /assets/images/notes/3/main2.png
 color: ff9a00
 ---
 
