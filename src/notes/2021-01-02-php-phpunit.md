@@ -184,6 +184,7 @@ composer require --dev phpunit/phpunit
 
 - [Утилита make: полезный универсальный инструмент программиста](https://www.youtube.com/watch?v=pK9mF5aK05Q)
 - [Что такое Makefile и как начать его использовать](https://guides.hexlet.io/makefile-as-task-runner/)
+- [Руководство по современному Make](https://ru.makefile.site/)
 
 Если в проекте не используется composer, есть также альтернативный способ установки phpunit.
 
