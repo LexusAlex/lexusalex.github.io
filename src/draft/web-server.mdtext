@@ -1,0 +1,7 @@
+Функциональные компоненты сервера
+User Agent
+HTTP Proxy + HTTP Tunnel = Proxy Server
+HTTP Gateway + HTTP Server = Web Server
+
+apache - Читайте конфигурационный файл, может быть кастомная версия
+http://httpd.apache.org/docs/2.4/install.html#upgrading

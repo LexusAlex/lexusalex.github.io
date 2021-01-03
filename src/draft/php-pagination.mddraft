@@ -1,0 +1,117 @@
+---
+layout: note.njk
+tags: notes
+number : 6
+title: Постраничная навигация в php
+description: Примеры постраничной навигации в php
+date: 2021-01-02 23:50:00 +3
+image: /assets/images/notes/1/main.png
+themes: php
+color: 996666
+---
+
+Проблема реализации постраничной навигации в приложении часто встает перед новичками.
+Существует множество подходов и методик реализации пагинации на php. Готовые решения встроены во многие фреймворки.
+
+Как выбрать правильный алгоритм зависит от задачи и требований.
+
+## Общий алгоритм
+
+Итак, имеем страницу с n количеством записей. Нужно разбить ее на страницы.
+
+Обычно работа сводится к трем операциям.
+- Получение данных из базы данных со смещением.
+- Вывод порции данных на странице.
+- Перемещение по страницам.
+
+## Пример 1
+
+Напишем примитивный вариант пагинации, в котором будем получать уже готовый результат.
+Как правило, этот код выносят в контроллер.
+
+```php
+<?php
+$page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+$limit = 5;
+$offset = $limit * ($page - 1);
+
+$connection = new \PDO('mysql:host=mariadb-ubuntu;dbname=template_dev;charset=utf8', 'root', 'template',[\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]);
+
+$result = $connection->query('SELECT * FROM notes_1 LIMIT '.$limit.' OFFSET '. $offset,PDO::FETCH_ASSOC)->fetchAll();
+```
+
+В результате в переменной `$result` находится массив с нужными нам данными, а смена страницы происходит через `$_GET` параметры.
+
+## Пример 2
+
+Усложним постраничную навигацию, добавим еще и ссылки для навигации по страницам.
+
+```php
+<?php
+$connection = new \PDO('mysql:host=mariadb-ubuntu;dbname=template_dev;charset=utf8', 'root', 'template',[\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]);
+
+// Всего записей
+$count_records = (int)$connection->query('SELECT COUNT(*) FROM notes_1',PDO::FETCH_ASSOC)->fetchColumn();
+// Текущая страница
+$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+// Показывать записей на странице
+$view_records = 5;
+// C какой записи начать выборку
+$start_record = ($page - 1) * $view_records;
+// Получаем массив с результатом
+$result = $connection->query("SELECT * FROM notes_1 LIMIT $start_record, $view_records",PDO::FETCH_ASSOC)->fetchAll();
+// Всего страниц
+$count_pages = ceil($count_records/$view_records);
+// Отображаемые ссылки
+$count_show_links = 5;
+// URL
+$url = "/";
+// Расчитываем ссылки
+if ($count_pages > 1) {
+    if ( ($page - 1) < floor($count_show_links / 2)) {
+        $start_link = 1;
+    } else {
+        $start_link = ($page - 1) - floor($count_show_links / 2);
+    }
+
+    $end_link = $start_link + $count_show_links - 1;
+
+    if ($end_link > $count_pages) {
+        $start_link -= ($end_link - $count_pages);
+        $end_link = $count_pages;
+        if ($start_link < 1) {
+            $start_link = 1;
+        }
+    }
+}
+// Собираем результат
+echo '<pre>';
+print_r($result);
+echo '</pre>';
+$result_links = '';
+if ($page != 1) {
+    $result_links .= '<a href="'.$url.'" title="Первая страница">&lt;&lt;&nbsp;&nbsp;</a>';
+    if ($page == 2) {
+        $result_links .= '<a href="'.$url.'" title="Предыдущая страница">&lt;</a>';
+    } else {
+        $result_links .= '<a href="'.$url.'?page='.($page - 1).'" title="Предыдущая страница">&lt;&nbsp;&nbsp;</a>';
+    }
+    for ($i = $start_link; $i <= $end_link; $i++) {
+        if ($i == $page) {
+            $result_links .= "<span><?=$i?></span>";
+        } else {
+            if ($i == 1) {
+                $result_links .= '<a href="'.$url.'">'.$i.'</a>';
+            } else {
+                $result_links .= '<a href="'.$url.'?page='.$i.'">'.$i.'</a>';
+            }
+        }
+    }
+    if ($page != $count_pages) {
+        $result_links .= '<a href="'.$url.'?page='.($page + 1).'" title="Следующая страница">&nbsp;&nbsp;&gt;</a>';
+        $result_links .= '<a href="'.$url.'?page='.$count_pages.'" title="Последняя страница">&nbsp;&nbsp;&gt;&gt;</a>';
+    }
+}
+
+echo $result_links;
+```
