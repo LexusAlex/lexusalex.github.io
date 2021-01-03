@@ -20,8 +20,8 @@
     background-size: cover;
     background-position: 50%;
     transition: all .2s ease;
-    color: white;
-    text-shadow: 1px 1px 1px #000;
+    color: black;
+    text-shadow: 1px 1px 1px #FFFFFF;
 }
 
 .notes__item:hover {
@@ -30,8 +30,8 @@
 }
 
 .notes__item_time {
-    color: white;
-    text-shadow: 1px 1px 1px #000;
+    color: black;
+    text-shadow: 1px 1px 1px #FFFFFF;
 }
 
 .notes__item_link {
@@ -39,9 +39,9 @@
 }
 
 .notes__item_tags {
-    color: white;
+    color: black;
     font-style: italic;
-    text-shadow: 1px 1px 1px #000;
+    text-shadow: 1px 1px 1px #FFFFFF;
 }
 
 .article__header {
