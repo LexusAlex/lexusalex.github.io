@@ -5,7 +5,7 @@ number : 5
 title: Тестирование кода в php
 description: Как начать тестировать код у себя в проекте
 date: 2021-01-02 23:50:00 +3
-image: /assets/images/notes/1/main.png
+image: /assets/images/notes/5/main.png
 themes: php testing
 color: 996666
 ---

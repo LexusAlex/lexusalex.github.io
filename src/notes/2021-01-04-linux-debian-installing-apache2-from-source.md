@@ -5,7 +5,7 @@ number : 6
 title: Установка apache2 из исходников на debian
 description: Как собрать и запустить apache2 из исходников
 date: 2021-01-04 23:50:00 +3
-image: /assets/images/notes/1/main.png
+image: /assets/images/notes/6/main.png
 themes: linux apache2
 color: EB8A44
 ---
