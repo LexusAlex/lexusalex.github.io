@@ -16,7 +16,7 @@ permalink: index.html
                         <a id="atricle_{{ post.data.number }}" class="notes__item" style='border: 4px solid #{{ post.data.color }};background: linear-gradient(to left, #{{ post.data.color }}, #FFFFFF);box-shadow: 0 5px 10px #{{ post.data.color }};' href="{{ post.url }}">
                             <time class="notes__item_time" datetime="{{ post.date | dateToIsoString }}">{% formatDate post.date %}</time>
                             {{ post.data.title }}
-                            <small class="notes__item_tags">{{ post.data.themes}} ({{ post.data.number }})</small>
+                            <small class="notes__item_tags">{{ post.data.themes}}</small>
                         </a>
                     {% endfor %}
                 </div>

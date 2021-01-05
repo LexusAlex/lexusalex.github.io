@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="yandex-verification" content="34b9532704688201" />
+
+    <title>Установка apache2 из исходников на debian · Алексей Шмелев</title>
+
+    <meta name="description" content="Как собрать и запустить apache2 из исходников">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Установка apache2 из исходников на debian">
+    <meta property="og:description" content="Как собрать и запустить apache2 из исходников">
+
+    
+
+    <link rel="stylesheet" href="/index.css">
+    <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(47811625, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47811625" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <div class="page">
+        
+<header class="header page__header">
+    <div class="header__title">Алексей Шмелев</div>
+    <ul class="navigation">
+        <li class="navigation__item"><a class="link" href="/">Главная</a>
+        <li class="navigation__item"><a class="link" href="/about/index.html">Обо мне</a>
+    </ul>
+</header>
+
+<article class="article" itemtype="http://schema.org/BlogPosting" itemscope="">
+    <header  class="article__header">
+        <time datetime="2021-01-04T20:50:00.000Z" itemprop="datePublished">
+            4 января 2021 г.
+        </time>
+        <h1 itemprop="name headline">Установка apache2 из исходников на debian</h1>
+    </header>
+
+    <div class="content" itemprop="articleBody">
+        <figure style="border: none">
+            <img src="/assets/images/notes/1/main.png" alt=""  data-action="zoom">
+        </figure>
+        <p class="description">
+            Как собрать и запустить apache2 из исходников
+        </p>
+        <p>Бывает необходимость в установке последней версии программного обеспечения, так как в репозиториях находится старая или неактуальная версия.</p>
+<p>Для дистрибутивов на основе debian сделан собственный пакет веб сервера apache2.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">apt-cache</span> show apache2 <span class="token operator">|</span> <span class="token function">grep</span> Version<br>Version: <span class="token number">2.4</span>.38-3+deb10u4</code></pre>
+<p>Установка данного пакета приводит к полной установке Apache, включая файлы настройки, сценарии инициализации и поддержки.
+При этом файлы будут помещены в разные каталоги файлового дерева, как решит разработчик.</p>
+<p>Нам это не подходит, поэтому установим последнюю версию веб-сервера из исходников.</p>
+<h2>Подготовка</h2>
+<p>Поставим следующие пакеты, которые нужны для сборки веб сервера.
+Я ставлю по максимуму, с расчетом на расширение функциональности сервера. Системные требования к сборке указаны в <a href="http://httpd.apache.org/docs/2.4/install.html#requirements">официальной документации</a></p>
+<pre class="language-text"><code class="language-text">build-essential Компиляторы и программы для сборки в debian (libc6-dev libc-dev, gcc , g++ , make, dpkg-dev).<br>automake Пакет для работы с make файлами.<br>autoconf Пакет для работы с make файлами.<br>make Программа для управления генерацией исполняемых файлов и других файлов из исходного кода. <br>bzip2 Cвободно доступный архиватор данных.<br>libapr1-dev Apache Portable Runtime Library.<br>libaprutil1-dev Apache Portable Runtime Utility Library.<br>libbrotli-dev Библиотека реализующая алгоритм brotli.<br>libcurl4-openssl-dev инструменты разработчика и документация для библиотеки libcurl (OpenSSL flavour).<br>libjansson-dev Библиотека для работы с json данными.<br>liblua5.2-dev Файлы для разработки для языка lua версия 5.2.<br>libnghttp2-dev Библиотека реализующая HTTP/2 протокол.<br>libpcre3-dev Библиотека для работы с регулярными выражениями.<br>libssl-dev Secure Sockets Layer toolkit - окружение для разработки.<br>libxml2-dev Файлы для работки библиотеки GNOME XML.<br>wget Утилита для получения файлов из сети.<br>zlib1g-dev Библиотека, реализующая метод сжатия deflate.</code></pre>
+<p>Здесь не будем заморачиваться с установкой из исходных кодов ставим все для сборки любых пакетов менеджером зависимостей <code>apt-get</code>.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> build-essential automake autoconf <span class="token function">make</span> <span class="token function">bzip2</span> libapr1-dev libaprutil1-dev libbrotli-dev libcurl4-openssl-dev libjansson-dev liblua5.2-dev libnghttp2-dev libpcre3-dev libssl-dev libxml2-dev <span class="token function">wget</span> zlib1g-dev</code></pre>
+<p>Проверить наличие того или иного пакета в системе можно командой:</p>
+<pre class="language-shell"><code class="language-shell">dpkg --get-selections <span class="token operator">|</span> <span class="token function">grep</span> ^wget</code></pre>
+<h2>Загрузка и распаковка</h2>
+<p>Скачаем исходники с <a href="http://httpd.apache.org/download.cgi">официального сайта</a> в любую директорию на сервере.
+Например в домашнюю папку.</p>
+<p>Сейчас январь 2021 года, последняя версия на данный момент 2.4.46, ее и будем ставить.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">wget</span> https://apache-mirror.rbc.ru/pub/apache//httpd/httpd-2.4.46.tar.gz</code></pre>
+<p>Распакуем и перейдем в эту директорию.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">tar</span> xvf httpd-2.4.46.tar.gz<br><span class="token builtin class-name">cd</span> httpd-2.4.46.tar.gz</code></pre>
+<h2>Конфигурирование</h2>
+<p>Теперь нужно сконфигурировать параметры учитывающие наше железо и другие опции.
+Это делается скриптом <code>./configure</code>. Впоследствии он создает <code>Makefile</code>.</p>
+<p>У скрипта <code>configure</code> множество <a href="http://httpd.apache.org/docs/2.4/programs/configure.html">опций настройки</a>.</p>
+<p>Мы ставим все по умолчанию, за исключением места установки.
+По умолчанию указан путь установки <code>/usr/local/apache2</code>, но так как это тестовый сервер укажем домашний каталог <code>/home/alex/apache2</code>.
+На самом деле разницы тут нет.</p>
+<pre class="language-shell"><code class="language-shell">./configure --prefix<span class="token operator">=</span>/home/alex/apache2</code></pre>
+<p>После выполнения данной команды будет длинный вывод технической информации в завершении которого будет такой вывод:</p>
+<pre class="language-text"><code class="language-text">Server Version: 2.4.46<br>    Install prefix: /home/alex/apache2<br>    C compiler:     x86_64-linux-gnu-gcc<br>    CFLAGS:           -pthread  <br>    CPPFLAGS:         -DLINUX -D_REENTRANT -D_GNU_SOURCE  <br>    LDFLAGS:           <br>    LIBS:             <br>    C preprocessor: x86_64-linux-gnu-gcc -E</code></pre>
+<p>Это означает, что все в порядке, конфигурирование прошло успешно.</p>
+<h2>Сборка и установка</h2>
+<p>Переходим к сборке.</p>
+<p>Нужно собрать модули, бинарные файлы, документацию и прочие файлы в текущую директорию.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">make</span></code></pre>
+<p>Процесс компиляции может длится продолжительное время.</p>
+<p>Осталось только установить, то есть перенести файлы в наш конневой каталог указанный при конфигурировании <code>/home/alex/apache2</code> и убрать за собой.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">make</span> <span class="token function">install</span> clean</code></pre>
+<p>Сервер установлен, проверим его версию.</p>
+<pre class="language-shell"><code class="language-shell">/home/alex/apache2/bin/apachectl -v<br>Server version: Apache/2.4.46 <span class="token punctuation">(</span>Unix<span class="token punctuation">)</span><br>Server built:   Jan  <span class="token number">5</span> <span class="token number">2021</span> 01:27:10</code></pre>
+<h2>Запуск и остановка</h2>
+<p>Запустить сервер можно командой:</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">sudo</span> /home/alex/apache2/bin/apachectl -k start</code></pre>
+<p>Проверить можно командами:</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">netstat</span> -tunla <span class="token operator">|</span> <span class="token function">grep</span> LISTEN <span class="token operator">|</span> <span class="token function">grep</span> <span class="token number">80</span><br><span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> httpd</code></pre>
+<p>Так же увидеть заветное <code>it works!</code> набрав ip адрес сервера в браузере на любом компьютере в вашей сети.</p>
+<p>Остановить сервер можно командой <code>stop</code></p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">sudo</span> /home/alex/apache2/bin/apachectl -k stop</code></pre>
+<h2>Автозагрузка при старте системы</h2>
+<p>В последних версиях Debian выпилили файл rc.local, который позволяет выполнять произвольные скрипты при запуске системы.
+Добавим его обратно и научим его запускать apache.</p>
+<p>Создадим файл <code>rc-local.service</code></p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">sudo</span> <span class="token function">vim</span> /etc/systemd/system/rc-local.service</code></pre>
+<p>Добавим туда директивы</p>
+<pre class="language-text"><code class="language-text">[Unit]<br>Description=/etc/rc.local<br>ConditionPathExists=/etc/rc.local<br> <br>[Service]<br>Type=forking<br>ExecStart=/etc/rc.local start<br>TimeoutSec=0<br>StandardOutput=tty<br>RemainAfterExit=yes<br>SysVStartPriority=99<br> <br>[Install]<br>WantedBy=multi-user.target</code></pre>
+<p>Теперь создадим скрипт <code>rc.local</code></p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">sudo</span> <span class="token function">vim</span> /etc/rc.local</code></pre>
+<p>Со следующим содержимым, где укажем команду на запуск сервера:</p>
+<pre class="language-shell"><code class="language-shell"><span class="token shebang important">#!/bin/sh -e</span><br><span class="token comment">#</span><br><span class="token comment"># rc.local</span><br><span class="token comment">#</span><br><span class="token comment"># This script is executed at the end of each multiuser runlevel.</span><br><span class="token comment"># Make sure that the script will "exit 0" on success or any other</span><br><span class="token comment"># value on error.</span><br><span class="token comment">#</span><br><span class="token comment"># In order to enable or disable this script just change the execution</span><br><span class="token comment"># bits.</span><br><span class="token comment">#</span><br><span class="token comment"># By default this script does nothing.</span><br> /home/alex/apache2/bin/apachectl -k start<br><span class="token builtin class-name">exit</span> <span class="token number">0</span></code></pre>
+<p>Выполняем команды на права, регистрацию и запуск сервиса</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">sudo</span> <span class="token function">chmod</span> +x /etc/rc.local<br><span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> rc-local<br><span class="token function">sudo</span> systemctl start rc-local</code></pre>
+<p>Перезагрузим систему, и проверим статус состояния сервиса.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">sudo</span> <span class="token function">reboot</span><br><span class="token function">sudo</span> systemctl status rc-local<br><br>rc-local.service - /etc/rc.local<br>   Loaded: loaded <span class="token punctuation">(</span>/etc/systemd/system/rc-local.service<span class="token punctuation">;</span> enabled<span class="token punctuation">;</span> vendor preset: enabled<span class="token punctuation">)</span><br>  Drop-In: /usr/lib/systemd/system/rc-local.service.d<br>           └─debian.conf<br>   Active: active <span class="token punctuation">(</span>running<span class="token punctuation">)</span> since Tue <span class="token number">2021</span>-01-05 <span class="token number">13</span>:53:23 MSK<span class="token punctuation">;</span> 58s ago<br>  Process: <span class="token number">418</span> <span class="token assign-left variable">ExecStart</span><span class="token operator">=</span>/etc/rc.local start <span class="token punctuation">(</span>code<span class="token operator">=</span>exited, <span class="token assign-left variable">status</span><span class="token operator">=</span><span class="token number">0</span>/SUCCESS<span class="token punctuation">)</span><br> Main PID: <span class="token number">429</span> <span class="token punctuation">(</span>httpd<span class="token punctuation">)</span><br>    Tasks: <span class="token number">82</span> <span class="token punctuation">(</span>limit: <span class="token number">2330</span><span class="token punctuation">)</span><br>   Memory: <span class="token number">14</span>.8M<br>   CGroup: /system.slice/rc-local.service<br>           ├─429 /home/alex/apache2/bin/httpd -k start<br>           ├─432 /home/alex/apache2/bin/httpd -k start</code></pre>
+
+    </div>
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://lexusalex-ru.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</article>
+
+<footer>
+    <p>
+        Работает на <a href="https://www.11ty.dev/">Eleventy</a> - 2020
+    </p>
+</footer>
+    </div>
+    <script src="/assets/js/medium-zoom.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script id="dsq-count-scr" src="//lexusalex-ru.disqus.com/count.js" async></script>
+</body>
+</html> 

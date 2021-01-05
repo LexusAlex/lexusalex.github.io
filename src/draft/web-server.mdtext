@@ -5,3 +5,92 @@ HTTP Gateway + HTTP Server = Web Server
 
 apache - Читайте конфигурационный файл, может быть кастомная версия
 http://httpd.apache.org/docs/2.4/install.html#upgrading
+
+Как решит вендор такая структура и будет у директорий
+httpd - исполняемый файл, служба
+Ядро
+Модули они умеют работать со внешними библиотеками
+Убедится что модуль расширяюший функционал запущен и загружен
+Есть основной конфигурационный фаил, а могут быть и другие
+
+.htaccess - конфигурация на уровне каталога
+
+Restart - все клиенты отвалятся
+Reload - перечитается конфигурационный фаил
+
+.htaccess - запрашивается при каждом запросе
+
+service httpd status
+префикс d говорит что это демон
+
+Отфильтровать строки
+
+grep ^[^#] httpd.conf | less
+
+ServerRoot где отсчитыват корень конфигурации
+
+Если нет dns то править hosts на хосте
+
+Организация виртуального хостинга
+
+IP based - сопоставление разных ip адрес для разных хостов
+Port based - сайта имеют один и тот же ip но разные порты
+Name based - Самый оптимальный вариант, на основе имен
+
+Создание директив VirtualHost
+
+<VirtualHost 192.168.1.1:80>
+    ServerName test2.test.ru
+    DocumentRoot "/var/test"
+</VirtualHost>
+
+-------------------------------------------------------
+## Установка apache 2.4.46 из исходников на чистый debian 10
+
+ssh alex@192.168.88.226
+
+1. Компилятор языка C sudo apt-get install gcc
+2. Команда make sudo apt-get install make
+3. expat-2.2.10.tar.gz
+
+wget https://github.com/libexpat/libexpat/releases/download/R_2_2_10/expat-2.2.10.tar.gz
+tar xvf expat-2.2.10.tar.gz
+./configure
+sudo make
+sudo make install
+
+4. Apache Portable Runtime
+
+wget https://apache-mirror.rbc.ru/pub/apache//apr/apr-1.7.0.tar.gz
+tar xvf apr-1.7.0.tar.gz
+
+./configure
+sudo make
+sudo make install
+
+wget https://apache-mirror.rbc.ru/pub/apache//apr/apr-util-1.6.1.tar.gz
+tar xvf apr-util-1.6.1.tar.gz
+
+./configure --with-apr=/usr/local/apr/
+sudo make
+sudo make install
+
+5. sudo apt-get install bzip2 ca-certificates dirmngr dpkg-dev gcc gnupg libapr1-dev libaprutil1-dev libbrotli-dev libcurl4-openssl-dev libjansson-dev liblua5.2-dev libnghttp2-dev libpcre3-dev libssl-dev libxml2-dev make wget zlib1g-dev
+
+
+6. Непосредственно сам сервер
+wget https://apache-mirror.rbc.ru/pub/apache//httpd/httpd-2.4.46.tar.gz
+tar xvf httpd-2.4.46.tar.gz
+
+./configure              Параметры конфигурации http://httpd.apache.org/docs/2.4/ru/programs/configure.html
+Будет создан makefile
+
+make
+sudo make install
+
+make install clean
+
+https://hackware.ru/?p=12683
+
+http://www.iakovlev.org/index.html?p=543&m=1&l1=4
+https://max-ko.ru/30-osnovy-httpd.html
