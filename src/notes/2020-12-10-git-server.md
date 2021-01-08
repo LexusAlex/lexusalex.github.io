@@ -5,9 +5,11 @@ number : 2
 title: Git сервер в локальной сети
 description: Разворачиваем git сервер на debian
 date: 2020-12-10 21:20:00 +3
-image: /assets/images/notes/2/main.png
-themes: linux git ssh
+main_image: /assets/images/notes/2/main.png
+gradient_image: /assets/images/notes/2/gradient.png
 color: F9DC24
+color_rgba: rgba(249, 220, 36, 10)
+themes: linux git ssh
 ---
 
 GIT сейчас является самой популярной системой контроля версий исходного кода.

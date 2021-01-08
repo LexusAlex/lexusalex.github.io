@@ -5,9 +5,11 @@ number : 3
 title: Миграции в php
 description: Используем миграции базы данных в php на примере библиотеки phinx
 date: 2020-12-27 12:30:00 +3
-themes: php sql
-image: /assets/images/notes/3/main.png
+main_image: /assets/images/notes/3/main.png
+gradient_image: /assets/images/notes/3/gradient.png
 color: 4B7447
+color_rgba: rgba(75, 116, 71, 10)
+themes: php sql
 ---
 
 В более или менее крупном проекте если над ним работают несколько человек, нужно каким-то образом поддерживать схему базы данных в актуальном состоянии.

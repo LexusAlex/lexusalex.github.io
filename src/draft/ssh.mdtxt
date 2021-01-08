@@ -1,0 +1,225 @@
+---
+layout: note.njk
+tags: notes
+number : 7
+title: SSH. Настройка и использование.
+description: SSH. Настройка и использование.
+date: 2021-01-04 23:50:00 +3
+image: /assets/images/notes/6/main.png
+themes: linux ssh
+color: EB8A44
+---
+
+SSH - это протокол, который позволяет подключатся к удаленной машине, через защищенное соединение.
+
+SSH объединяет в себе набор утилит позволяющие двум узлам передавать данные по зашифрованному каналу связи.
+
+Протокол SSH реализован с помощью пакета программ [OpenSSH](https://www.openssh.com/) и работает как клиент-сервер.
+
+## Установка OpenSSH
+
+В debian и основанных на нем и клиентская и серверная часть OpenSSH ставится одним мета пакетом `ssh` или по отдельности.
+
+```shell
+sudo apt install ssh
+sudo apt install openssh-client
+sudo apt install openssh-server
+```
+
+В CentOS и производных от Red Hat клиент и сервер ставятся по отдельности.
+
+```shell
+sudo yum install openssh-server
+sudo yum install openssh-clients
+```
+
+Во FreeBSD openssh включен в базовую систему и установки не требует.
+
+Проверяем версии установленных клиентов в разных системах.
+
+```shell
+ssh -V
+OpenSSH_7.9p1 Debian-10+deb10u2, OpenSSL 1.1.1d  10 Sep 2019 # Debian
+OpenSSH_8.0p1, OpenSSL 1.1.1g FIPS  21 Apr 2020 # CentOS
+OpenSSH_7.9p1, OpenSSL 1.1.1h-freebsd  22 Sep 2020 # FreeBSD
+```
+
+```text
+/etc
+/etc/default
+/etc/default/ssh
+/etc/init.d
+/etc/init.d/ssh
+/etc/pam.d
+/etc/pam.d/sshd
+/etc/ssh
+/etc/ssh/moduli
+/etc/ufw
+/etc/ufw/applications.d
+/etc/ufw/applications.d/openssh-server
+
+/usr/sbin
+/usr/sbin/sshd
+
+~$ dpkg -L openssh-client
+
+/etc/ssh
+/etc/ssh/ssh_config
+/usr
+/usr/bin
+/usr/bin/scp
+/usr/bin/sftp
+/usr/bin/ssh
+/usr/bin/ssh-add
+/usr/bin/ssh-agent
+/usr/bin/ssh-argv0
+/usr/bin/ssh-copy-id
+/usr/bin/ssh-keygen
+/usr/bin/ssh-keyscan
+
+
+/usr/bin/slogin
+
+/etc/pam.d/sshd
+/etc/ssh/sshd_config
+/etc/sysconfig/sshd
+
+/usr/libexec/openssh/sftp-server
+/usr/libexec/openssh/sshd-keygen
+/usr/sbin/sshd
+
+/var/empty/sshd
+
+/etc/ssh/ssh_config
+/etc/ssh/ssh_config.d
+/etc/ssh/ssh_config.d/05-redhat.conf
+/usr/bin/scp
+/usr/bin/sftp
+/usr/bin/ssh
+/usr/bin/ssh-add
+/usr/bin/ssh-agent
+/usr/bin/ssh-copy-id
+/usr/bin/ssh-keyscan
+```
+
+
+## Клиент
+
+клиент протокола SSH, для защищённого удалённого доступа
+ OpenSSH — это свободная реализация протокола Secure Shell, определённого
+ рабочей группой IETF.
+ .
+ SSH (Secure SHell) — это комплекс программ, позволяющих соединяться с
+ удалёнными машинами по защищённому каналу и выполнять команды. Он
+ создаёт шифрованное соединение между двумя ненадёжными с точки зрения
+ безопасности хостами через незащищённую сеть. Кроме того, допустимо
+ туннелирование трафика X11 и произвольных портов TCP/IP. Комплекс может
+ использоваться для предоставления программам защищённого канала связи.
+ .
+ В данном пакете содержатся программы-клиенты ssh, scp и sftp, утилиты
+ ssh-agent и ssh-add для аутентификации посредством открытых ключей,
+ а также ssh-keygen, ssh-keyscan, ssh-copy-id и ssh-argv0.
+ .
+ В некоторых странах использование шифрования без специального разрешения
+ запрещено.
+ .
+ Клиент ssh служит заменой программам устаревшего протокола rsh - rsh, rcp и
+ rlogin.
+
+## Сервер
+
+серверная часть протокола SSH, для защищённого удалённого доступа
+ OpenSSH — это свободная реализация протокола Secure Shell, определённого
+ рабочей группой IETF.
+ .
+ SSH (Secure SHell) — это комплекс программ, позволяющих соединяться с
+ удалёнными машинами по защищённому каналу и выполнять команды. Он создаёт
+ шифрованное соединение между двумя ненадёжными с точки зрения безопасности
+ хостами через незащищённую сеть. Кроме того, допустимо туннелирование
+ трафика X11 и произвольных портов TCP/IP. Комплекс может использоваться для
+ предоставления программам защищённого канала связи.
+ .
+ В данном пакете содержится серверная часть комплекса — sshd.
+ .
+ В некоторых странах использование шифрования без специального разрешения
+ запрещено.
+ .
+ Служба sshd служит заменой устаревшей rshd.
+
+
+
+
+
+
+
+
+SSH — это набор программ, которые позволяют выполнить вход на удалённую машину для выполнения команд на ней.
+
+dpkg -l | grep ssh
+
+ii  libssh-4:amd64                              0.6.3-4.3ubuntu0.6                              amd64        tiny C SSH library (OpenSSL flavor)
+ii  libssh-gcrypt-4:amd64                       0.6.3-4.3ubuntu0.6                              amd64        tiny C SSH library (gcrypt flavor)
+ii  openssh-client                              1:7.2p2-4ubuntu2.8                              amd64        secure shell (SSH) client, for secure access to remote machines
+ii  openssh-server                              1:7.2p2-4ubuntu2.8                              amd64        secure shell (SSH) server, for secure access from remote machines
+ii  openssh-sftp-server                         1:7.2p2-4ubuntu2.8                              amd64        secure shell (SSH) sftp server module, for SFTP access from remote machines
+ii  python-paramiko                             1.16.0-1ubuntu0.2                               all          Make ssh v2 connections with Python (Python 2)
+ii  ssh-import-id                               5.5-0ubuntu1                                    all          securely retrieve an SSH public key and install it locally
+ii  sshpass                                     1.05-1                                          amd64        Non-interactive ssh password authentication
+
+dpkg -L libssh-4 Список файлов пакета
+
+dpkg -S /etc/host.conf Каким пакетом был добавлен файл
+
+rpm -qa | grep ssh
+
+libssh-config-0.9.5-1.fc33.noarch
+libssh-0.9.5-1.fc33.x86_64
+openssh-8.4p1-4.fc33.x86_64
+openssh-clients-8.4p1-4.fc33.x86_64
+openssh-server-8.4p1-4.fc33.x86_64
+
+Служба ssh /etc/init.d/sshd
+Конфиги /etc/openssh или /etc/ssh
+
+fingerprint высчитывается на клиенте
+
+Узловые ключи
+fedora
+
+ls -la /etc/ssh/
+итого 612
+drwxr-xr-x.  4 root root        266 дек 19 00:13 .
+drwxr-xr-x. 74 root root       8192 дек 19 00:15 ..
+-rw-r--r--.  1 root root     577834 дек  1 15:21 moduli
+-rw-r--r--.  1 root root       1921 дек  1 15:21 ssh_config
+drwxr-xr-x.  2 root root         28 дек 19 00:10 ssh_config.d
+-rw-------.  1 root root       3676 дек  1 15:21 sshd_config
+drwx------.  2 root root         28 дек 19 00:10 sshd_config.d
+-rw-r-----.  1 root ssh_keys    480 дек 19 00:13 ssh_host_ecdsa_key
+-rw-r--r--.  1 root root        162 дек 19 00:13 ssh_host_ecdsa_key.pub
+-rw-r-----.  1 root ssh_keys    387 дек 19 00:13 ssh_host_ed25519_key
+-rw-r--r--.  1 root root         82 дек 19 00:13 ssh_host_ed25519_key.pub
+-rw-r-----.  1 root ssh_keys   2578 дек 19 00:13 ssh_host_rsa_key
+-rw-r--r--.  1 root root        554 дек 19 00:13 ssh_host_rsa_key.pub
+
+ssh-keygen -l -f /etc/ssh/ssh_host_rsa_key.pub
+3072 SHA256:fkBiqIGMhw2NSNDmvhU27NtmWgsNsY5SE/PbNIfDIpI no comment (RSA)
+
+freebsd
+
+ls -la /etc/ssh
+total 648
+drwxr-xr-x   2 root  wheel     512 Dec 12 19:52 .
+drwxr-xr-x  25 root  wheel    2560 Dec 12 19:29 ..
+-rw-r--r--   1 root  wheel  565252 Oct 23 05:34 moduli
+-rw-r--r--   1 root  wheel    1643 Oct 23 05:34 ssh_config
+-rw-------   1 root  wheel     513 Dec 12 19:52 ssh_host_ecdsa_key
+-rw-r--r--   1 root  wheel     178 Dec 12 19:52 ssh_host_ecdsa_key.pub
+-rw-------   1 root  wheel     411 Dec 12 19:52 ssh_host_ed25519_key
+-rw-r--r--   1 root  wheel      98 Dec 12 19:52 ssh_host_ed25519_key.pub
+-rw-------   1 root  wheel    1823 Dec 12 19:52 ssh_host_rsa_key
+-rw-r--r--   1 root  wheel     398 Dec 12 19:52 ssh_host_rsa_key.pub
+-rw-r--r--   1 root  wheel    3333 Oct 23 05:34 sshd_config
+
+ssh-keygen -l -f /etc/ssh/ssh_host_rsa_key.pub
+2048 SHA256:6D86zpHNMfalqJGgvWwNCJOJOzJWTpVmJSXK/V+RsWE root@testFreeBSD (RSA)

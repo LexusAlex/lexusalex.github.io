@@ -5,9 +5,11 @@ number : 4
 title: Расширение раздела диска в linux
 description: Столкнулся с проблемой расширения корневого раздела сервера linux работающего в облаке. Каким же образом можно расширить раздел linux на уже работающем боевом сервере без его остановки.
 date: 2020-12-28 22:08:00 +3
-themes: linux
-image: /assets/images/notes/4/main.png
+main_image: /assets/images/notes/4/main.png
+gradient_image: /assets/images/notes/4/gradient.png
 color: 8EBA43
+color_rgba: rgba(142, 186, 67, 10)
+themes: linux
 ---
 
 ## Способ 1
