@@ -2,7 +2,7 @@
 layout: note.njk
 tags: notes
 number : 6
-title: Установка apache2 из исходников на debian
+title: Сборка apache2 из исходников на debian 10
 description: Как собрать и запустить apache2 из исходников
 date: 2021-01-04 23:50:00 +3
 main_image: /assets/images/notes/6/main.png
@@ -77,7 +77,7 @@ wget https://apache-mirror.rbc.ru/pub/apache//httpd/httpd-2.4.46.tar.gz
 
 ```shell
 tar xvf httpd-2.4.46.tar.gz
-cd httpd-2.4.46.tar.gz
+cd httpd-2.4.46
 ```
 
 ## Конфигурирование

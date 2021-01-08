@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="yandex-verification" content="34b9532704688201" />
 
-    <title>Установка apache2 из исходников на debian · Алексей Шмелев</title>
+    <title>Сборка apache2 из исходников на debian 10 · Алексей Шмелев</title>
 
     <meta name="description" content="Как собрать и запустить apache2 из исходников">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Установка apache2 из исходников на debian">
+    <meta property="og:title" content="Сборка apache2 из исходников на debian 10">
     <meta property="og:description" content="Как собрать и запустить apache2 из исходников">
 
     
@@ -35,7 +35,7 @@
         <time datetime="2021-01-04T20:50:00.000Z" itemprop="datePublished">
             4 января 2021 г.
         </time>
-        <h1 itemprop="name headline">Установка apache2 из исходников на debian</h1>
+        <h1 itemprop="name headline">Сборка apache2 из исходников на debian 10</h1>
     </header>
 
     <div class="content" itemprop="articleBody">
@@ -65,7 +65,7 @@
 <p>Сейчас январь 2021 года, последняя версия на данный момент 2.4.46, ее и будем ставить.</p>
 <pre class="language-shell"><code class="language-shell"><span class="token function">wget</span> https://apache-mirror.rbc.ru/pub/apache//httpd/httpd-2.4.46.tar.gz</code></pre>
 <p>Распакуем и перейдем в эту директорию.</p>
-<pre class="language-shell"><code class="language-shell"><span class="token function">tar</span> xvf httpd-2.4.46.tar.gz<br><span class="token builtin class-name">cd</span> httpd-2.4.46.tar.gz</code></pre>
+<pre class="language-shell"><code class="language-shell"><span class="token function">tar</span> xvf httpd-2.4.46.tar.gz<br><span class="token builtin class-name">cd</span> httpd-2.4.46</code></pre>
 <h2>Конфигурирование</h2>
 <p>Теперь нужно сконфигурировать параметры учитывающие наше железо и другие опции.
 Это делается скриптом <code>./configure</code>. Впоследствии он создает <code>Makefile</code>.</p>
