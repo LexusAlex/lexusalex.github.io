@@ -12,6 +12,8 @@ color_rgba: rgba(235, 138, 68, 10)
 themes: linux apache2
 ---
 
+## Вступление
+
 Бывает необходимость в установке последней версии программного обеспечения, так как в репозиториях находится старая или неактуальная версия.
 
 Для дистрибутивов на основе debian сделан собственный пакет веб сервера apache2.
@@ -143,7 +145,7 @@ Server built:   Jan  5 2021 01:27:10
 sudo /home/alex/apache2/bin/apachectl -k start
 ```
 
-Проверить можно командами:
+Проверить что сервер запущен можно командами:
 
 ```shell
 netstat -tunla | grep LISTEN | grep 80
@@ -163,12 +165,11 @@ sudo /home/alex/apache2/bin/apachectl -k stop
 В последних версиях Debian выпилили файл rc.local, который позволяет выполнять произвольные скрипты при запуске системы.
 Добавим его обратно и научим его запускать apache.
 
-Создадим файл `rc-local.service`
+Добавим файл `rc-local.service`
 
 ```shell
 sudo vim /etc/systemd/system/rc-local.service
 ```
-
 Добавим туда директивы
 
 ```text
@@ -240,3 +241,9 @@ rc-local.service - /etc/rc.local
            ├─429 /home/alex/apache2/bin/httpd -k start
            ├─432 /home/alex/apache2/bin/httpd -k start
 ```
+
+## Итог
+
+Мы показали как можно собрать и запустить последнюю версию веб сервера apache2 на debian 10.
+
+Процедура не сложная, но требует некоторого кол-ва времени.

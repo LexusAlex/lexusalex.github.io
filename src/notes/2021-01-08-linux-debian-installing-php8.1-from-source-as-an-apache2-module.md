@@ -12,20 +12,25 @@ color_rgba: rgba(249, 220, 36, 10)
 themes: linux php
 ---
 
+## Предыдущие статьи
+
 [1. Сборка apache2 из исходников на debian 10](https://lexusalex.ru/notes/2021-01-04-linux-debian-installing-apache2-from-source/)
 
-Совсем недавно (26.10.2020) обновился php на версию 8.
+## Вступление
 
-Попробуем собрать и запустить интерпретатор как модуль под веб сервер apache2.
+Недавно (26.10.2020) php обновился на версию 8.
+
+Попробуем собрать и запустить интерпретатор php как модуль под веб сервер apache2.
 
 Предполагается что apache2 уже установлен на сервере.
 
-Как собрать apache2 читайте в [статье](https://lexusalex.ru/notes/2021-01-04-linux-debian-installing-apache2-from-source/).
+Как собрать apache2 из исходников читайте в [статье](https://lexusalex.ru/notes/2021-01-04-linux-debian-installing-apache2-from-source/).
 
 ## Загрузка и распаковка
 
 Скачаем исходники текущей стабильной версии php на сервер c [официального сайта](https://www.php.net/downloads).
-07.01.2021 вышла версия php 8.1.
+
+> 07.01.2021 вышла версия php 8.1.
 
 ```shell
 wget https://www.php.net/distributions/php-8.0.1.tar.gz
@@ -40,16 +45,22 @@ cd php-8.0.1
 
 Так же создадим директорию `php8` куда его будем ставить.
 
-Структура каталога выглядит так
+К текущему состоянию структура домашнего каталога выглядит так:
 
 ```shell
-ls
-apache2  httpd-2.4.46  httpd-2.4.46.tar.gz  php8  php-8.0.1  php-8.0.1.tar.gz
+ls -1
+apache2
+httpd-2.4.46
+httpd-2.4.46.tar.gz
+php8
+php-8.0.1
+php-8.0.1.tar.gz
 ```
 
 ## Подготовка
 
-Большинство библиотек мы поставили когда, собирали apache2.
+Большинство библиотек уже должны быть установлены на сервере.
+Мы поставили их когда, собирали [apache2](https://lexusalex.ru/notes/2021-01-04-linux-debian-installing-apache2-from-source/).
 
 Теперь установим недостающие без которых будет ошибка при конфигурировании.
 
@@ -57,7 +68,7 @@ apache2  httpd-2.4.46  httpd-2.4.46.tar.gz  php8  php-8.0.1  php-8.0.1.tar.gz
 sudo apt install libsqlite3-dev libonig-dev
 ```
 
-Так же может потребоваться установить следующие библиотеки
+Так же может потребоваться установить следующие библиотеки.
 
 ```shell
 sudo apt install -y pkg-config bison re2c libxml2-dev
@@ -69,7 +80,7 @@ sudo apt install -y pkg-config bison re2c libxml2-dev
 с измененными параметрами.
 
 ```shell
-./configure --prefix=/home/alex/php8 --with-apxs2=/home/alex/apache2/bin/apxs --with-config-file-path=/home/alex/php8/config --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --enable-mbstring --enable-zip --with-pdo-pgsql
+./configure --prefix=/home/alex/php8 --with-apxs2=/home/alex/apache2/bin/apxs --with-config-file-path=/home/alex/php8/config --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --enable-mbstring
 ```
 Где 
 
@@ -82,7 +93,9 @@ sudo apt install -y pkg-config bison re2c libxml2-dev
 
 Подробнее об опциях в [документации](https://www.php.net/manual/ru/configure.about.php)
 
-В конце конфигурирования должно отобразиться сообщение о лицензии и директории с исходниками создаться `Makefile`.
+Запускаем команду.
+
+В конце конфигурирования должно отобразиться сообщение о лицензии и в директории с исходниками создаться `Makefile`.
 
 ```shell
 +--------------------------------------------------------------------+
@@ -99,19 +112,21 @@ Thank you for using PHP.
 
 ## Сборка 
 
-Теперь пришло время собрать php и очистить временные файлы.
+Пришло время собрать php и очистить временные файлы.
 
 ```shell
 make install
 ```
 
-Ждем пока завершится процесс компиляции (минут 10). Далее очищаем от мусора. 
+Ждем пока завершится процесс компиляции (~минут 10). 
+
+Далее очищаем временные файлы. 
 
 ```shell
 make clean
 ```
 
-Проверяем что php собрался корректно и работает.
+Проверяем что php работает.
 
 ```shell
 /home/alex/php8/bin/php -v
@@ -120,13 +135,15 @@ Copyright (c) The PHP Group
 Zend Engine v4.0.1, Copyright (c) Zend Technologies
 ```
 
-Скопируем конфигурацию php.ini
+Скопируем конфигурацию php.ini из директории с исходниками в собранный каталог.
 
 ```shell
-cp php.ini-development ../php8/config/php.ini
+cp /home/alex/php-8.0.1/php.ini-development /home/alex/php8/config/php.ini
 ```
 
 ## httpd.conf
+
+php работает теперь нужно настроить apache.
 
 В конце сборки, должен быть создан модуль для apache2, о чем свидетельствуют следующие строки в конце вывода.
 
@@ -141,7 +158,7 @@ chmod 755 /home/alex/apache2/modules/libphp.so
 vim /home/alex/apache2/conf/httpd.conf
 ```
 
-Добавим в конфиг поддержку типов с расширением php.
+Далее под подключением модуля добавим в конфиг поддержку типов с расширением php.
 
 ```apacheconf
 <FilesMatch \.php$> 
@@ -158,7 +175,7 @@ vim /home/alex/apache2/conf/httpd.conf
 sudo /home/alex/apache2/bin/apachectl -k restart
 ```
 
-Для проверки работоспособности в корне веб сервера переименовываем index.html в index.php и добавляем строки.
+Для проверки работоспособности в корне веб сервера переименовываем `index.html` в `index.php` и добавляем код проверки.
 
 ```php
 <?php 
@@ -172,13 +189,15 @@ sudo /home/alex/apache2/bin/apachectl -k restart
   <img src="/assets/images/notes/7/php8.1.png" alt="php 8.1"  data-action="zoom">
 </figure>
 
-Все прекрасно работает.
+Если видим страницу с настройками php, то все в порядке.
 
 ## Пересборка
 
-Если нужно как то изменить конфигурации, php можно пересобрать.
+Если нужно как, то изменить конфигурацию, php можно пересобрать.
 
-Добавим поддержку трех расширений `calendar intl soap` которых у нас нет, это делается теми же командами.
+Добавим поддержку трех расширений `calendar intl soap` которых у нас нет. 
+
+Это делается теми же командами, что и выше.
 
 ```shell
 ./configure --prefix=/home/alex/php8 --with-apxs2=/home/alex/apache2/bin/apxs --with-config-file-path=/home/alex/php8/config --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --enable-mbstring --enable-soap --enable-calendar --enable-intl
@@ -187,4 +206,12 @@ make install
 make clean
 ```
 
+Если вы не очищали каталог командой `make clean`, то сборка будет происходить быстрее.
+
 На этом сборка php 8 из исходников завершена.
+
+## Итог
+
+В итоге надеюсь разобраться как собрать минимальную сборку php 8.1 из исходников.
+
+Конечно есть куда стремиться, я хотел показать именно минимальную сборку с относительно не сложной установкой.
