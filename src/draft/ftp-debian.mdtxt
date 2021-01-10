@@ -1,0 +1,106 @@
+
+Сборка ftp сервера на debian
+
+https://github.com/proftpd/proftpd/archive/v1.3.7.tar.gz
+
+## proftpd ftp сервер
+
+## Загрузка и распаковка исходников
+
+```shell
+wget https://github.com/proftpd/proftpd/archive/v1.3.7.tar.gz
+tar xvf v1.3.7.tar.gz
+```
+
+Так же создаем папку куда будет ставить ftp сервер, и назначаем права
+
+```shell
+mkdir proftpd
+chmod 777 proftpd
+```
+
+## Конфигурирование
+
+```shell
+./configure --prefix=/home/alex/proftpd
+```
+
+В конце получаем
+
+```shell
+--------------
+Build Summary
+--------------
+```
+
+## Сборка
+
+```shell
+make 
+sudo make install
+make clean
+```
+
+sudo chown -R alex:alex ./
+
+## Создание дополнительных директорий
+
+```shell
+mkdir ROOTFTP && chmod 777 ROOTFTP
+mkdir logs && chmod 777 logs
+mkdir pass
+```
+
+## Правка конфига
+
+Открываем конфиг и добавляем
+
+```shell
+vim etc/proftpd.conf
+```
+
+```shell
+# Где будет висеть ftp 
+DefaultAddres host.com
+# Не дает поднятся выше чем нужно
+DefaultRoot /home/alex/proftpd/ROOTFTP
+# Ответ сервера
+ServerIdent on "HELLO I'am PROFTPD"
+
+# NO PAM - разрешаем подключатся только созданным пользователям
+RequireValidShell off
+AuthUserFile /home/alex/proftpd/pass/ftpd.passwd
+AllowStoreRestart on
+
+
+LogFormat                       default «%h %l %u %t «%r» %s %b»
+LogFormat                       auth    «%v [%P] %h %t «%r» %s»
+LogFormat                       write   «%h %l %u %t «%r» %s %b»
+
+SystemLog                       /home/alex/proftpd/logs/proftpd.log
+TransferLog                     /home/alex/proftpd/logs/xfer.log
+ExtendedLog                     /home/alex/proftpd/logs/access.log WRITE,READ
+```
+
+## Создание пользователя
+
+```shell
+./ftpasswd --passwd --file=/home/alex/proftpd/pass/ftpd.passwd --name=test --uid=300 --gid=300 --home=/home/alex/proftpd/ROOTFTP/test --shell=/bin/false
+
+ftpasswd: creating passwd entry for user test
+
+ftpasswd: /bin/false is not among the valid system shells.  Use of
+ftpasswd: "RequireValidShell off" may be required, and the PAM
+ftpasswd: module configuration may need to be adjusted.
+
+Password: 
+Re-type password: 
+
+ftpasswd: entry created
+
+```
+Будет сгенерирован фаил /home/alex/proftpd/pass/ftpd.passwd с паролями
+
+## Запуск сервера
+
+sudo ./sbin/proftpd
