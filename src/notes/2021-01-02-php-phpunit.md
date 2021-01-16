@@ -2,14 +2,14 @@
 layout: note.njk
 tags: notes
 number : 5
-title: Тестирование кода в php
+title: Тестирование кода в php (phpunit)
 description: Как начать тестировать код у себя в проекте
 date: 2021-01-02 23:50:00 +3
 main_image: /assets/images/notes/5/main.png
 gradient_image: /assets/images/notes/5/gradient.png
 color: 996666
 color_rgba: rgba(153, 102, 102, 10)
-themes: php testing
+themes: php testing phpunit
 ---
 
 Все мы в разной степени начинаем с ручного тестирования своего кода — это не плохо, 

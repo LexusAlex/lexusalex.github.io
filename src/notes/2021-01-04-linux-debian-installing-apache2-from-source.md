@@ -242,8 +242,74 @@ rc-local.service - /etc/rc.local
            ├─432 /home/alex/apache2/bin/httpd -k start
 ```
 
+## Пересборка сервера
+
+Посмотрим текущие подключенные модули.
+
+```shell
+sudo /home/alex/apache2/bin/apachectl -t -D DUMP_MODULES
+Loaded Modules:
+ core_module (static)
+ so_module (static)
+ http_module (static)
+ mpm_event_module (static)
+ authn_file_module (shared)
+ authn_core_module (shared)
+ authz_host_module (shared)
+ authz_groupfile_module (shared)
+ authz_user_module (shared)
+ authz_core_module (shared)
+ access_compat_module (shared)
+ auth_basic_module (shared)
+ reqtimeout_module (shared)
+ filter_module (shared)
+ mime_module (shared)
+ log_config_module (shared)
+ env_module (shared)
+ headers_module (shared)
+ setenvif_module (shared)
+ version_module (shared)
+ proxy_module (shared)
+ proxy_fcgi_module (shared)
+ unixd_module (shared)
+ status_module (shared)
+ autoindex_module (shared)
+ dir_module (shared)
+ alias_module (shared)
+ php_module (shared)
+````
+Если необходимы другие модули, то сервер нужно пересобрать с ключом `--enable-mods-shared=reallyall`.
+
+```shell
+./configure --prefix=/home/alex/apache2 --enable-mods-shared=reallyall
+make
+make install
+make clean
+```
+
+Раскоментировать строку подключения модуля в файле конфигуриации `/conf/httpd.conf`
+
+```apacheconf
+LoadModule proxy_fcgi_module modules/mod_proxy_fcgi.so
+```
+
+Перезагрузить сервер
+
+```shell
+sudo /home/alex/apache2/bin/apachectl -k restart
+```
+
+Подробнее https://gist.github.com/thuannvn/07b376a7ad5d12ac4456
+
+
 ## Итог
 
 Мы показали как можно собрать и запустить последнюю версию веб сервера apache2 на debian 10.
 
 Процедура не сложная, но требует некоторого кол-ва времени.
+
+## Update
+
+**16.01.2021**
+
+- Добавлен раздел "Пересборка сервера"

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="yandex-verification" content="34b9532704688201" />
+
+    <title>Сборка php-fpm 8.1 из исходников на debian 10 · Алексей Шмелев</title>
+
+    <meta name="description" content="Собираем менеджер приложений php-fpm">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Сборка php-fpm 8.1 из исходников на debian 10">
+    <meta property="og:description" content="Собираем менеджер приложений php-fpm">
+
+    
+
+    <link rel="stylesheet" href="/index.css">
+    <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(47811625, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47811625" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <div class="page">
+        
+<header class="header page__header">
+    <div class="header__title">Алексей Шмелев</div>
+    <ul class="navigation">
+        <li class="navigation__item"><a class="link" href="/">Главная</a>
+        <li class="navigation__item"><a class="link" href="/about/index.html">Обо мне</a>
+    </ul>
+</header>
+
+<article class="article" itemtype="http://schema.org/BlogPosting" itemscope="">
+    <header  class="article__header">
+        <time datetime="2021-01-16T20:30:00.000Z" itemprop="datePublished">
+            16 января 2021 г.
+        </time>
+        <h1 itemprop="name headline">Сборка php-fpm 8.1 из исходников на debian 10</h1>
+    </header>
+
+    <div class="content" itemprop="articleBody">
+        <figure style="border: none">
+            <img src="/assets/images/notes/9/main.png" alt=""  data-action="zoom">
+        </figure>
+        <p class="description">
+            Собираем менеджер приложений php-fpm
+        </p>
+        <h2>Предыдущие статьи</h2>
+<ul>
+<li><a href="https://lexusalex.ru/notes/2021-01-04-linux-debian-installing-apache2-from-source/">1. Сборка apache2 из исходников на debian 10</a></li>
+<li><a href="https://lexusalex.ru/notes/2021-01-08-linux-debian-installing-php8.1-from-source-as-an-apache2-module/">2. Сборка php 8.1 из исходников на debian 10</a></li>
+<li><a href="https://lexusalex.ru/notes/2021-01-09-linux-debian-installing-mysql8-from-source/">3. Сборка mysql 8 из дистрибутива на debian 10</a></li>
+</ul>
+<p>В предыдущих статьях мы ставили php как модуль для сервера apache, то есть в данном случае php и apache работают как одно целое.</p>
+<p>Существует также режим запуска php, как отдельного процесса. Режимом запуска управляет менеджер процессов FastCGI (FPM) или php-fpm.</p>
+<p>По умолчанию, он взаимодействует с веб-сервером через порт 9000 или сокетный файл.</p>
+<p>Процесс установки php под apache я расписал в <a href="https://lexusalex.ru/notes/2021-01-08-linux-debian-installing-php8.1-from-source-as-an-apache2-module/">статье</a>.</p>
+<h2>Подготовка</h2>
+<p>Удалим распакованные исходники оставшихся от прошлых сборок php. Развернем еще раз.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">rm</span> -rf php-8.0.1<br><span class="token function">tar</span> xvf php-8.0.1.tar.gz</code></pre>
+<p>Создадим директорию откуда будет работать менеджер php-fpm, и перейдем в директорию с исходниками.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">mkdir</span> php8-fpm<br><span class="token builtin class-name">cd</span> php-8.0.1</code></pre>
+<h2>Конфигурирование и сборка</h2>
+<p>Конфигурируем с минимальными опциями.</p>
+<pre class="language-shell"><code class="language-shell">./configure --prefix<span class="token operator">=</span>/home/alex/php8-fpm --enable-fpm --with-config-file-path<span class="token operator">=</span>/home/alex/php8-fpm/config --with-config-file-scan-dir<span class="token operator">=</span>/home/alex/php8-fpm/config/conf.d --with-mysqli<span class="token operator">=</span>mysqlnd --with-pdo-mysql<span class="token operator">=</span>mysqlnd --enable-mbstring</code></pre>
+<p>Собираем.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">make</span><br><span class="token function">make</span> <span class="token function">install</span><br><span class="token function">make</span> clean</code></pre>
+<p>Перейдем в собранную директорию, со следующей структурой.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token builtin class-name">cd</span> php8-fpm<br><span class="token function">ls</span> -1<br>bin<br>etc<br>include<br>lib<br>php<br>sbin<br>var</code></pre>
+<h2>Настройка и запуск</h2>
+<p>Переименуем конфигурационные файлы.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">mv</span> /home/alex/php8-fpm/etc/php-fpm.conf.default /home/alex/php8-fpm/etc/php-fpm.conf<br><span class="token function">mv</span> /home/alex/php8-fpm/etc/php-fpm.d/www.conf.default /home/alex/php8-fpm/etc/php-fpm.d/www.conf</code></pre>
+<p>Откроем файл конфигурации.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">vim</span> /home/alex/php8-fpm/etc/php-fpm.d/www.conf </code></pre>
+<p>Внесем изменения в конфигурацию, исправим или раскоментируем строки.</p>
+<pre class="language-shell"><code class="language-shell">user <span class="token operator">=</span> daemon<br>group <span class="token operator">=</span> daemon<br>listen <span class="token operator">=</span> <span class="token number">127.0</span>.0.1:9001</code></pre>
+<p>Запускаем.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">sudo</span> ./home/alex/php8-fpm/sbin/php-fpm</code></pre>
+<p>Проверяем, что процесс запущен.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">sudo</span> <span class="token function">netstat</span> -tulpn <span class="token operator">|</span> <span class="token function">grep</span> <span class="token number">9001</span><br>tcp        <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">127.0</span>.0.1:9001          <span class="token number">0.0</span>.0.0:*               LISTEN      <span class="token number">63768</span>/php-fpm: mast </code></pre>
+<h2>Подключаем к apache 2</h2>
+<p>Для, того, чтобы проверить работоспособность php-fpm, подключим php-fpm в качестве application сервера к apache 2.</p>
+<p>Откроем конфиг <code>/home/alex/apache2/conf.httpd.conf</code>, подключим два модуля и настроем обработку скриптов через <code>proxy:fcgi</code></p>
+<pre class="language-apacheconf"><code class="language-apacheconf"><span class="token directive-inline property">LoadModule</span> proxy_module modules/mod_proxy.so<br><span class="token directive-inline property">LoadModule</span> proxy_fcgi_module modules/mod_proxy_fcgi.so<br><br><span class="token directive-block tag"><span class="token directive-block tag"><span class="token punctuation">&lt;</span>FilesMatch</span><span class="token directive-block-parameter attr-value"> \.php$</span><span class="token punctuation">></span></span> <br>   <span class="token directive-inline property">SetHandler</span> <span class="token string">"proxy:fcgi://127.0.0.1:9001"</span><br><span class="token directive-block tag"><span class="token directive-block tag"><span class="token punctuation">&lt;/</span>FilesMatch</span><span class="token punctuation">></span></span></code></pre>
+<p>Перезагружаемся и проверяем.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">sudo</span> /home/alex/apache2/bin/apachectl -k restart</code></pre>
+<figure>
+  <img src="/assets/images/notes/9/php-fpm.png" alt="php-fpm"  data-action="zoom">
+</figure>
+<h2>Итог</h2>
+<p>Как видим собрать <code>php-fpm</code> не составляет особого труда.</p>
+<p>Главное здесь уметь искать информацию в документации.</p>
+
+    </div>
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://lexusalex-ru.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</article>
+
+<footer>
+    <p>
+        Работает на <a href="https://www.11ty.dev/">Eleventy</a> - 2020
+    </p>
+</footer>
+    </div>
+    <script src="/assets/js/medium-zoom.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script id="dsq-count-scr" src="//lexusalex-ru.disqus.com/count.js" async></script>
+</body>
+</html> 
