@@ -1,1 +1,83 @@
 --ignore-failed-read
+
+Делаем резервное копирование системы с возможностью восстановления из бекапа.
+
+Необходимо восстановить систму на другом железе
+
+https://mirror.yandex.ru/debian-cd/current-live/amd64/iso-hybrid/
+
+## Резервное копирование системы
+
+Необходимо создать архив, где то в локальной сети
+
+sudo mkdir /mnt/192.168.88.252
+sudo mkdir /mnt/usb
+
+Например смонтируем флешку, здесь может быть любой носитель
+
+sudo mount /dev/sdb /mnt/usb
+
+//sudo mount 192.168.88.252/backup /mnt/192.168.88.252 -o guest,rw,iocharset=utf8
+
+/media/alex/5b055601-cdfb-418b-8712-c4502f18429b/
+
+sudo tar -cvpzf /mnt/usb/`date +%Y_%m_%d_%H_%M`.tgz --exclude=/proc --exclude=/dev --exclude=/lost+found --exclude=/mnt --exclude=/media --exclude=/sys --ignore-failed-read /
+
+sudo tar -cvpzf /media/alex/5b055601-cdfb-418b-8712-c4502f18429b/backup/`date +%Y_%m_%d_%H_%M`.tgz --exclude=/proc --exclude=/dev --exclude=/lost+found --exclude=/mnt --exclude=/cdrom --exclude=/media --exclude=/sys --ignore-failed-read /
+
+service smbd restart
+Восстановление
+
+sudo su
+fdisk -l
+fdisk /dev/sda
+n
+p
+a
+
+mkfs.ext4 /dev/sda1
+
+sudo apt install cifs-utils
+yum install cifs-utils
+
+1. mount /dev/sda1 /mnt/
+
+mount -t cifs -o username=guest,password=,uid=1000,iocharset=utf8 //192.168.88.252/share /media
+mount.cifs -v //BACKUP/linux /mnt/share  --verbose -o username="",password="",file_mode=0777,dir_mode=0777,iocharset=utf8
+
+sudo tar -cvpzf /media/centos/`date +%Y_%m_%d_%H_%M`.tgz --exclude=/proc --exclude=/dev --exclude=/lost+found --exclude=/mnt --exclude=/cdrom --exclude=/media --exclude=/sys --ignore-failed-read /
+
+2.
+mount -t cifs //192.168.88.252/share /media -o username=guest
+mount /dev/sda1 /mnt/
+Распаковываем
+tar --same-owner -xvpf /backupYYYYMMDD.tgz -C /mnt/
+
+mkdir /mnt/dev /mnt/sys /mnt/proc /mnt/media
+
+mount --bind /dev /mnt/dev
+mount --bind /proc /mnt/proc
+mount --bind /sys /mnt/sys
+
+chroot /mnt
+
+vim /etc/fstab
+
+grub-install /dev/sda
+update-grub
+
+gfub2-install /dev/sda
+grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
+
+
+umount /mnt/dev
+umount /mnt/proc
+umount /mnt/sys
+umount /mnt
+
+
+https://habr.com/ru/post/251659/
+https://aleksandr0105.ru/2015/04/13/rezervnoe-kopirovanie-ubuntu.html
+
+sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --reload
