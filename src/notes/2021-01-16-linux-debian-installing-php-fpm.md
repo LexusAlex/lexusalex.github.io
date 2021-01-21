@@ -12,12 +12,6 @@ color_rgba: rgba(142, 186, 67, 10)
 themes: linux php
 ---
 
-## Предыдущие статьи
-
-- [1. Сборка apache2 из исходников на debian 10](https://lexusalex.ru/notes/2021-01-04-linux-debian-installing-apache2-from-source/)
-- [2. Сборка php 8.1 из исходников на debian 10](https://lexusalex.ru/notes/2021-01-08-linux-debian-installing-php8.1-from-source-as-an-apache2-module/)
-- [3. Сборка mysql 8 из дистрибутива на debian 10](https://lexusalex.ru/notes/2021-01-09-linux-debian-installing-mysql8-from-source/)
-
 В предыдущих статьях мы ставили php как модуль для сервера apache, то есть в данном случае php и apache работают как одно целое.
 
 Существует также режим запуска php, как отдельного процесса. Режимом запуска управляет менеджер процессов FastCGI (FPM) или php-fpm.

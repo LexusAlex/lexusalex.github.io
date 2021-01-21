@@ -12,11 +12,6 @@ color_rgba: rgba(75, 116, 71, 10)
 themes: linux mysql
 ---
 
-## Предыдущие статьи
-
-- [1. Сборка apache2 из исходников на debian 10](https://lexusalex.ru/notes/2021-01-04-linux-debian-installing-apache2-from-source/)
-- [2. Сборка php 8.1 из исходников на debian 10](https://lexusalex.ru/notes/2021-01-08-linux-debian-installing-php8.1-from-source-as-an-apache2-module/)
-
 Чтобы запустить практически любой сайт, необходима база данных mysql. 
 
 Установим ее из готового дистрибутива в минимальной конфигурации.

@@ -12,10 +12,6 @@ color_rgba: rgba(249, 220, 36, 10)
 themes: linux php
 ---
 
-## Предыдущие статьи
-
-- [1. Сборка apache2 из исходников на debian 10](https://lexusalex.ru/notes/2021-01-04-linux-debian-installing-apache2-from-source/)
-
 ## Вступление
 
 Недавно (26.10.2020) php обновился на версию 8.
