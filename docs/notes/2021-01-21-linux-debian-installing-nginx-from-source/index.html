@@ -64,11 +64,32 @@
 <p>В итоге получаем такую структуру.</p>
 <pre class="language-shell"><code class="language-shell"><span class="token function">ls</span> -1<br>conf<br>html<br>logs<br>sbin</code></pre>
 <p>Запускаем.</p>
-<pre class="language-shell"><code class="language-shell">./sbin/nginx</code></pre>
+<pre class="language-shell"><code class="language-shell">/home/alex/nginx/sbin/nginx</code></pre>
 <p>Проверяем в браузере, должны увидеть стандартную заглушку.</p>
 <figure>
   <img src="/assets/images/notes/10/welcome-nginx.png" alt="nginx"  data-action="zoom">
 </figure>
+<p>Останавливаем сервер.</p>
+<pre class="language-shell"><code class="language-shell">/home/alex/nginx/sbin/nginx -s stop</code></pre>
+<h2>Обработка php</h2>
+<p>Теперь нужно научить nginx обрабатывать php файлы.</p>
+<p>php-fpm мы собирали в <a href="https://lexusalex.ru/notes/2021-01-16-linux-debian-installing-php-fpm/">статье</a>.</p>
+<p>Создадим файл для проверки работоспособности, в данном случае это <code>/home/alex/nginx/html/index.php</code> с содержимым.</p>
+<pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span><br>    <span class="token function">phpinfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token delimiter important">?></span></span></code></pre>
+<p>Открываем конфигурационный файл nginx.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">vim</span> /home/alex/nginx/conf/nginx.conf</code></pre>
+<p>И в секции <code>server</code> в блоке <code>location</code> пропишем следующих строчки</p>
+<pre class="language-nginx"><code class="language-nginx"><span class="token keyword">location</span> <span class="token operator">~</span> \<span class="token punctuation">.</span>php$ <span class="token punctuation">{</span><br>    <span class="token keyword">root</span>           html<span class="token punctuation">;</span><br>    <span class="token keyword">fastcgi_pass</span>   <span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token punctuation">:</span><span class="token number">9001</span><span class="token punctuation">;</span><br>    <span class="token keyword">fastcgi_index</span>  <span class="token keyword">index</span><span class="token punctuation">.</span>php<span class="token punctuation">;</span><br>    <span class="token keyword">fastcgi_param</span>  SCRIPT_FILENAME  <span class="token variable">$document_root</span><span class="token variable">$fastcgi_script_name</span><span class="token punctuation">;</span><br>    <span class="token keyword">include</span>        fastcgi_params<span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>Перезапускаем nginx идем в браузер</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">sudo</span> /home/alex/nginx/sbin/nginx -s reload</code></pre>
+<figure>
+  <img src="/assets/images/notes/10/php-fpm.png" alt="php-fpm"  data-action="zoom">
+</figure>
+<h2>Итог</h2>
+<p>В итоге мы увидели как быстро и просто можно собрать веб сервер nginx из исходников.</p>
+<p>Так же прикрутили туда php-fpm.</p>
+<p>Более продвинутая настройка, уже выходит за рамки данной статьи, возможно при моем желании напишу об этом.</p>
+
     </div>
 
     <div id="disqus_thread"></div>

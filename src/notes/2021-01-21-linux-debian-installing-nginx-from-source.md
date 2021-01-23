@@ -68,7 +68,7 @@ sbin
 Запускаем.
 
 ```shell
-./sbin/nginx
+/home/alex/nginx/sbin/nginx
 ```
 
 Проверяем в браузере, должны увидеть стандартную заглушку.
@@ -76,3 +76,59 @@ sbin
 <figure>
   <img src="/assets/images/notes/10/welcome-nginx.png" alt="nginx"  data-action="zoom">
 </figure>
+
+Останавливаем сервер. 
+
+```shell
+/home/alex/nginx/sbin/nginx -s stop
+```
+
+## Обработка php
+
+Теперь нужно научить nginx обрабатывать php файлы.
+
+php-fpm мы собирали в [статье](https://lexusalex.ru/notes/2021-01-16-linux-debian-installing-php-fpm/).
+
+Создадим файл для проверки работоспособности, в данном случае это `/home/alex/nginx/html/index.php` с содержимым.
+
+```php
+<?php
+    phpinfo();
+?>
+```
+
+Открываем конфигурационный файл nginx.
+
+```shell
+vim /home/alex/nginx/conf/nginx.conf
+```
+
+И в секции `server` в блоке `location` пропишем следующих строчки
+
+```nginx
+location ~ \.php$ {
+    root           html;
+    fastcgi_pass   127.0.0.1:9001;
+    fastcgi_index  index.php;
+    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    include        fastcgi_params;
+}
+```
+
+Перезапускаем nginx идем в браузер
+
+```shell
+sudo /home/alex/nginx/sbin/nginx -s reload
+```
+
+<figure>
+  <img src="/assets/images/notes/10/php-fpm.png" alt="php-fpm"  data-action="zoom">
+</figure>
+
+## Итог
+
+В итоге мы увидели как быстро и просто можно собрать веб сервер nginx из исходников.
+
+Так же прикрутили туда php-fpm.
+
+Более продвинутая настройка, уже выходит за рамки данной статьи, возможно при моем желании напишу об этом.
