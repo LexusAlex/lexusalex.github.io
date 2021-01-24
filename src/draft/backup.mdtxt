@@ -48,26 +48,50 @@ mount.cifs -v //BACKUP/linux /mnt/share  --verbose -o username="",password="",fi
 sudo tar -cvpzf /media/centos/`date +%Y_%m_%d_%H_%M`.tgz --exclude=/proc --exclude=/dev --exclude=/lost+found --exclude=/mnt --exclude=/cdrom --exclude=/media --exclude=/sys --ignore-failed-read /
 
 2.
-mount -t cifs //192.168.88.252/share /media -o username=guest
+Восстановление centos
+
+1.
+sudo su
+fdisk -l
+fdisk /dev/sda
+n
+p
+a
+w
+
+apt-get install xfsprogs
+mkfs -t xfs /dev/sdb1
 mount /dev/sda1 /mnt/
+
+2.
+
+mount -t cifs //192.168.88.252/share /media -o username=guest
+
 Распаковываем
-tar --same-owner -xvpf /backupYYYYMMDD.tgz -C /mnt/
+tar --same-owner -xvpf /media/centos/backupYYYYMMDD.tgz -C /mnt/
+
+mount /dev/mapper/centos-root /mnt/sysimage
 
 mkdir /mnt/dev /mnt/sys /mnt/proc /mnt/media
 
 mount --bind /dev /mnt/dev
 mount --bind /proc /mnt/proc
 mount --bind /sys /mnt/sys
+mount  /dev/sda1 /mnt/boot
 
 chroot /mnt
 
 vim /etc/fstab
+
+cd /boot
+dracut -f [initramfs-версия ядра.img] [версия ядра]
 
 grub-install /dev/sda
 update-grub
 
 gfub2-install /dev/sda
 grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
+grub2-mkconfig -o /boot/grub2/grub.cfg
 
 
 umount /mnt/dev
@@ -78,6 +102,7 @@ umount /mnt
 
 https://habr.com/ru/post/251659/
 https://aleksandr0105.ru/2015/04/13/rezervnoe-kopirovanie-ubuntu.html
+https://xhop.ru/nix-sistemyi/centos-7-dracut-boot-recovery/
 
 sudo firewall-cmd --permanent --add-service=http
 sudo firewall-cmd --reload

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="yandex-verification" content="34b9532704688201" />
+
+    <title>SSH аутентификация по ключу · Алексей Шмелев</title>
+
+    <meta name="description" content="Добавляем возможность заходить на сервер по публичному ключу">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SSH аутентификация по ключу">
+    <meta property="og:description" content="Добавляем возможность заходить на сервер по публичному ключу">
+
+    
+
+    <link rel="stylesheet" href="/index.css">
+    <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(47811625, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47811625" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <div class="page">
+        
+<header class="header page__header">
+    <div class="header__title">Алексей Шмелев</div>
+    <ul class="navigation">
+        <li class="navigation__item"><a class="link" href="/">Главная</a>
+        <li class="navigation__item"><a class="link" href="/about/index.html">Обо мне</a>
+    </ul>
+</header>
+
+<article class="article" itemtype="http://schema.org/BlogPosting" itemscope="">
+    <header  class="article__header">
+        <time datetime="2021-01-24T20:00:00.000Z" itemprop="datePublished">
+            24 января 2021 г.
+        </time>
+        <h1 itemprop="name headline">SSH аутентификация по ключу</h1>
+    </header>
+
+    <div class="content" itemprop="articleBody">
+        <figure style="border: none">
+            <img src="/assets/images/notes/11/main.png" alt=""  data-action="zoom">
+        </figure>
+        <p class="description">
+            Добавляем возможность заходить на сервер по публичному ключу
+        </p>
+        <p>Частой операцией для работы с linux серверами является вход на сервер по публичному ключу.</p>
+<p>Решил сделать небольшую инструкцию, вдруг кому пригодится.</p>
+<h2>Генерация ключа</h2>
+<p>Сгенерируем пару ключей публичный и приватный на клиенте.</p>
+<p>Будут спрашивать имя файла, можно оставить по умолчанию либо ввести свое. Так же спрашивается парольная фраза — это пароль ключа.
+Его тоже не обязательно устанавливать.</p>
+<pre class="language-shell"><code class="language-shell">ssh-keygen -t dsa</code></pre>
+<p>В итоге в каталоге <code>~/.ssh</code> появились пара ключей вида</p>
+<pre class="language-shell"><code class="language-shell">id_dsa<br>id_dsa.pub</code></pre>
+<p>Если они уже есть, то просто используем ключ <code>id_dsa.pub</code>.</p>
+<h2>Копирование ключа на сервер</h2>
+<p>Теперь нужно скопировать наш публичный ключ в файл <code>~/.ssh/authorized_keys</code> на сервере.</p>
+<pre class="language-shell"><code class="language-shell">ssh-copy-id -i ~/.ssh/id_dsa.pub alex@192.168.88.237</code></pre>
+<p>или так</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">cat</span> ~/.ssh/id_dsa.pub <span class="token operator">|</span> <span class="token function">ssh</span> git@192.168.88.237 <span class="token string">'cat >> ~/.ssh/authorized_keys'</span></code></pre>
+<p>После этого можем логиниться на сервер без пароля.</p>
+
+    </div>
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://lexusalex-ru.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</article>
+
+<footer>
+    <p>
+        Работает на <a href="https://www.11ty.dev/">Eleventy</a> - 2020
+    </p>
+</footer>
+    </div>
+    <script src="/assets/js/medium-zoom.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script id="dsq-count-scr" src="//lexusalex-ru.disqus.com/count.js" async></script>
+</body>
+</html> 
