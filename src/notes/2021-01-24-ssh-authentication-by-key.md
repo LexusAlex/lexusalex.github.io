@@ -24,30 +24,34 @@ themes: linux ssh
 Его тоже не обязательно устанавливать.
 
 ```shell
-ssh-keygen -t dsa
+ssh-keygen -t rsa
 ```
 
-В итоге в каталоге `~/.ssh` появились пара ключей вида
+В итоге в каталоге `~/.ssh` появились пара ключей вида, приватный и публичный.
 
 ```shell
-id_dsa
-id_dsa.pub
+id_rsa
+id_rsa.pub
 ```
 
-Если они уже есть, то просто используем ключ `id_dsa.pub`.
+Если они уже есть, то просто используем ключ `id_rsa.pub`.
 
 ## Копирование ключа на сервер
 
-Теперь нужно скопировать наш публичный ключ в файл `~/.ssh/authorized_keys` на сервере.
+Теперь нужно скопировать наш публичный ключ в файл `~/.ssh/authorized_keys` на сервер.
 
 
 ```shell
-ssh-copy-id -i ~/.ssh/id_dsa.pub alex@192.168.88.237
+ssh-copy-id -i ~/.ssh/id_rsa.pub alex@192.168.88.226
 ```
 или так
 
 ```shell
-cat ~/.ssh/id_dsa.pub | ssh git@192.168.88.237 'cat >> ~/.ssh/authorized_keys'
+cat ~/.ssh/id_rsa.pub | ssh git@192.168.88.226 'cat >> ~/.ssh/authorized_keys'
 ```
 
 После этого можем логиниться на сервер без пароля.
+
+```shell
+ssh alex@192.168.88.226
+```

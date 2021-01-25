@@ -51,16 +51,17 @@
 <p>Сгенерируем пару ключей публичный и приватный на клиенте.</p>
 <p>Будут спрашивать имя файла, можно оставить по умолчанию либо ввести свое. Так же спрашивается парольная фраза — это пароль ключа.
 Его тоже не обязательно устанавливать.</p>
-<pre class="language-shell"><code class="language-shell">ssh-keygen -t dsa</code></pre>
-<p>В итоге в каталоге <code>~/.ssh</code> появились пара ключей вида</p>
-<pre class="language-shell"><code class="language-shell">id_dsa<br>id_dsa.pub</code></pre>
-<p>Если они уже есть, то просто используем ключ <code>id_dsa.pub</code>.</p>
+<pre class="language-shell"><code class="language-shell">ssh-keygen -t rsa</code></pre>
+<p>В итоге в каталоге <code>~/.ssh</code> появились пара ключей вида, приватный и публичный.</p>
+<pre class="language-shell"><code class="language-shell">id_rsa<br>id_rsa.pub</code></pre>
+<p>Если они уже есть, то просто используем ключ <code>id_rsa.pub</code>.</p>
 <h2>Копирование ключа на сервер</h2>
-<p>Теперь нужно скопировать наш публичный ключ в файл <code>~/.ssh/authorized_keys</code> на сервере.</p>
-<pre class="language-shell"><code class="language-shell">ssh-copy-id -i ~/.ssh/id_dsa.pub alex@192.168.88.237</code></pre>
+<p>Теперь нужно скопировать наш публичный ключ в файл <code>~/.ssh/authorized_keys</code> на сервер.</p>
+<pre class="language-shell"><code class="language-shell">ssh-copy-id -i ~/.ssh/id_rsa.pub alex@192.168.88.226</code></pre>
 <p>или так</p>
-<pre class="language-shell"><code class="language-shell"><span class="token function">cat</span> ~/.ssh/id_dsa.pub <span class="token operator">|</span> <span class="token function">ssh</span> git@192.168.88.237 <span class="token string">'cat >> ~/.ssh/authorized_keys'</span></code></pre>
+<pre class="language-shell"><code class="language-shell"><span class="token function">cat</span> ~/.ssh/id_rsa.pub <span class="token operator">|</span> <span class="token function">ssh</span> git@192.168.88.226 <span class="token string">'cat >> ~/.ssh/authorized_keys'</span></code></pre>
 <p>После этого можем логиниться на сервер без пароля.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">ssh</span> alex@192.168.88.226</code></pre>
 
     </div>
 
