@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="yandex-verification" content="34b9532704688201" />
+
+    <title>Интерфейсы и абстрактные классы в php · Алексей Шмелев</title>
+
+    <meta name="description" content="Интерфейсы и абстрактные классы в php. Что это, чем они друг от друга отличаются и как с ними работать.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Интерфейсы и абстрактные классы в php">
+    <meta property="og:description" content="Интерфейсы и абстрактные классы в php. Что это, чем они друг от друга отличаются и как с ними работать.">
+
+    
+
+    <link rel="stylesheet" href="/index.css">
+    <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(47811625, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47811625" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <div class="page">
+        
+<header class="header page__header">
+    <div class="header__title">Алексей Шмелев</div>
+    <ul class="navigation">
+        <li class="navigation__item"><a class="link" href="/">Главная</a>
+        <li class="navigation__item"><a class="link" href="/about/index.html">Обо мне</a>
+    </ul>
+</header>
+
+<article class="article" itemtype="http://schema.org/BlogPosting" itemscope="">
+    <header  class="article__header">
+        <time datetime="2021-01-30T19:00:00.000Z" itemprop="datePublished">
+            30 января 2021 г.
+        </time>
+        <h1 itemprop="name headline">Интерфейсы и абстрактные классы в php</h1>
+    </header>
+
+    <div class="content" itemprop="articleBody">
+        <figure style="border: none">
+            <img src="/assets/images/notes/12/main.png" alt=""  data-action="zoom">
+        </figure>
+        <p class="description">
+            Интерфейсы и абстрактные классы в php. Что это, чем они друг от друга отличаются и как с ними работать.
+        </p>
+        <h2>Что такое интерфейс</h2>
+<p>Интерфейс — это конструкция языка содержащая сигнатуры публичных методов без их реализации.</p>
+<p>Интерфейс, как и класс пишут в отдельном файле с соблюдением всех стандартов.</p>
+<p>Для объявления интерфейса используется ключевое слово <code>interface</code>. Так же принято его указывать в названии интерфейса.</p>
+<p>Примеры названий интерфейса:</p>
+<ul>
+<li><code>ContainerApplicationInterface</code></li>
+<li><code>StatementInterface</code></li>
+<li><code>NodeTraverserInterface</code></li>
+<li><code>WrappableOutputFormatterInterface</code></li>
+</ul>
+<pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span><br><br><span class="token comment">// Пример 1</span><br><br><span class="token keyword">interface</span> <span class="token class-name">BuildNodeInterface</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">getNode</span><span class="token punctuation">(</span><span class="token variable">$id</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> Node<span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h2>Реализация интерфейса</h2>
+<p>Интерфейс может содержать только публичные методы и публичные константы.</p>
+<pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span><br><br><span class="token comment">// Пример 2</span><br><br><span class="token keyword">interface</span> <span class="token class-name">TestInterface</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">public</span> <span class="token keyword">const</span> <span class="token constant">CONSTANT</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// использование снаружи BuildNodeInterface::CONSTANT</span><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">__construct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">getMethodOne</span><span class="token punctuation">(</span>int <span class="token variable">$id</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">getMethodTwo</span><span class="token punctuation">(</span>string <span class="token variable">$name</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>С точки зрения прикладного кода недостаточно просто создать интерфейс.
+Отдельно, в нем не смысла. Интерфейс необходимо <strong>реализовать</strong> с помощью ключевого слова <code>implements</code>.</p>
+<p>Для реализации, необходимо в классе, который реализует интерфейс переопределить все методы описанные в интерфейсе.
+Необходимо учесть, что сигнатура функции должна совпадать.</p>
+<blockquote>
+<p>Константу нельзя переопределить в реализующих классах.</p>
+</blockquote>
+<pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span><br><br><span class="token comment">// Пример 3 . Интерфейс TestInterface объявлен в примере 2</span><br><br><span class="token keyword">class</span> <span class="token class-name">RealizableClass</span> <span class="token keyword">implements</span> <span class="token class-name">TestInterface</span> <span class="token punctuation">{</span><br><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">__construct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">getMethodOne</span><span class="token punctuation">(</span>int <span class="token variable">$id</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token comment">// TODO: Implement getMethodOne() method.</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">getMethodTwo</span><span class="token punctuation">(</span>string <span class="token variable">$name</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token comment">// TODO: Implement getMethodTwo() method.</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h2>Наследование интерфейсов</h2>
+<p>Интерфейс может наследоваться от нескольких других интерфейсов. К тоже же класс может реализовывать несколько интерфейсов.</p>
+<p>Например объявим три интерфейса. Четвертый <code>FourInterface</code> будет наследовать три.</p>
+<p>А класс <code>Realizable</code> будет реализовывать интерфейсы <code>FourInterface</code> и <code>\Countable</code>.</p>
+<blockquote>
+<p>Интерфейс \Countable встроенный интерфейс в сам язык и нужен для подсчета элементов.</p>
+</blockquote>
+<pre class="language-php"><code class="language-php"><br><span class="token comment">// Пример 4</span><br><br><span class="token keyword">interface</span> <span class="token class-name">OneInterface</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">One</span><span class="token punctuation">(</span><span class="token keyword">array</span> <span class="token variable">$array</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">array</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">interface</span> <span class="token class-name">TwoInterface</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">Two</span><span class="token punctuation">(</span>int <span class="token variable">$integer</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> int<span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">interface</span> <span class="token class-name">ThreeInterface</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">Three</span><span class="token punctuation">(</span>string <span class="token variable">$integer</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> int<span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">interface</span> <span class="token class-name">FourInterface</span> <span class="token keyword">extends</span> <span class="token class-name">OneInterface</span><span class="token punctuation">,</span>TwoInterface<span class="token punctuation">,</span>ThreeInterface<br><span class="token punctuation">{</span><br>    <span class="token comment">// Здесь мы дополняем сигнатуру метода One</span><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">One</span><span class="token punctuation">(</span><span class="token keyword">array</span> <span class="token variable">$array</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> int <span class="token variable">$integer</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">array</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">class</span> <span class="token class-name">Realizable</span> <span class="token keyword">implements</span> <span class="token class-name">FourInterface</span><span class="token punctuation">,</span> \<span class="token package">Countable</span><br><span class="token punctuation">{</span><br><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">Two</span><span class="token punctuation">(</span>int <span class="token variable">$integer</span><span class="token punctuation">)</span><span class="token punctuation">:</span> int<br>    <span class="token punctuation">{</span><br>        <span class="token comment">// TODO: Implement Two() method.</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">Three</span><span class="token punctuation">(</span>string <span class="token variable">$integer</span><span class="token punctuation">)</span><span class="token punctuation">:</span> int<br>    <span class="token punctuation">{</span><br>        <span class="token comment">// TODO: Implement Three() method.</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">One</span><span class="token punctuation">(</span><span class="token keyword">array</span> <span class="token variable">$array</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> int <span class="token variable">$integer</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">array</span><br>    <span class="token punctuation">{</span><br>        <span class="token comment">// TODO: Implement One() method.</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> int<br>    <span class="token punctuation">{</span><br>        <span class="token comment">// TODO: Implement count() method.</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Возможно так же использовать интерфейс в сигнатурах функций и методов.</p>
+<pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span><br><br><span class="token comment">// Пример 5</span><br><br><span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span>FourInterface <span class="token variable">$four</span><span class="token punctuation">)</span><span class="token punctuation">:</span> string<br><span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token single-quoted-string string">'test'</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token variable">$obj</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Realizable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// класс этого объекта должен реализовывать FourInterface</span><br><br><span class="token keyword">echo</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// test</span></code></pre>
+<p>Запись интерфейса, а не класса позволяет завязываться на интерфейс, что делает программу гибче.</p>
+<p>С наследованием интерфейсов можно запутаться, главное придерживаться принципа интерфейс нужен для спецификации типа, то есть
+для того, что он может, а не наоборот.</p>
+<h2>Где нужны интерфейсы</h2>
+<p>Использовать интерфейсы полезно, когда нужно написать библиотеку.</p>
+<p>К примеру для реализации стандарта <a href="https://www.php-fig.org/psr/psr-7/">PSR-7</a> нужно реализовать интерфейсы:</p>
+<ul>
+<li><code>ServerRequestInterface</code></li>
+<li><code>ResponseInterface</code></li>
+</ul>
+<p>Реализацию данных интерфейсов можно увидеть во многих фреймворках, например в slim:</p>
+<ul>
+<li><a href="https://github.com/slimphp/Slim-Psr7/blob/master/src/Request.php">ServerRequestInterface</a></li>
+<li><a href="https://github.com/slimphp/Slim-Psr7/blob/master/src/Response.php">ResponseInterface</a></li>
+</ul>
+<p>Мы можем без проблем менять одну библиотеку на другую совместимую с PSR-7.</p>
+<p>Интерфейс лучше добавлять тогда, когда он нужен.</p>
+<p>Задача. Нужно преобразовать строку с нужным переводом строк в разных операционных системах.</p>
+<p>Здесь может помочь интерфейс.</p>
+<pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span><br><br><span class="token comment">// Пример 6</span><br><br><span class="token keyword">interface</span> <span class="token class-name">LineInterface</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">createWrite</span><span class="token punctuation">(</span>string <span class="token variable">$line</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> string<span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">class</span> <span class="token class-name">WinWrite</span> <span class="token keyword">implements</span> <span class="token class-name">LineInterface</span><br><span class="token punctuation">{</span><br><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">createWrite</span><span class="token punctuation">(</span>string <span class="token variable">$line</span><span class="token punctuation">)</span><span class="token punctuation">:</span> string<br>    <span class="token punctuation">{</span><br>        <span class="token keyword">return</span> <span class="token variable">$line</span> <span class="token punctuation">.</span> <span class="token double-quoted-string string">"\r\n"</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">class</span> <span class="token class-name">UnixWrite</span> <span class="token keyword">implements</span> <span class="token class-name">LineInterface</span><br><span class="token punctuation">{</span><br><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">createWrite</span><span class="token punctuation">(</span>string <span class="token variable">$line</span><span class="token punctuation">)</span><span class="token punctuation">:</span> string<br>    <span class="token punctuation">{</span><br>        <span class="token keyword">return</span> <span class="token variable">$line</span> <span class="token punctuation">.</span> <span class="token double-quoted-string string">"\n"</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Теперь при добавлении другой операционной системой достаточно создать новый класс и реализовать там интерфейс <code>LineInterface</code></p>
+<blockquote>
+<p>Реализация дана для примера, для решения данной задачи используйте константу <code>PHP_EOL</code>.</p>
+</blockquote>
+<blockquote>
+<p>Когда нужно использовать интерфейс это уже зависит от конкретной ситуации и понимание этого момента придёт с опытом и практикой.</p>
+</blockquote>
+<h2>Что такое абстрактный класс</h2>
+<p>Теперь попытаемся понять для чего нужен абстрактный класс в php.</p>
+<p>Напишем компонент логирования.</p>
+<pre class="language-php"><code class="language-php"><br><span class="token comment">// Пример 7</span><br><br><span class="token keyword">interface</span> <span class="token class-name">LogInterface</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">__construct</span><span class="token punctuation">(</span><span class="token variable">$options</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Настроить объект значениями</span><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token variable">$key</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Получить значение лога</span><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">set</span><span class="token punctuation">(</span><span class="token variable">$key</span><span class="token punctuation">,</span> <span class="token variable">$value</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Положить значение в лог</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Log</span> <span class="token keyword">implements</span> <span class="token class-name">LogInterface</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">protected</span> <span class="token keyword">array</span> <span class="token variable">$options</span><span class="token punctuation">;</span><br><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">__construct</span><span class="token punctuation">(</span><span class="token variable">$options</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">options</span> <span class="token operator">=</span> <span class="token variable">$options</span><span class="token punctuation">;</span><br>        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token comment">// Общая реализация для всех потомков</span><br>    <span class="token keyword">abstract</span> <span class="token keyword">protected</span> <span class="token keyword">function</span> <span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token comment">// Конкретные реализации</span><br><br><span class="token keyword">class</span> <span class="token class-name">FileLog</span> <span class="token keyword">extends</span> <span class="token class-name">Log</span><br><span class="token punctuation">{</span><br><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token variable">$key</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token comment">// TODO: Implement get() method.</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">set</span><span class="token punctuation">(</span><span class="token variable">$key</span><span class="token punctuation">,</span> <span class="token variable">$value</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token comment">// TODO: Implement set() method.</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token keyword">protected</span> <span class="token keyword">function</span> <span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token comment">// TODO: Implement write() method.</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">class</span> <span class="token class-name">DBLog</span> <span class="token keyword">extends</span> <span class="token class-name">Log</span><br><span class="token punctuation">{</span><br><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token variable">$key</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token comment">// TODO: Implement get() method.</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">set</span><span class="token punctuation">(</span><span class="token variable">$key</span><span class="token punctuation">,</span> <span class="token variable">$value</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token comment">// TODO: Implement set() method.</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token keyword">protected</span> <span class="token keyword">function</span> <span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token comment">// TODO: Implement write() method.</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Имеем <code>LogInterface</code> в котором определен конструктор и методы <code>get</code> и <code>set</code>, которые работают с коллекцией логов.
+Логи могут храниться в разных хранилищах, их нужно куда-то писать.
+Создадим вспомогательный класс <code>Log</code> и сделаем его абстрактным.</p>
+<p>Добавим конструктор, который будет наделять наш объект специфичными для класса потомка опциями, Так же вызовем метод <code>write</code>.</p>
+<blockquote>
+<p>От абстрактного класса нельзя создать объект, его методы нужно переопределить в классе наследнике</p>
+</blockquote>
+<p>Метод <code>write</code> является общим, его и нужно переопределять в классе наследнике.</p>
+<p>Теперь куда бы мы не писали логи, для этого достаточно создать класс и переопределить в нем методы <code>get</code>, <code>set</code>, <code>write</code>.</p>
+<p>Итак, типичное использование абстрактных классов это уменьшение дублирования кода, при появлении общих методов.
+Просто выносим общую логику в абстрактный метод.</p>
+<blockquote>
+<p>Абстрактный класс может полностью не реализовывать все методы интерфейса,
+тогда определения методов из интерфейса становятся абстрактными методами в этом классе, и должны быть переопределены в
+классе наследнике.</p>
+</blockquote>
+<h2>Особенности абстрактного класса</h2>
+<ul>
+<li>Технически абстрактный класс может не содержать абстрактных методов.</li>
+<li>В отличие от интерфейса в абстрактном классе для части методов можно написать реализацию.</li>
+<li>Никто не мешает использовать абстрактные классы вместо интерфейсов, все зависит от задачи.</li>
+<li>Абстрактный класс не имеет никакого отношения к ООП. Это способ распространения кода в вашей иерархии кода.</li>
+</ul>
+<h2>Итог</h2>
+<p>Итак, интерфейс — это контракт, который содержит сигнатуры методов без реализации.</p>
+<p>Абстрактный класс содержит &quot;очень&quot; общую логику для всех классов потомков.</p>
+
+    </div>
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://lexusalex-ru.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</article>
+
+<footer>
+    <p>
+        Работает на <a href="https://www.11ty.dev/">Eleventy</a> - 2020
+    </p>
+</footer>
+    </div>
+    <script src="/assets/js/medium-zoom.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script id="dsq-count-scr" src="//lexusalex-ru.disqus.com/count.js" async></script>
+</body>
+</html> 
