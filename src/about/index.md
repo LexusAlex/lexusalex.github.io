@@ -32,3 +32,4 @@ Web-разработчик из Чехова.
 
 1. [alexsey_89@bk.ru](email:alexsey_89@bk.ru)
 2. [https://github.com/LexusAlex](https://github.com/LexusAlex)
+3. [https://vk.com/id297664343](https://vk.com/id297664343)
