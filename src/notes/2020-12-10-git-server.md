@@ -3,12 +3,10 @@ layout: note.njk
 tags: notes
 number : 2
 title: Git сервер в локальной сети
-description: Разворачиваем git сервер на debian
+description: Разворачиваем Git сервер на Debian
 date: 2020-12-10 21:20:00 +3
 main_image: /assets/images/notes/2/main.png
 gradient_image: /assets/images/notes/2/gradient.png
-color: F9DC24
-color_rgba: rgba(249, 220, 36, 10)
 themes: linux git ssh
 ---
 

@@ -7,8 +7,6 @@ description: Добавляем возможность заходить на с�
 date: 2021-01-24 23:00:00 +3
 main_image: /assets/images/notes/11/main.png
 gradient_image: /assets/images/notes/11/gradient.png
-color: EB8A44
-color_rgba: rgba(235, 138, 68, 10)
 themes: linux ssh
 ---
 

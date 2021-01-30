@@ -3,12 +3,10 @@ layout: note.njk
 tags: notes
 number : 3
 title: Миграции в php
-description: Используем миграции базы данных в php на примере библиотеки phinx
+description: Используем миграции базы данных в php на примере библиотеки Phinx
 date: 2020-12-27 12:30:00 +3
 main_image: /assets/images/notes/3/main.png
 gradient_image: /assets/images/notes/3/gradient.png
-color: 4B7447
-color_rgba: rgba(75, 116, 71, 10)
 themes: php sql
 ---
 

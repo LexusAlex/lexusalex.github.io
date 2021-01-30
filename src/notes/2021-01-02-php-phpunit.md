@@ -2,7 +2,7 @@
 layout: note.njk
 tags: notes
 number : 5
-title: Тестирование кода в php (phpunit)
+title: Тестирование кода с помощью Phpunit
 description: Как начать тестировать код у себя в проекте
 date: 2021-01-02 23:50:00 +3
 main_image: /assets/images/notes/5/main.png

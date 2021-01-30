@@ -12,16 +12,15 @@
     flex-grow: 1;
     position: relative;
     border-radius: 15px;
-    padding: 20px;
+    padding: 13px;
     margin: 5px;
     min-height: 130px;
-    /*width: calc(50% - 10px);*/
+    width: calc(50% - 10px);
     word-break: break-word;
     background-size: cover;
     background-position: 50%;
     transition: all .2s ease;
     color: black;
-    text-shadow: 1px 1px 1px #FFFFFF;
 }
 
 .notes__item:hover {
@@ -31,7 +30,8 @@
 
 .notes__item_time {
     color: black;
-    text-shadow: 1px 1px 1px #FFFFFF;
+    font-size: 80%;
+    padding-top: 36px;
 }
 
 .notes__item_link {
@@ -41,7 +41,6 @@
 .notes__item_tags {
     color: black;
     font-style: italic;
-    text-shadow: 1px 1px 1px #FFFFFF;
 }
 
 .article__header {

@@ -2,13 +2,11 @@
 layout: note.njk
 tags: notes
 number : 9
-title: Сборка php-fpm 8.1 из исходников на debian 10
+title: Сборка php-fpm 8.1 из исходников на Debian 10
 description: Собираем менеджер приложений php-fpm
 date: 2021-01-16 23:30:00 +3
 main_image: /assets/images/notes/9/main.png
 gradient_image: /assets/images/notes/9/gradient.png
-color: 8EBA43
-color_rgba: rgba(142, 186, 67, 10)
 themes: linux php
 ---
 

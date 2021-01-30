@@ -2,13 +2,11 @@
 layout: note.njk
 tags: notes
 number : 6
-title: Сборка apache2 из исходников на debian 10
+title: Сборка Apache 2 из исходников на Debian 10
 description: Как собрать и запустить apache2 из исходников
 date: 2021-01-04 23:50:00 +3
 main_image: /assets/images/notes/6/main.png
 gradient_image: /assets/images/notes/6/gradient.png
-color: EB8A44
-color_rgba: rgba(235, 138, 68, 10)
 themes: linux apache2
 ---
 

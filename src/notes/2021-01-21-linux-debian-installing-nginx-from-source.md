@@ -2,13 +2,11 @@
 layout: note.njk
 tags: notes
 number : 10
-title: Сборка nginx из исходников на debian 10
+title: Сборка Nginx из исходников на Debian 10
 description: Собираем nginx из исходных кодов
 date: 2021-01-21 23:00:00 +3
 main_image: /assets/images/notes/10/main.png
 gradient_image: /assets/images/notes/10/gradient.png
-color: 996666
-color_rgba: rgba(153, 102, 102, 10)
 themes: linux nginx
 ---
 

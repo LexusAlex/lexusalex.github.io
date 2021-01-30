@@ -2,13 +2,11 @@
 layout: note.njk
 tags: notes
 number : 8
-title: Сборка mysql 8 из дистрибутива на debian 10
-description: Поставим базу данных mysql на наш сервер.
+title: Сборка Mysql 8 из дистрибутива на Debian 10
+description: Поставим базу данных Mysql на наш сервер.
 date: 2021-01-09 23:30:00 +3
 main_image: /assets/images/notes/8/main.png
 gradient_image: /assets/images/notes/8/gradient.png
-color: 4B7447
-color_rgba: rgba(75, 116, 71, 10)
 themes: linux mysql
 ---
 

@@ -7,8 +7,6 @@ description: Мысли про постановку задачи
 date: 2020-10-18 22:35:00 +3
 main_image: /assets/images/notes/1/main.png
 gradient_image: /assets/images/notes/1/gradient.png
-color: EB8A44
-color_rgba: rgba(235, 138, 68, 10)
 themes: tasks
 ---
 

@@ -2,13 +2,11 @@
 layout: note.njk
 tags: notes
 number : 7
-title: Сборка php 8.1 из исходников на debian 10
-description: Собираем php 8 под веб сервер apache2
+title: Сборка php 8.1 из исходников на Debian 10
+description: Собираем php 8 под веб сервер Apache 2
 date: 2021-01-08 17:50:00 +3
 main_image: /assets/images/notes/7/main.png
 gradient_image: /assets/images/notes/7/gradient.png
-color: F9DC24
-color_rgba: rgba(249, 220, 36, 10)
 themes: linux php
 ---
 
