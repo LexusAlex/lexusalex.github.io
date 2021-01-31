@@ -1,0 +1,5 @@
+Установка lemp
+php-fpm mysql nginx
+
+
+Итак имеем свеже установленный Debian 10
