@@ -23,6 +23,12 @@
     color: black;
 }
 
+@media (max-width: 576px) {
+    .notes__item {
+        width: 100%;
+    }
+}
+
 .notes__item:hover {
     transform: scale(1.02);
     transition: all .2s ease;
