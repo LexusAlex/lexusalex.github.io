@@ -1,0 +1,28 @@
+
+Скачиваем образ
+docker pull yandex/clickhouse-server
+
+Убеждаемся, что образ скачен
+docker images
+
+Запускаем
+sudo docker run -d --name clickhouse_test --ulimit nofile=262144:262144 -p 127.0.0.1:8123:8123 -p 127.0.0.1:9000:9000 -v /home/alex/projects/lexusalex.github.io/data:/var/lib/clickhouse yandex/clickhouse-server
+
+Теперь зайдем в контейнер
+
+docker exec -it clickhouse_test /bin/bash
+
+Запускаем
+clickhouse-client
+
+Пишем запросы
+
+SHOW DATABASES;
+
+docker stop clickhouse_test
+docker rm clickhouse_test
+
+
+
+
+
