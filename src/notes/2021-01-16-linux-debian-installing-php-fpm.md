@@ -2,7 +2,7 @@
 layout: note.njk
 tags: notes
 number : 9
-title: Сборка php-fpm 8.1 из исходников на Debian 10
+title: Сборка php-fpm 8 из исходников на Debian 10
 description: Собираем менеджер приложений php-fpm
 date: 2021-01-16 23:30:00 +3
 main_image: /assets/images/notes/9/main.png
@@ -125,8 +125,60 @@ sudo /home/alex/apache2/bin/apachectl -k restart
   <img src="/assets/images/notes/9/php-fpm.png" alt="php-fpm"  data-action="zoom">
 </figure>
 
+## Обновление php-fpm
+
+Если необходимо обновить версию php, нужно проделать все предыдущие шаги с указанием свежей версии:
+
+- Подготовка
+- Конфигурирование и сборка
+- Настройка и запуск
+
+Например таким образом:
+
+```shell
+wget https://www.php.net/distributions/php-8.0.2.tar.gz
+tar xvf php-8.0.2.tar.gz
+mkdir php8.0.2-fpm
+cd php-8.0.2
+./configure --prefix=/home/alex/php8.0.2-fpm --enable-fpm --with-config-file-path=/home/alex/php8.0.2-fpm/config --with-config-file-scan-dir=/home/alex/php8.0.2-fpm/config/conf.d --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --enable-mbstring
+make
+make install
+mv /home/alex/php8.0.2-fpm/etc/php-fpm.conf.default /home/alex/php8.0.2-fpm/etc/php-fpm.conf
+mv /home/alex/php8.0.2-fpm/etc/php-fpm.d/www.conf.default /home/alex/php8.0.2-fpm/etc/php-fpm.d/www.conf
+vim /home/alex/php8.0.2-fpm/etc/php-fpm.d/www.conf
+#user = daemon
+#group = daemon
+#listen = 127.0.0.1:9002 
+# Проверка работоспособности
+#sudo /home/alex/php8.0.2-fpm/sbin/php-fpm
+sudo vim /etc/rc.local
+#/home/alex/php8.0.2-fpm/sbin/php-fpm
+sudo netstat -tulpn | grep 9002
+# Для проверки подключим к nginx
+location ~ \.php$ {
+    root           html;
+    fastcgi_pass   127.0.0.1:9002;
+    fastcgi_index  index.php;
+    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    include        fastcgi_params;
+}
+sudo /home/alex/nginx/sbin/nginx -s reload
+```
+
+Свежая версия php собрана
+
+<figure>
+  <img src="/assets/images/notes/9/php8.0.2.png" alt="php-fpm"  data-action="zoom">
+</figure>
+
 ## Итог
 
 Как видим собрать `php-fpm` не составляет особого труда. 
 
-Главное здесь уметь искать информацию в документации.
+Главное здесь желание и умение искать информацию в документации.
+
+## Update
+
+**06.02.2021**
+
+- Добавлен пункт "Обновление php-fpm"

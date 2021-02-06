@@ -152,7 +152,7 @@ df -h -T /dev/sda1
 ```
 Как видим ничего не поменялось.
 
-Перечитаем разделы командой `sudo partprobe` и расширим том все той же командой `resize2fs` :
+Перечитаем разделы командой `sudo partprobe /dev/sda` и расширим том все той же командой `resize2fs` :
 
 ```bash
 sudo resize2fs /dev/sda1

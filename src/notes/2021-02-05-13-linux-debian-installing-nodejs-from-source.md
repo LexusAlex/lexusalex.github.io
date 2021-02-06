@@ -66,9 +66,16 @@ lib
 share
 ```
 
-Проверяем версию
+Проверяем версию Node.js и npm
 
 ```shell
 ./bin/node -v
 v15.7.0
+
+./bin/node lib/node_modules/npm/bin/npm-cli.js -v
+7.4.3
 ```
+
+# Итог
+
+Сборка Node.js не составляет особого труда.

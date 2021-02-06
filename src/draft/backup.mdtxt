@@ -45,7 +45,7 @@ yum install cifs-utils
 mount -t cifs -o username=guest,password=,uid=1000,iocharset=utf8 //192.168.88.252/share /media
 mount.cifs -v //BACKUP/linux /mnt/share  --verbose -o username="",password="",file_mode=0777,dir_mode=0777,iocharset=utf8
 
-sudo tar -cvpzf /media/centos/`date +%Y_%m_%d_%H_%M`.tgz --exclude=/proc --exclude=/dev --exclude=/lost+found --exclude=/mnt --exclude=/cdrom --exclude=/media --exclude=/sys --ignore-failed-read /
+sudo tar -cvpzf /media/test_debian/`date +%Y_%m_%d_%H_%M`.tgz --exclude=/proc --exclude=/dev --exclude=/lost+found --exclude=/mnt --exclude=/cdrom --exclude=/media --exclude=/sys --ignore-failed-read /
 
 2.
 Восстановление centos
@@ -65,7 +65,7 @@ mount /dev/sda1 /mnt/
 
 2.
 
-mount -t cifs //192.168.88.252/share /media -o username=guest
+sudo mount -t cifs //192.168.88.252/share /media -o username=guest
 
 Распаковываем
 tar --same-owner -xvpf /media/centos/backupYYYYMMDD.tgz -C /mnt/

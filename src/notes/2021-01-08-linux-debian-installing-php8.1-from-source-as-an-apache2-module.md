@@ -2,7 +2,7 @@
 layout: note.njk
 tags: notes
 number : 7
-title: Сборка php 8.1 из исходников на Debian 10
+title: Сборка php 8 из исходников на Debian 10
 description: Собираем php 8 под веб сервер Apache 2
 date: 2021-01-08 17:50:00 +3
 main_image: /assets/images/notes/7/main.png
@@ -24,7 +24,7 @@ themes: linux php
 
 Скачаем исходники текущей стабильной версии php на сервер c [официального сайта](https://www.php.net/downloads).
 
-> 07.01.2021 вышла версия php 8.1.
+> 07.01.2021 вышла версия php 8.0.1
 
 ```shell
 wget https://www.php.net/distributions/php-8.0.1.tar.gz

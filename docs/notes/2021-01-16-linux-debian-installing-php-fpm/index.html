@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="yandex-verification" content="34b9532704688201" />
 
-    <title>Сборка php-fpm 8.1 из исходников на Debian 10 · Алексей Шмелев</title>
+    <title>Сборка php-fpm 8 из исходников на Debian 10 · Алексей Шмелев</title>
 
     <meta name="description" content="Собираем менеджер приложений php-fpm">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Сборка php-fpm 8.1 из исходников на Debian 10">
+    <meta property="og:title" content="Сборка php-fpm 8 из исходников на Debian 10">
     <meta property="og:description" content="Собираем менеджер приложений php-fpm">
 
     
@@ -35,7 +35,7 @@
         <time datetime="2021-01-16T20:30:00.000Z" itemprop="datePublished">
             16 января 2021 г.
         </time>
-        <h1 itemprop="name headline">Сборка php-fpm 8.1 из исходников на Debian 10</h1>
+        <h1 itemprop="name headline">Сборка php-fpm 8 из исходников на Debian 10</h1>
     </header>
 
     <div class="content" itemprop="articleBody">
@@ -81,9 +81,27 @@
 <figure>
   <img src="/assets/images/notes/9/php-fpm.png" alt="php-fpm"  data-action="zoom">
 </figure>
+<h2>Обновление php-fpm</h2>
+<p>Если необходимо обновить версию php, нужно проделать все предыдущие шаги с указанием свежей версии:</p>
+<ul>
+<li>Подготовка</li>
+<li>Конфигурирование и сборка</li>
+<li>Настройка и запуск</li>
+</ul>
+<p>Например таким образом:</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">wget</span> https://www.php.net/distributions/php-8.0.2.tar.gz<br><span class="token function">tar</span> xvf php-8.0.2.tar.gz<br><span class="token function">mkdir</span> php8.0.2-fpm<br><span class="token builtin class-name">cd</span> php-8.0.2<br>./configure --prefix<span class="token operator">=</span>/home/alex/php8.0.2-fpm --enable-fpm --with-config-file-path<span class="token operator">=</span>/home/alex/php8.0.2-fpm/config --with-config-file-scan-dir<span class="token operator">=</span>/home/alex/php8.0.2-fpm/config/conf.d --with-mysqli<span class="token operator">=</span>mysqlnd --with-pdo-mysql<span class="token operator">=</span>mysqlnd --enable-mbstring<br><span class="token function">make</span><br><span class="token function">make</span> <span class="token function">install</span><br><span class="token function">mv</span> /home/alex/php8.0.2-fpm/etc/php-fpm.conf.default /home/alex/php8.0.2-fpm/etc/php-fpm.conf<br><span class="token function">mv</span> /home/alex/php8.0.2-fpm/etc/php-fpm.d/www.conf.default /home/alex/php8.0.2-fpm/etc/php-fpm.d/www.conf<br><span class="token function">vim</span> /home/alex/php8.0.2-fpm/etc/php-fpm.d/www.conf<br><span class="token comment">#user = daemon</span><br><span class="token comment">#group = daemon</span><br><span class="token comment">#listen = 127.0.0.1:9002 </span><br><span class="token comment"># Проверка работоспособности</span><br><span class="token comment">#sudo /home/alex/php8.0.2-fpm/sbin/php-fpm</span><br><span class="token function">sudo</span> <span class="token function">vim</span> /etc/rc.local<br><span class="token comment">#/home/alex/php8.0.2-fpm/sbin/php-fpm</span><br><span class="token function">sudo</span> <span class="token function">netstat</span> -tulpn <span class="token operator">|</span> <span class="token function">grep</span> <span class="token number">9002</span><br><span class="token comment"># Для проверки подключим к nginx</span><br>location ~ <span class="token punctuation">\</span>.php$ <span class="token punctuation">{</span><br>    root           html<span class="token punctuation">;</span><br>    fastcgi_pass   <span class="token number">127.0</span>.0.1:9002<span class="token punctuation">;</span><br>    fastcgi_index  index.php<span class="token punctuation">;</span><br>    fastcgi_param  SCRIPT_FILENAME  <span class="token variable">$document_root</span><span class="token variable">$fastcgi_script_name</span><span class="token punctuation">;</span><br>    include        fastcgi_params<span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><span class="token function">sudo</span> /home/alex/nginx/sbin/nginx -s reload</code></pre>
+<p>Свежая версия php собрана</p>
+<figure>
+  <img src="/assets/images/notes/9/php8.0.2.png" alt="php-fpm"  data-action="zoom">
+</figure>
 <h2>Итог</h2>
 <p>Как видим собрать <code>php-fpm</code> не составляет особого труда.</p>
-<p>Главное здесь уметь искать информацию в документации.</p>
+<p>Главное здесь желание и умение искать информацию в документации.</p>
+<h2>Update</h2>
+<p><strong>06.02.2021</strong></p>
+<ul>
+<li>Добавлен пункт &quot;Обновление php-fpm&quot;</li>
+</ul>
 
     </div>
 
