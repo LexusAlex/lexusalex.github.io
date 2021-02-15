@@ -104,3 +104,11 @@ ftpasswd: entry created
 ## Запуск сервера
 
 sudo ./sbin/proftpd
+
+ftp сервер vsftpd
+
+wget https://security.appspot.com/downloads/vsftpd-3.0.3.tar.gz
+tar xzvf vsftpd-3.0.3.tar.gz
+cd vsftpd-3.0.3
+
+Нельзя конфигурировать
