@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="yandex-verification" content="34b9532704688201" />
+
+    <title>Создание composer пакета · Алексей Шмелев</title>
+
+    <meta name="description" content="Как с нуля создать composer пакет и опубликовать его на packagist.org">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Создание composer пакета">
+    <meta property="og:description" content="Как с нуля создать composer пакет и опубликовать его на packagist.org">
+
+    
+
+    <link rel="stylesheet" href="/index.css">
+    <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(47811625, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47811625" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <div class="page">
+        
+<header class="header page__header">
+    <div class="header__title">Алексей Шмелев</div>
+    <ul class="navigation">
+        <li class="navigation__item"><a class="link" href="/">Главная</a>
+        <li class="navigation__item"><a class="link" href="/about/index.html">Обо мне</a>
+    </ul>
+</header>
+
+<article class="article" itemtype="http://schema.org/BlogPosting" itemscope="">
+    <header  class="article__header">
+        <time datetime="2021-02-19T20:00:00.000Z" itemprop="datePublished">
+            19 февраля 2021 г.
+        </time>
+        <h1 itemprop="name headline">Создание composer пакета</h1>
+    </header>
+
+    <div class="content" itemprop="articleBody">
+        <figure style="border: none">
+            <img src="/assets/images/notes/14/main.png" alt=""  data-action="zoom">
+        </figure>
+        <p class="description">
+            Как с нуля создать composer пакет и опубликовать его на packagist.org
+        </p>
+        <p>Типичное php приложение зависит от другого кода.
+Часто бывает, что код необходимо использовать сразу в нескольких проектах.
+В php такими зависимостями управляет пакетный менеджер <a href="https://getcomposer.org/">composer</a>.</p>
+<p>Важно отличать пакет (библиотеку) от проекта (приложения). Пакет — это законченная программа которую мы используем в проекте как зависимость.
+А проект — это конечный продукт(сайт) который использует зависимости (пакеты).</p>
+<p>Все пакеты хранятся в репозитории composer библиотек <a href="packagist.org">packagist.org</a>.</p>
+<p>Небольшой мануал как создать composer пакет.</p>
+<h2>Создание репозитория</h2>
+<p>Первое, что необходимо сделать — это создать на <a href="https://github.com">гитхабе</a> git репозиторий с названием библиотеки.</p>
+<p>Теперь создаем локальный проект, инициализируем пустой репозиторий и привязываем к нему репозиторий на гитхабе.
+Так же переименуем ветку и свяжем две ветки удаленную и локальную.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">git</span> init<br><span class="token function">git</span> remote <span class="token function">add</span> origin git@github.com:LexusAlex/composer-package.git<br><span class="token function">git</span> checkout master<br><span class="token function">git</span> checkout -b main<br><span class="token function">git</span> pull origin main<br><span class="token function">git</span> branch --set-upstream-to<span class="token operator">=</span>origin/main main</code></pre>
+<h2>Создание инфраструктуры</h2>
+<p>Чтобы было удобно разрабатывать проект, настроем запуск php в докер контейнере.</p>
+<p>Создадим <code>Dockerfile</code> по пути <code>docker/php-cli/Dockerfile</code> со следующим содержимым:</p>
+<pre class="language-dockerfile"><code class="language-dockerfile"><span class="token keyword">FROM</span> php<span class="token punctuation">:</span>7.4<span class="token punctuation">-</span>cli<span class="token punctuation">-</span>alpine<br><br><span class="token keyword">RUN</span> apk add <span class="token punctuation">-</span><span class="token punctuation">-</span>no<span class="token punctuation">-</span>cache autoconf g++ make \<br>    &amp;&amp; pecl install xdebug \<br>    &amp;&amp; rm <span class="token punctuation">-</span>rf /tmp/pear \<br>    &amp;&amp; docker<span class="token punctuation">-</span>php<span class="token punctuation">-</span>ext<span class="token punctuation">-</span>enable xdebug<br><br><span class="token keyword">RUN</span> mv $PHP_INI_DIR/php.ini<span class="token punctuation">-</span>development $PHP_INI_DIR/php.ini<br><br><span class="token keyword">RUN</span> apk add unzip<br><br><span class="token keyword">ENV</span> COMPOSER_ALLOW_SUPERUSER 1<br><br><span class="token keyword">RUN</span> curl <span class="token punctuation">-</span>sS https<span class="token punctuation">:</span>//getcomposer.org/installer <span class="token punctuation">|</span> php <span class="token punctuation">-</span><span class="token punctuation">-</span> <span class="token punctuation">-</span><span class="token punctuation">-</span>install<span class="token punctuation">-</span>dir=/bin <span class="token punctuation">-</span><span class="token punctuation">-</span>filename=composer <span class="token punctuation">-</span><span class="token punctuation">-</span>quiet \<br>    &amp;&amp; rm <span class="token punctuation">-</span>rf /root/.composer/cache<br><br><span class="token keyword">WORKDIR</span> /composer<span class="token punctuation">-</span>package</code></pre>
+<p>Из этой инструкции будет создан образ, и в последствии запущен контейнер.</p>
+<p>С заделом на использование нескольких контейнеров добавим файл <code>docker-compose.yml</code> в корень пакета:</p>
+<pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3.7"</span><br><span class="token key atrule">services</span><span class="token punctuation">:</span><br>  <span class="token key atrule">php-cli</span><span class="token punctuation">:</span><br>    <span class="token key atrule">build</span><span class="token punctuation">:</span><br>      <span class="token key atrule">context</span><span class="token punctuation">:</span> ./docker/php<span class="token punctuation">-</span>cli<br>      <span class="token key atrule">dockerfile</span><span class="token punctuation">:</span> Dockerfile<br>    <span class="token key atrule">volumes</span><span class="token punctuation">:</span><br>      <span class="token punctuation">-</span> ./<span class="token punctuation">:</span>/composer<span class="token punctuation">-</span>package</code></pre>
+<p>Запускаем сборку <code>docker-compose build</code> или <code>docker-compose up</code></p>
+<p>После этого можно запускать команды внутри контейнера, таким образом</p>
+<pre class="language-shell"><code class="language-shell">docker-compose run --rm php-cli <span class="token function">composer</span> --version<br>Composer version <span class="token number">2.0</span>.9 <span class="token number">2021</span>-01-27 <span class="token number">16</span>:09:27</code></pre>
+<h2>Makefile</h2>
+<p>Чтобы вручную не забивать команды добавим в корень <code>Makefile</code>, в котором будем писать все выполняемые команды.</p>
+<p>Например такие</p>
+<pre class="language-makefile"><code class="language-makefile"><span class="token symbol">build</span><span class="token punctuation">:</span><br>	docker-compose build<br><span class="token symbol">up</span><span class="token punctuation">:</span><br>	docker-compose up</code></pre>
+<p>Впоследствии запуск сборки сводится к <code>make build</code>. В процессе работы мы будем добавлять сюда команды.</p>
+<h2>composer.json</h2>
+<p>Теперь создадим пример файла <code>composer.json</code>. Это можно сделать и ручками, но мы запустим команду <code>composer init</code></p>
+<pre class="language-shell"><code class="language-shell">docker-compose run --rm php-cli <span class="token function">composer</span> init</code></pre>
+<p>В интерактивном режиме будут заданы ряд вопросов, можно заполнить или оставить по дефолту.</p>
+<p>У меня создался такой файл:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"lexusalex/composer-package"</span><span class="token punctuation">,</span><br>    <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"test project in composer"</span><span class="token punctuation">,</span><br>    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"library"</span><span class="token punctuation">,</span><br>    <span class="token property">"authors"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>        <span class="token punctuation">{</span><br>            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Alexsey Shmelev"</span><span class="token punctuation">,</span><br>            <span class="token property">"email"</span><span class="token operator">:</span> <span class="token string">"alexsey_89@bk.ru"</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">]</span><span class="token punctuation">,</span><br>    <span class="token property">"minimum-stability"</span><span class="token operator">:</span> <span class="token string">"stable"</span><span class="token punctuation">,</span><br>    <span class="token property">"require"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Все параметры этого файла можно менять.</p>
+<p>Так же я добавил <code>.gitignore</code> в который поместил папку <code>/vendor</code> и файл <code>composer.lock</code>.</p>
+<p>Добавим две папки</p>
+<ul>
+<li>src - исходные коды нашей библиотеки</li>
+<li>test - phpunit тесты</li>
+</ul>
+<h2>Автозагрузка классов</h2>
+<p>Пропишем автозагрузку для тестов и исходных кодов в <code>composer.json</code></p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"autoload"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property">"psr-4"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>      <span class="token property">"lexusalex\\composer-package\\"</span><span class="token operator">:</span> <span class="token string">"src/"</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token property">"autoload-dev"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property">"psr-4"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>      <span class="token property">"lexusalex\\composer-package\\test\\"</span><span class="token operator">:</span> <span class="token string">"tests/"</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>И выполним команду  <code>docker-compose run --rm php-cli composer dump-autoload</code>.</p>
+<h2>Тесты</h2>
+<p>Создадим директорию <code>tests</code> и поставим phpunit.</p>
+<pre class="language-shell"><code class="language-shell">docker-compose run --rm php-cli <span class="token function">composer</span> require --dev phpunit/phpunit</code></pre>
+<p>Добавим конфигурационный файл <code>phpunit.xml</code></p>
+<p>Сгенерируем его автоматически командой <code>docker-compose run --rm php-cli vendor/bin/phpunit --generate-configuration</code>.
+Или скопируем и другого проекта.
+У меня он выглядит следующим образом</p>
+<pre class="language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>phpunit</span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span><br>         <span class="token attr-name"><span class="token namespace">xsi:</span>noNamespaceSchemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://schema.phpunit.de/9.5/phpunit.xsd<span class="token punctuation">"</span></span><br>         <span class="token attr-name">bootstrap</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>vendor/autoload.php<span class="token punctuation">"</span></span><br>         <span class="token attr-name">executionOrder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>depends,defects<span class="token punctuation">"</span></span><br>         <span class="token attr-name">forceCoversAnnotation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span><br>         <span class="token attr-name">cacheResult</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span><br>         <span class="token attr-name">colors</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><br>         <span class="token attr-name">beStrictAboutCoversAnnotation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><br>         <span class="token attr-name">beStrictAboutOutputDuringTests</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><br>         <span class="token attr-name">beStrictAboutTodoAnnotatedTests</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><br>         <span class="token attr-name">failOnRisky</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><br>         <span class="token attr-name">failOnWarning</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><br>         <span class="token attr-name">verbose</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>testsuites</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>testsuite</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>default<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>directory</span> <span class="token attr-name">suffix</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Test.php<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>tests<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>directory</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>testsuite</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>testsuites</span><span class="token punctuation">></span></span><br><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>coverage</span> <span class="token attr-name">cacheDirectory</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>.phpunit.cache/code-coverage<span class="token punctuation">"</span></span><br>              <span class="token attr-name">processUncoveredFiles</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>include</span><span class="token punctuation">></span></span><br>            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>directory</span> <span class="token attr-name">suffix</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>.php<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>src<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>directory</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>include</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>coverage</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>phpunit</span><span class="token punctuation">></span></span></code></pre>
+<h2>Публикация на packagist.org</h2>
+<p>Последнее, что осталось сделать — это опубликовать наш пакет на <a href="packagist.org">packagist.org</a>.
+Там все интуитивно понятно.</p>
+<p>Закоммитим и поставим тег версии <code>git tag -a 0.1 -m 0.1</code></p>
+<p>Теперь открываем проект куда мы ходим поставить данный тестовый пакет с именем <code>lexusalex/composer-package</code>.</p>
+<pre class="language-shell"><code class="language-shell">docker-compose run --rm php-cli-alpine <span class="token function">composer</span> require lexusalex/composer-package <span class="token number">0.1</span></code></pre>
+<h2>Исходники</h2>
+<p>Предложения и pull requests приветствуются <a href="https://github.com/LexusAlex/composer-package">https://github.com/LexusAlex/composer-package</a>.</p>
+
+    </div>
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://lexusalex-ru.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</article>
+
+<footer>
+    <p>
+        Работает на <a href="https://www.11ty.dev/">Eleventy</a> - 2020
+    </p>
+</footer>
+    </div>
+    <script src="/assets/js/medium-zoom.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script id="dsq-count-scr" src="//lexusalex-ru.disqus.com/count.js" async></script>
+</body>
+</html> 
