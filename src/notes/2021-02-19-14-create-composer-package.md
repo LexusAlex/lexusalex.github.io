@@ -204,7 +204,7 @@ docker-compose run --rm php-cli composer require --dev phpunit/phpunit
 
 ## Публикация на packagist.org
 
-Последнее, что осталось сделать — это опубликовать наш пакет на [packagist.org](packagist.org).
+Последнее, что осталось сделать — это опубликовать наш пакет на [packagist.org](http://packagist.org).
 Там все интуитивно понятно.
 
 Закоммитим и поставим тег версии `git tag -a 0.1 -m 0.1`

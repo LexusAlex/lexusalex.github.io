@@ -2,14 +2,20 @@
 title: Блог lexusalex
 description: Заметки из собственного опыта
 layout: base.njk
-permalink: index.html
+permalink: "{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+eleventyComputed:
+    title: "{% if pagination.pageNumber > 0 %}Страница {{ pagination.pageNumber + 1 }}{% else %}{% endif %}"
+pagination:
+    data: collections.notes
+    size: 10
+    reverse: true
 ---
 {% include 'header.njk' %}
 
 <main class="page__content">
     <div class="content">
         <h1>Заметки</h1>
-        {% for year, posts in collections.notes | groupByPublicationYear %}
+        {% for year, posts in pagination.items | groupByPublicationYear %}
             <section>
                 <h2 class="content_year">{{ year }}</h2>
                 <div class="notes">
@@ -40,6 +46,7 @@ permalink: index.html
                 </table>#}
             </section>
         {% endfor %}
+        {% include 'pages.njk' %}
     </div>
 </main>
 
