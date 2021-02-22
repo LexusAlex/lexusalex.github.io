@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="yandex-verification" content="34b9532704688201" />
+
+    <title>Этапы разработки проекта · Заметки веб разработчика</title>
+
+    <meta name="description" content="Чек-лист этапов разработки проекта">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Этапы разработки проекта">
+    <meta property="og:description" content="Чек-лист этапов разработки проекта">
+
+    
+
+    <link rel="stylesheet" href="/index.css">
+    <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(47811625, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47811625" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <div class="page">
+        
+<header class="header page__header">
+    <div class="header__title">Алексей Шмелев</div>
+    <ul class="navigation">
+        <li class="navigation__item"><a class="link" href="/">Главная</a>
+        <li class="navigation__item"><a class="link" href="/about/index.html">Обо мне</a>
+    </ul>
+</header>
+
+<article class="article" itemtype="http://schema.org/BlogPosting" itemscope="">
+    <header  class="article__header">
+        <time datetime="2021-02-21T20:00:00.000Z" itemprop="datePublished">
+            21 февраля 2021 г.
+        </time>
+        <h1 itemprop="name headline">Этапы разработки проекта</h1>
+    </header>
+
+    <div class="content" itemprop="articleBody">
+        <figure style="border: none">
+            <img src="/assets/images/notes/15/main.png" alt=""  data-action="zoom">
+        </figure>
+        <p class="description">
+            Чек-лист этапов разработки проекта
+        </p>
+        <h2>1. Понять задачу</h2>
+<p>Необходимо четко понимать, что необходимо сделать. Поговорить с заказчиком и понять что и зачем ему нужно. Какие проблемы
+заказчика решает проект, как он будет работать.</p>
+<p>На данном этапе от заказчика желательно иметь техническое задание.</p>
+<p>На основании предоставленных материалов заказчиком, исполнитель сам может составить техническое задание.</p>
+<p>Без ТЗ к сожалению получится ХЗ и нет смысла идти дальше. На старте работы нужно МАКСИМАЛЬНО четко сформулировать требования.</p>
+<h2>2. Сущности</h2>
+<p>Далее нужно определить сущности которые должны быть в проекте, и их взаимосвязи.</p>
+<p>У каждой сущности есть определенный набор данных или полей. Так же сущность каким-то образом взаимодействует с
+другими сущностями.</p>
+<p>Идеально составить ER диаграмму схемы базы данных. Ну или на худой конец нарисовать на листке бумаги ERD схему.</p>
+<p>Понимание сущностей очень тесно связано с пониманием задачи для которой собственно и задумывается проект.</p>
+<p>В итоге на данном этапе нужно определить какими данными будет оперировать наш проект.</p>
+<h2>3. Структура проекта</h2>
+<p>Если мы пишем на php здесь определяем фреймворк, набор пакетов который будем использовать.</p>
+<p>Так же нельзя обходить стороной инфраструктуру, где запускать, как это поддерживать. Зависит от проекта, но здесь можно сопоставить сущности в бд и модели данных
+в коде.</p>
+<p>Говоря простым языком, скелет проекта для написания бизнес логики.</p>
+<h2>4. Реализация</h2>
+<p>Главное реализовать ядро проекта, основной функционал, самую суть.
+Минимальный возможный функционал для запуска проекта в продакшене, который можно показать заказчику.</p>
+<p>Здесь очень многое зависит от ваших подходов.</p>
+<p>Задачу бить на этапы и подзадачи.</p>
+<p>Не забываем про тесты и документацию.</p>
+<p>Если сроки сжаты и мы сделали какую-то штуку на скорую руку, нужно обязательно
+ее переписать — это называется техническим долгом.</p>
+<p>Если список тех. долга не ведется, это хреново друг.</p>
+<blockquote>
+<p>Важно помнить что код со временем портится и требует рефакторинга</p>
+</blockquote>
+<h2>5. Документация</h2>
+<p>Параллельно разработке обязательно ведем документацию для разработчиков. Чтобы еще кроме вас знал как запустить и разрабатывать
+проект.</p>
+
+    </div>
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://lexusalex-ru.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</article>
+
+<footer>
+    <p>
+        Работает на <a href="https://www.11ty.dev/">Eleventy</a> - 2020
+    </p>
+</footer>
+    </div>
+    <script src="/assets/js/medium-zoom.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script id="dsq-count-scr" src="//lexusalex-ru.disqus.com/count.js" async></script>
+</body>
+</html> 
