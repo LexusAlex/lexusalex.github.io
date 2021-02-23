@@ -6,7 +6,7 @@ title: Создание composer пакета
 description: Как с нуля создать composer пакет и опубликовать его на packagist.org
 date: 2021-02-19 23:00:00 +3
 main_image: /assets/images/notes/14/main.png
-gradient_image: /assets/images/notes/14/gradient.png
+gradient_image: /assets/images/notes/14/i.png
 themes: php composer
 ---
 

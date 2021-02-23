@@ -6,7 +6,7 @@ title: Этапы разработки проекта
 description: Чек-лист этапов разработки проекта
 date: 2021-02-21 23:00:00 +3
 main_image: /assets/images/notes/15/main.png
-gradient_image: /assets/images/notes/15/gradient.png
+gradient_image: /assets/images/notes/15/i.png
 themes: tasks
 ---
 
