@@ -3,9 +3,9 @@ layout: note.njk
 tags: notes
 number : 14
 title: Создание composer пакета
-description: Как с нуля создать composer пакет и опубликовать его на packagist.org
+description: Cоздаем с нуля composer пакет и публикуем его на packagist.org
 date: 2021-02-19 23:00:00 +3
-main_image: /assets/images/notes/14/main.png
+main_image: /assets/images/notes/14/main.svg
 gradient_image: /assets/images/notes/14/i.png
 themes: php composer
 ---
@@ -170,7 +170,7 @@ docker-compose run --rm php-cli composer require --dev phpunit/phpunit
 
 Сгенерируем его автоматически командой `docker-compose run --rm php-cli vendor/bin/phpunit --generate-configuration`.
 Или скопируем и другого проекта.
-У меня он выглядит следующим образом
+У меня он выглядит следующим образом :
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -205,7 +205,8 @@ docker-compose run --rm php-cli composer require --dev phpunit/phpunit
 ## Публикация на packagist.org
 
 Последнее, что осталось сделать — это опубликовать наш пакет на [packagist.org](http://packagist.org).
-Там все интуитивно понятно.
+
+Особого труда это не составит.
 
 Закоммитим и поставим тег версии `git tag -a 0.1 -m 0.1`
 
@@ -214,6 +215,8 @@ docker-compose run --rm php-cli composer require --dev phpunit/phpunit
 ```shell
 docker-compose run --rm php-cli-alpine composer require lexusalex/composer-package 0.1
 ```
+
+Так же можно на основании этого пакета создать проект при желании.
 
 ## Исходники
 
