@@ -5,7 +5,7 @@ number : 14
 title: Создание composer пакета
 description: Cоздаем с нуля composer пакет и публикуем его на packagist.org
 date: 2021-02-19 23:00:00 +3
-main_image: /assets/images/notes/14/main.svg
+main_image: /assets/images/notes/14/main.png
 gradient_image: /assets/images/notes/14/i.png
 themes: php composer
 ---
