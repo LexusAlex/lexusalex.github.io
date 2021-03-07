@@ -1,0 +1,223 @@
+HTTP
+----
+CLIENT
+SERVER
+IP Resolving
+/etc/hosts
+-------------
+DNS система доменных имен
+https://habr.com/ru/post/137587/
+. корень
+ru com первый уровень
+ubuntu microsoft второй уровень
+test download третий уровень
+-------------
+Порты от 1 до 65535 - виртуальные штуки
+80,443
+
+https://tools.ietf.org/html/rfc2616
+HTTP/1.1 одно и тоже подключение используется для загрузки нескольких ресурсов
+HTTP/2.0 архивирование нескольких запросов в один - мультиплексирование
+https://habr.com/ru/post/308846/
+Proxy - кеширующие серверы 618->80 -cache/filter/gateway- 811->80 независимый посредник
+-------------
+Методы запросов клиента
+
+1. GET Метод GET запрашивает представление ресурса. Запросы с использованием этого метода могут только извлекать данные.
+2. HEAD запрашивает ресурс так же, как и метод GET, но без тела ответа. Для запроса больших файлов
+3. POST используется для отправки сущностей к определённому ресурсу. Часто вызывает изменение состояния или какие-то побочные эффекты на сервере.
+4. PUT заменяет все текущие представления ресурса данными запроса.
+5. DELETE удаляет указанный ресурс.
+6. CONNECT устанавливает "туннель" к серверу, определённому по ресурсу.
+7. OPTIONS используется для описания параметров соединения с ресурсом. Какие методы поддерживается
+8. TRACE выполняет вызов возвращаемого тестового сообщения с ресурса.
+9. PATCH используется для частичного изменения ресурса.
+
+Безопасные методы чтения, которые ничего не меняют на сервере, только читают..
+GET
+HEAD
+OPTIONS
+
+Безопасные методы которые модифицируют результат но только один раз.
+PUT
+DELETE
+
+Небезопасные, отправляют несколько раз
+POST может отправить несколько одинаковых запросов
+PATCH
+----------------------
+QueryParams
+
+GET /status?cur=EUR&date=12345&test=5&risk=1&sort=date HTTP/1.1
+Host: httpbin.org
+
+Запрос клиента на перемещенную страницу
+GET /info HTTP/1.1
+Host: example.com
+
+Ответ сервера что эта страница теперь находится по адресу
+HTTP/1.1 301 Moved Permanently
+Location:/about
+
+// Временное перенаправление
+PATCH /post/26
+Host: test.com
+
+HTTP/1.1 302 Moved Temporary
+Location:/post/26
+---------------------
+HTTP Заголовки для контента со стороны сервера
+
+Способ представления сущности, тип файла который вернет сервер
+Content-Type: image/png
+Content-Type: text/plain
+Content-Type: text/html
+Content-Type: application/xml
+
+Указание кодировки документа
+Content-Type: text/html; charset=utf-8
+
+Размер файла в байтах
+Content-Length: 3741
+
+HTTP Заголовки для контента со стороны клиента
+Текст в запросе
+Content-Length: 3741
+
+Если сервер не дождался ответа то может получить 408 статус
+
+GET /status?format=json HTTP/1.1
+Host: httpbin.org
+
+Но лучше указать залоголок в каком формате мы ожидаем ответ
+!! Это зависит от настроек сервера
+
+GET /status HTTP/1.1
+Host: httpbin.org
+Accept: text/html
+
+Несколько форматов + язык
+
+GET /status HTTP/1.1
+Host: httpbin.org
+Accept: text/json, text/html;q=0.9
+Accept-Language: ru
+
+PATCH /users/26 HTTP/1.1
+Host: httpbin.org
+Accept: text/json
+Accept-Language: en
+Content-Length: 23
+
+
+Сами данные нужно передавать в теле запроса например Patch Form Urlencoded
+Браузер из формы отправляет данные в таком формате
+
+PATCH /users/26 HTTP/1.1
+Host: httpbin.org
+Accept: text/json
+Content-Type: application/x-www-form-urlencoded
+
+name=Test&name2=Test2
+
+Добавляем нового пользователя
+
+POST /users HTTP/1.1
+Host: httpbin.org
+Content-Type: application/json
+
+{
+  "name": "test"
+}
+
+С сервера придет сообщение 201 Created
+
+Отправка нескольких запросов POST upload file
+
+POST /users HTTP/1.1
+Host: httpbin.org
+Content-Type: multipart/form-data; boundary="ert"
+Content-Length: 98576
+
+--ert
+Content-Disposition: form-data;name="name"
+
+---------------------
+Статусные сообщения сервера
+
+1×× Informational
+100 Continue
+101 Switching Protocols
+102 Processing
+
+2×× Success
+200 OK
+201 Created
+202 Accepted
+203 Non-authoritative Information
+204 No Content
+205 Reset Content
+206 Partial Content
+207 Multi-Status
+208 Already Reported
+226 IM Used
+
+3×× Redirection
+300 Multiple Choices
+301 Moved Permanently
+302 Found
+303 See Other
+304 Not Modified
+305 Use Proxy
+307 Temporary Redirect
+308 Permanent Redirect
+
+4×× Client Error
+400 Bad Request
+401 Unauthorized
+402 Payment Required
+403 Forbidden
+404 Not Found
+405 Method Not Allowed
+406 Not Acceptable
+407 Proxy Authentication Required
+408 Request Timeout
+409 Conflict
+410 Gone
+411 Length Required
+412 Precondition Failed
+413 Payload Too Large
+414 Request-URI Too Long
+415 Unsupported Media Type
+416 Requested Range Not Satisfiable
+417 Expectation Failed
+418 I'm a teapot
+421 Misdirected Request
+422 Unprocessable Entity
+423 Locked
+424 Failed Dependency
+426 Upgrade Required
+428 Precondition Required
+429 Too Many Requests
+431 Request Header Fields Too Large
+444 Connection Closed Without Response
+451 Unavailable For Legal Reasons
+499 Client Closed Request
+
+5×× Server Error
+500 Internal Server Error
+501 Not Implemented
+502 Bad Gateway
+503 Service Unavailable
+504 Gateway Timeout
+505 HTTP Version Not Supported
+506 Variant Also Negotiates
+507 Insufficient Storage
+508 Loop Detected
+510 Not Extended
+511 Network Authentication Required
+526 Invalid SSL Certificate
+599 Network Connect Timeout Error
+
+----------------
+3 урок https://deworker.pro/edu/series/http-basics/content-headers
