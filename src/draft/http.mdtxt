@@ -221,3 +221,81 @@ Content-Disposition: form-data;name="name"
 
 ----------------
 3 урок https://deworker.pro/edu/series/http-basics/content-headers
+
+---------------
+
+Четкое разделение пользователей друг от друга!
+Глобальное состояние хранить не нужно
+
+REST Representation State Transfer
+
+Client-server Клиент сервер
+Statelessness Не хранить состояние на сервере
+Cache Кеширование
+Layered system Сколько угодно шлюзов
+Code on demand
+Uniform Interface
+
+GET — служит для получения информации о конкретном ресурсе (через ID) либо о коллекции ресурсов;
+POST — служит для создания нового ресурса;
+PUT — служит для изменения ресурса (через ID);
+DELETE — служит для удаления ресурса (через ID).
+
+Cookie
+
+POST /cart/items HTTP/1.1
+Host: httpbin.org
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 31
+
+product=45&q=2
+
+HTTP/1.1 302 Moved Temporary
+Location: /product/63
+Set-Cookie: cart=63:2; Expires=Wed, 30 Aug 2021 00:00:00 GMT; HttpOnly; Secure
+
+Браузер привяжет cart="63:2" к конкретному сайту и устанавливаем время истечения
+HttpOnly не разрешен доступ из JS
+Secure не посылать куку по http а только по https
+Path=/offer ограничить куку для данного адреса, на других страницах кука не будет посылатся
+Domain=.example.com кука будет привязана к корневому домену, распрастанение
+
+Клиент отправляет данные в ответ, эти данные куки хранятся в хранилище браузера
+POST /cart/items HTTP/1.1
+Host: httpbin.org
+Coookie: cart=63:2;
+
+Данные хранятся в конкретном браузере пользователе
+Например в куках храним язык пользователя
+
+-----------------------
+SESSION
+
+Клиент посылает запрос на добавление файла в корзину
+
+POST /cart/items HTTP/1.1
+Host: httpbin.org
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 31
+
+product=45&q=2
+
+Сервер создает файл со случайным идентификатором sd123rtdfgertrdfg.sess
+Записывает туда значение product=45&q=2
+
+Теперь браузер возвращает идентификатор файла, то есть сессии
+
+HTTP/1.1 302 Moved Temporary
+Location: /product/63
+Set-Cookie: SESSION_ID=sd123rtdfgertrdfg;
+
+Браузер передает куку туда сюда
+GET /cart/items HTTP/1.1
+Cookie: SESSION_ID=sd123rtdfgertrdfg;
+
+Ограничение на куку в 4кб
+------------------------
+Отдельное хранилище для сессий в базе данных.
+Memcached Redis
+
+https://deworker.pro/edu/series/http-basics/cookies-and-sessions 4 урок
