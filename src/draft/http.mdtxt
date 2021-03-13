@@ -298,4 +298,70 @@ Cookie: SESSION_ID=sd123rtdfgertrdfg;
 Отдельное хранилище для сессий в базе данных.
 Memcached Redis
 
-https://deworker.pro/edu/series/http-basics/cookies-and-sessions 4 урок
+-------------------------
+
+Аутентификация
+
+Вся информация которая нужна дл обработки запроса должна содержатся в запросе
+
+Allow
+
+401 Unauthorized
+
+Basic auth
+
+GET /profile HTTP/1.1
+Host: example.com
+
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: Basic realm="Restrict Area"
+
+Диалоговое окно с формой аутентификации
+
+
+GET /profile HTTP/1.1
+Host: example.com
+Authentication: Basic QWxhZxGRpbjpPcGVu==
+
+Base64
+
+Bearer Auth
+
+GET /profile HTTP/1.1
+Host: example.com
+
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: Bearer
+Браузеры это не поддерживают
+Authentication: Bearer MY345dfgdDFDGwE3453
+
+OAuth2
+-----------------------------
+
+POST /oauth2 HTTP
+Host: api.com
+Content-type: application/json
+Content-Length: 110
+
+{
+    "client_id": "app-234"
+    "client-secret": "wetrsfsdfs"
+    "grant_type": "password"
+    "username": "admin"
+    "password": "asfsdgdgb"
+    "mode": "offline"
+}
+
+HTTP/1.1 200 OK
+Content-type: application/json
+Content-Length: 110
+{
+    "access_token": "NSGDHWETGDFVdfgdfg34534"
+    "token_type": "bearer"
+    "expires_in": 3600
+    "refresh_token": "sdgdsfgdsgd345345345"
+}
+
+https://oauth.vk.com/authorize?client_id=......
+
+https://deworker.pro/edu/series/http-basics/cookies-and-sessions 5 урок
