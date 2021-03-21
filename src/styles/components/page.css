@@ -56,3 +56,110 @@ a:not(.link_unstyled) {
 footer {
     padding: 20px 40px;
 }
+
+.mainpage__search {
+    width: 90%;
+    font-size: 3em;
+    line-height: 1.2
+}
+
+.mainpage__search_suggestion {
+    display: flex
+}
+
+.mainpage__search_hidden-suggestion {
+    position: relative;
+    width: 80vw;
+    max-width: 920px;
+    max-height: 110px
+}
+
+.mainpage__search-suggestions.search__suggestions {
+    position: absolute;
+    width: 100%;
+    font-size: .5em;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(158, 158, 158, .2);
+    border-radius: 3px
+}
+
+.mainpage__search-toggler {
+    padding: .125em .625em;
+    border: transparent 1px solid;
+    font-size: .29em;
+    line-height: 1.67;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #373a3c;
+    cursor: pointer;
+    transition: all .2s;
+    user-select: none
+}
+
+.mainpage__search-toggler_active {
+    padding: .125em 1.25em .125em .625em;
+    background: #000;
+    border-radius: 1.125em;
+    color: #fff;
+    position: relative
+}
+
+.mainpage__search-toggler_active::after {
+    content: "x";
+    position: absolute;
+    top: 3px;
+    right: 6px;
+    font-size: .7em
+}
+
+.mainpage__search-toggler__label:not(:last-child) {
+    margin-right: .3em
+}
+
+.mainpage__search-toggler__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0
+}
+
+.mainpage__search-toggler__input:focus-visible + .mainpage__search-toggler, .mainpage__search-toggler__input:hover + .mainpage__search-toggler {
+    background: 0 0;
+    border-color: #000;
+    border-radius: 1.125em;
+    color: #373a3c;
+    position: relative
+}
+
+.mainpage__search-toggler__input:checked + .mainpage__search-toggler {
+    padding-right: 1.25em;
+    background: #000;
+    color: #fff;
+    position: relative
+}
+
+.mainpage__search-toggler__input:checked:focus-visible + .mainpage__search-toggler {
+    box-shadow: 4px 4px 1px #00008b
+}
+
+.mainpage__search-toggler__input:checked + .mainpage__search-toggler::after {
+    content: "x";
+    position: absolute;
+    top: 3px;
+    right: 6px;
+    font-size: .7em
+}
+
+.mainpage__search-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #e5e5e5;
+    color: #373a3c;
+    transition: border .2s
+}
+
+.mainpage__search-input:focus {
+    outline: 0;
+    border-bottom: 1px solid #000
+}

@@ -1,0 +1,217 @@
+[
+  
+  
+      
+  
+    {
+    "title": "постановка задач",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2020-10-18-problem-statement/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "git сервер в локальной сети",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2020-12-10-git-server/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "миграции в php",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2020-12-27-php-migrations/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "расширение раздела диска в linux",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2020-12-28-linux-expanding-partition/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "тестирование кода с помощью phpunit",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2021-01-02-php-phpunit/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "сборка apache 2 из исходников на debian 10",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2021-01-04-linux-debian-installing-apache2-from-source/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "сборка php 8 из исходников на debian 10",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2021-01-08-linux-debian-installing-php8.1-from-source-as-an-apache2-module/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "сборка mysql 8 из дистрибутива на debian 10",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2021-01-09-linux-debian-installing-mysql8-from-source/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "сборка php-fpm 8 из исходников на debian 10",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2021-01-16-linux-debian-installing-php-fpm/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "сборка nginx из исходников на debian 10",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2021-01-21-linux-debian-installing-nginx-from-source/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "ssh аутентификация по ключу",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2021-01-24-ssh-authentication-by-key/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "интерфейсы и абстрактные классы в php",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2021-01-30-php-interfaces-abstract-classes/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "сборка node.js из исходников на debian 10",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2021-02-05-13-linux-debian-installing-nodejs-from-source/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "создание composer пакета",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2021-02-19-14-create-composer-package/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "этапы разработки проекта",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2021-02-21-15-stages-of-project-development/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "установка php nginx mariadb на debian 10",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2021-02-28-16-linux-lemp/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "разрозненный софт",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2021-03-06-17-disparate-software/",
+    "tags" : "notes"
+    }
+    ,
+  
+  
+      
+  
+    {
+    "title": "настройка веб сервера nginx",
+    "summary" : "",
+    "type" : "",
+    "url": "/notes/2021-03-14-18-configuring-server-nginx/",
+    "tags" : "notes"
+    }
+    ]
