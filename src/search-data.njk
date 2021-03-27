@@ -15,7 +15,8 @@ permalink: search-data.json
     "summary" : "{{ item.data.summary | default( [], true) | join(" ") | safe }}",
     "type" : "{{ item.type | lower }}",
     "url": "{{defaultURL}}",
-    "tags" : "{{ item.data.tags | safe }}"
+    "tags" : "{{ item.data.tags | safe }}",
+    "test" : "{{ item.templateContent | clear }}"
     }
     {% if not loop.last %},{% endif %}
 {%- endfor %}]

@@ -101,6 +101,8 @@ git pull origin master
 
 # Получить указанную ветку, но не сливать
 git fetch origin master
+# Связать локальную ветку с удаленной
+git push -u origin search
 ```
 
 ## Рабочий процесс

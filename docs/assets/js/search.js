@@ -107,15 +107,16 @@ if (searchInput !== null) {
                         }
 
                         return (
-                            article.title.includes(searchPhrase) ||
+                            article.test.includes(searchPhrase) ||
                             article.summary.includes(searchPhrase)
                         )
                     })
-                    .slice(0, 5)
+                    .slice(0, 10)
                     .forEach((item) => {
                         suggestionsContainer.appendChild(
                             buildSuggestionItem(item.title, item.url)
                         )
+                        console.log(item.test);
                     })
 
                 if (suggestionsContainer.children.length === 0) {

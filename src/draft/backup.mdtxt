@@ -104,5 +104,7 @@ https://habr.com/ru/post/251659/
 https://aleksandr0105.ru/2015/04/13/rezervnoe-kopirovanie-ubuntu.html
 https://xhop.ru/nix-sistemyi/centos-7-dracut-boot-recovery/
 
+https://mirror.yandex.ru/gentoo-distfiles/releases/amd64/autobuilds/current-stage3-amd64/
+https://pingvinus.ru/note/gentoo-install
 sudo firewall-cmd --permanent --add-service=http
 sudo firewall-cmd --reload

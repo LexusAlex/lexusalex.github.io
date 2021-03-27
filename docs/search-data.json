@@ -8,7 +8,31 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2020-10-18-problem-statement/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "Заголовок задачи
+Заголовок задачи всегда должен отвечать на вопрос &amp;quot;Что нужно сделать?&amp;quot;.
+Из заголовка должно быть четко понятна цель задачи
+Примеры:
+
+Устранить нагрузку на сервер.
+Составить список предложений по оптимизации работы сайта.
+Сверстать страницу &amp;quot;Услуги&amp;quot;
+
+Для формулировки любой задачи существует сервис http://bugred.ru/
+Больше информации
+Пишите больше информации при постановке задачи, чтобы как можно больше погрузить исполнителя в
+контекст и эффективно выполнить задачу.
+Как можно подробнее написать о текущей ситуации, которая подтолкнула к постановке задачи.
+Написать, как и кто будет выполнять и какими ресурсами пользоваться.
+Примерный план выполнения
+
+Что нужно сделать
+Где и как это делать, что учесть
+В какой последовательности делать
+Накладные расходы и время выполнения
+Что должно быть в результате
+
+"
     }
     ,
   
@@ -20,7 +44,86 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2020-12-10-git-server/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "GIT сейчас является самой популярной системой контроля версий исходного кода.
+Проектов накапливается много и они становятся разношерстными.
+Работаем на разных машинах и в разных операционных системах, появляется потребность в централизованном хранилище.
+Оно позволяет не только хранить проекты, но и распространять.
+Для этих целей существует отличный сервис как Github, но мы будем использовать собственный git сервер.
+Настройка собственного решения позволит нам создавать репозитории без ограничений и в любых размерах и количествах.
+Место куда ставить операционную систему
+Это может быть отдельный компьютер в локальной сети, виртуальная машина или даже docker контейнер.
+У меня сервер будет крутиться на виртуальной машине VMware Workstation.
+Установка операционной системы
+В качестве операционной системы подойдет любой дистрибутив linux.
+Я буду использовать debian 10.
+Скачать его можно с сервера яндекса, выбрав версию и тип процессора.
+В моем случае актуальная версия 10.7.0, процессор amd64. Далее минимальный образ /bt-cd/debian-10.7.0-amd64-netinst.iso.torrent.
+При установке создайте локального пользователя git.
+Итак: имеем установленную систему. Пришло время ее настроить.
+Настройка git сервера
+Подразумевается, что установлен чистый debian без лишнего софта.
+Зайдем в систему под пользователем git.
+В debian по умолчанию отсутствует команда sudo. Она нужна для того, чтобы иметь возможность повышать свои привилегии до суперпользователя,
+но сначала нужно им стать. Для этого установим необходимый пакет
+su - # Обязательный - в концеПароль: root@git:/home/git apt-get install sudo
+Далее нужно разрешить нашему пользователю git выполнять команды от root, путем добавления пользователя в дополнительную группу sudo
+usermod -aG sudo git
+Чтобы проверить, что пользователь был добавлен в группу sudo нужно вновь войти в систему и выполнить команду
+id#uid=1000(git) gid=1000(git) группы=1000(git),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev),109(netdev)
+Все в порядке! Теперь нужно обновить систему до последней версии
+sudo apt-get update -ysudo apt-get upgrade -y
+Теперь ставим необходимые пакеты
+sudo apt-get install openssh-server git vim
+Наши репозитории будут храниться в домашнем каталоге пользователя git в /home/git
+Теперь настроим доступ по ssh на сервер по ключу.
+Для этого в каталоге /home/git создадим папку .ssh и файл authorized_keys с ключами авторизованных пользователей и назначим им нужные права
+mkdir -p ~/.ssh &amp;amp;&amp;amp; chmod 0700 ~/.sshtouch ~/.ssh/authorized_keys &amp;amp;&amp;amp; chmod 0600 ~/.ssh/authorized_keys
+В качестве примера создадим тестовый репозиторий
+git init --bare ~/test.git
+На сервере должен быть статический ip адрес. Например такой 192.168.88.230.
+На этом настройка git сервера закончена. Переходим к клиенту.
+Настройка клиента
+Под клиентом подразумевается пользователь на любой операционной системе, где установлен git и есть терминал.
+Скачать и установить git можно с официального сайта https://git-scm.com
+Для подключения к нашему серверу git нужно сгенерировать пары ключей у себя на машине в linux. Это делается так:
+ssh-keygen -t rsa -b 4096 -C &quot;email@text.ru&quot;# Закрытый и открытый ключ соответственно#id_rsa_git_local#id_rsa_git_local.pub
+Если ключи уже были сгенерированы, то теперь публичный ключ нужно передать на сервер и занести в файл ~/.ssh/authorized_keys
+Скопировать ключ на сервер и занести в файл ~/.ssh/authorized_keys можно командой
+ssh-copy-id -i ~/.ssh/id_rsa_git_local.pub git@192.168.88.230
+Если такой возможности нет, то вручную, просто вывести файл
+cat ~/.ssh/id_rsa_git_local.pub
+и скопировать его содержимое в файл ~/.ssh/authorized_keys на сервере.
+Еще вариант с подключением к серверу по ssh
+cat ~/.ssh/id_rsa_git_local.pub | ssh git@192.168.88.230 &#39;cat &gt;&gt; ~/.ssh/authorized_keys&#39;
+При необходимости удалить ключ на сервере можно командой
+sed -i &#39;1d&#39; ~/.ssh/authorized_keys
+где 1d номер строки удаления.
+Работа с тестовым репозиторием
+Работаем с нашим тестовым репозиторием test.git.
+Предположим на машине конечного пользователя проект размещен здесь по такому пути /home/alex/test/, хотя это не важно.
+Переходим в эту директорию и добавляем адрес внешнего репозитория в наш локальный репозиторий
+git remote add origin git@192.168.88.230:test.git
+Если нужно заменить адрес репозитория воспользуемся командой
+git remote set-url origin git@192.168.88.230:test.git
+Пишем код, делаем коммиты, создаем ветки и отправляем в наш гит в локальной сети
+git push -u origin master
+Если нужно развернуть уже созданный проект, то клонируем его
+git clone git@192.168.88.230:test.git
+Создать новый репозиторий на сервере можно таким образом, действуя от лица пользователя git:
+ssh git@192.168.88.230 &#39;git init --bare ~/repo_test.git&#39;
+Если все настроено правильно, должно работать без проблем.
+Итог
+Таким образом поднять свой сервер не составит особых проблем.
+Конечно, есть куда стремится путем совершенствования сервера.
+Из очевидных плюсов:
+
+Мы не ограничены при работе с git, любые плюшки гита нам доступны из коробки
+Настраиваем сервер под себя.
+Легко добавить и убрать нового пользователя, для ведения проектов, указав его публичный ключ в файле ~/.ssh/authorized_keys.
+При желании можно разрешить доступ к вашему репозиторию из вне.
+
+"
     }
     ,
   
@@ -32,7 +135,81 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2020-12-27-php-migrations/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "В более или менее крупном проекте если над ним работают несколько человек, нужно каким-то образом поддерживать схему базы данных в актуальном состоянии.
+Для этого удобно использовать подход с миграциями.
+Миграции представляют собой список изменений в схеме базы данных.
+В простейшем случае это каталог migrations с набором файлов с sql командами которые нужно выполнить.
+/migrations    0001.php    0002.php    0003.php    0004.php    0005.php    0006.php
+Чаще всего их представляют в виде классов, с методами:
+
+up() - запускает миграцию
+down() - откатывает миграцию
+
+Например.
+&amp;lt;?php// migrations/0001.phpclass Migration0001{    public function up()    {        $sql = &#39;CREATE TABLE IF NOT EXISTS `tree` (          `id` INT NOT NULL AUTO_INCREMENT,          `parent_id` INT NULL,          `text` VARCHAR(255) NOT NULL,          PRIMARY KEY (`id`),        ) CHARACTER SET utf8 COLLATE utf8_general_ci;&#39;;        $this-&gt;db-&gt;execute($sql);    }    public function down()    {        $sql = &#39;DROP TABLE `tree`&#39;;        $this-&gt;db-&gt;execute($sql);    }}
+Запустить миграции можно командой migrate up, а откатить migrate down
+Таким образом работать намного приятнее, чем заходить через phpmyadmin и вручную править схему базу данных.
+Можно написать велосипед самому, но лучше для этих целей использовать уже написанный инструмент такой как phinx
+Установка и настройка phinx
+Phinx - это библиотека для работы с миграциями, которая не привязана к определенному фреймворку.
+Ее можно использовать и прикрутить к любому проекту.
+Устанавливаем библиотеку стандартно через composer
+composer require robmorgan/phinx
+Теперь стала доступна команда vendor/bin/phinx.
+Прежде чем создавать миграции нужно создать конфигурационный файл, делается это командой phinx init.
+При этом можно указать один из форматов конфигурационного файла, в результате будет сгенерирован шаблон по умолчанию.
+phinx init --format ymlphinx init --format yamlphinx init --format phpphinx init --format json
+Выглядит он следующим образом.
+&amp;lt;?phpreturn[    &#39;paths&#39; =&gt; [        &#39;migrations&#39; =&gt; &#39;%%PHINX_CONFIG_DIR%%/db/migrations&#39;,        &#39;seeds&#39; =&gt; &#39;%%PHINX_CONFIG_DIR%%/db/seeds&#39;    ],    &#39;environments&#39; =&gt; [        &#39;default_migration_table&#39; =&gt; &#39;phinxlog&#39;,        &#39;default_environment&#39; =&gt; &#39;development&#39;,        &#39;production&#39; =&gt; [            &#39;adapter&#39; =&gt; &#39;mysql&#39;,            &#39;host&#39; =&gt; &#39;localhost&#39;,            &#39;name&#39; =&gt; &#39;production_db&#39;,            &#39;user&#39; =&gt; &#39;root&#39;,            &#39;pass&#39; =&gt; &#39;&#39;,            &#39;port&#39; =&gt; &#39;3306&#39;,            &#39;charset&#39; =&gt; &#39;utf8&#39;,        ],        &#39;development&#39; =&gt; [            &#39;adapter&#39; =&gt; &#39;mysql&#39;,            &#39;host&#39; =&gt; &#39;localhost&#39;,            &#39;name&#39; =&gt; &#39;development_db&#39;,            &#39;user&#39; =&gt; &#39;root&#39;,            &#39;pass&#39; =&gt; &#39;&#39;,            &#39;port&#39; =&gt; &#39;3306&#39;,            &#39;charset&#39; =&gt; &#39;utf8&#39;,        ],        &#39;testing&#39; =&gt; [            &#39;adapter&#39; =&gt; &#39;mysql&#39;,            &#39;host&#39; =&gt; &#39;localhost&#39;,            &#39;name&#39; =&gt; &#39;testing_db&#39;,            &#39;user&#39; =&gt; &#39;root&#39;,            &#39;pass&#39; =&gt; &#39;&#39;,            &#39;port&#39; =&gt; &#39;3306&#39;,            &#39;charset&#39; =&gt; &#39;utf8&#39;,        ]    ],    &#39;version_order&#39; =&gt; &#39;creation&#39;];
+Phinx поддерживает работу с разными окружениями, для всех типов окружений желательно иметь по отдельной базе данных:
+CREATE DATABASE IF NOT EXISTS template;CREATE DATABASE IF NOT EXISTS template_test;CREATE DATABASE IF NOT EXISTS template_dev;
+Заполняем параметры подключения, либо всех окружений, или какого-нибудь одного. В процессе использования можно выбрать в каком окружении запускать миграции.
+Проверяем конфигурационный файл на валидность phinx test
+Создание миграций
+Для создания миграций используется команда create, которая создает файлы формата YYYYMMDDHHMMSS_name.php.
+По дефолту в них будет создан метод change(), он нужен для одновременного накатывания и откатывания миграций
+phinx create # db/migrations/20201226133424.phpphinx create CreateTableTree # db/migrations/20201226133635_create_table_tree.php
+
+Важно не изменять старые миграции, нужно всегда создавать новые, это убережет от проблем в будущем.
+
+Метод up
+Phinx имеет свой собственный Query Buider, который позволяет конструировать sql запросы через php код.
+В документации по этому вопросу все расписано.
+Но мы будем делать все руками и писать чистый sql.
+Метод up выполняет накатывание миграций, в данном случае создание таблицы tree
+&amp;lt;?phppublic function up()    {        $sql = &#39;CREATE TABLE IF NOT EXISTS `tree` (          `id` INT NOT NULL AUTO_INCREMENT,          `parent_id` INT NULL,          `text` VARCHAR(255) NOT NULL,          `description` VARCHAR(255) NOT NULL,          `type` INT NOT NULL,          PRIMARY KEY (`id`),          FOREIGN KEY (parent_id) REFERENCES tree (id)            ON UPDATE CASCADE            ON DELETE CASCADE        ) CHARACTER SET utf8 COLLATE utf8_general_ci;&#39;;        $this-&gt;execute($sql);    }
+Запускаем миграции
+phinx migrate # По умолчанию будут выполнены миграции в окружении по умолчанию из конфигаphinx migrate -e development # Указываем конкретное окружениеphinx migrate -e development -e testing -e production # Либо все три окруженияphinx migrate -t 20201226144507 # Выполняем все миграции до указанной временной меткиphinx migrate --dry-run # Показывать все запросы которые будут выполнены в базе данных, используется для проверок
+Будут выполнены все еще не выполненные миграции в порядке их создания.
+Информация о выполненных миграциях будет храниться в таблице phinxlog.
+Метод down
+Теперь научимся откатывать миграции.
+При откатывании миграции будет запущен метод down. В нашем случае - это удаление таблицы tree.
+&amp;lt;?phppublic function down()    {        $sql = &#39;DROP TABLE `tree`&#39;;        $this-&gt;execute($sql);    }
+phinx rollback # Будет откатана последняя примененная миграцияphinx rollback -e development # Указываем окружение где откатывать миграцииphinx rollback -t 20201226144507 # Откатить миграции после указанной временной меткиphinx rollback -t 0 # Откатить все миграцииphinx rollback -e development -d 2020 # Откатить все миграции за 2020 годphinx rollback -e development -d 202001 # Указываем определенную временную меткуphinx rollback -e development -d 20200103phinx rollback -e development -d 2020010312phinx rollback -e development -d 202001031205phinx rollback -e development -d 20200103120530phinx rollback -e development --dry-run # Просмотреть какие запросы будут выполнены при откате миграции
+Статус миграций
+Наглядно отобразить список выполненных миграций можно командой
+phinx status -e developmentStatus  [Migration ID]  Started              Finished             Migration Name ----------------------------------------------------------------------------------     up  20201226133635  2020-12-26 15:30:52  2020-12-26 15:30:52  CreateTableTree     up  20201226144507  2020-12-26 15:30:52  2020-12-26 15:30:52  CreateTableTree2   down  20201226144512                                            CreateTableTree3   down  20201226144516                                            CreateTableTree4
+Блокируем попытки отката миграций
+Бывает необходимость запретить возможность откатывать миграции, для этого существует команда breakpoint
+phinx breakpoint # Поставим breakpoint последней примененной миграцииphinx breakpoint -t 20201226144512 # Поставить breakpoint по временной меткеphinx breakpoint -r # Удалить breakpoint у всех миграций
+Вставка данных
+Phinx поддерживает не только изменение структуры базы данных, но и вставку данных, здесь это называется seeds
+Создать файл можно командой.
+phinx seed:create TestData # Создать класс
+Их можно запускать несколько раз.
+Будет создан файл /db/seeds/TestData.php с методом run(). Там и нужно писать весь код по добавлению данных.
+Теперь запустим файл.
+phinx seed:run # Запустить все найденные классы, что не оченьphinx seed:run -s TestData # Запустить определенный файл или файлы
+Данный механизм удобно использовать для добавления тестовых и фейковый данных.
+Полезные ссылки
+
+Сайт библиотеки
+Документация
+Репозиторий
+
+"
     }
     ,
   
@@ -44,7 +221,56 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2020-12-28-linux-expanding-partition/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "Способ 1
+Имеем раздел /dev/sda1 с файловой системой ext4 на котором точка монтирования файловой системы:
+df -h -T /dev/sda1Файловая система Тип  Размер Использовано  Дост Использовано% Cмонтировано в/dev/sda1        ext4   2,9G         977M  1,8G           36% /
+Необходимо расширить этот раздел до 6G, при этом не останавливая сервер, сервер должен работать.
+В настройках виртуальной машины добавляем + 3G места. Проверяем командой fdisk -l:
+sudo fdisk -lDisk /dev/sda: 6 GiB, 6442450944 bytes, 12582912 sectorsDisk model: VMware Virtual SUnits: sectors of 1 * 512 = 512 bytesSector size (logical/physical): 512 bytes / 512 bytesI/O size (minimum/optimal): 512 bytes / 512 bytesDisklabel type: dosDisk identifier: 0xbfb02ac1Device     Boot Start     End Sectors Size Id Type/dev/sda1  *     2048 6289407 6287360   3G 83 Linux
+или командой lsblk:
+lsblkNAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTsda      8:0    0    6G  0 disk └─sda1   8:1    0    3G  0 part /sr0     11:0    1  335M  0 rom  
+Как видим размер диска увеличился и составляет 6G, но размер раздела остался по-прежнему 3G.
+Задачу решает утилита growpart, которая заполняет таблицу разделов всем доступным пространством.
+Устанавливаем утилиту:
+apt-get install cloud-utils # Debianyum install cloud-utils-growpart # CentOs
+Внимание перед дальнейшими действиями сделайте бекап сервера, действия по расширению раздела выполняете на свой страх и риск!!!
+Теперь нужно указать диск и номер раздела, например:
+growpart /dev/sda 1CHANGED: partition=1 start=2048 old: size=6287360 end=6289408 new: size=12580831,end=12582879
+Программа напишет новый размер диска.
+Теперь уже расширяем файловую систему на все пространство увеличенного раздела для этого используем утилиту resize2fs :
+sudo resize2fs /dev/sda1resize2fs 1.44.5 (15-Dec-2018)Filesystem at /dev/sda1 is mounted on /; on-line resizing requiredold_desc_blocks = 1, new_desc_blocks = 1The filesystem on /dev/sda1 is now 1572603 (4k) blocks long.
+Проверяем размер раздела:
+df -h -T /dev/sda1Файловая система Тип  Размер Использовано  Дост Использовано% Cмонтировано в/dev/sda1        ext4   5,9G         980M  4,7G           18% /
+Задача решена.
+Способ 2
+Итак, имеем диск размером 7G:
+df -h -T /dev/sda1Файловая система Тип  Размер Использовано  Дост Использовано% Cмонтировано в/dev/sda1        ext4   6,9G         983M  5,6G           15% /
+Расширим диск до 10G. Смотрим характеристики диска командой fdisk
+sudo fdisk /dev/sda...Command (m for help): pDisk /dev/sda: 10 GiB, 10737418240 bytes, 20971520 sectors...Device     Boot Start      End  Sectors Size Id Type/dev/sda1  *     2048 14680030 14677983   7G 83 Linux
+Внимание перед дальнейшими действиями сделайте бекап сервера, действия по расширению раздела выполняете на свой страх и риск!!!
+&amp;quot;Удаляем&amp;quot; раздел
+Command (m for help): dSelected partition 1Partition 1 has been deleted.
+Создаем новый primary раздел, следуя подсказкам.
+Здесь мы:
+
+Создаем новый primary раздел.
+Указываем его номер.
+Указываем первый сектор диска.
+Указываем последний сектор диска.
+Записываем изменения.
+
+Command (m for help): nPartition type   p   primary (0 primary, 0 extended, 4 free)   e   extended (container for logical partitions)Select (default p): pPartition number (1-4, default 1): 1First sector (2048-20971519, default 2048): 2048Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-20971519, default 20971519): 20971519Created a new partition 1 of type &#39;Linux&#39; and of size 10 GiB.Partition #1 contains a ext4 signature.Do you want to remove the signature? [Y]es/[N]o: NoCommand (m for help): wThe partition table has been altered.Syncing disks.
+Проверяем теперь:
+df -h -T /dev/sda1Файловая система Тип  Размер Использовано  Дост Использовано% Cмонтировано в/dev/sda1        ext4   6,9G         983M  5,6G           15% /
+Как видим ничего не поменялось.
+Перечитаем разделы командой sudo partprobe /dev/sda и расширим том все той же командой resize2fs :
+sudo resize2fs /dev/sda1resize2fs 1.44.5 (15-Dec-2018)Filesystem at /dev/sda1 is mounted on /; on-line resizing requiredold_desc_blocks = 1, new_desc_blocks = 2The filesystem on /dev/sda1 is now 2621184 (4k) blocks long.
+Проверяем:
+df -h -T /dev/sda1Файловая система Тип  Размер Использовано  Дост Использовано% Cмонтировано в/dev/sda1        ext4   9,8G         983M  8,4G           11% /
+В итоге мы на лету расширили корневой раздел.
+Я не призываю делать так, и это всего лишь варианты решения данной задачи.
+"
     }
     ,
   
@@ -56,7 +282,273 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2021-01-02-php-phpunit/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "Все мы в разной степени начинаем с ручного тестирования своего кода — это не плохо,
+но возникают ряд проблем.
+Проблемы ручного тестирования кода
+
+Отсутствие повторяемости. Одни и те же действия по выявлению ошибок нужно делать многократно (писать print_r, var_dump снова и снова), при этом нельзя точно сказать, что было протестировано, а что нет;
+Ручные тесты &amp;quot;долгие&amp;quot; - это значит что можно часами сидеть и не видеть ошибку;
+Невнимательность, человеческий фактор, не все было проверенно. Что-то было упущено из вида;
+Бесконечные правки. В одном месте поправили, сломалось в другом;
+Приходится постоянно проверять, что результат выполняемой программы соответствует ожидаемому.
+При ручных проверках и большом проекте проверить весь функционал просто невозможно.
+
+Справится с этими проблемами помогают автоматические тесты или как еще их называют unit тесты.
+Тестирование — это процесс проверки одного элемента кода (например, отдельная функция или класс), в изоляции от остальной
+части программы.
+Преимущества автоматических (unit) тестов
+
+Отладку кода можно сразу вести из тестов, без надобности писать перенаправления, заглушки, exit(), var_dump() и пр.;
+По тесту можно сразу понять как работает метод, функция, без лишних конструкций. (&amp;quot;Живая документация по коду&amp;quot;);
+Помогают не допускать регрессии готового кода, то есть &amp;quot;новый&amp;quot; код не ломает существующий;
+Приучают писать маленькие методы и чистые функции, а не пихать всю логику в один метод, который сложно тестировать и поддерживать;
+Помогают в ходе написания теста понять, как писать менее связанный код;
+Автоматическая проверка избавляет разработчика от монотонной ручной проверки всего кода приложения;
+Разработка без страха. Править код становится комфортнее, мы уверены, что конкретная функция работает, а следовательно уверены за весь код;
+При правильном написании тестов скорость разработки быстрее чем без них.
+Запуск тестов - быстрая процедура позволяющая запускать их хоть после каждого изменения в коде.
+
+Каким должен быть unit тест
+
+Маленьким. Тест должен проверять только одно требование.
+Легко читаемым. При взгляде на код теста должно быть понятно что происходит.
+Повторяемым. При каждом запуске тест выдает одинаковый результат.
+При написании теста, в тестируемую функции нужно подставлять результат.
+Тест должен выполнятся в специальном тестовом окружении.
+Проверять все возможные исходы.
+
+Зависимости кода
+Часто результат работы метода зависит от внешних факторов и взаимодействует с другими классами и системами.
+Например для выполнения своей задачи функции нужен доступ к базе данных или к файлу на диске.
+Чтобы заменить базу данных или файл нужна некая заглушка или фейковый класс, который будет всегда возвращать
+предсказуемый результат. Такие классы называют стабами от англ. stub. При попытке прочитать данные из
+базы данных тесту возвращается готовый массив с данными, тем самым заменяя базу данных.
+Еще один вид заглушек моки от англ. mock. Эти классы нужны чтобы, проверить что функция была вызвана с определенными
+параметрами.
+Стабы и моки вместе называют фейками (fakes).
+Для создания классов-заглушек нужно создать интерфейс или абстрактный класс и наследовать его от заменяемого класса.
+Написание тестов очень сильно зависит от вашей от архитектуры проекта и связанности кода. В проектах с легаси кодом
+написание тестов может занять месяцы.
+Смысл тестирования. Пример 1
+Протестируем функцию sum без использования дополнительных библиотек.
+Функция sum возвращает сумму переданного массива.
+&amp;lt;?phpfunction sum (array $numbers) : int {    if (empty($numbers)) {        return 0;    } else {        return array_sum($numbers);    }}?&gt;
+Проверим результат написав два теста testSumFive и testSumZero.
+&amp;lt;?phpfunction testSumFive (int $sum) : bool {    if ($sum === 5) {        return true;    }    return false;}function testSumZero (int $sum) : bool {    if ($sum == 0) {        return true;    }    return false;}testSumFive(sum([1,3,1])); // truetestSumFive(sum([1,3,1,7])); // falsetestSumZero(sum([0])); // true?&gt;
+Тесты можно писать и так, но запускать и поддерживать их неудобно.
+Для этих целей будем использовать специальный фреймворк для написания тестов phpunit.
+Версии phpunit
+Phpunit развивается без обратной совместимости со старыми версиями.
+Версия phpunit напрямую зависит от версии php, которая установлена у вас на сервере.
+В момент написания этой статьи (декабрь 2020) актуальными и поддерживаемыми являются версии phpunit 8 и 9.
+Например если вы используете php 7.0, то будет использоваться версия phpunit 6 или phpunit 5.
+Если ваша версия php 5.3, то phpunit 4. Composer автоматически установит одну из этих версий.
+Поддерживаемые версии phpunit
+
+Важно учесть, то что если тесты написаны под phpunit 7, в phpunit версии 8 они могут просто
+не запустится. При написании тестов придерживайтесь одной мажорной версии, тогда в будущем не будет проблем.
+
+Список текущих версий и их поддержку удобно смотреть на сайте https://packagist.org/packages/phpunit/phpunit
+Установка composer
+Де-факто стандартным и предпочитаемым способом установки библиотек в php, является
+установка через менеджер зависимостей composer.
+Установить composer можно командой
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/bin --filename=composer --quiet
+Установка phpunit
+Тесты нужно запускать локально в dev окружении разработчика поэтому ставим phpunit в секцию require-dev
+composer require --dev phpunit/phpunit
+После установки фреймворк добавиться в файл composer.json
+{&quot;require-dev&quot;: {    &quot;phpunit/phpunit&quot;: &quot;^9.4&quot;  }}
+И станет доступна команда ./vendor/bin/phpunit.
+Но так запускать не удобно, поэтому добавим команду в composer.json
+в секцию scripts
+{&quot;scripts&quot;: {    &quot;test&quot;: &quot;phpunit --colors=always&quot;  }}
+Запускаем так composer test.
+
+На боевом сервере для того убрать phpunit из автозагрузки
+необходимо выполнить composer update --no-dev для запрета установки пакетов из секции require-dev.
+
+Я для большего удобства использую Makefile для запуска phpunit.
+Об утилите make подробнее можно узнать из материалов:
+
+Утилита make: полезный универсальный инструмент программиста
+Что такое Makefile и как начать его использовать
+Руководство по современному Make
+
+Если в проекте не используется composer, есть также альтернативный способ установки phpunit.
+Нужно скачать phar архив и запустить его из указанного места.
+# скачать phar архивwget -O phpunit https://phar.phpunit.de/phpunit-9.phar# сделать фаил исполняемымchmod +x phpunit# запустить из указанного места./phpunit
+Если phpunit необходим глобально для всей системы можно переместить файл в директорию со всеми скриптами
+sudo mv phpunit /usr/local/bin/phpunit. После этого команда phpunit будет доступна глобально.
+Проверка последней версии phpunit.
+phpunit --check-versionPHPUnit 9.4.3 by Sebastian Bergmann and contributors.You are using the latest version of PHPUnit.
+Соглашения по написанию тестов
+Не существует однозначных правил по написанию тестов, но есть общие рекомендации, которых желательно придерживаться
+
+Необязательно, но принято исходный код приложения размещать в каталоге /src, а тесты в каталоге /tests.
+Тестовые классы следует наследовать от класса PHPUnit\Framework\TestCase.
+Тестовый класс следует именовать с постфиксом *Test например /tests/UserTest.php.
+Один класс проекта соответствует одному тестовому классу, но не всегда. Это зависит от связей между классами и архитектуры проекта.
+Методы тестирования должны быть публичными и иметь префикс test* например testLogin или testAdmin.
+В док блоке теста можно использовать аннотацию @test.
+Каждый метод тестирования должен запускаться независимо от других, то есть должен быть изолирован.
+Для проверок соответствия реального и ожидаемого результата используются функции утверждения assert*() например assertTrue().
+Лучше на начальном этапе ставить меньше проверок, только так можно понять какие проверки нужно добавить в будущем.
+Можно придерживаться общего принципа написания тестов такого как &amp;quot;Подготовка Действие Утверждение&amp;quot;.
+
+Примеры именования тестовых методов
+testLogMessagetestLogMessageWithEmptyMessagetestLogMessageWithEmptyMessageAndEmtyContexttestLogMessageWithInvalidContext
+Как запускать
+Итак phpunit установлен, настало время запустить наши тесты.
+Для запуска тестов необходимо указать директорию или название файлов которые необходимо запустить, например:
+composer phpunit testscomposer phpunit tests/DummyTestcomposer phpunit tests/DummyTest.php
+Далее будет произведен поиск класса теста, затем будут выполнены тестовые методы этого класса.
+Но по-файлово запускать неудобно, поэтому добавим конфигурацию.
+Конфигурация
+Создадим файл конфигурации phpunit.xml в корне проекта c настройками по умолчанию.
+Проще всего это сделать выполнив команду.
+composer phpunit --generate-configuration
+Будет сгенерирован xml файл конфигурации:
+&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&amp;lt;phpunit xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;         xsi:noNamespaceSchemaLocation=&quot;https://schema.phpunit.de/9.4/phpunit.xsd&quot;         bootstrap=&quot;vendor/autoload.php&quot;         cacheResultFile=&quot;var/cache/.phpunit.result.cache&quot;         executionOrder=&quot;depends,defects&quot;         forceCoversAnnotation=&quot;true&quot;         beStrictAboutCoversAnnotation=&quot;true&quot;         beStrictAboutOutputDuringTests=&quot;true&quot;         beStrictAboutTodoAnnotatedTests=&quot;true&quot;         failOnRisky=&quot;true&quot;         failOnWarning=&quot;true&quot;         verbose=&quot;true&quot;&gt;    &amp;lt;testsuites&gt;        &amp;lt;testsuite name=&quot;default&quot;&gt;            &amp;lt;directory suffix=&quot;Test.php&quot;&gt;tests&amp;lt;/directory&gt;        &amp;lt;/testsuite&gt;    &amp;lt;/testsuites&gt;    &amp;lt;coverage cacheDirectory=&quot;var/cache/.phpunit.code-coverage&quot; processUncoveredFiles=&quot;true&quot;&gt;        &amp;lt;include&gt;            &amp;lt;directory suffix=&quot;.php&quot;&gt;src&amp;lt;/directory&gt;        &amp;lt;/include&gt;    &amp;lt;/coverage&gt;&amp;lt;/phpunit&gt;
+Описание параметров можно найти в документации
+Phpunit. Пример 2
+Теперь перепишем пример 1 с использованием phpunit. Для этого создадим класс приложения /src/Application.php с единственным методом sum
+&amp;lt;?phpdeclare(strict_types=1);namespace Application;class Application{    public function sum (array $numbers) : int {        if (empty($numbers)) {            return 0;        } else {            return array_sum($numbers);        }    }}
+Для большего удобства в директории /tests создадим абстрактный класс /tests/AbstractTestCase.php который наследуем от класса фреймворка PHPUnit\Framework\TestCase и
+определим метод setUp, в нем создадим объект нашего приложения.
+
+Метод setUp будет запускаться каждый раз при выполнении тестового метода
+
+&amp;lt;?phpdeclare(strict_types=1);namespace Tests;use Application\Application;use PHPUnit\Framework\TestCase;abstract class AbstractTestCase extends TestCase{    public Application $application;    protected function setUp(): void    {        $this-&gt;application = new Application();        parent::setUp();    }}
+Теперь добавим непосредственного тестовый класс /tests/ApplicationTest который в свою очередь наследуем от AbstractTestCase,
+где будут два тестовых метода с двумя утверждениями.
+&amp;lt;?phpdeclare(strict_types=1);namespace Tests;class ApplicationTest extends AbstractTestCase{    public function testSumFive ()    {        $this-&gt;assertEquals(5, $this-&gt;application-&gt;sum([1,3,1]), &#39;сумма элементов массива не соответствует 5&#39;);    }    public function testSumZero ()    {        $this-&gt;assertEquals(0, $this-&gt;application-&gt;sum([]));    }}
+Запускаем тесты
+composer testPHPUnit 9.4.3 by Sebastian Bergmann and contributors.Runtime:       PHP 7.4.12Configuration: /template/phpunit.xml..                                                                  2 / 2 (100%)Time: 00:00.002, Memory: 6.00 MBOK (2 tests, 2 assertions)
+Две точки в выводе означают что два наших теста успешно прошли.
+Теперь представим что наша функция sum работает неправильно.
+$ composer testPHPUnit 9.4.3 by Sebastian Bergmann and contributors.Runtime:       PHP 7.4.12Configuration: /template/phpunit.xml.F                                                                  2 / 2 (100%)Time: 00:00.003, Memory: 6.00 MBThere was 1 failure:1) Tests\ApplicationTest::testSumFiveсумма элементов массива не соответствует 5Failed asserting that 25 matches expected 5./template/tests/ApplicationTest.php:11FAILURES!Tests: 2, Assertions: 2, Failures: 1.
+Получаем ошибку (буква F, значит второй тест), где прекрасно видно в каком файле и какой тест упал и что конкретно произошло.
+Вывод тестов
+Теперь разберем вывод тестов, какие обозначения могут быть.
+
+W - В классе не найдены тестовые методы.
+
+WW                                                                  2 / 2 (100%)WarningNo tests found in class &quot;Tests\Application2Test&quot;.WARNINGS!Tests: 2, Assertions: 0, Warnings: 2.
+
+. - Тест пройден успешно
+
+..                                                                  2 / 2 (100%)OK (2 tests, 2 assertions)
+
+F - Тест не пройден, выводится информация почему тест не прошел.
+
+.F                                                                  2 / 2 (100%)1) Tests\ApplicationTest::testSumFiveсумма элементов массива не соответствует 5Failed asserting that 25 matches expected 5./template/tests/ApplicationTest.php:11FAILURES!Tests: 2, Assertions: 2, Failures: 1.
+
+R - Тест не содержит утверждений (функции asert...) и будет пропущен.
+
+RR                                                                  2 / 2 (100%)1) Tests\ApplicationTest::testSumZeroThis test did not perform any assertions/template/tests/ApplicationTest.php:142) Tests\ApplicationTest::testSumFiveThis test did not perform any assertions/template/tests/ApplicationTest.php:9OK, but incomplete, skipped, or risky tests!Tests: 2, Assertions: 0, Risky: 2.
+
+E - Произошла синтаксическая ошибка во время запуска теста. При этом подробно указано в каком файле это произошло.
+
+EE                                                                  2 / 2 (100%)1) Tests\ApplicationTest::testSumFiveParseError: syntax error, unexpected &#39;3232&#39; (T_LNUMBER)/template/src/Application.php:17/template/tests/AbstractTestCase.php:162) Tests\ApplicationTest::testSumZeroParseError: syntax error, unexpected &#39;3232&#39; (T_LNUMBER)/template/src/Application.php:17/template/tests/AbstractTestCase.php:16ERRORS!Tests: 2, Assertions: 0, Errors: 2.
+
+I - Не полный или незавершенный тест. Если тест не дописан необходимо вызвать метод $this-&amp;gt;markTestIncomplete(&#39;Этот тест ещё не реализован.&#39;);
+
+.I                                                                  2 / 2 (100%)1) Tests\ApplicationTest::testSumFiveЭтот тест ещё не реализован./template/tests/ApplicationTest.php:13OK, but incomplete, skipped, or risky tests!Tests: 2, Assertions: 1, Incomplete: 1.
+
+S - Тест был отмечен как пропущенный. Необходимо вызвать метод $this-&amp;gt;markTestSkipped(&#39;Этот тест пропущен&#39;);
+
+.S                                                                  2 / 2 (100%)1) Tests\ApplicationTest::testSumFiveЭтот тест пропущен/template/tests/ApplicationTest.php:13OK, but incomplete, skipped, or risky tests!Tests: 2, Assertions: 2, Skipped: 1.
+Утверждения
+Для проверки значений как мы видели выше в phpunit используются утверждения
+Самые часто используемые из них:
+$this-&gt;assertContains(4, [1, 2, 3,]); // содержит массив указанное значение$this-&gt;assertStringContainsString(&#39;тест&#39;, &#39;нетест&#39;); // содержит строка подстроку$this-&gt;assertCount(0, []); // количество элементов в массиве$this-&gt;assertEmpty([&#39;foo&#39;]); // является ли значение пустым$this-&gt;assertEquals(1, 0); // эквивалентность значений$this-&gt;assertFalse(true); // логическая операция$this-&gt;assertGreaterThan(2, 1); // больше чем$this-&gt;assertIsArray(null); // значение должно быть массивом$this-&gt;assertObjectHasAttribute(&#39;foo&#39;, new stdClass); // содержит ли класс атрибут
+
+Практически все методы утверждения содержат противоположные методы
+Например assertContains() и assertNotContains()
+
+Провайдеры данных
+Бывают ситуации, когда нужно проверить сразу несколько значений. Для этих целей существуют дата провайдеры.
+Дата провайдер - это метод или методы, который возвращает набор данных для проверки в тесте.
+Напишем тест, например для проверки по регулярному выражению.
+Провайдеры данных. Пример 3
+Создадим метод Values(), который будет использоваться в качестве провайдера данных и тестовый метод testValidValues(), в котором укажем аннотацию @dataProvider.
+Он будет принимать произвольное количество аргументов.
+Для каждого элемента массива из метода Values() будет вызываться метод testValidValues().
+В массиве первый элемент проверяемое значение регулярного выражения, второй элемент результат который должна выдать функция
+preg_match.
+&amp;lt;?phpdeclare(strict_types=1);namespace Tests;class ApplicationTest extends AbstractTestCase{    /**     * @param $value     * @param $expected     * @dataProvider Values     */    public function testValidValues($value, $expected){        $pattern = &#39;/^[a-f0-9_-]{2,6}$/i&#39;;        $this-&gt;assertEquals($expected, preg_match($pattern,$value));    }    public function Values() {        return [            [&#39;ab12&#39;,1],            [&#39;&#39;,0],            [&#39;--_09f&#39;,1],            [&#39;1&#39;,0],            [&#39;123456789&#39;,0],            [&#39;русские буквы&#39;,0],            [&#39;aBcDeF&#39;,1],        ];    }}
+Запускаем тесты
+ phpunitPHPUnit 9.4.3 by Sebastian Bergmann and contributors.Runtime:       PHP 7.4.12Configuration: /template/phpunit.xml.......                                                             7 / 7 (100%)Time: 00:00.003, Memory: 6.00 MBOK (7 tests, 7 assertions)
+Как видим были выполнены 7 проверок, вместо того чтобы писать 7 тестовых методов.
+Зависимые тесты. Пример 4
+PhpUnit позволяет писать зависимые тесты друг от друга. Посмотрим на пример.
+&amp;lt;?phpdeclare(strict_types=1);namespace Tests;class ArrayTest extends AbstractTestCase{    public function testOne() {        $array = [];        $this-&gt;assertCount(0, $array);        return $array;    }    /**     * @param array $array     * @depends testTwo     */    public function testThree(array $array) {        $array[] = 6;        $this-&gt;assertCount(6, $array);    }    /**     * @param array $array     * @depends testOne     * @return int[]     */    public function testTwo(array $array) {        $array = [1,2,3,4,5];        $this-&gt;assertCount(5, $array);        return $array;    }}
+Метод testOne возвращает фикстуру array в данном случае это пустой массив.
+Далее выполняется тест testTwo так как, он зависит от testOne с аннотацией @depends testOne и тоже возвращает фикстуру.
+Последним будет выполнен зависимый тест testThree, который работает с возвращенной ранее фикстурой.
+Фикстуры
+Одной из наиболее трудозатратных частей при написании тестов является написание кода для настройки тестового окружения.
+Для этого нужно создать некий объект эмулирующий объект проверки до выполнения теста, и возврат его в исходное состояние после выполнения теста.
+Это состояние называется фикстурой теста.
+В примере 4 мы посмотрели как запускать зависимые тесты путем возврата фикстуры array.
+В данном случае — это был пустой массив, но в реальности все может быть намного сложнее. Перепишем этот пример следующем образом.
+setUp и tearDown. Пример 5
+
+Встроенные методы setUp(): void и tearDown(): void вызываются по одному разу при каждом выполнении тестового метода
+
+&amp;lt;?phpdeclare(strict_types=1);namespace Tests;class ArrayTest extends AbstractTestCase{    protected array $array;    public function setUp(): void    {        $this-&gt;array = [];        parent::setUp(); // TODO: Change the autogenerated stub    }    public function tearDown(): void    {        unset($this-&gt;array);        parent::tearDown(); // TODO: Change the autogenerated stub    }    public function testOne() {        $this-&gt;assertCount(0, $this-&gt;array);    }    public function testTwo() {        $this-&gt;array = [1,2,3,4,5];        $this-&gt;assertCount(5, $this-&gt;array);    }}
+Помимо setUp() и tearDown() существуют так же и другие встроенные методы, которые можно использовать в зависимости от ситуации.
+setUpBeforeClass() // вызывается перед запуском первого теста текущего тестового классаtearDownAfterClass() // вызывается после выполнения последнего теста текущего тестового классаassertPreConditions() // перед выполнением тестового методаassertPostConditions() // после выполнения тестового методаonNotSuccessfulTest() // Будет выполнен если тест был провален
+Например сли у нас в классе два тестовых метода testOne() и testTwo(), то при наличии всех выше написанных методов порядок выполнения будет таким:
+
+setUpBeforeClass()
+setUp()
+assertPreConditions()
+testOne()
+assertPostConditions()
+tearDown()
+setUp()
+assertPreConditions()
+testTwo()
+assertPostConditions()
+tearDown()
+tearDownAfterClass()
+
+
+Если тест не пройдет, то метод assertPostConditions() вызван не будет, впоследствии будет вызван метод onNotSuccessfulTest
+
+Классы-заглушки
+При тестировании больших систем не всегда представляется возможным использовать реальный компонент приложения.
+PhpUnit позволяет заменить зависимый компонент классом-заглушкой, который должен имитировать поведение реального
+компонента приложения.
+Имитация реального приложения. Пример 6
+&amp;lt;?php// tests/fakes/FakeClass.phpdeclare(strict_types=1);namespace Tests\fakes;class FakeClass{    public function fake()    {        return &#39;Это заглушка для реального метода&#39;;    }}// tests/StubTest.phpnamespace Tests;use Tests\fakes\FakeClass;class StubTest extends AbstractTestCase{    public function testStub()    {        $stub = $this-&gt;createMock(FakeClass::class);        $stub-&gt;method(&#39;fake&#39;)-&gt;willReturn(&#39;test&#39;);        $this-&gt;assertSame(&#39;test&#39;, $stub-&gt;fake());    }}
+В реальности для написания класса-заглушки может понадобится не одна неделя, все зависит от архитектуры вашего приложения.
+Подробнее об моках и стабах
+Покрытие кода
+Каждый метод (функция) должны быть покрыты тестами для всех возможных вариантов выполнения метода (функции).
+PhpUnit позволяет формировать отчет о покрытии кода тестами в различных форматах.
+
+
+Для формировании отчета о покрытии кода тестами на сервере должен быть установлен расширение XDEBUG
+
+
+Для создания анализа покрытие нужно выполнить команду
+XDEBUG_MODE=coverage composer phpunit --coverage-html var/test/coverage
+В данном случае в директории var/test/coverage будут созданы html файлы с отчетом, где отображено покрытие кода.
+
+  
+
+Полезные Ссылки
+
+Официальный сайт
+Документация
+Статья про тестирование
+Еще статья про тестирвоание
+
+"
     }
     ,
   
@@ -68,7 +560,92 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2021-01-04-linux-debian-installing-apache2-from-source/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "Вступление
+Бывает необходимость в установке последней версии программного обеспечения, так как в репозиториях находится старая или неактуальная версия.
+Для дистрибутивов на основе debian сделан собственный пакет веб сервера apache2.
+apt-cache show apache2 | grep VersionVersion: 2.4.38-3+deb10u4
+Установка данного пакета приводит к полной установке Apache, включая файлы настройки, сценарии инициализации и поддержки.
+При этом файлы будут помещены в разные каталоги файлового дерева, как решит разработчик.
+Нам это не подходит, поэтому установим последнюю версию веб-сервера из исходников.
+В последующих статьях именно так мы сможем разобраться как работает и устроен веб-сервер.
+Подготовка
+Поставим следующие пакеты, которые нужны для сборки веб сервера.
+Я ставлю по максимуму, с расчетом на расширение функциональности сервера. Системные требования к сборке указаны в официальной документации
+build-essential Компиляторы и программы для сборки в debian (libc6-dev libc-dev, gcc , g++ , make, dpkg-dev).automake Пакет для работы с make файлами.autoconf Пакет для работы с make файлами.make Программа для управления генерацией исполняемых файлов и других файлов из исходного кода. bzip2 Cвободно доступный архиватор данных.libapr1-dev Apache Portable Runtime Library.libaprutil1-dev Apache Portable Runtime Utility Library.libbrotli-dev Библиотека реализующая алгоритм brotli.libcurl4-openssl-dev инструменты разработчика и документация для библиотеки libcurl (OpenSSL flavour).libjansson-dev Библиотека для работы с json данными.liblua5.2-dev Файлы для разработки для языка lua версия 5.2.libnghttp2-dev Библиотека реализующая HTTP/2 протокол.libpcre3-dev Библиотека для работы с регулярными выражениями.libssl-dev Secure Sockets Layer toolkit - окружение для разработки.libxml2-dev Файлы для работки библиотеки GNOME XML.wget Утилита для получения файлов из сети.zlib1g-dev Библиотека, реализующая метод сжатия deflate.
+Здесь не будем заморачиваться с установкой из исходных кодов ставим все для сборки любых пакетов менеджером зависимостей apt-get.
+sudo apt-get install build-essential automake autoconf make bzip2 libapr1-dev libaprutil1-dev libbrotli-dev libcurl4-openssl-dev libjansson-dev liblua5.2-dev libnghttp2-dev libpcre3-dev libssl-dev libxml2-dev wget zlib1g-dev
+Проверить наличие того или иного пакета в системе можно командой:
+dpkg --get-selections | grep ^wget
+Загрузка и распаковка
+Скачаем исходники с официального сайта в любую директорию на сервере.
+Например в домашнюю папку.
+Сейчас январь 2021 года, последняя версия на данный момент 2.4.46, ее и будем ставить.
+wget https://apache-mirror.rbc.ru/pub/apache//httpd/httpd-2.4.46.tar.gz
+Распакуем и перейдем в эту директорию.
+tar xvf httpd-2.4.46.tar.gzcd httpd-2.4.46
+Конфигурирование
+Теперь нужно сконфигурировать параметры учитывающие наше железо и другие опции.
+Это делается скриптом ./configure. Впоследствии он создает Makefile.
+У скрипта configure множество опций настройки.
+Мы ставим все по умолчанию, за исключением места установки.
+По умолчанию указан путь установки /usr/local/apache2, но так как это тестовый сервер укажем домашний каталог /home/alex/apache2.
+На самом деле разницы тут нет.
+./configure --prefix=/home/alex/apache2
+После выполнения данной команды будет длинный вывод технической информации в завершении которого будет такой вывод:
+Server Version: 2.4.46    Install prefix: /home/alex/apache2    C compiler:     x86_64-linux-gnu-gcc    CFLAGS:           -pthread      CPPFLAGS:         -DLINUX -D_REENTRANT -D_GNU_SOURCE      LDFLAGS:               LIBS:                 C preprocessor: x86_64-linux-gnu-gcc -E
+Это означает, что все в порядке, конфигурирование прошло успешно.
+Сборка и установка
+Переходим к сборке.
+Нужно собрать модули, бинарные файлы, документацию и прочие файлы в текущую директорию.
+make
+Процесс компиляции может длится продолжительное время.
+Осталось только установить, то есть перенести файлы в наш конневой каталог указанный при конфигурировании /home/alex/apache2 и убрать за собой.
+make install clean
+Сервер установлен, проверим его версию.
+/home/alex/apache2/bin/apachectl -vServer version: Apache/2.4.46 (Unix)Server built:   Jan  5 2021 01:27:10
+Запуск и остановка
+Запустить сервер можно командой:
+sudo /home/alex/apache2/bin/apachectl -k start
+Проверить что сервер запущен можно командами:
+netstat -tunla | grep LISTEN | grep 80ps aux | grep httpd
+Так же увидеть заветное it works! набрав ip адрес сервера в браузере на любом компьютере в вашей сети.
+Остановить сервер можно командой stop
+sudo /home/alex/apache2/bin/apachectl -k stop
+Автозагрузка при старте системы
+В последних версиях Debian выпилили файл rc.local, который позволяет выполнять произвольные скрипты при запуске системы.
+Добавим его обратно и научим его запускать apache.
+Добавим файл rc-local.service
+sudo vim /etc/systemd/system/rc-local.service
+Добавим туда директивы
+[Unit]Description=/etc/rc.localConditionPathExists=/etc/rc.local [Service]Type=forkingExecStart=/etc/rc.local startTimeoutSec=0StandardOutput=ttyRemainAfterExit=yesSysVStartPriority=99 [Install]WantedBy=multi-user.target
+Теперь создадим скрипт rc.local
+sudo vim /etc/rc.local
+Со следующим содержимым, где укажем команду на запуск сервера:
+#!/bin/sh -e## rc.local## This script is executed at the end of each multiuser runlevel.# Make sure that the script will &quot;exit 0&quot; on success or any other# value on error.## In order to enable or disable this script just change the execution# bits.## By default this script does nothing. /home/alex/apache2/bin/apachectl -k startexit 0
+Выполняем команды на права, регистрацию и запуск сервиса
+sudo chmod +x /etc/rc.localsudo systemctl enable rc-localsudo systemctl start rc-local
+Перезагрузим систему, и проверим статус состояния сервиса.
+sudo rebootsudo systemctl status rc-localrc-local.service - /etc/rc.local   Loaded: loaded (/etc/systemd/system/rc-local.service; enabled; vendor preset: enabled)  Drop-In: /usr/lib/systemd/system/rc-local.service.d           └─debian.conf   Active: active (running) since Tue 2021-01-05 13:53:23 MSK; 58s ago  Process: 418 ExecStart=/etc/rc.local start (code=exited, status=0/SUCCESS) Main PID: 429 (httpd)    Tasks: 82 (limit: 2330)   Memory: 14.8M   CGroup: /system.slice/rc-local.service           ├─429 /home/alex/apache2/bin/httpd -k start           ├─432 /home/alex/apache2/bin/httpd -k start
+Пересборка сервера
+Посмотрим текущие подключенные модули.
+sudo /home/alex/apache2/bin/apachectl -t -D DUMP_MODULESLoaded Modules: core_module (static) so_module (static) http_module (static) mpm_event_module (static) authn_file_module (shared) authn_core_module (shared) authz_host_module (shared) authz_groupfile_module (shared) authz_user_module (shared) authz_core_module (shared) access_compat_module (shared) auth_basic_module (shared) reqtimeout_module (shared) filter_module (shared) mime_module (shared) log_config_module (shared) env_module (shared) headers_module (shared) setenvif_module (shared) version_module (shared) proxy_module (shared) proxy_fcgi_module (shared) unixd_module (shared) status_module (shared) autoindex_module (shared) dir_module (shared) alias_module (shared) php_module (shared)
+Если необходимы другие модули, то сервер нужно пересобрать с ключом --enable-mods-shared=reallyall.
+./configure --prefix=/home/alex/apache2 --enable-mods-shared=reallyallmakemake installmake clean
+Раскоментировать строку подключения модуля в файле конфигуриации /conf/httpd.conf
+LoadModule proxy_fcgi_module modules/mod_proxy_fcgi.so
+Перезагрузить сервер
+sudo /home/alex/apache2/bin/apachectl -k restart
+Подробнее https://gist.github.com/thuannvn/07b376a7ad5d12ac4456
+Итог
+Мы показали как можно собрать и запустить последнюю версию веб сервера apache2 на debian 10.
+Процедура не сложная, но требует некоторого кол-ва времени.
+Update
+16.01.2021
+
+Добавлен раздел &amp;quot;Пересборка сервера&amp;quot;
+
+"
     }
     ,
   
@@ -80,7 +657,85 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2021-01-08-linux-debian-installing-php8.1-from-source-as-an-apache2-module/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "Вступление
+Недавно (26.10.2020) php обновился на версию 8.
+Попробуем собрать и запустить интерпретатор php как модуль под веб сервер apache2.
+Предполагается что apache2 уже установлен на сервере.
+Как собрать apache2 из исходников читайте в статье.
+Загрузка и распаковка
+Скачаем исходники текущей стабильной версии php на сервер c официального сайта.
+
+07.01.2021 вышла версия php 8.0.1
+
+wget https://www.php.net/distributions/php-8.0.1.tar.gz
+Распакуем архив и перейдем директорию с исходниками php-8.0.1
+tar xvf php-8.0.1.tar.gzcd php-8.0.1
+Так же создадим директорию php8 куда его будем ставить.
+К текущему состоянию структура домашнего каталога выглядит так:
+ls -1apache2httpd-2.4.46httpd-2.4.46.tar.gzphp8php-8.0.1php-8.0.1.tar.gz
+Подготовка
+Большинство библиотек уже должны быть установлены на сервере.
+Мы поставили их когда, собирали apache2.
+Теперь установим недостающие без которых будет ошибка при конфигурировании.
+sudo apt install libsqlite3-dev libonig-dev
+Так же может потребоваться установить следующие библиотеки.
+sudo apt install -y pkg-config bison re2c libxml2-dev
+Конфигурирование
+Конфигурируем с помощью скрипта .\configure с минимально возможными параметрами, в последствии можно перезапустить скрипт
+с измененными параметрами.
+./configure --prefix=/home/alex/php8 --with-apxs2=/home/alex/apache2/bin/apxs --with-config-file-path=/home/alex/php8/config --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --enable-mbstring
+Где
+
+--prefix - директория куда ставить php, для простоты ставим все в один домашний каталог
+--with-apxs2 - Инструмент для создания модулей расшрения сервера apache2, он и создаст нам модуль для php8
+--with-config-file-path - Куда сохранить фаил php.ini
+--with-mysqli - Добавить поддержку mysqli
+--with-pdo-mysql - Добавить поддержку pdo-mysql
+--enable-mbstring - Включить mbstring
+
+Подробнее об опциях в документации
+Запускаем команду.
+В конце конфигурирования должно отобразиться сообщение о лицензии и в директории с исходниками создаться Makefile.
++--------------------------------------------------------------------+| License:                                                           || This software is subject to the PHP License, available in this     || distribution in the file LICENSE. By continuing this installation  || process, you are bound by the terms of this license agreement.     || If you do not agree with the terms of this license, you must abort || the installation process at this point.                            |+--------------------------------------------------------------------+Thank you for using PHP.
+Сборка
+Пришло время собрать php и очистить временные файлы.
+make install
+Ждем пока завершится процесс компиляции (~минут 10).
+Далее очищаем временные файлы.
+make clean
+Проверяем что php работает.
+/home/alex/php8/bin/php -vPHP 8.0.1 (cli) (built: Jan  8 2021 15:39:03) ( ZTS )Copyright (c) The PHP GroupZend Engine v4.0.1, Copyright (c) Zend Technologies
+Скопируем конфигурацию php.ini из директории с исходниками в собранный каталог.
+cp /home/alex/php-8.0.1/php.ini-development /home/alex/php8/config/php.ini
+httpd.conf
+php работает теперь нужно настроить apache.
+В конце сборки, должен быть создан модуль для apache2, о чем свидетельствуют следующие строки в конце вывода.
+chmod 755 /home/alex/apache2/modules/libphp.so[activating module `php&#39; in /home/alex/apache2/conf/httpd.conf]
+Откроем файл конфигурации apache2 /home/alex/apache2/conf/httpd.conf и найдем строчку подключения модуля php LoadModule php_module         modules/libphp.so
+vim /home/alex/apache2/conf/httpd.conf
+Далее под подключением модуля добавим в конфиг поддержку типов с расширением php.
+&amp;lt;FilesMatch \.php$&gt;     SetHandler application/x-httpd-php &amp;lt;/FilesMatch&gt;&amp;lt;FilesMatch &quot;\.phps$&quot;&gt;    SetHandler application/x-httpd-php-source&amp;lt;/FilesMatch&gt;
+Перезапускам apache2.
+sudo /home/alex/apache2/bin/apachectl -k restart
+Для проверки работоспособности в корне веб сервера переименовываем index.html в index.php и добавляем код проверки.
+&amp;lt;?php     phpinfo(); ?&gt; 
+Запускам через браузер.
+
+  
+
+Если видим страницу с настройками php, то все в порядке.
+Пересборка
+Если нужно как, то изменить конфигурацию, php можно пересобрать.
+Добавим поддержку трех расширений calendar intl soap которых у нас нет.
+Это делается теми же командами, что и выше.
+./configure --prefix=/home/alex/php8 --with-apxs2=/home/alex/apache2/bin/apxs --with-config-file-path=/home/alex/php8/config --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --enable-mbstring --enable-soap --enable-calendar --enable-intlmakemake installmake clean
+Если вы не очищали каталог командой make clean, то сборка будет происходить быстрее.
+На этом сборка php 8 из исходников завершена.
+Итог
+В итоге надеюсь, получилось разобраться как собрать минимальную сборку php 8.1 из исходников.
+Конечно есть куда стремиться, я хотел показать именно минимальную сборку с относительно не сложной установкой.
+"
     }
     ,
   
@@ -92,7 +747,71 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2021-01-09-linux-debian-installing-mysql8-from-source/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "Чтобы запустить практически любой сайт, необходима база данных mysql.
+Установим ее из готового дистрибутива в минимальной конфигурации.
+Подготовка
+Устанавливаем необходимые библиотеки для запуска mysql.
+sudo apt-get install libaio1sudo apt-get install libnuma1sudo apt-get install libncurses5
+Основные библиотеки для сборки мы установили в статье
+Создание пользователя
+Сперва следует создать пользователя mysql от которого будет демон mysqld.
+sudo groupadd mysql # Добавляем группуsudo useradd -r -g mysql -s /bin/false mysql # Создаем пользователя с группой mysql
+Загрузка дистрибутива
+Заходим на сервер и скачиваем с официального сайта минимальный дистрибутив в домашний каталог /home/alex/.
+wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.22-linux-glibc2.17-x86_64-minimal.tar.xz
+Распаковка и переименование
+Распаковываем архив.
+tar xvf mysql-8.0.22-linux-glibc2.17-x86_64-minimal.tar.xz # или xz -dc mysql-8.0.22-linux-glibc2.17-x86_64-minimal.tar.xz | tar x
+Переименовываем директорию в более короткое имя.
+mv mysql-8.0.22-linux-glibc2.17-x86_64-minimal mysql
+В результате получили каталог mysql со следующими директориями:
+
+bin - сервер mysqld, клиент и служебные программы.
+docs -	руководство MySQL в Info формате.
+man -	руководство unix.
+include -	заголовочные файлы.
+lib -	библиотеки.
+share - сообщения об ошибках, и SQL файлы для установки базы данных.
+support-files - прочие файлы.
+
+Каталог с данными
+Далее нужно инициализировать системные таблицы с указанием каталога данных.
+/home/alex/mysql/bin/mysqld --initialize --user=mysql --basedir=/home/alex/mysql/ --datadir=/home/alex/mysql/data
+Для удобства зайдем в директорию /home/alex/mysql и из нее выполним команду.
+sudo ./bin/mysqld --initialize --user=mysql --basedir=/home/alex/mysql/ --datadir=/home/alex/mysql/data2021-01-08T20:21:06.114129Z 0 [System] [MY-013169] [Server] /home/alex/mysql/bin/mysqld (mysqld 8.0.22) initializing of server in progress as process 17632021-01-08T20:21:06.120240Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.2021-01-08T20:21:06.498854Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.2021-01-08T20:21:07.382877Z 6 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: p&amp;amp;,Xl&gt;sjf0i=
+Сервер mysql создает учетную запись администратора и другие системные учетные записи.
+Так же генерирует временный пароль и заполняет справочные таблицы, все это хранится в директории /home/alex/mysql/data.
+Сейчас сервер работает в режиме начальной загрузки, поэтому некоторый функционал у него ограничен.
+Запуск сервера и подключение к нему
+Теперь попробуем запустить сервер как демон с помощью программы mysqld_safe.
+sudo ./bin/mysqld_safe --user=mysql &amp;amp;Logging to &#39;/home/alex/mysql/data/TestDebian10.err&#39;.2021-01-08T20:30:25.446289Z mysqld_safe Starting mysqld daemon with databases from /home/alex/mysql/data
+Сервер запущен.
+В другой сессии теперь можно к нему подключиться, введя рандомный пароль сгенерированный выше.
+./bin/mysql -u root -p
+После этого попадаем в интерфейс базы данных
+Welcome to the MySQL monitor.  Commands end with ; or \g.Your MySQL connection id is 8Server version: 8.0.22Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.Oracle is a registered trademark of Oracle Corporation and/or itsaffiliates. Other names may be trademarks of their respectiveowners.Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.mysql&gt;
+Задаем новый пароль суперпользователя.
+ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;root-password&#39;;
+Создаем еще несколько учетных записей и назначаем права.
+CREATE USER &#39;root&#39;@&#39;127.0.0.1&#39; IDENTIFIED WITH mysql_native_password BY &#39;root-password&#39;;CREATE USER &#39;root&#39;@&#39;::1&#39; IDENTIFIED WITH mysql_native_password BY &#39;root-password&#39;;CREATE USER &#39;alex&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;passwd&#39;;GRANT ALL PRIVILEGES ON *.* TO &#39;alex&#39;@&#39;%&#39;;
+Тестирование работы сервера
+Проверим версию
+./bin/mysqladmin -u root -p versionVer 8.0.22 for Linux on x86_64 (MySQL Community Server - GPL)Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.Oracle is a registered trademark of Oracle Corporation and/or itsaffiliates. Other names may be trademarks of their respectiveowners.Server version          8.0.22Protocol version        10Connection              Localhost via UNIX socketUNIX socket             /tmp/mysql.sockUptime:                 25 min 40 secThreads: 2  Questions: 14  Slow queries: 0  Opens: 175  Flush tables: 3  Open tables: 93  Queries per second avg: 0.009
+Остановим сервер и запустим снова.
+sudo ./bin/mysqladmin -u root -p shutdownsudo ./bin/mysqld --user=mysql
+Выполним sql запрос.
+./bin/mysql -u root -p -e &quot;SELECT User FROM mysql.user&quot; mysql
+Так же можно проверить что запущен процесс ./bin/mysqld --user=mysql командой
+ps aux|grep mysql
+Запуск сервера при старте системы
+Сейчас запуском и остановкой сервера мы занимаемся вручную, пришло время автоматизировать этот процесс.
+Добавим команду запуска в файл /etc/rc.local :
+/bin/sh -c &#39;cd /home/alex/mysql; ./bin/mysqld --user=mysql &gt; /dev/null 2&gt;&amp;amp;1 &amp;amp;&#39;
+Перезагрузим сервер. Если не увидели никаких ошибок, то база должна стартануть.
+Итог
+В итоге мы запустили минимально рабочую версию сервера mysql 8.0.22 запущенную из готового дистрибутива.
+"
     }
     ,
   
@@ -104,7 +823,65 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2021-01-16-linux-debian-installing-php-fpm/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "В предыдущих статьях мы ставили php как модуль для сервера apache, то есть в данном случае php и apache работают как одно целое.
+Существует также режим запуска php, как отдельного процесса. Режимом запуска управляет менеджер процессов FastCGI (FPM) или php-fpm.
+По умолчанию, он взаимодействует с веб-сервером через порт 9000 или сокетный файл.
+Процесс установки php под apache я расписал в статье.
+Подготовка
+Удалим распакованные исходники оставшихся от прошлых сборок php. Развернем еще раз.
+rm -rf php-8.0.1tar xvf php-8.0.1.tar.gz
+Создадим директорию откуда будет работать менеджер php-fpm, и перейдем в директорию с исходниками.
+mkdir php8-fpmcd php-8.0.1
+Конфигурирование и сборка
+Конфигурируем с минимальными опциями.
+./configure --prefix=/home/alex/php8-fpm --enable-fpm --with-config-file-path=/home/alex/php8-fpm/config --with-config-file-scan-dir=/home/alex/php8-fpm/config/conf.d --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --enable-mbstring
+Собираем.
+makemake installmake clean
+Перейдем в собранную директорию, со следующей структурой.
+cd php8-fpmls -1binetcincludelibphpsbinvar
+Настройка и запуск
+Переименуем конфигурационные файлы.
+mv /home/alex/php8-fpm/etc/php-fpm.conf.default /home/alex/php8-fpm/etc/php-fpm.confmv /home/alex/php8-fpm/etc/php-fpm.d/www.conf.default /home/alex/php8-fpm/etc/php-fpm.d/www.conf
+Откроем файл конфигурации.
+vim /home/alex/php8-fpm/etc/php-fpm.d/www.conf 
+Внесем изменения в конфигурацию, исправим или раскоментируем строки.
+user = daemongroup = daemonlisten = 127.0.0.1:9001
+Запускаем.
+sudo ./home/alex/php8-fpm/sbin/php-fpm
+Проверяем, что процесс запущен.
+sudo netstat -tulpn | grep 9001tcp        0      0 127.0.0.1:9001          0.0.0.0:*               LISTEN      63768/php-fpm: mast 
+Подключаем к apache 2
+Для, того, чтобы проверить работоспособность php-fpm, подключим php-fpm в качестве application сервера к apache 2.
+Откроем конфиг /home/alex/apache2/conf.httpd.conf, подключим два модуля и настроем обработку скриптов через proxy:fcgi
+LoadModule proxy_module modules/mod_proxy.soLoadModule proxy_fcgi_module modules/mod_proxy_fcgi.so&amp;lt;FilesMatch \.php$&gt;    SetHandler &quot;proxy:fcgi://127.0.0.1:9001&quot;&amp;lt;/FilesMatch&gt;
+Перезагружаемся и проверяем.
+sudo /home/alex/apache2/bin/apachectl -k restart
+
+  
+
+Обновление php-fpm
+Если необходимо обновить версию php, нужно проделать все предыдущие шаги с указанием свежей версии:
+
+Подготовка
+Конфигурирование и сборка
+Настройка и запуск
+
+Например таким образом:
+wget https://www.php.net/distributions/php-8.0.2.tar.gztar xvf php-8.0.2.tar.gzmkdir php8.0.2-fpmcd php-8.0.2./configure --prefix=/home/alex/php8.0.2-fpm --enable-fpm --with-config-file-path=/home/alex/php8.0.2-fpm/config --with-config-file-scan-dir=/home/alex/php8.0.2-fpm/config/conf.d --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --enable-mbstringmakemake installmv /home/alex/php8.0.2-fpm/etc/php-fpm.conf.default /home/alex/php8.0.2-fpm/etc/php-fpm.confmv /home/alex/php8.0.2-fpm/etc/php-fpm.d/www.conf.default /home/alex/php8.0.2-fpm/etc/php-fpm.d/www.confvim /home/alex/php8.0.2-fpm/etc/php-fpm.d/www.conf#user = daemon#group = daemon#listen = 127.0.0.1:9002 # Проверка работоспособности#sudo /home/alex/php8.0.2-fpm/sbin/php-fpmsudo vim /etc/rc.local#/home/alex/php8.0.2-fpm/sbin/php-fpmsudo netstat -tulpn | grep 9002# Для проверки подключим к nginxlocation ~ \.php$ {    root           html;    fastcgi_pass   127.0.0.1:9002;    fastcgi_index  index.php;    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;    include        fastcgi_params;}sudo /home/alex/nginx/sbin/nginx -s reload
+Свежая версия php собрана
+
+  
+
+Итог
+Как видим собрать php-fpm не составляет особого труда.
+Главное здесь желание и умение искать информацию в документации.
+Update
+06.02.2021
+
+Добавлен пункт &amp;quot;Обновление php-fpm&amp;quot;
+
+"
     }
     ,
   
@@ -116,7 +893,52 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2021-01-21-linux-debian-installing-nginx-from-source/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "Теперь соберем веб-сервер nginx из исходников.
+Загрузка и распаковка
+Идем на официальный сайт и скачиваем исходники последней версии.
+Последняя версия на текущий момент (январь 2021) 1.19.6
+wget https://nginx.org/download/nginx-1.19.6.tar.gz
+Распаковываем и переходим в эту папку.
+tar xvf nginx-1.19.6.tar.gzcd nginx-1.19.6
+Сборка настраивается командой configure.
+Она определяет особенности системы и набор модулей с которыми будет собран nginx.
+В конце будет создан Makefile.
+Сборка и запуск
+Создаем папку куда и будем ставить nginx.
+mkdir nginx
+Конфигурируем с минимальными настройками и собираем.
+./configure --prefix=/home/alex/nginx
+makemake install
+В итоге получаем такую структуру.
+ls -1confhtmllogssbin
+Запускаем.
+/home/alex/nginx/sbin/nginx
+Проверяем в браузере, должны увидеть стандартную заглушку.
+
+  
+
+Останавливаем сервер.
+/home/alex/nginx/sbin/nginx -s stop
+Обработка php
+Теперь нужно научить nginx обрабатывать php файлы.
+php-fpm мы собирали в статье.
+Создадим файл для проверки работоспособности, в данном случае это /home/alex/nginx/html/index.php с содержимым.
+&amp;lt;?php    phpinfo();?&gt;
+Открываем конфигурационный файл nginx.
+vim /home/alex/nginx/conf/nginx.conf
+И в секции server в блоке location пропишем следующих строчки
+location ~ \.php$ {    root           html;    fastcgi_pass   127.0.0.1:9001;    fastcgi_index  index.php;    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;    include        fastcgi_params;}
+Перезапускаем nginx идем в браузер
+sudo /home/alex/nginx/sbin/nginx -s reload
+
+  
+
+Итог
+В итоге мы увидели как быстро и просто можно собрать веб сервер nginx из исходников.
+Так же прикрутили туда php-fpm.
+Более продвинутая настройка, уже выходит за рамки данной статьи, возможно при моем желании напишу об этом.
+"
     }
     ,
   
@@ -128,7 +950,25 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2021-01-24-ssh-authentication-by-key/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "Частой операцией для работы с linux серверами является вход на сервер по публичному ключу.
+Решил сделать небольшую инструкцию, вдруг кому пригодится.
+Генерация ключа
+Сгенерируем пару ключей публичный и приватный на клиенте.
+Будут спрашивать имя файла, можно оставить по умолчанию либо ввести свое. Так же спрашивается парольная фраза — это пароль ключа.
+Его тоже не обязательно устанавливать.
+ssh-keygen -t rsa
+В итоге в каталоге ~/.ssh появились пара ключей вида, приватный и публичный.
+id_rsaid_rsa.pub
+Если они уже есть, то просто используем ключ id_rsa.pub.
+Копирование ключа на сервер
+Теперь нужно скопировать наш публичный ключ в файл ~/.ssh/authorized_keys на сервер.
+ssh-copy-id -i ~/.ssh/id_rsa.pub alex@192.168.88.226
+или так
+cat ~/.ssh/id_rsa.pub | ssh git@192.168.88.226 &#39;cat &gt;&gt; ~/.ssh/authorized_keys&#39;
+После этого можем логиниться на сервер без пароля.
+ssh alex@192.168.88.226
+"
     }
     ,
   
@@ -140,7 +980,98 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2021-01-30-php-interfaces-abstract-classes/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "Что такое интерфейс
+Интерфейс — это конструкция языка содержащая сигнатуры публичных методов без их реализации.
+Интерфейс, как и класс пишут в отдельном файле.
+Для объявления интерфейса используется ключевое слово interface. Так же принято его указывать в названии интерфейса.
+Примеры названий интерфейса:
+
+ContainerApplicationInterface
+StatementInterface
+NodeTraverserInterface
+WrappableOutputFormatterInterface
+
+&amp;lt;?php// Пример 1interface BuildNodeInterface{    public function getNode($id) : Node;}
+Реализация интерфейса
+Интерфейс может содержать только публичные методы и публичные константы.
+&amp;lt;?php// Пример 2interface TestInterface{    public const CONSTANT = 1; // использование снаружи BuildNodeInterface::CONSTANT    public function __construct();    public function getMethodOne(int $id);    public function getMethodTwo(string $name);}
+С точки зрения прикладного кода недостаточно просто создать интерфейс.
+Отдельно, в нем нет смысла. Интерфейс необходимо реализовать с помощью ключевого слова implements.
+Для реализации, необходимо в классе, который реализует интерфейс переопределить все методы описанные в интерфейсе.
+Необходимо учесть, что сигнатура функции при этом должна совпадать.
+
+Константу нельзя переопределить в реализующих классах.
+
+В примере 3 мы реализуем интерфейс TestInterface
+&amp;lt;?php// Пример 3 . Интерфейс TestInterface объявлен в примере 2class RealizableClass implements TestInterface {    public function __construct()    {    }    public function getMethodOne(int $id)    {        // TODO: Implement getMethodOne() method.    }    public function getMethodTwo(string $name)    {        // TODO: Implement getMethodTwo() method.    }}
+Наследование интерфейсов
+Интерфейс может наследоваться от нескольких других интерфейсов. В добавок к тому класс может реализовывать несколько интерфейсов.
+Например объявим три интерфейса. Четвертый FourInterface будет наследовать три.
+А класс Realizable будет реализовывать интерфейсы FourInterface и \Countable.
+
+Интерфейс \Countable встроенный интерфейс в сам язык и нужен для подсчета элементов.
+
+// Пример 4interface OneInterface{    public function One(array $array = []) : array;}interface TwoInterface{    public function Two(int $integer) : int;}interface ThreeInterface{    public function Three(string $integer) : int;}interface FourInterface extends OneInterface,TwoInterface,ThreeInterface{    // Здесь мы дополняем сигнатуру метода One    public function One(array $array = [], int $integer = 1) : array;}class Realizable implements FourInterface, \Countable{    public function Two(int $integer): int    {        // TODO: Implement Two() method.    }    public function Three(string $integer): int    {        // TODO: Implement Three() method.    }    public function One(array $array = [], int $integer = 1): array    {        // TODO: Implement One() method.    }    public function count(): int    {        // TODO: Implement count() method.    }}
+Возможно так же использовать интерфейс в сигнатурах функций и методов, как показано в примере 5.
+&amp;lt;?php// Пример 5function test(FourInterface $four): string{    return &#39;test&#39;;}$obj = new Realizable(); // класс этого объекта должен реализовывать FourInterfaceecho test($obj); // test
+Запись интерфейса в параметрах функции, а не класса позволяет завязываться на интерфейс, что делает программу гибче.
+С наследованием интерфейсов можно запутаться, главное придерживаться принципа интерфейс нужен для спецификации типа, то есть
+для того, что он может, а не наоборот.
+Где нужны интерфейсы
+К примеру для реализации стандарта PSR-7 нужно реализовать интерфейсы:
+
+ServerRequestInterface
+ResponseInterface
+
+Реализацию данных интерфейсов можно увидеть во многих фреймворках, например в slim:
+
+ServerRequestInterface
+ResponseInterface
+
+Мы можем без проблем менять одну библиотеку на другую совместимую с PSR-7.
+Интерфейс лучше добавлять тогда, когда он нужен.
+Задача. Нужно преобразовать строку к нужным переводам строк в разных операционных системах.
+Здесь может помочь интерфейс.
+&amp;lt;?php// Пример 6interface LineInterface{    public function createWrite(string $line) : string;}class WinWrite implements LineInterface{    public function createWrite(string $line): string    {        return $line . &quot;\r\n&quot;;    }}class UnixWrite implements LineInterface{    public function createWrite(string $line): string    {        return $line . &quot;\n&quot;;    }}
+Теперь при добавлении другой операционной системой достаточно создать новый класс и реализовать там интерфейс LineInterface
+
+Для решения данной задачи лучше подойдет константа PHP_EOL.
+
+
+Когда нужно использовать интерфейс — это уже зависит от конкретной ситуации и понимание этого момента придёт с опытом и практикой.
+
+Что такое абстрактный класс
+Теперь попытаемся понять для чего нужен абстрактный класс в php.
+Напишем компонент логирования.
+// Пример 7interface LogInterface{    public function __construct($options); // Настроить объект значениями    public function get($key); // Получить значение лога    public function set($key, $value); // Положить значение в лог}abstract class Log implements LogInterface{    protected array $options;    public function __construct($options)    {        $this-&gt;options = $options;        $this-&gt;write();    }    // Общая реализация для всех потомков    abstract protected function write();}// Конкретные реализацииclass FileLog extends Log{    public function get($key)    {        // TODO: Implement get() method.    }    public function set($key, $value)    {        // TODO: Implement set() method.    }    protected function write()    {        // TODO: Implement write() method.    }}class DBLog extends Log{    public function get($key)    {        // TODO: Implement get() method.    }    public function set($key, $value)    {        // TODO: Implement set() method.    }    protected function write()    {        // TODO: Implement write() method.    }}
+Имеем LogInterface в котором определен конструктор и методы get и set, которые работают с коллекцией логов.
+Логи могут храниться в разных хранилищах, и их нужно куда-то записывать.
+Создадим вспомогательный класс Log и сделаем его абстрактным.
+Добавим конструктор, который будет наделять наш объект специфичными для класса потомка опциями, Так же вызовем метод write.
+
+От абстрактного класса нельзя создать объект, его методы нужно переопределить в классе наследнике
+
+Метод write является общим, его и нужно переопределять в классе наследнике.
+Теперь куда бы мы не писали логи, для этого достаточно создать класс и переопределить в нем методы get, set, write.
+Итак, типичное использование абстрактных классов это уменьшение дублирования кода, при появлении общих методов.
+Просто выносим общую логику в абстрактный метод.
+
+Абстрактный класс может полностью не реализовывать все методы интерфейса,
+тогда определения методов из интерфейса становятся абстрактными методами в этом классе, и должны быть переопределены в
+классе наследнике.
+
+Особенности абстрактного класса
+
+Технически абстрактный класс может не содержать абстрактных методов.
+В отличие от интерфейса в абстрактном классе для части методов можно написать реализацию.
+Никто не мешает использовать абстрактные классы вместо интерфейсов, все зависит от задачи.
+Абстрактный класс не имеет никакого отношения к ООП. Это способ распространения кода в вашей иерархии кода.
+
+Итог
+Итак, интерфейс — это контракт, который содержит сигнатуры методов без их реализации.
+Абстрактный класс содержит &amp;quot;очень&amp;quot; общую логику для всех классов потомков, что сокращает дублирование кода.
+"
     }
     ,
   
@@ -152,7 +1083,29 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2021-02-05-13-linux-debian-installing-nodejs-from-source/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "Загрузка и распаковка
+Идем на официальный сайт Nodejs и скачиваем исходники последней версии.
+В момент написания заметки — это версия 15.7.0. Ее и будем ставить.
+wget https://nodejs.org/dist/v15.7.0/node-v15.7.0.tar.gz
+Распаковываем и переходим в эту папку.
+tar xvf node-v15.7.0.tar.gzcd node-v15.7.0
+Создаем папку куда, будем ставить Node.js.
+mkdir node-15
+Сборка и запуск
+При сборке может понадобиться библиотека python3-distutils, установим ее.
+sudo apt install python3-distutils
+Конфигурируем
+./configure --prefix=/home/alex/node-15Node.js configure: Found Python 3.7.3...INFO: configure completed successfully
+Далее запускаем продолжительный процесс компиляции.
+makemake install
+По истечении которого, в директории /home/alex/node-15, появится такая структура.
+binincludelibshare
+Проверяем версию Node.js и npm
+./bin/node -vv15.7.0./bin/node lib/node_modules/npm/bin/npm-cli.js -v7.4.3
+Итог
+Сборка Node.js, как и любой другой программы из исходников не составляет особого труда.
+"
     }
     ,
   
@@ -164,7 +1117,69 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2021-02-19-14-create-composer-package/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "Типичное php приложение зависит от другого кода.
+Часто бывает, что код необходимо использовать сразу в нескольких проектах.
+В php такими зависимостями управляет пакетный менеджер composer.
+Важно отличать пакет (библиотеку) от проекта (приложения). Пакет — это законченная программа которую мы используем в проекте как зависимость.
+А проект — это конечный продукт(сайт) который использует зависимости (пакеты).
+Все пакеты хранятся в репозитории composer библиотек packagist.org.
+Небольшой мануал как создать composer пакет.
+Создание репозитория
+Первое, что необходимо сделать — это создать на гитхабе git репозиторий с названием библиотеки.
+После этоого создаем локальный проект, инициализируем пустой репозиторий и привязываем к нему репозиторий на гитхабе.
+Так же переименуем ветку и свяжем две ветки удаленную и локальную.
+git initgit remote add origin git@github.com:LexusAlex/composer-package.gitgit checkout mastergit checkout -b maingit pull origin maingit branch --set-upstream-to=origin/main main
+Создание инфраструктуры
+Чтобы было удобно разрабатывать проект, настроем запуск php в докер контейнере.
+Создадим Dockerfile по пути docker/php-cli/Dockerfile со следующим содержимым:
+FROM php:7.4-cli-alpineRUN apk add --no-cache autoconf g++ make \    &amp;amp;&amp;amp; pecl install xdebug \    &amp;amp;&amp;amp; rm -rf /tmp/pear \    &amp;amp;&amp;amp; docker-php-ext-enable xdebugRUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.iniRUN apk add unzipENV COMPOSER_ALLOW_SUPERUSER 1RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/bin --filename=composer --quiet \    &amp;amp;&amp;amp; rm -rf /root/.composer/cacheWORKDIR /composer-package
+Из этой инструкции будет создан образ, и в последствии запущен контейнер.
+С заделом на использование нескольких контейнеров добавим специальный файл docker-compose.yml в корень пакета:
+version: &quot;3.7&quot;services:  php-cli:    build:      context: ./docker/php-cli      dockerfile: Dockerfile    volumes:      - ./:/composer-package
+Запускаем сборку docker-compose build или docker-compose up
+После этого можно запускать команды внутри контейнера, таким образом
+docker-compose run --rm php-cli composer --versionComposer version 2.0.9 2021-01-27 16:09:27
+Makefile
+Чтобы вручную не забивать команды добавим в корень Makefile, в котором будем писать все выполняемые команды.
+Например такие
+build:	docker-compose buildup:	docker-compose up
+Впоследствии запуск сборки сводится к make build. В процессе работы мы будем добавлять сюда команды.
+composer.json
+Теперь создадим пример файла composer.json. Это можно сделать и ручками, но мы запустим команду composer init
+docker-compose run --rm php-cli composer init
+В интерактивном режиме будут заданы ряд вопросов, можно заполнить или оставить по дефолту.
+У меня создался такой файл:
+{    &quot;name&quot;: &quot;lexusalex/composer-package&quot;,    &quot;description&quot;: &quot;test project in composer&quot;,    &quot;type&quot;: &quot;library&quot;,    &quot;authors&quot;: [        {            &quot;name&quot;: &quot;Alexsey Shmelev&quot;,            &quot;email&quot;: &quot;alexsey_89@bk.ru&quot;        }    ],    &quot;minimum-stability&quot;: &quot;stable&quot;,    &quot;require&quot;: {}}
+Все параметры этого файла можно менять.
+Так же я добавил .gitignore в который поместил папку /vendor и файл composer.lock.
+Добавим две папки
+
+src - исходные коды нашей библиотеки
+test - phpunit тесты
+
+Автозагрузка классов
+Пропишем автозагрузку для тестов и исходных кодов в composer.json
+{  &quot;autoload&quot;: {    &quot;psr-4&quot;: {      &quot;lexusalex\\composer-package\\&quot;: &quot;src/&quot;    }  },  &quot;autoload-dev&quot;: {    &quot;psr-4&quot;: {      &quot;lexusalex\\composer-package\\test\\&quot;: &quot;tests/&quot;    }  }}
+И выполним команду  docker-compose run --rm php-cli composer dump-autoload.
+Тесты
+Создадим директорию tests и поставим phpunit.
+docker-compose run --rm php-cli composer require --dev phpunit/phpunit
+Добавим конфигурационный файл phpunit.xml
+Сгенерируем его автоматически командой docker-compose run --rm php-cli vendor/bin/phpunit --generate-configuration.
+Или скопируем и другого проекта.
+У меня он выглядит следующим образом :
+&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&amp;lt;phpunit xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;         xsi:noNamespaceSchemaLocation=&quot;https://schema.phpunit.de/9.5/phpunit.xsd&quot;         bootstrap=&quot;vendor/autoload.php&quot;         executionOrder=&quot;depends,defects&quot;         forceCoversAnnotation=&quot;false&quot;         cacheResult=&quot;false&quot;         colors=&quot;true&quot;         beStrictAboutCoversAnnotation=&quot;true&quot;         beStrictAboutOutputDuringTests=&quot;true&quot;         beStrictAboutTodoAnnotatedTests=&quot;true&quot;         failOnRisky=&quot;true&quot;         failOnWarning=&quot;true&quot;         verbose=&quot;true&quot;&gt;    &amp;lt;testsuites&gt;        &amp;lt;testsuite name=&quot;default&quot;&gt;            &amp;lt;directory suffix=&quot;Test.php&quot;&gt;tests&amp;lt;/directory&gt;        &amp;lt;/testsuite&gt;    &amp;lt;/testsuites&gt;    &amp;lt;coverage cacheDirectory=&quot;.phpunit.cache/code-coverage&quot;              processUncoveredFiles=&quot;true&quot;&gt;        &amp;lt;include&gt;            &amp;lt;directory suffix=&quot;.php&quot;&gt;src&amp;lt;/directory&gt;        &amp;lt;/include&gt;    &amp;lt;/coverage&gt;&amp;lt;/phpunit&gt;
+Публикация на packagist.org
+Последнее, что осталось сделать — это опубликовать наш пакет на packagist.org.
+Особого труда это не составит.
+Закоммитим и поставим тег версии git tag -a 0.1 -m 0.1
+Теперь открываем проект куда мы ходим поставить данный тестовый пакет с именем lexusalex/composer-package.
+docker-compose run --rm php-cli-alpine composer require lexusalex/composer-package 0.1
+Так же можно на основании этого пакета создать проект при желании.
+Исходники
+Предложения и pull requests приветствуются https://github.com/LexusAlex/composer-package.
+"
     }
     ,
   
@@ -176,7 +1191,41 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2021-02-21-15-stages-of-project-development/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "1. Понять задачу
+Необходимо четко понимать, что необходимо сделать. Поговорить с заказчиком и понять что и зачем ему нужно. Какие проблемы
+заказчика решает проект, как он будет работать.
+На данном этапе от заказчика желательно иметь техническое задание.
+На основании предоставленных материалов заказчиком, исполнитель сам может составить техническое задание.
+Без ТЗ к сожалению получится ХЗ и нет смысла идти дальше. На старте работы нужно МАКСИМАЛЬНО четко сформулировать требования.
+2. Сущности
+Далее нужно определить сущности которые должны быть в проекте, и их взаимосвязи.
+У каждой сущности есть определенный набор данных или полей. Так же сущность каким-то образом взаимодействует с
+другими сущностями.
+Идеально составить ER диаграмму схемы базы данных. Ну или на худой конец нарисовать на листке бумаги ERD схему.
+Понимание сущностей очень тесно связано с пониманием задачи для которой собственно и задумывается проект.
+В итоге на данном этапе нужно определить какими данными будет оперировать наш проект.
+3. Структура проекта
+Если мы пишем на php здесь определяем фреймворк, набор пакетов который будем использовать.
+Так же нельзя обходить стороной инфраструктуру, где запускать, как это поддерживать. Зависит от проекта, но здесь можно сопоставить сущности в бд и модели данных
+в коде.
+Говоря простым языком, скелет проекта для написания бизнес логики.
+4. Реализация
+Главное реализовать ядро проекта, основной функционал, самую суть.
+Минимальный возможный функционал для запуска проекта в продакшене, который можно показать заказчику.
+Здесь очень многое зависит от ваших подходов.
+Задачу бить на этапы и подзадачи.
+Не забываем про тесты и документацию.
+Если сроки сжаты и мы сделали какую-то штуку на скорую руку, нужно обязательно
+ее переписать — это называется техническим долгом.
+Если список тех. долга не ведется, это хреново друг.
+
+Важно помнить что код со временем портится и требует рефакторинга
+
+5. Документация
+Параллельно разработке обязательно ведем документацию для разработчиков. Чтобы еще кроме вас знал как запустить и разрабатывать
+проект.
+"
     }
     ,
   
@@ -188,7 +1237,55 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2021-02-28-16-linux-lemp/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "Итак, имеем только что установленный чистый Debian.
+Подготовка
+Подключимся к нему по ssh
+ssh test@0.0.0.0
+Установим программу sudo и добавим в группу нашего пользователя и пере зайдем в систему.
+
+Программа sudo уже может быть установлена на сервере
+
+su -apt-get install sudo/sbin/usermod -aG sudo alexexitexit
+Обновим пакеты.
+sudo apt-get update
+Установим необходимые программы.
+sudo apt-get install vim htop git curl wget unzip zip gcc build-essential make
+Откроем конфиг ssh sudo vim /etc/ssh/sshd_config.
+Добавим или раскоментируем следующие настройки:
+AllowUsers alex # Разрешаем заходить на сервер только пользователю alexPermitRootLogin no # Не разрешаем логиниться пользователю root
+Перезагружаем демон ssh
+sudo service ssh restart
+Можно установить другой shell как замену bash - это по желанию.
+sudo apt-get install zshsh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;
+Так же добавим сразу ssh ключ, чтобы каждый раз не вводить пароль.
+У меня ключи уже сгенерированы, просто скопируем публичный ключ на удаленный сервер командой.
+ssh-copy-id alex@192.168.88.222
+MariaDb
+Ставим базу данных
+sudo apt install mariadb-server mariadb-clientsudo mysql_secure_installation
+Заходим в бд и создаем тестовую базу и пользователя.
+sudo mariadb -u rootCREATE DATABASE new_db COLLATE &#39;utf8_general_ci&#39;;CREATE USER new_db IDENTIFIED BY &#39;password&#39;;GRANT ALL privileges ON new_db .* TO new_db;
+Подключаемся.
+sudo mariadb -u new_db -p
+Nginx и PHP
+Ставим nginx
+sudo apt-get install nginx
+Теперь php.
+sudo apt install php-fpm php-mysql php-mbstringsudo vim /etc/nginx/sites-available/default
+Проверяем работоспособность
+location ~ \.php$ {   include snippets/fastcgi-php.conf;   fastcgi_pass unix:/run/php/php7.3-fpm.sock;}location ~ /\.ht {   deny all;}
+sudo nginx -tsudo systemctl reload nginxsudo chown alex:alex htmlvim index.php &amp;lt;?phpphpinfo();?&gt;
+Новый виртуальный хост
+Создадим новый виртуальный хост.
+В каталоге /etc/nginx/sites-available создадим файл хоста sudo touch test.com:
+server {    server_name test.com www.test.com;    listen 80;    charset utf-8;    index index.php;    root /var/www/test.com;    server_tokens off;    location / {        try_files $uri /index.php?$args;    }    location ~ \.php$ {        fastcgi_split_path_info ^(.+\.php)(/.+)$;        fastcgi_pass unix:/run/php/php7.3-fpm.sock;        fastcgi_index index.php;        fastcgi_read_timeout 300;        include fastcgi_params;        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;        fastcgi_param PATH_INFO $fastcgi_path_info;    }}
+Активируем хост и проверим.
+sudo ln -s /etc/nginx/sites-available/test.com /etc/nginx/sites-enabled/
+sudo systemctl reload nginxsudo chown alex:alex test.comvim index.php test.com
+Для проверки на своем компьютере отредактируем файл hosts добавим строку вроде 0.0.0.0 test.com и проверяем в браузере
+набрав http://test.com должна открыться страница с этого хоста.
+"
     }
     ,
   
@@ -200,7 +1297,16 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2021-03-06-17-disparate-software/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "Редкий продукт имеет возможность к расширению функциональности и интеграции с другими программами.
+Трекер задач, в котором ставятся задачи проекта отельная система. Git репозиторий с коммитами проекта другая система.
+Счета клиентов в третьем месте в 1c. Переписка с клиентами в четвертом месте в почте. Уведомления в пятом и тд. и тп.
+Все это собрать в одном месте просто невозможно. Хотя можно, но только используя костылизацию.
+Часто компания для того, чтобы унифицировать два стандарта, решает разработать свой продукт, который позволит держать
+&amp;quot;все в одной системе&amp;quot;. Проблема в том что, третий стандарт несовместим с первыми двумя.
+Теперь получается, что под третий стандарт нужно программировать.
+Дальше софта и программ будет больше и совершенного непонятно как с ними жить.
+"
     }
     ,
   
@@ -212,6 +1318,69 @@
     "summary" : "",
     "type" : "",
     "url": "/notes/2021-03-14-18-configuring-server-nginx/",
-    "tags" : "notes"
+    "tags" : "notes",
+    "test" : "
+Сборка Nginx из исходников на Debian 10
+
+В первой статье мы установили nginx из исходников.
+Сегодня продолжим и разберемся с настройкой и как он работает.
+После запуска, nginx имеет один главный процесс и несколько рабочих процессов наследованных от главного процесса.
+Каждый рабочий процесс способен обрабатывать тысячи http соединений.
+Количество рабочих процессов прописываются в конфигурационном файле в моем случае он лежит там куда мы ставили nginx
+/home/alex/nginx/conf/nginx.conf, в других дистрибутивах может быть по другому.
+В конфигурационном файле, директивы могут быть простые:
+user  nobody;
+И блочные:
+events {    worker_connections  1024;    multi_accept on;}
+Комментарий обозначается символом #.
+Рабочие процессы
+Как говорилось выше рабочие процессы можно определять.
+# по умолчанию 1 процесс, auto значит nginx определит количество рабочих процессов автоматически равным числу ядер процессораworker_processes  auto;
+Посмотрим на это:
+ps -ef --forest | grep nginxroot        728      1  0 15:04 ?        00:00:00 nginx: master process /home/alex/nginx/sbin/nginxnobody     1258    728  0 16:31 ?        00:00:00  \_ nginx: worker process
+Сейчас у меня 1 рабочий процесс, что вполне закономерно, по кол-ву ядер на сервере.
+events {    # Задаёт максимальное число соединений, которые одновременно может открыть рабочий процесс.    # Как правило, число устанавливают в зависимости от числа ядер процессора по принципу n * 1024. Например, 2 ядра дадут worker_connections 2048    worker_connections  1024; }
+Пользователь
+По умолчанию рабочие процессы nginx работают от пользователя nobody.
+Создадим для этих целей системного пользователя nginx
+sudo useradd -M -r -s /usr/sbin/nologin nginx
+И пропишем в конфигурационном файле
+user  nginx nginx;
+Перезапускам сервер и проверяем
+sudo ./sbin/nginx -s reload
+Http сервер
+Основное предназначение Nginx - это обработка http соединений, для настройки этого существует директива http
+http {}
+
+Любой файл конфигурации можно подключать с помощью директивы include например include mime.types; с корректными директивами
+
+Виртуальные хосты задаются директивой server. Их может быть несколько.
+http {    server {        }    server {        }    server {        }}
+Их различают по портам и по имени сервера.
+Каждая из секций server может содержать директивы:
+
+listen - адрес и порт на которых сервер будет принимать запросы
+server_name - имена виртуального сервера
+
+listen 127.0.0.1:8000;listen 127.0.0.1;listen 8000;listen *:8000;listen localhost:8000;server_name example.com www.example.com;
+Примеры конфигураций
+http {    server {        listen       8080;        server_name  localhost;    }    server {        listen       8081;        listen       8082;        listen       8083;        server_name  test;    }    server {        # Запрещаем обработку узла без имени сервера        listen      80;        server_name &quot;&quot;;        return      444;    }    server {        listen      192.168.1.1:80;        server_name example.org www.example.org;    }}
+
+Рекомендуется каждый виртуальный хост указывать в отдельном файле. Подключенные в основном например так include /etc/nginx/vhosts/*;
+
+Следующим шагом необходимо определить директиву location,
+которая задает конфигурацию в зависимости от URI запроса.
+Директива root задает корневой каталог куда пойдет запрос.
+location / {    root html;}
+Пример конфигурации для php сайта
+server {    listen      80;    server_name localhost;    root        html;    location / {        index  index.php;    }    location ~* \.(gif|jpg|png)$ {        expires 30d;    }        location ~ \.php$ {        root           html;        fastcgi_pass   127.0.0.1:9002;        fastcgi_index  index.php;        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;        include        fastcgi_params;     }}
+Полезные ссылки
+
+Документация Nginx
+Генератор конфигураций для Nginx
+Генератор SSL конфигурации
+htaccess-конвертер правил
+
+"
     }
     ]

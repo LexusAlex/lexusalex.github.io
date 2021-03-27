@@ -58,8 +58,8 @@ footer {
 }
 
 .mainpage__search {
-    width: 90%;
-    font-size: 3em;
+    width: 100%;
+    font-size: 2.5em;
     line-height: 1.2
 }
 
@@ -68,10 +68,10 @@ footer {
 }
 
 .mainpage__search_hidden-suggestion {
-    position: relative;
+    /*position: relative;
     width: 80vw;
     max-width: 920px;
-    max-height: 110px
+    max-height: 110px*/
 }
 
 .mainpage__search-suggestions.search__suggestions {
@@ -80,7 +80,8 @@ footer {
     font-size: .5em;
     background: #fff;
     box-shadow: 0 0 20px rgba(158, 158, 158, .2);
-    border-radius: 3px
+    border-radius: 3px;
+    z-index: 1;
 }
 
 .mainpage__search-toggler {
@@ -162,4 +163,10 @@ footer {
 .mainpage__search-input:focus {
     outline: 0;
     border-bottom: 1px solid #000
+}
+
+.search__suggestions__item {
+    display: block;
+    padding: 2px;
+    font-size: 1em;
 }

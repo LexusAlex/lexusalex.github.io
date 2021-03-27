@@ -22,12 +22,24 @@
 <body>
     <div class="page">
         <header class="header page__header">
-    <div class="header__title">Алексей Шмелев</div>
+    <div class="header__title">
+        <div class="header__title_name">
+            Алексей Шмелев
+        </div>
+        <div class="header__title_search">
+            <form id="js-search-form" class="mainpage__search mainpage__search_hidden-suggestion" role="search" onsubmit="return false">
+                <div class="mainpage__search-item">
+                    <label for="search"></label><input type="search" id="search" class="mainpage__search-input" placeholder="Поиск..." autocomplete="off" autofocus="">
+                </div>
+                <div id="search-suggestions" class="mainpage__search-suggestions search__suggestions search__suggestions__hidden" role="listbox">
+                </div>
+            </form>
+        </div>
+    </div>
     <ul class="navigation">
         <li class="navigation__item"><a class="link" href="/">Главная</a>
         <li class="navigation__item"><a class="link" href="/about/index.html">Обо мне</a>
     </ul>
-    <div class="mainpage__search-item"><div class="mainpage__search-togglers"><label class="mainpage__search-toggler__label"><input type="checkbox" name="search_category[]" class="mainpage__search-toggler__input" value="html"> <span class="mainpage__search-toggler mainpage__search-toggler_html">HTML</span></label> <label class="mainpage__search-toggler__label"><input type="checkbox" name="search_category[]" class="mainpage__search-toggler__input" value="css"> <span class="mainpage__search-toggler mainpage__search-toggler_css">CSS</span></label> <label class="mainpage__search-toggler__label"><input type="checkbox" name="search_category[]" class="mainpage__search-toggler__input" value="js"> <span class="mainpage__search-toggler mainpage__search-toggler_js">JavaScript</span></label></div><label for="search" class="visually-hidden">Форма поиска по статьям сайта</label> <input type="search" id="search" class="mainpage__search-input" placeholder="Поиск..." autocomplete="off" autofocus=""></div><div id="search-suggestions" class="mainpage__search-suggestions search__suggestions search__suggestions__hidden" role="listbox"></div>
 </header>
 
 <main class="page__content">

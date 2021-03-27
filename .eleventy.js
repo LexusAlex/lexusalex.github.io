@@ -14,6 +14,20 @@ module.exports = function(eleventyConfig) {
 
     eleventyConfig.addPlugin(syntaxHighlight);
 
+    eleventyConfig.addFilter('clear', (value) => {
+        //console.log(array.val.replace(/<(.|\n)*?>/g, ''));
+        //str.replace(/<[^>]*(>|$)|&nbsp;|&zwnj;|&raquo;|&laquo;|&gt;/g, 'ReplaceIfYouWantOtherWiseKeepItEmpty');
+        //return array.val.replace(/<[^>]*(>|$)|#|&|;|&nbsp;|&zwnj;|&raquo;|&quot;|&laquo;|&amp|&gt;/g, '');
+        //console.log(value);
+        //return value.replace(/<\/?[a-zA-ZА-Яа-я]|&+>/gui,'');
+        //return value.replace(/[^а-яА-Я!. ]/gu,'');
+        return value.replace(/<(.)*?>/gu,'');
+
+    });
+    // Collections
+    eleventyConfig.addCollection("searchable", (collection) =>
+        collection.getFilteredByGlob("./src/notes/**/*.md")
+    )
     return {
         addPassthroughFileCopy: true,
         templateFormats: ['njk', 'md', 'png', 'jpg', 'svg', 'html'],
