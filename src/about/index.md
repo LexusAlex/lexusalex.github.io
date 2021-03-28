@@ -3,6 +3,7 @@ layout: custom.njk
 date: 2020-10-18 22:35:00 +3
 image: /assets/images/notes/1/main.png
 description: Обо мне
+title: Алексей Шмелев
 ---
 
 ### Lexusalex
