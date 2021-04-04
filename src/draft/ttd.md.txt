@@ -1,0 +1,3 @@
+https://github.com/bespoyasov/testing-workshop/
+
+1 тест проверяет только одну вещь
