@@ -1,3 +1,7 @@
 https://github.com/bespoyasov/testing-workshop/
 
 1 тест проверяет только одну вещь
+
+Random в тестах не такой уж и рандом
+
+https://www.youtube.com/watch?v=oaktsy6YKMk

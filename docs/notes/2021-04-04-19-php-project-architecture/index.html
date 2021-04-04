@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="yandex-verification" content="34b9532704688201" />
+
+    <title>Архитектура проекта на php · Заметки веб разработчика</title>
+
+    <meta name="description" content="Организовываем код, чтобы не было мучительно больно">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Архитектура проекта на php">
+    <meta property="og:description" content="Организовываем код, чтобы не было мучительно больно">
+
+    
+
+    <link rel="stylesheet" href="/index.css">
+    <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(47811625, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47811625" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <div class="page">
+        
+<header class="header page__header">
+    <div class="header__title">Алексей Шмелев</div>
+    <ul class="navigation">
+        <li class="navigation__item"><a class="link" href="/">Главная</a>
+        <li class="navigation__item"><a class="link" href="/about/index.html">Обо мне</a>
+    </ul>
+</header>
+
+<article class="article" itemtype="http://schema.org/BlogPosting" itemscope="">
+    <header  class="article__header">
+        <time datetime="2021-04-04T15:50:00.000Z" itemprop="datePublished">
+            4 апреля 2021 г.
+        </time>
+        <h1 itemprop="name headline">Архитектура проекта на php</h1>
+    </header>
+
+    <div class="content" itemprop="articleBody">
+        <figure style="border: none">
+            <img src="/assets/images/notes/19/main.png" alt=""  data-action="zoom">
+        </figure>
+        <p class="description">
+            Организовываем код, чтобы не было мучительно больно
+        </p>
+        <h2>Постановка вопроса</h2>
+<p>Время от времени возникает потребность в переписывании проекта сделанном на каком-нибудь из старых версий фреймворка или еще хуже с легаси кода.</p>
+<p>Увы, но так просто переписать проект с Yii на Symfony или с легаси на Laravel не является возможным.
+Потому, что фреймворки не совместимы и не могут заменить друг друга.</p>
+<p>Отсюда вопрос. Необходимо организовать такую структуру, при которой ядро приложения должно быть фреймворконезависимым.
+То есть должна быть возможность менять фреймворк или параллельно использовать несколько фреймворков, не затрагивая основной код приложения.</p>
+<p>При этом важно разделять взаимодействие компонентов и чистый код приложения, ведь никогда не знаешь когда проект &quot;устареет&quot; и придется все переписывать.</p>
+<h2>Запрос и ответ</h2>
+<p>Очевидно, что любое приложение должно уметь принимать запросы и возвращать ответы.</p>
+<p>Любой запрос попадает в контроллер, который в свою очередь обрабатывает результат.</p>
+<p>Клиентом в данном случае может выступать любая программа или сервис, которая посылает этот запрос.</p>
+<p>Получается, что на верхнем уровне мы должны определить какой контроллер запускать.</p>
+<figure>
+  <img src="/assets/images/notes/19/ci.png" alt="Client Interface"  data-action="zoom">
+</figure>
+<p>Здесь может быть очередь, консоль или мобильное приложение.</p>
+<p>То есть имеем несколько каналов для входных запросов.</p>
+<p>Это все фреймворки, которые мы может менять друг на друга в любых количествах и соотношениях.
+Это точка взаимодействия с конечным пользователем.</p>
+<p>Структура директорий для контроллеров может быть такой</p>
+<pre class="language-shell"><code class="language-shell">src/<br>    CI/<br>        Android/<br>        Api/<br>        Cli/<br>        Http/<br>        iOS/<br>        RabbitMq/<br>        other/</code></pre>
+<h2>Приложение</h2>
+<p>Приложение состоит из набора операции или бизнес-процессов, с которыми мы можем что-то делать.</p>
+<p>Все операции можно разделить два типа:</p>
+<ul>
+<li>Команда (Command)</li>
+<li>Запрос (Query)</li>
+</ul>
+<p>Команда модифицирует какие-либо данные (post, put, delete, patch), а запрос только считывает результат (get).</p>
+<p>Команда возвращает результат выполнения операции <code>true/false</code>, например регистрация пользователя на сайте.</p>
+<p>Запрос возвращает какие-либо данные, например информация о пользователе или список пользователей.</p>
+<p>Операции — это некие процедуры или функции, способы взаимодействия с системой.</p>
+<p>Пример обработчика команды</p>
+<pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span><br><br><span class="token keyword">declare</span><span class="token punctuation">(</span>strict_types<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token keyword">class</span> <span class="token class-name">Handler</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">handle</span><span class="token punctuation">(</span>Command <span class="token variable">$command</span><span class="token punctuation">)</span><span class="token punctuation">:</span> void<br>    <span class="token punctuation">{</span><br>        <span class="token variable">$email</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Email</span><span class="token punctuation">(</span><span class="token variable">$command</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">email</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">users</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">hasByEmail</span><span class="token punctuation">(</span><span class="token variable">$email</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">DomainException</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'User already exists.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token punctuation">}</span><br><br>        <span class="token variable">$date</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DateTimeImmutable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>        <span class="token variable">$user</span> <span class="token operator">=</span> User<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">requestJoinByEmail</span><span class="token punctuation">(</span><br>            Id<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">generate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>            <span class="token variable">$date</span><span class="token punctuation">,</span><br>            <span class="token variable">$email</span><span class="token punctuation">,</span><br>            <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">hasher</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">hash</span><span class="token punctuation">(</span><span class="token variable">$command</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">password</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>            <span class="token variable">$token</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">tokenizer</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">generate</span><span class="token punctuation">(</span><span class="token variable">$date</span><span class="token punctuation">)</span><br>        <span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">users</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">add</span><span class="token punctuation">(</span><span class="token variable">$user</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>В данном случае команда регистрирует пользователя по email и добавляет его в базу данных.</p>
+<p>Класс <code>User</code> в данном случае входит в доменную модель нашего приложения.</p>
+<p>Здесь содержится только чистый код.</p>
+<h2>Итог</h2>
+<p>При такой архитектуре можно свободно менять библиотеки, и даже весь фреймворк целиком, не затрагивая код приложения и доменной модели.</p>
+<p>Получается гибкая структура, где контроллеры манипулируют нашими операциями, а операции сущностями, что дает удобство при
+тестировании разработке.</p>
+
+    </div>
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://lexusalex-ru.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</article>
+
+<footer>
+    <p>
+        Работает на <a href="https://www.11ty.dev/">Eleventy</a> - 2020
+    </p>
+</footer>
+    </div>
+    <script src="/assets/js/medium-zoom.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script id="dsq-count-scr" src="//lexusalex-ru.disqus.com/count.js" async></script>
+</body>
+</html> 
