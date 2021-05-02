@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="yandex-verification" content="34b9532704688201" />
+
+    <title>Часовые пояса · Заметки веб разработчика</title>
+
+    <meta name="description" content="Одна из самых сложные вещей при работе с датами — это перевод из одного часового пояса в другой. Разберем нюансы и детали.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Часовые пояса">
+    <meta property="og:description" content="Одна из самых сложные вещей при работе с датами — это перевод из одного часового пояса в другой. Разберем нюансы и детали.">
+
+    
+
+    <link rel="stylesheet" href="/index.css">
+    <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(47811625, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47811625" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <div class="page">
+        
+<header class="header page__header">
+    <div class="header__title">Алексей Шмелев</div>
+    <ul class="navigation">
+        <li class="navigation__item"><a class="link" href="/">Главная</a>
+        <li class="navigation__item"><a class="link" href="/about/index.html">Обо мне</a>
+    </ul>
+</header>
+
+<article class="article" itemtype="http://schema.org/BlogPosting" itemscope="">
+    <header  class="article__header">
+        <time datetime="2021-05-02T15:50:00.000Z" itemprop="datePublished">
+            2 мая 2021 г.
+        </time>
+        <h1 itemprop="name headline">Часовые пояса</h1>
+    </header>
+
+    <div class="content" itemprop="articleBody">
+        <figure style="border: none">
+            <img src="/assets/images/notes/20/main.png" alt=""  data-action="zoom">
+        </figure>
+        <p class="description">
+            Одна из самых сложные вещей при работе с датами — это перевод из одного часового пояса в другой. Разберем нюансы и детали.
+        </p>
+        <p>Земной шар делится на 24 часовых пояса. Точкой отсчета считается всемирное координированное время (UTC).
+Стандарт, который играет роль нуля в списке часовых поясов.
+Часовые пояса вокруг земного шара выражаются, как положительное или отрицательное смещение от UTC.</p>
+<p>К примеру Москва это UTC/GMT +3 часа, а Новосибирск UTC/GMT +7 часов.</p>
+<p>Стоит также учитывать, что в некоторых странах осуществляют переход на летнее и зимнее время, что еще более усугубляет понимание всего этого.</p>
+<h2>Как работать со временем</h2>
+<p><strong>Важно все расчеты со временем вести относительно UTC</strong></p>
+<p>При разработке проектов нужно прийти к соглашению, что все даты хранятся как локальной время по UTC. Так легче производить конвертацию.</p>
+<p>Все современные библиотеки имеют функции для работы с таким временем.</p>
+<p>Например, в <code>javascript</code> для этих целей можно воспользоваться библиотекой <a href="https://momentjs.com/">https://momentjs.com/</a>.</p>
+<p>В <code>php</code> легко и приятно работать со временем позволяет библиотека <a href="https://carbon.nesbot.com/">https://carbon.nesbot.com/</a>.</p>
+<p>Клиент и сервер должны обмениваться друг с другом только датами в UTC. Перевод уже делать на стороне клиента исходя из
+локального смещения пользователя.</p>
+<p>Хранение дат в timestamp требует постоянной конвертации, что не оптимально. Базы данных лучше сами оптимизируют дату
+храня ее в специальном формате.</p>
+<h2>Локальное смещение пользователя</h2>
+<p>Для того чтобы узнать локальное смещение пользователя на клиенте можно воспользоваться методом <code>getTimezoneOffset()</code> в js.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTimezoneOffset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br><span class="token operator">-</span><span class="token number">180</span></code></pre>
+<p>Что значит смещение часового пояса, являющееся разностью в минутах между временем UTC и местным временем.
+В данном случае <code>-180 минут</code> означает <code>+3 часа</code>, а <code>+240</code> будет значить <code>-4 часа</code>.</p>
+<p>Но если у клиента введено летнее или зимнее время смещение будет не постоянным даже в пределах одного часового пояса.</p>
+<p>Обратная процедура преобразования на сервере означает вычитание(прибавление) минут с обратным знаком, об этом нужно помнить</p>
+<p>Например, в php преобразовать всемирное время в локальную дату можно таким образом:</p>
+<pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span><br><span class="token variable">$date</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DateTimeImmutable</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'now'</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">DateTimeZone</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'Europe/Moscow'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token variable">$date</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">format</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'d-m-Y H:i:s e I O T'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 02-05-2021 17:08:56 Europe/Moscow 0 +0300 MSK</span><br><span class="token variable">$date</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">format</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'c'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 2021-05-02T17:08:56+03:00</span><br><span class="token variable">$date</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">format</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'r'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Sun, 02 May 2021 17:08:56 +0300</span><br><span class="token variable">$date</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">format</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'U'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1619964536</span></code></pre>
+<h2>Итог</h2>
+<ul>
+<li>хранить даты на сервере только в UTC, если с определенной зоной, то явно указывая это.</li>
+<li>для перевода дат на клиенте использовать специальные библиотеки для этого, не пишите собственные велосипеды.</li>
+<li>клиент и сервер должны обмениваться друг с другом только датами в UTC.</li>
+<li>если вы что-то вычитаете или прибавляете к дате, значит вы делаете что-то не так.</li>
+</ul>
+
+    </div>
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://lexusalex-ru.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</article>
+
+<footer>
+    <p>
+        Работает на <a href="https://www.11ty.dev/">Eleventy</a> - 2020
+    </p>
+</footer>
+    </div>
+    <script src="/assets/js/medium-zoom.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script id="dsq-count-scr" src="//lexusalex-ru.disqus.com/count.js" async></script>
+</body>
+</html> 
