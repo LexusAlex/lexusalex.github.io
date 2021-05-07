@@ -221,3 +221,10 @@ docker-compose run --rm php-cli-alpine composer require lexusalex/composer-packa
 ## Исходники
 
 Предложения и pull requests приветствуются [https://github.com/LexusAlex/composer-package](https://github.com/LexusAlex/composer-package).
+
+## UPD 06.05.2021
+
+**Пакет обновлен**
+
+- версия 0.3.0. Введены проверки на корректность и соответствие стандартам.
+[Подробнее](https://github.com/LexusAlex/composer-package/releases/tag/0.3.0)
