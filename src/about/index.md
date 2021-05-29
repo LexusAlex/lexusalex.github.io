@@ -6,6 +6,13 @@ description: Обо мне
 title: Алексей Шмелев
 ---
 
+<div class="search">
+          <div class="search-input-wrap">
+            <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search {{ site.title }}" aria-label="Search {{ site.title }}" autocomplete="off">
+          </div>
+      <div id="search-results" class="search-results"></div>
+</div>
+
 ### Lexusalex
 
 Меня зовут Алексей, я разработчик из Чехова. Люблю создавать приложения и продукты. 

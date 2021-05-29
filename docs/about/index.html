@@ -39,7 +39,13 @@
         <p class="description">
             Обо мне
         </p>
-        <h3>Lexusalex</h3>
+        <div class="search">
+          <div class="search-input-wrap">
+            <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search " aria-label="Search " autocomplete="off">
+          </div>
+      <div id="search-results" class="search-results"></div>
+</div>
+<h3>Lexusalex</h3>
 <p>Меня зовут Алексей, я разработчик из Чехова. Люблю создавать приложения и продукты.
 Стараюсь участвовать во всех стадиях разработки.</p>
 <p>Могу набросать простенький дизайн, сверстать и реализовать логику, но моя основная специализация — бекенд.</p>
@@ -75,6 +81,10 @@
 </footer>
     </div>
     <script src="/assets/js/medium-zoom.min.js"></script>
+    <script type="text/javascript" src="/assets/js/lunr/lunr.min.js"></script>
+    <script type="text/javascript" src="/assets/js/lunr/lunr.stemmer.support.js"></script>
+    <script type="text/javascript" src="/assets/js/lunr/lunr-ru.js"></script>
+    <script type="text/javascript" src="/assets/js/lunr/lunr.muiti.js"></script>
     <script src="/assets/js/main.js"></script>
     <script id="dsq-count-scr" src="//lexusalex-ru.disqus.com/count.js" async></script>
 </body>
