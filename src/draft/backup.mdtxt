@@ -19,7 +19,7 @@ sudo mount /dev/sdb /mnt/usb
 
 //sudo mount 192.168.88.252/backup /mnt/192.168.88.252 -o guest,rw,iocharset=utf8
 
-/media/alex/5b055601-cdfb-418b-8712-c4502f18429b/
+sudo tar -cvpzf /media/alex/5b055601-cdfb-418b-8712-c4502f18429b/backup/xubuntu2021/`date +%Y_%m_%d_%H_%M`.tgz --exclude=/proc --exclude=/dev --exclude=/lost+found --exclude=/mnt --exclude=/cdrom --exclude=/media --exclude=/sys --ignore-failed-read /
 
 sudo tar -cvpzf /mnt/usb/`date +%Y_%m_%d_%H_%M`.tgz --exclude=/proc --exclude=/dev --exclude=/lost+found --exclude=/mnt --exclude=/media --exclude=/sys --ignore-failed-read /
 
@@ -99,7 +99,7 @@ umount /mnt/proc
 umount /mnt/sys
 umount /mnt
 
-
+sudo tar -cvpzf /media/alex/5b055601-cdfb-418b-8712-c4502f18429b/backup/xubuntu2021/`date +%Y_%m_%d_%H_%M`.tgz --exclude=/proc --exclude=/dev --exclude=/lost+found --exclude=/mnt --exclude=/cdrom --exclude=/media --exclude=/sys --ignore-failed-read /
 https://habr.com/ru/post/251659/
 https://aleksandr0105.ru/2015/04/13/rezervnoe-kopirovanie-ubuntu.html
 https://xhop.ru/nix-sistemyi/centos-7-dracut-boot-recovery/
