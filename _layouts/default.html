@@ -64,6 +64,31 @@ layout: table_wrappers
       {% else %}
         {% include nav.html pages=site.html_pages %}
       {% endif %}
+
+      {% assign site_tags = "" | split: "X" %}
+        {% for page in site.pages %}
+        {% if page.tags != nil %}
+          {% assign site_tags = site_tags | concat: page.tags %}
+        {% endif %}
+      {% endfor %}
+
+      {% assign site_slugs = "" | split: "X" %}
+        {% for tag in site_tags %}
+          {% assign slug = tag | slugify: "pretty" %}
+          {% assign site_slugs = site_slugs | push: slug %}
+      {% endfor %}
+
+      {% assign site_slugs = site_slugs | uniq | sort %}
+
+      <hr/>
+      <ul class="navigation-list{{ include.class }}">
+        {% for slug in site_slugs %}
+        <li class="navigation-list-item">
+          <a href="{{ site.url }}{{ site.baseurl }}/tags/#{{ slug | slugify }}" class="navigation-list-link">#{{ slug }}</a>
+        </li>
+        {%- endfor -%}
+      </ul>
+
     </nav>
     <footer class="site-footer">
       <ul>

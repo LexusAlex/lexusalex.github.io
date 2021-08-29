@@ -7,6 +7,9 @@ description: Cоздаем с нуля composer пакет и публикуем
 date: 2021-02-19 23:00:00 +3
 parent: Заметки
 themes: php composer
+tags:
+- php
+- composer
 ---
 
 # Создание composer пакета

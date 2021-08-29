@@ -6,7 +6,9 @@ title: Миграции в php
 parent: Заметки
 description: Используем миграции базы данных в php на примере библиотеки Phinx
 date: 2020-12-27 12:30:00 +3
-themes: php sql
+tags:
+- php
+- sql
 ---
 
 # Миграции в php

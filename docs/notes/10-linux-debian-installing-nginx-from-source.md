@@ -7,6 +7,9 @@ description: Собираем nginx из исходных кодов
 date: 2021-01-21 23:00:00 +3
 parent: Заметки
 themes: linux nginx
+tags:
+- linux
+- nginx
 ---
 
 # Сборка Nginx из исходников на Debian 10

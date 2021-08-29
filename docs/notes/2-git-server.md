@@ -6,7 +6,10 @@ parent: Заметки
 title: Git сервер в локальной сети
 description: Разворачиваем Git сервер на Debian
 date: 2020-12-10 21:20:00 +3
-themes: linux git ssh
+tags:
+- linux
+- git
+- ssh
 ---
 
 # Git сервер в локальной сети

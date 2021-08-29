@@ -6,7 +6,9 @@ title: Сборка Node.js из исходников на Debian 10
 description: Небольшая заметка о сборке Node.js
 date: 2021-02-05 23:00:00 +3
 parent: Заметки
-themes: linux nodejs
+tags:
+- linux
+- nodejs
 ---
 
 # Сборка Node.js из исходников на Debian 10

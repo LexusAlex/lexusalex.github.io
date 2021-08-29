@@ -7,6 +7,8 @@ description: Каждый день мы используем сотни прог
 date: 2021-03-06 21:30:00 +3
 parent: Заметки
 themes: software
+tags:
+- software
 ---
 
 # Разрозненный софт

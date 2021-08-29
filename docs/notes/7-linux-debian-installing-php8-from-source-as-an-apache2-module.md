@@ -6,7 +6,9 @@ title: Сборка php 8 из исходников на Debian 10
 description: Собираем php 8 под веб сервер Apache 2
 date: 2021-01-08 17:50:00 +3
 parent: Заметки
-themes: linux php
+tags:
+- linux
+- php
 ---
 
 # Сборка php 8 из исходников на Debian 10

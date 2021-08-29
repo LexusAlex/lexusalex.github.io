@@ -7,6 +7,9 @@ description: Собираем менеджер приложений php-fpm
 date: 2021-01-16 23:30:00 +3
 parent: Заметки
 themes: linux php
+tags:
+- linux
+- php
 ---
 
 # Сборка php-fpm 8 из исходников на Debian 10

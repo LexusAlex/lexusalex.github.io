@@ -6,7 +6,9 @@ title: Настройка веб сервера Nginx
 description: Введение в конфигурацию веб-сервера Nginx
 date: 2021-03-14 20:00:00 +3
 parent: Заметки
-themes: linux nginx
+tags:
+- linux
+- nginx
 ---
 
 # Настройка веб сервера Nginx

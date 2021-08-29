@@ -1,0 +1,6 @@
+Различные выводы
+
+{%- assign ordered_pages_list = site.html_pages | where_exp:"item", "item.nav_exclude != true" | where_exp:"item", "item.nav_order != nil" | sort:"nav_order" -%}
+{%- assign unordered_pages_list = site.html_pages | where_exp:"item", "item.nav_exclude != true" | where_exp:"item", "item.nav_order == nil" | sort:"title" -%}
+{%- assign hierarchy = ordered_pages_list | concat: unordered_pages_list | group_by:"parent" -%}
+{%- assign top_nodes = hierarchy | where_exp:"item", "item.name == ''" | map: "items" | first -%}

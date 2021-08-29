@@ -6,7 +6,10 @@ title: Тестирование кода с помощью Phpunit
 description: Как начать тестировать код у себя в проекте
 date: 2021-01-02 23:50:00 +3
 parent: Заметки
-themes: php testing phpunit
+tags:
+- php
+- testing
+- phpunit
 ---
 
 # Тестирование кода с помощью Phpunit

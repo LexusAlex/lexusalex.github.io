@@ -6,7 +6,9 @@ title: Сборка Mysql 8 из дистрибутива на Debian 10
 description: Поставим базу данных Mysql на сервер.
 date: 2021-01-09 23:30:00 +3
 parent: Заметки
-themes: linux mysql
+tags:
+- linux
+- mysql
 ---
 
 # Сборка Mysql 8 из дистрибутива на Debian 10

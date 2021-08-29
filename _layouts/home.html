@@ -3,3 +3,15 @@ layout: default
 ---
 
 {{ content }}
+<h2>Заметки</h2>
+
+{% assign sortedNotes = site.pages | sort: 'nav_order' | reverse %}
+<ul>
+{% for page in sortedNotes %}
+    {% if page.parent == 'Заметки' %}
+    <li>
+        <a href="{{ page.url }}">{{ page.title }}</a> <small>({{ page.nav_order }})</small>
+    </li>
+    {% endif %}
+{% endfor %}
+</ul>

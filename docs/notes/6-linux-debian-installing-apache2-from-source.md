@@ -6,7 +6,9 @@ title: Сборка Apache 2 из исходников на Debian 10
 description: Как собрать и запустить apache2 из исходников
 date: 2021-01-04 23:50:00 +3
 parent: Заметки
-themes: linux apache2
+tags:
+- linux
+- apache2
 ---
 
 # Сборка Apache 2 из исходников на Debian 10

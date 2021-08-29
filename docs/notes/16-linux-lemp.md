@@ -6,7 +6,11 @@ title: Установка php nginx mariadb на Debian 10
 description: Заметка об установке LEMP стека на linux
 date: 2021-02-28 21:20:00 +3
 parent: Заметки
-themes: linux php mariadb nginx
+tags:
+- linux
+- php
+- mariadb
+- nginx
 ---
 
 # Установка php nginx mariadb на Debian 10
