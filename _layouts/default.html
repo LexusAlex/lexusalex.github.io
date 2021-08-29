@@ -84,7 +84,7 @@ layout: table_wrappers
       <ul class="navigation-list{{ include.class }}">
         {% for slug in site_slugs %}
         <li class="navigation-list-item">
-          <a href="{{ site.url }}{{ site.baseurl }}/tags/#{{ slug | slugify }}" class="navigation-list-link">#{{ slug }}</a>
+          <a href="{{ site.url }}{{ site.baseurl }}/tags#{{ slug | slugify }}" class="navigation-list-link">#{{ slug }}</a>
         </li>
         {%- endfor -%}
       </ul>
