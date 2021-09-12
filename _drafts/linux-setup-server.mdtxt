@@ -1,0 +1,41 @@
+debian 11
+
+
+root@git:/home/git apt-get install sudo
+
+/sbin/usermod -aG sudo git
+
+sudo apt-get install openssh-server
+
+Доступ с клиента
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub alex@192.168.122.132
+
+
+На сервере
+
+vim /etc/ssh/ssh_config
+
+----------------
+Необходимый минимум, чтобы начать работать с debian
+Установка программы sudo и другого софта
+apt-get install sudo
+usermod -aG sudo alex
+sudo apt-get install openssh-server git vim make
+
+Подключится удаленно с хост машины по ключу ssh
+скопировать ключ
+ssh-copy-id -i ~/.ssh/id_rsa.pub alex@10.122.121.64
+ssh alex@10.122.121.64
+Установка docker и docker-compose
+https://docs.docker.com/engine/install/debian/
+https://docs.docker.com/compose/install/
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+Генерируем ключи на сервере для доступа к github
+ssh-keygen -t rsa
+cat /home/alex/.ssh/id_rsa.pub
+
+git config --global user.name "Alexsey Shmelev"
+git config --global user.email alexsey_89@bk.ru
