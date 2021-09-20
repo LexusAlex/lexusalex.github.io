@@ -192,6 +192,14 @@ Read ahead sectors     auto
 Block device           253:0
 ```
 
+Так же краткую информацию о созданных томах можно получить командами.
+
+```shell
+pvs | vgs | lvs
+LV   VG   Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+lv01 vg01 -wi-a----- <20.00g
+```
+
 ## Создание файловой системы
 
 Перед созданием файловой системы посмотрим на вывод `lsblk`
@@ -230,15 +238,15 @@ Writing superblocks and filesystem accounting information: done
 
 ## Монтирование источника
 
-Теперь нам нужно загрузить и распаковать файлы бэкапа в нашу файловую систему.
+Теперь нужно загрузить и распаковать файлы бэкапа в нашу файловую систему.
 
-Установим утилиты для рыботы 
+Установим соответствующие утилиты.
 
 ```shell
 apt install cifs-utils
 ```
 
-Создадим директорию куда будет монтировать бэкап
+Создадим директорию куда будет монтировать резервные копии.
 
 ```shell
 mkdir /backup
@@ -250,11 +258,106 @@ mkdir /backup
 mount.cifs -v //SRV6BACKUP/linux/backup /backup/  --verbose -o username="test",password="test",file_mode=0777,dir_mode=0777,iocharset=utf8
 ```
 
-Теперь разово смонируем наш том в директрию `/mnt`
+Теперь в директории `/backup` лежат архивы резервных копий.
+
+
+Теперь смонируем наш том в директорию `/mnt` для того, чтобы было куда распаковывать файлы
 
 ```shell
 mount /dev/vg01/lv01 /mnt
 ```
+
+Проверим, что диск доступен 
+
+```shell
+df -h /dev/mapper/vg01-lv01
+Filesystem             Size  Used Avail Use% Mounted on
+/dev/mapper/vg01-lv01   20G   24K   19G   1% /mnt
+```
+
+## Распаковка архива
+
+Выполныем команду
+
+```shell
+tar --same-owner -xvpf /backup/2021_09_17_12_57.tgz -C /mnt/
+```
+
+Где,
+
+- same-owner - сохранять владельца распакованных файлов
+- x - извлечь из архива
+- v - вывдить информацию о процессе
+- p - сохранять права доступа
+- f - указываем конкретный файл
+- C - распаковка в директорию
+
+
+После этого пойдет процесс распаковки файлов архива.
+
+По завершению операции размонтируем каталог с бэкапами
+
+```shell
+umount /backup
+```
+
+Сейчас имеем полный набор файлов из бэкапа в каталоге `/mnt` 
+
+
+### Создание MBR на новом диске
+
+Чтобы корректно запустить систему создадим нужные директории
+
+```shell
+mkdir /mnt/dev /mnt/sys /mnt/proc /mnt/media
+```
+
+Теперь поочередно смонтируем рабочие каталоги к нашему будущему корневому каталогу
+
+```shell
+mount --bind /dev /mnt/dev
+mount --bind /proc /mnt/proc
+mount --bind /sys /mnt/sys
+mount  /dev/vg01/lv01 /mnt/boot
+```
+
+Переключаемся на новую систему
+
+```shell
+chroot /mnt
+```
+
+В свежесозданной системе отредактируем файл `/etc/fstab` вставим строку такого типа
+
+```shell
+/dev/vg01/lv01 /               ext4    errors=remount-ro 0       1
+```
+
+Проверяем, что диск примонтирован
+
+```shell
+df -hT
+Filesystem            Type      Size  Used Avail Use% Mounted on
+/dev/mapper/vg01-lv01 ext4       20G  5.7G   13G  31% /
+udev                  devtmpfs  956M     0  956M   0% /dev
+```
+
+
+grub-install /dev/vg01/lv01
+update-grub
+
+Размонтируем все каталоги
+
+```shell
+Размонтируем все каталоги:
+
+umount /mnt/dev
+umount /mnt/proc
+umount /mnt/sys
+umount /mnt
+````
+
+
 --ignore-failed-read
 
 Делаем резервное копирование системы с возможностью восстановления из бекапа.
