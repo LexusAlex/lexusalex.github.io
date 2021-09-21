@@ -3,3 +3,21 @@ https://php-di.org/
 https://maxsite.org/page/php-psr
 https://habr.com/ru/post/458484/
 https://www.php-fig.org/psr/psr-11/
+
+
+ $containerBuilder = new ContainerBuilder();
+ 
+           $containerBuilder->addDefinitions([
+                    'value1' => 'item1', // не рекомендуется передавать значения таким
+ образом
+                      |                    'STD' => new \stdClass(), // не рекомендуется передавать значения
+~                              |таким образом
+~                              |                    'value2' => function (ContainerInterface $c) {
+~                              |                                        return [123];
+~                              |                                },
+~                              |            ]);
+~                              |            $Container = $containerBuilder->build();
+~                              |
+~                              |            echo "<pre>";
+~                              |            print_r($Container->get('value2'));
+
