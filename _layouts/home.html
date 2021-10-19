@@ -6,12 +6,21 @@ layout: default
 <h2>Заметки</h2>
 
 {% assign sortedNotes = site.pages | sort: 'nav_order' | reverse %}
-<ul>
-{% for page in sortedNotes %}
-    {% if page.parent == 'Заметки' %}
-    <li>
-        <a href="{{ page.url }}">{{ page.title }}</a> <small>({{ page.nav_order }})</small>
-    </li>
-    {% endif %}
-{% endfor %}
-</ul>
+<div>
+    <table>
+        <tr>
+            <td style="width: 7px">#</td>
+            <td>Название</td>
+            <td>Дата</td>
+        </tr>
+        {% for page in sortedNotes %}
+            {% if page.parent == 'Заметки' %}
+            <tr>
+                <td style="width: 7px"><small>{{ page.nav_order }}.</small></td>
+                <td><a href="{{ page.url }}">{{ page.title }}</a></td>
+                <td><small>{% include date.html date=page.date %}</small></td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</div>
