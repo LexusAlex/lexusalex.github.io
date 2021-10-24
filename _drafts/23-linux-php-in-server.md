@@ -1,10 +1,10 @@
 ---
 layout: default
 nav_order: 23
-permalink: 23-linux-install-php
-title: Установка и настройка php на сервере
+permalink: 23-linux-php-in-server
+title: php на сервере
 parent: Заметки
-description: Разные способы установки php на сервер
+description: Разные способы установки,обновления и удаления php на сервер
 date: 2021-10-19 18:00:00 +3
 tags:
 - linux
@@ -199,6 +199,20 @@ Copyright (c) The PHP Group
 Zend Engine v4.0.11, Copyright (c) Zend Technologies
     with Zend OPcache v8.0.11, Copyright (c), by Zend Technologies
 ```
+#### Обновление
+
+Если же необходимо обновить php 
+TODO
+
+#### Проверка работы
+
+В php имеется встроенный веб-сервер для разработчиков. Запустим его
+
+```shell
+php -S 0.0.0.0:8000
+```
+
+Теперь любой хост в локальной сети может получить доступ пр ip сервера.
 
 ## Source code
 
