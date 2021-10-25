@@ -1,0 +1,21 @@
+rm -rf ~/.config/JetBrains/PhpStorm2021.2/eval/
+rm -rf ~/.config/JetBrains/PhpStorm2021.2/options/other.xml
+rm -r .java/.userPrefs/jetbrains/ удалить все нахер
+
+после этого все заработает
+
+
+sudo apt update
+apt list --upgradable
+sudo apt upgrade
+sudo apt full-upgrade
+sudo apt autoremove
+sudo apt --purge autoremove
+
+
+#!/bin/bash
+sudo add-apt-repository -y ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git -y
+
+sudo journalctl --vacuum-size=10M
