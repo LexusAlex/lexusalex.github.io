@@ -1,0 +1,111 @@
+'use strict';
+
+const gulp = require('gulp');
+const debug = require("gulp-debug");
+const html = require("gulp-htmlmin");
+const rigger = require('gulp-rigger');
+const sass = require('gulp-sass')(require('sass'));
+const notify = require('gulp-notify');
+const prefix = require('gulp-autoprefixer');
+const cssmin = require('gulp-cssmin');
+const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
+const browserSync = require("browser-sync").create();
+const rimraf = require('rimraf');
+
+// пути
+
+const path = {
+  source: {
+    html: 'src/html/index.html',
+    css: 'src/css/scss/style.scss',
+    js: 'src/js/index.js',
+    font: 'src/font/**/*.*',
+  },
+  dist: {
+    html: 'dist',
+    css: 'dist/css/',
+    js: 'dist/js/',
+    font: 'dist/font/'
+  },
+  watch: {
+    html: 'src/html/**/*.html',
+    js: 'src/js/**/*.js',
+    css: 'src/css/scss/*.scss',
+  },
+  clean: './dist',
+};
+
+// Сборка html
+gulp.task('html', function () {
+  return gulp.src(path.source.html)
+    .pipe(debug({title: 'html build start'}))
+    .pipe(rigger())
+    .pipe(html({
+      removeComments: true,
+      collapseWhitespace: true,
+    }))
+    .pipe(gulp.dest(path.dist.html))
+    .pipe(browserSync.stream());
+});
+
+// Сборка css (sass)
+gulp.task('css', function () {
+  return gulp.src(path.source.css)
+    .pipe(sass())
+    .on('error', notify.onError(function(err){
+      return {
+        title: 'Styles compilation error',
+        message: err.message
+      }
+    }))
+    .pipe(prefix())
+    .pipe(cssmin())
+    .pipe(gulp.dest(path.dist.css))
+    .pipe(browserSync.stream());
+});
+
+// Сборка js
+gulp.task('js', function () {
+  return gulp.src(path.source.js)
+    .pipe(debug({title: 'js start'}))
+    .pipe(babel({
+        presets: ['@babel/env']
+      }))
+    .pipe(uglify())
+    .pipe(gulp.dest(path.dist.js))
+    .pipe(browserSync.stream());
+});
+
+// очищаем директорию и удаляем директорию
+gulp.task('clean', function (cb) {
+  rimraf(path.clean, cb);
+});
+
+// Сборка шрифтов
+gulp.task('font', function () {
+  return gulp.src(path.source.font)
+
+    .pipe(gulp.dest(path.dist.font))
+    //.pipe(browserSync.stream());
+});
+
+// browser-sync сервер
+gulp.task('server', function () {
+  browserSync.init({
+    server: {
+      baseDir: "./dist"
+    },
+    //tunnel: true,
+    host: 'localhost',
+    port: 9000,
+    logPrefix: "Gulp-project",
+    notify: false
+  });
+
+  gulp.watch(path.watch.html, gulp.series('html'));
+  gulp.watch(path.watch.css, gulp.series('css'));
+  gulp.watch(path.watch.js, gulp.series('js'));
+});
+
+exports.default = gulp.series(gulp.parallel('html','css','js','server'));
