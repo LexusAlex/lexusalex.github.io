@@ -25,7 +25,9 @@ tags:
 </details>
 ---
 
-Взгляд бекендера на фронтенд.
+Мое видение на кнопки в интерфейсе пользователя.
+
+## Button
 
 В html для вывода кнопки используется тег `button`. 
 
@@ -38,8 +40,18 @@ tags:
    margin: 0; 
 }
 </style>
+<script>
 
-<button class="default">Стандартная кнопка</button>
+window.addEventListener("load", function () {
+  let buttonElement = document.getElementById('button');
+  buttonElement.addEventListener('click', function() {
+    console.log('клик');
+    });
+})
+</script>
+
+<button class="default" id="button">Стандартная кнопка</button>
+
 
 Кнопки используются повсеместно для отпрвки данных на сервер из формы.
 
