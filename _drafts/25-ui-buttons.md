@@ -43,6 +43,42 @@ tags:
   margin: 0;
   }
 
+.button-background1 {
+    background: #2c84fa;
+}
+
+.button-background2 {
+    background: #e94c4c;
+}
+
+.button-width1 {
+background: #1d49aa;
+}
+
+.button-width2 {
+background: #1d49aa;
+min-width: 200px
+}
+
+.button-padding {
+    background: #1d49aa;
+    padding: 18px;
+}
+
+.button-hover:hover {
+    background: #1d49aa;
+}
+
+.button-focus:focus {
+outline: none;
+box-shadow: 0 0 0 4px #2ea44f;
+
+}
+
+.button-disabled:disabled {
+opacity: 0.5;
+}
+
 .button-style1 {
 	appearance: none;
 	border: 0;
@@ -285,6 +321,42 @@ button {
 - Внутренний отступ
 
 и другие свойства.
+
+### Цвет фона кнопки
+
+По умолчанию у кнопки как мы видели ранее серый цвет. Лучше сбросить его `background-color: transparent` 
+или установить какой у вас в макете.
+
+<button class="button-background1">Покрашенная кнопка 1</button>
+
+<button class="button-background2">Покрашенная кнопка 2</button>
+
+### Ширина кнопки
+
+Важно указывать минимальную ширину кнопки - это свойство `min-width`.
+
+Обратите внимание на эти две кнопки. У кнопки внизу задана минимальная ширина.
+
+<button class="button-width1">Текст</button>
+
+<button class="button-width2">Текст</button>
+
+### Внутренний отступ
+
+Если заранее не известна надпись на кнопке, так же важно задать внутрение отступы внутри кнопки.
+
+<button class="button-padding">Кнопка с отступом</button>
+
+### Псевдоклассы кнопок
+
+Кнопка может быть в следующих состояниях:
+
+- hover - навели мышь на кнопку <button class="button-hover">Кнопка с hover</button>
+- focus - кнопка в фокусе <button autofocus class="button-focus">Кнопка в фокусе</button>
+- disabled - кнопка неактивна <button class="button-disabled">Кнопка disabled</button>
+
+
+
 
 Например зададим какие-то стили для кнопок и представим их в разных видах:
 
