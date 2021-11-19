@@ -26,11 +26,7 @@ tags:
 ---
 
 <style>
-.default {
-   font-size: 13px;
-   line-height: 1.5;
-   margin: 0; 
-}
+
 
 .default-reset {
   -webkit-appearance: none;
@@ -246,27 +242,42 @@ cursor:pointer;
 }
 </style>
 
-Взгляд бэкендера на фронтенд.
+Заметка для себя, чтобы было куда посмотреть.
 
-## Что можно делать с кнопкой
+## button
 
 Кнопка представляет собой тег `button`.
-
 Он создает кнопку по которой можно кликнуть.
+
+Стандартная кнопка выглядит следующим образом:
+
+<style>
+.default {
+   font-size: 13px;
+   line-height: 1.5;
+   margin: 0; 
+}
+</style>
 
 <button class="default" id="button">Стандартная кнопка</button>
 
-Теперь зададим поведение для простой кнопки через скрипты. Например при клике покрасим страницу в другой цвет:
+## Отображение кнопки в google chrome
 
-<button class="default" id="button" onclick="document.body.style.backgroundColor='#6ffb8f'">Покрасить страницу</button>
+<figure>
+  <img src="/assets/images/notes/25/button-default-chrome.png" alt="button-default-chrome"  data-action="zoom">
+</figure>
 
-Кнопки используются повсеместно для отправки данных на сервер из формы. Например поведение по умолчанию при отправке данных.
+## Отображение кнопки в mozilla firefox
 
-<form>
-    <button class="default" id="button" value="test-button" name="test">Отправить данные</button>
-</form>
+<figure>
+  <img src="/assets/images/notes/25/button-default-firefox.png" alt="button-default-firefox"  data-action="zoom">
+</figure>
 
-Вне формы - это просто кнопка, функционал которой задают через скрипты. 
+## Технические детали
+
+1. Кнопки используются в формах для отправки данных и сброса заполненных данных.
+2. Кнопки используются за пределами формы как самостоятельный элемент, который с помощью `js` может выполнять необходимые действия.
+3. Внутри кнопки можно разместить любой html.
 
 ## Специфические атрибуты кнопки
 
@@ -275,23 +286,55 @@ cursor:pointer;
 - `name` - уникальное имя кнопки, название параметра которое будет отправлено на сервер
 - `value` - значение которое будет отправлено на сервер
 
-## Стандартная кнопка
+## Состояния кнопки
 
-Разные браузеры отображают кнопку по-своему.
+1. focus - кнопка в фокусе
+2. hover - реакция кнопки на наведение
+3. active - кнопка нажата
+4. disabled - кнопка заблокирована
 
-Стандартная кнопка, в google chrome кнопка по умолчанию в различных состояниях выглядит таким образом:
+Для иллюстрации всех состояний рассмотрим примеры:
 
-<figure>
-  <img src="/assets/images/notes/25/button-default-chrome.png" alt="button-default-chrome"  data-action="zoom">
-</figure>
+<button class="btn btn-green mr-2" style="">default</button>
+<button autofocus class="btn btn-green mr-2" style="text-decoration: none; outline: none; box-shadow: 0 0 0 3px rgba(0, 0, 255, 0.25);">focus</button>
+<button class="btn btn-green mr-2" style="color: #fff; background-color: #0fa276; background-image: linear-gradient(#12be8b, #0fa276);">hover</button>
+<button class="btn btn-green mr-2" style="box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);">active</button>
+<button class="btn btn-green mr-2" disabled style="">disabled</button>
 
-В браузере firefox немного по другому, но смысл тот же.
+<button class="btn btn-purple mr-2" style="">default</button>
+<button autofocus class="btn btn-purple mr-2" style="text-decoration: none; outline: none; box-shadow: 0 0 0 3px rgba(0, 0, 255, 0.25);">focus</button>
+<button class="btn btn-purple mr-2" style="color: #fff; background-color: #5132cb; background-image: linear-gradient(#6549d2, #5132cb);">hover</button>
+<button class="btn btn-purple mr-2" style="background-color: #4f31c6; background-image: none;">active</button>
+<button class="btn btn-purple mr-2" disabled style="">disabled</button>
 
-<figure>
-  <img src="/assets/images/notes/25/button-default-firefox.png" alt="button-default-firefox"  data-action="zoom">
-</figure>
+Дизайн и поведение кнопок зависит полностью от макета.
 
-На стандартные стили лучше не полагатся, поэтому сбросим дефолтные стили накладыеваемые браузером и операционной системой.
+## Сброс дефолтных стилей
+
+
+
+
+
+
+
+
+
+
+Поведение для простой кнопки задается через скрипты. Например, при клике покрасим страницу в другой цвет:
+
+<button class="default" id="button" onclick="document.body.style.backgroundColor='#6ffb8f'">Покрасить страницу</button>
+
+Кнопки используются повсеместно для отправки данных на сервер из формы. Например, поведение по умолчанию при отправке данных.
+
+<form>
+    <button class="default" id="button" value="test-button" name="test">Отправить данные</button>
+</form>
+
+Вне формы - это просто кнопка, которая ничего не делает. 
+
+
+
+Сбросим дефолтные стили накладываемые браузером и операционной системой.
 
 ```css
 button {
@@ -306,23 +349,17 @@ button {
 }
 ```
 
-Теперь кнопка во всех браузерах выглядит одинаково как строка с фоном.
+_Свойство `appearance` позволяет задавать внешний вид одних элементов другим элементам. При этом браузер будет отрисовывать их с учётом текущей операционной системы пользователя и темы оформления._
+
+Теперь кнопка во всех браузерах выглядит одинаково как строка с фоном, таким образом:
 
 <button class="default-reset">Сброшенная кнопка</button>
 
 ## Стилизация кнопки
 
-У кнопки как и у другого html элемента можно стилизовать разные параметры например: 
+У кнопки, как и у другого html элемента можно стилизовать практически все. 
 
-- Цвет текста
-- Тип шрифта
-- Фон
-- Скругления углов
-- Внутренний отступ
-
-и другие свойства.
-
-### Цвет фона кнопки
+### Цвет
 
 По умолчанию у кнопки как мы видели ранее серый цвет. Лучше сбросить его `background-color: transparent` 
 или установить какой у вас в макете.
@@ -330,6 +367,8 @@ button {
 <button class="button-background1">Покрашенная кнопка 1</button>
 
 <button class="button-background2">Покрашенная кнопка 2</button>
+
+<button class="btn btn-blue">Кнопка</button>
 
 ### Ширина кнопки
 
@@ -351,9 +390,9 @@ button {
 
 Кнопка может быть в следующих состояниях:
 
-- hover - навели мышь на кнопку <button class="button-hover">Кнопка с hover</button>
-- focus - кнопка в фокусе <button autofocus class="button-focus">Кнопка в фокусе</button>
-- disabled - кнопка неактивна <button class="button-disabled">Кнопка disabled</button>
+- hover - навели мышь на кнопку
+- focus - кнопка в фокусе
+- disabled - кнопка неактивна
 
 
 
