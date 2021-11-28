@@ -89,11 +89,78 @@ gateway 192.168.88.1
 netmask 255.255.255.0 
 ```
 
-Чтобы настройки применились, отправим сервер на перезагрузку.
+Чтобы настройки применились, отправим сервер на перезагрузку, хотя здесь достаточно перезагрузить сеть
 
 С предварительной настройкой сервера закончили.
 
 _В процессе работы этот раздел возможно будет дополниться._
+
+## Cent Os
+
+Скачать 
+https://ftp.yandex.ru/centos/8/isos/x86_64/
+
+По умолчанию использует lvm при разметке диска, что хорошо
+
+```shell
+su -
+yum update
+yum install sudo
+/sbin/usermod -aG whell alex
+exit
+exit
+```
+
+sudo yum install openssh vim
+
+sudo vim /etc/ssh/sshd_config
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub alex@192.168.88.207
+
+sudo vim /etc/sysconfig/network-scripts/ifcfg-ens160
+
+```
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=dhcp
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+NAME=ens160
+UUID=33630f72-8468-4aec-a7f5-89e0f66e2fdf
+DEVICE=ens160
+ONBOOT=yes
+```
+
+sudo vim /etc/sysconfig/network-scripts/ifcfg-ens160
+
+static address
+
+```
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=none
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+NAME=ens160
+UUID=33630f72-8468-4aec-a7f5-89e0f66e2fdf
+DEVICE=ens160
+ONBOOT=yes
+IPADDR=192.168.88.207
+DNS1=192.168.88.1
+PREFIX=28
+GATEWAY=192.168.88.1
+```
+sudo systemctl restart NetworkManager.service
 
 ## Docker
 
@@ -664,6 +731,19 @@ cp /home/alex/php-8.0.11-files/etc/php-fpm.d/www.conf.default /home/alex/php-8.0
 ## Ansible
 
 Еще один вариант установки php, при этом даже необязательно заходить на сервер. Ansible все сделает сам
+
+
+Установка на debian 11
+
+https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-debian
+
+sudo sh -c 'echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu focal main" > /etc/apt/sources.list.d/ansible.list'
+apt-get update && apt-get install -y gnupg curl
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
+sudo apt update
+sudo apt install ansible
+
+ansible --version
 
 ## Конфигурация
 

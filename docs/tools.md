@@ -50,4 +50,16 @@ sudo apt-get install git -y
 
 - [Офф сайт](https://git-scm.com/)
 
+### Debian
+
+Последняя версия debian
+
+- [Скачать с ftp яндекса](https://mirror.yandex.ru/debian-cd/current/amd64/bt-cd/)
+
+### Cent OS
+
+Последняя версия centos
+
+- [Скачать с ftp яндекса](https://ftp.yandex.ru/centos/8/isos/x86_64/)
+
 ## Технологии
