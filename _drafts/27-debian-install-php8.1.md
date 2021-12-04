@@ -79,13 +79,13 @@ sudo systemctl reload nginx # Ребутнем сервер
 sudo rm /var/www/html/index.nginx-debian.html # Удалим файл
 vim index.php # Создадим проверочный файл
 
-# С со следующем содержимым
+# Со следующем содержимым
 <?php
 phpinfo();
 ?>
 ```
 
-Проверяем в браузере, если видим нечто подобное, php-fpm работает правильно:
+Проверяем в браузере, если видим нечто подобное, тогда php-fpm работает правильно:
 
 <figure>
   <img src="/assets/images/notes/27/php8.1.png" alt="php8.1"  data-action="zoom">
@@ -101,8 +101,9 @@ phpinfo();
 
 В данном случае - это [https://www.php.net/distributions/php-8.1.0.tar.gz](https://www.php.net/distributions/php-8.1.0.tar.gz)
 
-Найдем каталог куда поставить, это не важно выбирайте куда угодно. Например, я буду ставить в домашнюю
-директорию `/home/alex`.
+Найдем каталог куда поставить, это не важно выбирайте куда угодно. 
+
+Например, я буду ставить в домашнюю директорию `/home/alex`.
 
 ```shell
 cd /home/alex
@@ -112,4 +113,79 @@ cd /home/alex
 
 ```shell
 wget https://www.php.net/distributions/php-8.1.0.tar.gz
+```
+
+### Распаковка
+
+Теперь распакуем архив и перейдем в распакованную директорию:
+
+```shell
+tar xvf php-8.1.0.tar.gz
+cd php-8.1.0
+```
+
+### Зависимости для сборки
+
+Теперь поставим пакеты для сборки php.
+
+```shell
+sudo apt update
+sudo apt install pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev
+```
+
+### Директория для сборки
+
+Ставить будем все в одну директорию, создадим ее:
+
+```shell
+mkdir php8.1
+```
+
+### Конфигурация
+
+Далее перейдем в исходники и сгенерируем скрипт конфигурации:
+
+```shell
+./buildconf
+buildconf: The configure script is already built. All done.
+Run ./configure to proceed with customizing the PHP build.
+```
+
+Сконфигурируем указав директорию установки, со стандартными параметрами.
+
+```shell
+./configure --prefix=/home/alex/php8.1
+```
+
+По окончанию конфигурирования должен появится текст
+
+```text
++--------------------------------------------------------------------+
+| License:                                                           |
+| This software is subject to the PHP License, available in this     |
+| distribution in the file LICENSE. By continuing this installation  |
+| process, you are bound by the terms of this license agreement.     |
+| If you do not agree with the terms of this license, you must abort |
+| the installation process at this point.                            |
++--------------------------------------------------------------------+
+
+Thank you for using PHP.
+```
+
+### Сборка
+
+Начинаем сборку
+
+```shell
+make -j4
+
+Build complete.
+Don't forget to run 'make test'.
+
+make install
+```
+
+
+```shell
+./configure --prefix=/home/alex/php8.1 --enable-fpm --with-config-file-path=/home/alex/php8-fpm/config --with-config-file-scan-dir=/home/alex/php8-fpm/config/conf.d --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --enable-mbstring
 ```
