@@ -23,6 +23,39 @@ tags:
 </details>
 ---
 
+Субъект
+- Владелец - owner
+- Группа-владелец - group owner
+- Все остальные - other
+
+Базовые разрешения
+R - read
+W - write
+X - execute
+
+Дополнительные атрибуты
+
+S - set exec()
+T - sTicky write()
+
+Объект
+
+file1
+file2
+file3
+
+Access Mode
+
+SUID SGID T RWX RWX RWX
+
+`--- rw- r-x r--`
+`000 110 101 100`
+` 0   6   5   4`
+
+
+https://www.youtube.com/watch?v=zaeg0EtiPtw&ab_channel=DmitryKetov
+
+
 Отставим с сторону теорию и перейдем сразу к практике. 
 
 Создадим файл и каталог от имени своего пользователя.
