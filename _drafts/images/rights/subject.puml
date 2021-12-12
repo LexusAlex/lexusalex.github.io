@@ -1,0 +1,13 @@
+
+@startuml
+
+node "Субъект"
+
+
+rectangle HTTP
+rectangle Console
+rectangle Queue
+
+
+
+@enduml
