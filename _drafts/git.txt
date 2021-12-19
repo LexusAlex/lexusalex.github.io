@@ -536,4 +536,5 @@ git push -u origin main
 git tag -a 0.1 -m 0.1
 git push origin --tags
 
-
+Досмотреть
+https://www.youtube.com/watch?v=XfpNNPo5ypk&t=893s
