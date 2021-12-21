@@ -22,6 +22,25 @@ nav_order: 8
 
 Команды для ежедневного использования. Собираю все в одном месте.
 
+## Linux
+
+### Объем
+
+```shell
+du -sh /var/www/* | sort -hr # отображение размеров
+```
+
+### Файловая система/монтирование
+
+```shell
+cat /proc/filesystems # поддержиеваемые файловые системы дистрибутива
+ls -l /lib/modules/$(uname -r)/kernel/fs # поддержиеваемые файловые системы дистибутива
+findmnt --real # отобразить точки монтирования или так mount | grep "^/dev"
+findmnt # показать все точки монтирования или так просто команда mount
+sudo mount.cifs -v //Server /mnt/  --verbose -o username="test",password="test",file_mode=0777,dir_mode=0777,iocharset=utf8 # монтирование диска на windows
+sudo umount /mnt # размонтирование раздела
+```
+
 ## Docker
 
 ### Системное
