@@ -37,6 +37,12 @@ nav_order: 6
 - [Установка 2 версии под debian](https://docs.docker.com/compose/cli-command/#install-on-linux)
 - [Релизы](https://github.com/docker/compose/tags)
 
+### Ansible
+
+Инструмент для автоматизации
+
+- [Установка для ubuntu](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-ubuntu)
+
 ### Git
 
 Система контроля версий
