@@ -204,6 +204,49 @@ CMD ["node", "./index.js"]
 ENTRYPOINT ["top", "-c"]
 ```
 
+### Docker-compose
+
+Docker-compose позволяет описать всю конфигурацию контейнеров в текстовом виде.
+
+Конфигурация docker-compose пишется в yml файлах, где в приоритете отступы.
+
+#### docker-compose.yml
+
+```yaml
+version: "3.9" # версия файла, влияет на поддержку новых фич
+services: # какие у нас будут подняты сервисы
+    api: # название сервиса
+        image: debian # имя образа
+        container_name: my-name # имя контейнера
+        build: # где лежит Dockerfile для сборки образа
+            context: infrastructure/backend/development/docker/nginx-debian-bullseye
+        ports: # проброшенные порты
+            - "3000:3000"
+        networks: # сеть для контроллера
+            - myTestNetwork #сеть для контейнера
+        volumes: # тома
+            - mysql:/var/lib/mysql
+networks: 
+    myTestNetwork: # создать новую сеть 
+        driver: bridge
+    default: # подключить уже созданную сеть, когда она уже создана
+        external: true
+        name: myNetwork
+volumes: 
+    mysql: # создать том
+```
+
+#### Контейнеры
+
+```shell
+docker-compose up -d # поднять контейнеры в фоновом режиме, при это название всех сущностей докера будет начинатся с названия папки
+docker-compose stop # остановить все контейнеры в текущем контексте, то есть все которые описаны в docker-compose.yml в сервисах
+docker-compose start # запустить сервисы
+docker-compose down # остановить и удалить контейнеры и сети
+docker-compose down --remove-orphans # остановить и удалить контейнеры которые не установлены в docker-compose.yml
+docker-compose down -v --remove-orphans # остановить контейнеры и тома
+```
+
 ## Git
 
 ### Системное
