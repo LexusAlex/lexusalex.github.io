@@ -216,16 +216,31 @@ Docker-compose позволяет описать всю конфигурацию
 version: "3.9" # версия файла, влияет на поддержку новых фич
 services: # какие у нас будут подняты сервисы
     api: # название сервиса
-        image: debian # имя образа
+        image: debian # имя образа из которого собрать контейнер
         container_name: my-name # имя контейнера
         build: # где лежит Dockerfile для сборки образа
             context: infrastructure/backend/development/docker/nginx-debian-bullseye
+            dockerfile: Dockerfile # как называется Dockerfile
+        restart: always # в случае если сервис упал он будет перезагружен
         ports: # проброшенные порты
             - "3000:3000"
         networks: # сеть для контроллера
             - myTestNetwork #сеть для контейнера
         volumes: # тома
             - mysql:/var/lib/mysql
+            - ./.env:/opt/app/.env
+        profiles: # профили для сервиса
+            -   backend
+        depends_on: # зависимость этого контейнера от следующих
+            -   rmq
+    rmq:
+        image: rabbitmq:3-management
+        restart: always
+        env_file: # указать файл с переменными окружения
+            -   .env
+        environment: # переменные окружения доступные внутри контейнера
+            - MYTEST=test
+            - TESTMY=test
 networks: 
     myTestNetwork: # создать новую сеть 
         driver: bridge
@@ -245,6 +260,9 @@ docker-compose start # запустить сервисы
 docker-compose down # остановить и удалить контейнеры и сети
 docker-compose down --remove-orphans # остановить и удалить контейнеры которые не установлены в docker-compose.yml
 docker-compose down -v --remove-orphans # остановить контейнеры и тома
+docker-compose --profile backend up -d # запустить сервисы с указанным профилем
+docker-compose run api # поднять только один сервис
+docker-compose --env-file .env.compose up -d # поднять контейнеры с указанием где брать переменные окруженния
 ```
 
 ## Git
