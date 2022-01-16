@@ -400,3 +400,40 @@ composer validate # проверка, что пакет правильно на�
 - Переносимость решений
 - Сложность повторений
 - На серверах нужен только python, на хостовой машине yml преобразутся в python код
+
+### Inventory file
+
+```ini
+
+```
+
+### ad-hoc команды
+
+```shell
+ansible -i infrastructure/backend/development/ansible/inventory.ini -m ping web # выполнить модуль ping на группе хостов web
+ansible all -i inventory.ini -m ansible.builtin.file -a "path=/tmp/hello_world state=touch" # использование модуля file на удаленных хостах в группе all
+# Список модулей - https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html
+ansible -i infrastructure/backend/development/ansible/inventory.ini -m user -a "name=alex state=present" web # создание или проверка на существование пользователя
+# В выводе может быть три статуса SUCCESS - успешно, FAILED - не получилось выполнить, CHANGED - что-то изменилось
+ansible -i infrastructure/backend/development/ansible/inventory.ini -m user -a "name=alex2 state=present" -b -K web # создать пользователя при этом ввести пароль от root
+ansible -i infrastructure/backend/development/ansible/inventory.ini -m user -a "name=alex2 state=absent" -b -K web # удалить пользователя
+ansible -i infrastructure/backend/development/ansible/inventory.ini -m user -a "name=alex2 state=absent" -e "ansible_become=true ansible_become_password=123" web # передать переменные окружения прямо здесь 
+```
+
+### playbook
+
+```yaml
+---
+- name: user # название
+  hosts: web # на каких хостах выполнять таски
+  tasks:
+      - name: Create user # название таски
+        user: alex # модуль user
+        state: present # параметры модуля
+  become: true # разрешить sudo
+```
+
+```shell
+ansible-playbook -i infrastructure/backend/development/ansible/inventory.ini user.yml # выполнить playbook user
+ansible-playbook -i infrastructure/backend/development/ansible/inventory.ini user.yml -K # выполнить playbook user и ввести пароль
+```
