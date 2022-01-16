@@ -53,6 +53,8 @@ nav_order: 7
 
 ## Статьи
 
+---
+
 ### Программирование
 
 - [Структуры с процедурами или объекты?](https://elisdn.ru/blog/142/structs-or-objects)
@@ -67,3 +69,5 @@ nav_order: 7
   - Полноценный объект или сервис.
 
   Рекомендуется к прочтению!
+
+- [Отличное объяснение почему трейты плохо.](https://deworker.pro/edu/series/http-framework/definition#comment-d9297b3e-a210-4308-a95d-1c1f58433adb)
