@@ -70,4 +70,10 @@ nav_order: 7
 
   Рекомендуется к прочтению!
 
-- [Отличное объяснение почему трейты плохо.](https://deworker.pro/edu/series/http-framework/definition#comment-d9297b3e-a210-4308-a95d-1c1f58433adb)
+## Заметки
+
+---
+
+### Программирование
+
+- [Почему трейты плохо.](https://deworker.pro/edu/series/http-framework/definition#comment-d9297b3e-a210-4308-a95d-1c1f58433adb)
