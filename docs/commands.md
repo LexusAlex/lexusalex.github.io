@@ -424,16 +424,77 @@ ansible -i infrastructure/backend/development/ansible/inventory.ini -m user -a "
 
 ```yaml
 ---
-- name: user # название
+- name: user # название плейбука
   hosts: web # на каких хостах выполнять таски
+  any_errors_fatal: true # любая ошибка предотвращает выполнение таски
+  vars: # задать переменные на уровне всего блока плейбука
+      user: alex
+  vars_files: # задать переменные в файле
+      - ./mylistvars.yml
+  vars_prompt: # ввести переменные окружения в интерактивном режиме
+      - name: user
+        prompt: "Введите пользователя"
+        private: no
   tasks:
-      - name: Create user # название таски
-        user: alex # модуль user
-        state: present # параметры модуля
+      - name: Preconfig
+        block: # сгруппировать задачи в блок
+          - name: sleep  # задача для проверки асинхронности в ansible
+            command: /bin/sleep 15
+            async: 1000
+            poll: 5
+          - name: Create user # название таски
+            user: alex # модуль user
+            state: present # параметры модуля
+            register: error
+            ignore_errors: yes # если возникнет ошибка, то игнорировать ее, и выполнять код дальше
+          - name: Env
+            vars: # задать переменные на уровне задачи
+               user: alex 
+            user: "{{ user }}" # использовать переменную заданную выше
+            register: out # переменная для дебага
+            - debug: # включаем режим дебага 
+                var: out # выводим переменную, тем самым увидим что вернет команда
+          - name: fall on FALLED # тестовая таска
+            command: echo "FALLED"
+            register: command_result
+            failed_when: "'FAILED' in command_result.stdout" # условие фейла
+          - name: Install curl
+            apt: # установить пакет
+                name: curl
+                update_cache: yes
+        become: true # все задачи которые есть в этом блоке требуют sudo
+        when: ansible_facts['distribution'] == 'Ubuntu'  # условие при котором будет выполнен этот блок
+        rescue: # выполняется в случае ошибки
+            - name: text error message
+              debug: error
+        always: # выполняется всегда
+            - name: reboot
+      debugger: always # независимо не от чего включить режим дебага винтерактивном режиме, удобно при отладке    
   become: true # разрешить sudo
 ```
 
 ```shell
 ansible-playbook -i infrastructure/backend/development/ansible/inventory.ini user.yml # выполнить playbook user
 ansible-playbook -i infrastructure/backend/development/ansible/inventory.ini user.yml -K # выполнить playbook user и ввести пароль
+ansible-playbook -i infrastructure/backend/development/ansible/inventory.ini user.yml -K --extra-vars "user=alex" # передать переменную окружения прямо при запуске playbook
+```
+
+### Переменные в playbook
+
+Где можно их задать:
+
+- playbook
+- block
+- tasks
+- group_vars # groups_vars/demo/vars.yml - автоматически находит
+- host_vars # host_vars/127.0.0.1.yml - для хоста
+- inventory file # способ не рекомендуется к использованию
+- extra_vars
+
+Группировка переменных по хостам:
+
+```text
+demo-server
+    group_vars
+        all.yml
 ```
