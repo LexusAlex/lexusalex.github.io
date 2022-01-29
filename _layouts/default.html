@@ -81,22 +81,22 @@ layout: table_wrappers
       {% assign site_slugs = site_slugs | uniq | sort %}
 
       <hr/>
-      <ul class="navigation-list{{ include.class }}">
+      <!--<ul class="navigation-list{{ include.class }}">
         {% for slug in site_slugs %}
         <li class="navigation-list-item">
           <a href="{{ site.url }}{{ site.baseurl }}/tags#{{ slug | slugify }}" class="navigation-list-link">#{{ slug }}</a>
         </li>
         {%- endfor -%}
-      </ul>
+      </ul>-->
 
     </nav>
     <footer class="site-footer">
-      <ul style="font-size: 10px">
+      <ul style="font-size: 10px; padding-left: 0px; margin-top: 5px">
         <li><a href="mailto:alexsey_89@bk.ru">alexsey_89@bk.ru</a></li>
         <li><a href="https://github.com/LexusAlex" target="_blank">https://github.com/LexusAlex</a></li>
         <li><a href="https://vk.com/id297664343" target="_blank">https://vk.com/id297664343</a></li>
       </ul>
-      <div>©Алексей Шмелев, 2020г.</div>
+      <div>©Алексей Шмелев, {{ 'now' | date: "%Y" }} г.</div>
     </footer>
   </div>
   <div class="main" id="top">
