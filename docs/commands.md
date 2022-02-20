@@ -454,7 +454,11 @@ ansible -i infrastructure/backend/development/ansible/inventory.ini -m user -a "
             ignore_errors: yes # если возникнет ошибка, то игнорировать ее, и выполнять код дальше
           - name: Env
             vars: # задать переменные на уровне задачи
-               user: alex 
+               user: alex
+            loop: # цикл
+                - a
+                - b
+                - { name: "123", group: "admin"} # обращение {{ item.name }} is {{ item.group }}
             user: "{{ user }}" # использовать переменную заданную выше
             register: out # переменная для дебага
             - debug: # включаем режим дебага 
@@ -578,5 +582,5 @@ all.yml - корневая точка входа всех ролей и плей
 
 ```shell
 ansible-playbook -i indentory all.yml # проверяем запуск роли
-ansible-playbook -i indentory all.yml --tags "test" # запустить задачу только помеченные только этими тегами
+ansible-playbook -i indentory all.yml --tags "test" # запустить задачу только помеченные только этими тегами, например если нужно что-то продебажить
 ```
