@@ -545,7 +545,7 @@ roles/
 all.yml - корневая точка входа всех ролей и плейбуков
 ```
 
-#### all.yml
+#### all.yml - роли
 
 ```yaml
 ---
@@ -573,6 +573,8 @@ all.yml - корневая точка входа всех ролей и плей
       - test3
 ```
 
+#### Теги
+
 Теги можно добавить непосредственно в:
 - задачу
 - блоки
@@ -583,4 +585,28 @@ all.yml - корневая точка входа всех ролей и плей
 ```shell
 ansible-playbook -i indentory all.yml # проверяем запуск роли
 ansible-playbook -i indentory all.yml --tags "test" # запустить задачу только помеченные только этими тегами, например если нужно что-то продебажить
+```
+
+#### Циклы/lookup
+
+Если пакет предоставляет возможность указать список, то нужно использовать эту возможность
+
+```yaml
+---
+- name: Circle|lookup
+  tasks:
+      - name: circle
+        debug:
+            msg: "{{ item.name }} is {{ item.group }}" # обращение к циклу
+        loop:
+            - a
+            - b
+            - c
+            - d
+            - { name: "1", group: "admin"}
+            - { name: "2", group: "admin"}
+            - { name: "3", group: "admin"}
+      - name: lookup
+        debug:
+            msg: "{{ lookup('file', '../mata/main.yml')}}" # найти указанный файл
 ```
