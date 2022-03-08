@@ -610,3 +610,19 @@ ansible-playbook -i indentory all.yml --tags "test" # запустить зад�
         debug:
             msg: "{{ lookup('file', '../mata/main.yml')}}" # найти указанный файл
 ```
+
+#### Шаблоны
+
+jinja
+
+Файл с расширением j2
+
+```yaml
+- name: Template a file to /etc/file.conf
+  ansible.builtin.template:
+      src: /mytemplates/foo.j2
+      dest: /etc/file.conf
+      owner: bin
+      group: wheel
+      mode: '0644'
+```
