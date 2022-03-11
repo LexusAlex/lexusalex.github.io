@@ -89,3 +89,102 @@ $this->expectException(\Exception::class);
 throw new \Exception('something went wrong');
 ```
 
+## HTML + CSS
+
+### Форма с валидацией
+
+Иногда бывает срочно нужно сделать прототип простой формы с валидацией, и каждый раз ее приходится делать с нуля исча в интернетах.
+Для облегчения процесса, код:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" method="get" id="form">
+    <fieldset>
+        <legend> Текстовое поле </legend>
+        <label>
+            <input type="text" name="text">
+        </label>
+    </fieldset>
+    <fieldset>
+        <legend> Пароль </legend>
+        <label>
+            <input type="password" name="password">
+        </label>
+    </fieldset>
+    <fieldset>
+        <legend> Текстовая область </legend>
+        <label>
+            <textarea name="textarea" cols="50" rows="10"></textarea>
+        </label>
+    </fieldset>
+    <fieldset>
+        <legend> Группа радиокнопок </legend>
+        <label>
+            <input type="radio" name="answer" value="one">
+            Уничтожитель
+        </label>
+        <label>
+            <input type="radio" name="answer" value="two">
+            Разрушитель
+        </label>
+        <label>
+            <input type="radio" name="answer" value="three">
+            Обвинитель
+        </label>
+        <label>
+            <input type="radio" name="answer" value="four">
+            Сладкоежка
+        </label>
+    </fieldset>
+    <fieldset>
+        <legend> Группа чекбоксов </legend>
+        <label>
+            <input type="checkbox" name="check" value="one">
+            Уничтожитель
+        </label>
+        <label>
+            <input type="checkbox" name="check" value="two">
+            Разрушитель
+        </label>
+        <label>
+            <input type="checkbox" name="check" value="three">
+            Обвинитель
+        </label>
+        <label>
+            <input type="checkbox" name="check" value="four">
+            Сладкоежка
+        </label>
+    </fieldset>
+    <button type="submit">Отправить</button>
+</form>
+<script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous">
+</script>
+<script>
+    window.onload = function()
+    {
+        $('#form').submit(function()
+        {
+            var text = $('[name = "text"]');
+            if (text.val() === '') {
+                text.parent().find('label').css("color", "#a94442");
+                text.parent().append("<div class='help-block'>Необходимо заполнить поле «----».</div>");
+                return false;
+            }
+            $('#form').find('[type="submit"]').prop("disabled", true);
+        });
+
+    }
+</script>
+</body>
+</html>
+```
+
