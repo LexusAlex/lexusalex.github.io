@@ -176,8 +176,9 @@ throw new \Exception('something went wrong');
         {
             var text = $('[name = "text"]');
             if (text.val() === '') {
-                text.parent().find('label').css("color", "#a94442");
-                text.parent().append("<div class='help-block'>Необходимо заполнить поле «----».</div>");
+                //text.parent().find('label').css("color", "#a94442");
+                $(".help-block").remove();
+                text.parent().append("<div class='help-block' style='color: #a94442'>Необходимо заполнить поле «----».</div>");
                 return false;
             }
             $('#form').find('[type="submit"]').prop("disabled", true);
