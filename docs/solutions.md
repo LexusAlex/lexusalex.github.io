@@ -220,3 +220,22 @@ INSERT INTO table2 SET a=1, b=2, c=3;
 INSERT INTO table2 (a, b, c, d, e) VALUES (1, 2, 3, 4, 5), (NULL,2, NULL, 4, 5), (NULL, NULL, NULL, NULL,5);
 ```
 
+
+## JavaScript
+
+### Выделение текущего пункта меню
+
+В обычном html бывает задача выделения активного пункта меню в зависимости от url страницы.
+
+В оборачивающий меню элемент добавляем атрибут `data-id-page` с url страницы.
+В каждую ссылку добавляем `data-id-nav` с адресом этой ссылки.
+
+```javascript
+var pageId = $("#mobile-footer-info").attr('data-id-page');
+var navItem = $("#mobile-footer-info").find("a[data-id-nav]").attr("data-id-nav");
+var item = $('a[data-id-nav="'+pageId+'"]');
+
+if(pageId == item.attr("data-id-nav")) {
+	item.find('i').addClass("footeractive");
+}
+```
