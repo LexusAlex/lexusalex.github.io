@@ -20,7 +20,8 @@ nav_order: 9
 </details>
 ---
 
-Различные решения и советы, к которым дошел сам, нашел или подсказали. Чтобы не потерять и не забыть.
+Различные решения, советы и код, к которым дошел сам, нашел или подсказали. Чтобы не потерять и не забыть, собираю в 
+одном месте
 
 ## PhpStorm
 
@@ -175,8 +176,9 @@ throw new \Exception('something went wrong');
         {
             var text = $('[name = "text"]');
             if (text.val() === '') {
-                text.parent().find('label').css("color", "#a94442");
-                text.parent().append("<div class='help-block'>Необходимо заполнить поле «----».</div>");
+                //text.parent().find('label').css("color", "#a94442");
+                $(".help-block").remove();
+                text.parent().append("<div class='help-block' style='color: #a94442'>Необходимо заполнить поле «----».</div>");
                 return false;
             }
             $('#form').find('[type="submit"]').prop("disabled", true);
@@ -187,4 +189,53 @@ throw new \Exception('something went wrong');
 </body>
 </html>
 ```
+## SQL
 
+### MySql
+
+#### Очистка таблицы
+
+Неочевидно, но очистить данные из таблицы, не удаляя при этом саму таблицу можно командой 
+
+```sql
+TRUNCATE tbl_name
+```
+
+#### Вставка данных INSERT
+
+Представим, что имеем таблицу с полями:
+
+| id | a | b | c | d | e |
+
+id - это первичный ключ
+
+Разные способы вставки данных в таблицу:
+
+```sql
+-- Простая вставка одной строки, с четким соответствием столбцов
+INSERT INTO table2 (a, b, c, d, e) VALUES (1, 2, 3, 4, 5);
+-- Или так, в неуказанные столбцы будет вставлен NULL
+INSERT INTO table2 SET a=1, b=2, c=3;
+-- Множественная вставка нескольких значений
+INSERT INTO table2 (a, b, c, d, e) VALUES (1, 2, 3, 4, 5), (NULL,2, NULL, 4, 5), (NULL, NULL, NULL, NULL,5);
+```
+
+
+## JavaScript
+
+### Выделение текущего пункта меню
+
+В обычном html бывает задача выделения активного пункта меню в зависимости от url страницы.
+
+В оборачивающий меню элемент добавляем атрибут `data-id-page` с url страницы.
+В каждую ссылку добавляем `data-id-nav` с адресом этой ссылки.
+
+```javascript
+var pageId = $("#mobile-footer-info").attr('data-id-page');
+var navItem = $("#mobile-footer-info").find("a[data-id-nav]").attr("data-id-nav");
+var item = $('a[data-id-nav="'+pageId+'"]');
+
+if(pageId == item.attr("data-id-nav")) {
+	item.find('i').addClass("footeractive");
+}
+```
