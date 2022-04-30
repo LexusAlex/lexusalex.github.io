@@ -37,7 +37,7 @@ cat /proc/filesystems # поддержиеваемые файловые сист
 ls -l /lib/modules/$(uname -r)/kernel/fs # поддержиеваемые файловые системы дистибутива
 findmnt --real # отобразить точки монтирования или так mount | grep "^/dev"
 findmnt # показать все точки монтирования или так просто команда mount
-sudo mount.cifs -v //Server /mnt/  --verbose -o username="test",password="test",file_mode=0777,dir_mode=0777,iocharset=utf8 # монтирование диска на windows
+sudo mount.cifs -v //Server /mnt/  --verbose -o username="test",password="test",file_mode=0777,dir_mode=0777,iocharset=utf8 # монтирование диска smb
 sudo umount /mnt # размонтирование раздела
 ```
 
@@ -49,6 +49,16 @@ ldd /bin/ls # отобразить зависимости команды
 
 ```shell
 vnstat -h # монниторинг трафика, утилита с приятным интерфейсом
+```
+
+### Управление пользователями
+
+```shell
+sudo useradd -D # Просмотр изменение дефолтных значений
+sudo useradd test # Создать пользователя без домашнего каталога, он просто будет внесен в /etc/passwd
+sudo useradd -m test1 # Создать пользователя с домашним каталогом
+sudo useradd -m -c 'Тестовый пользователь' test3 # Создать пользователя с Описанием пользователя
+sudo useradd -m -b /var/www/test test4 # Создать пользователя, также создать и переопределить домашний каталог
 ```
 
 ## Docker
