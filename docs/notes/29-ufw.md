@@ -119,3 +119,5 @@ ignoreip = 127.0.0.1
 sudo systemctl restart fail2ban
 sudo systemctl status fail2ban
 ```
+
+Наслаждаемся результатом
