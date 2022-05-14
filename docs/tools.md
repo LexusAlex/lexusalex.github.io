@@ -27,11 +27,13 @@ nav_order: 6
 Это инструмент, который позволяет создавать и использовать приложения в «родном» окружении.
 
 - [Установка под debian](https://docs.docker.com/engine/install/debian/#install-using-the-repository)
+- [Установка под ubuntu](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
 - [Релизы](https://github.com/docker/cli/tags)
 
 ### Docker Compose
 
-Это инструмент для запуска приложения целиком состоящее из нескольких контейнеров, которое не зависит от платформы и содержит все необходимые для работы технологии и библиотеки.
+Это инструмент для запуска приложения целиком состоящее из нескольких контейнеров, которое не зависит от платформы и 
+содержит все необходимые для работы технологии и библиотеки, которые нужны для запуска проекта
 
 - [Установка 1 версии под debian](https://docs.docker.com/compose/install/#install-compose-on-linux-systems)
 - [Установка 2 версии под debian](https://docs.docker.com/compose/cli-command/#install-on-linux)
@@ -42,12 +44,13 @@ nav_order: 6
 Инструмент для автоматизации
 
 - [Установка для ubuntu](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-ubuntu)
+- [Установка для debian](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-debian)
 
 ### Git
 
 Система контроля версий
 
-Установка под debian
+Установка под debian или ubuntu
 ```shell
 sudo add-apt-repository -y ppa:git-core/ppa
 sudo apt-get update
@@ -62,10 +65,16 @@ sudo apt-get install git -y
 
 - [Скачать с ftp яндекса](https://mirror.yandex.ru/debian-cd/current/amd64/bt-cd/)
 
+### Ubuntu
+
+Последняя версия ubuntu
+
+- [Скачать с ftp яндекса](https://mirror.yandex.ru/ubuntu-releases/22.04/)
+
 ### Cent OS
 
 Последняя версия centos
 
-- [Скачать с ftp яндекса](https://ftp.yandex.ru/centos/8/isos/x86_64/)
+- [Скачать с ftp яндекса](https://mirror.yandex.ru/centos/8-stream/isos/x86_64/)
 
 ## Технологии
