@@ -29,7 +29,7 @@ tags:
 
 ## Установка
 
-Скачать Veeam Agent for Linux можно с официального сайта, зарегистрировавшись на нем
+Скачать Veeam Agent for Linux можно с официального сайта, зарегистрировавшись на нем.
 
 Скачаем его последнюю на данный момент версию (май 2022) для debian/ubuntu
 
@@ -40,7 +40,7 @@ cd /root
 wget https://download2.veeam.com/veeam-release-deb_1.0.8_amd64.deb
 ```
 
-Установим
+Установим на сервер который будем бекапить
 
 ```shell
 sudo dpkg -i ./veeam-release-deb_1.0.8_amd64.deb 
@@ -55,3 +55,11 @@ sudo apt install veeam
 <figure>
   <img src="/assets/images/notes/30/main_page.png" alt="veeam main page"  data-action="zoom">
 </figure>
+
+### Бэкап всего диска
+
+Veeam позволяет сделать нам бэкап всего диска
+
+### NFS
+
+Для того чтобы было куда делать backup на сервере должен стоять nfs
