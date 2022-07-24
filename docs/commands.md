@@ -355,6 +355,7 @@ git tag -a v.1 -m "version 1.0" # создать аннотированный т
 
 ```shell
 git remote add origin git@github.com:LexusAlex/starter.git # добавить удаленный репозиторий в проект с именем origin
+git push origin gitea/master # Коммитим сразу в два
 git remote -v # список удаленных репозиториев
 git push -u origin main # установить связь между локальной и удаленной веткой main и отправить туда все коммиты, команда выполняеся единожды
 git fetch + git merge # подтянуть и слить изменения из удаленного репозитория
