@@ -1,4 +1,4 @@
 up:
-	docker-compose up
+	docker compose up
 build:
-	docker-compose build
+	docker compose build
