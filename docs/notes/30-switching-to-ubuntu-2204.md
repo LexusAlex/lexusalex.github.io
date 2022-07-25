@@ -63,4 +63,7 @@ tags:
 - система контроля версий `git`
 - `docker` и `ansible`
 
+VMware сразу не завелся, но потом нашел решение, которое подошло [https://www.how2shout.com/linux/install-vmware-workstation-player-on-ubuntu-22-04-lts/](https://www.how2shout.com/linux/install-vmware-workstation-player-on-ubuntu-22-04-lts/)
+
+
 В общем полет пока нормальный.
