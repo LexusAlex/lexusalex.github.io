@@ -6,7 +6,6 @@ title: Логические операторы
 parent: js
 description: Использование логических операторов
 date: 2022-07-30 00:10:00 +3
-published: true
 tags:
 - js
 
