@@ -6,6 +6,7 @@ title: Именование сущностей
 parent: js
 description: Общие рекомендации при именовании сущностей
 date: 2022-07-20 22:35:00 +3
+last_modified_date: 2022-07-20 22:35:00 +3
 tags:
 - js
 - naming

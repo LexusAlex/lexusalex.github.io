@@ -6,6 +6,7 @@ title: Строгий режим
 parent: js
 description: Директива use strict
 date: 2022-07-31 20:00:00 +3
+last_modified_date: 2022-07-31 20:00:00 +3
 tags:
 - js
 
