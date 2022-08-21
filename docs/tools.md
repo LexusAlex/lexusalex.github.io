@@ -30,6 +30,8 @@ nav_order: 6
 - [Установка под ubuntu](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
 - [Релизы](https://github.com/docker/cli/tags)
 
+[Обновление docker compose verison 2](https://docs.docker.com/compose/install/compose-plugin/#install-the-plugin-manually)
+
 ### Docker Compose
 
 Это инструмент для запуска приложения целиком состоящее из нескольких контейнеров, которое не зависит от платформы и 
