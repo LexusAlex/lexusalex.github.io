@@ -80,6 +80,7 @@ docker system df # размеры компонентов докера
 sudo du -sh /var/lib/docker/overlay2 # размер слоев docker в системе
 sudo du -sh /var/lib/docker # размер всех компонентов докера
 docker system prune -a # удалить все компоненты докера, рекомендуется переодически запускать
+docker ps -q -f status=exited | xargs --no-run-if-empty docker rm # Удалить только  остановленные контейнеры
 ```
 
 ### Контейнер
