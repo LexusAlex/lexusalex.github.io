@@ -10,6 +10,7 @@ last_modified_date: 2022-08-28 11:30:00 +3
 tags:
 - ssh
 - github
+- git
 ---
 
 # Деплой сайта с github actions
