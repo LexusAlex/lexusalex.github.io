@@ -56,7 +56,16 @@ tags:
 Пройдемся по базовым полям `composer.json`
 
 - `name` - имя пакета например `yiisoft/db`.
-- `description` - Краткое описание пакета
+- `description` - краткое описание пакета
+- `type` - тип пакета
+- `licence` - лицензия пакета
+- `keywords` - ключевые слова связанные с пакетом
+- `homepage` - домашняя страница проекта
+- `readme` - путь до readme документа
+- `time` - время создания пакета
+- `authors` - авторы пакета
+- `support` - поддержка
+- `funding` - адреса для финансирования пакета
 
 
 ## Добавить/удалить пакет
@@ -69,6 +78,41 @@ composer r --dev vimeo/psalm # будут скачены зависимости 
 
 ```
 
+
+about                Shows a short information about Composer
+archive              Creates an archive of this composer package
+audit                Checks for security vulnerability advisories for installed packages
+browse               [home] Opens the package's repository URL or homepage in your browser
+bump                 Increases the lower limit of your composer.json requirements to the currently installed versions
+check-platform-reqs  Check that platform requirements are satisfied
+clear-cache          [clearcache|cc] Clears composer's internal package cache
+completion           Dump the shell completion script
+config               Sets config options
+create-project       Creates new project from a package into given directory
+depends              [why] Shows which packages cause the given package to be installed
+diagnose             Diagnoses the system to identify common errors
+dump-autoload        [dumpautoload] Dumps the autoloader
+exec                 Executes a vendored binary/script
+fund                 Discover how to help fund the maintenance of your dependencies
+global               Allows running commands in the global composer dir ($COMPOSER_HOME)
+help                 Display help for a command
+init                 Creates a basic composer.json file in current directory
+install              [i] Installs the project dependencies from the composer.lock file if present, or falls back on the composer.json
+licenses             Shows information about licenses of dependencies
+list                 List commands
+outdated             Shows a list of installed packages that have updates available, including their latest version
+prohibits            [why-not] Shows which packages prevent the given package from being installed
+reinstall            Uninstalls and reinstalls the given package names
+remove               Removes a package from the require or require-dev
+require              [r] Adds required packages to your composer.json and installs them
+run-script           [run] Runs the scripts defined in composer.json
+search               Searches for packages
+self-update          [selfupdate] Updates composer.phar to the latest version
+show                 [info] Shows information about packages
+status               Shows a list of locally modified packages
+suggests             Shows package suggestions
+update               [u|upgrade] Updates your dependencies to the latest version according to composer.json, and updates the composer.lock file
+validate             Validates a composer.json and composer.lock
 
 composer show --tree
 
