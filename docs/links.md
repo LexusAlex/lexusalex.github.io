@@ -29,3 +29,10 @@ nav_order: 10
 ## PHP
 
 - [https://php.watch/](https://php.watch/) - Актуальная информация о php
+- [https://www.php.net/supported-versions.php](https://www.php.net/supported-versions.php) - Поддерживаемые версии php
+
+## Linux
+
+### Bash
+
+- [https://github.com/dylanaraps/pure-bash-bible](https://github.com/dylanaraps/pure-bash-bible) - Встроенные методы и функции работы с bash
