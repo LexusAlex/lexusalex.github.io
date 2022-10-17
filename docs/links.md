@@ -31,6 +31,10 @@ nav_order: 10
 - [https://php.watch/](https://php.watch/) - Актуальная информация о php
 - [https://www.php.net/supported-versions.php](https://www.php.net/supported-versions.php) - Поддерживаемые версии php
 
+## Nginx
+
+- [https://github.com/trimstray/nginx-admins-handbook](https://github.com/trimstray/nginx-admins-handbook) - Книга администраторов nginx
+
 ## Linux
 
 ### Bash
