@@ -31,6 +31,10 @@ nav_order: 10
 - [https://php.watch/](https://php.watch/) - Актуальная информация о php
 - [https://www.php.net/supported-versions.php](https://www.php.net/supported-versions.php) - Поддерживаемые версии php
 
+## Frontend
+
+- [https://github.com/fullstack-development/front-end-best-practices](https://github.com/fullstack-development/front-end-best-practices) - Общие хорошие практики написания кода для фронтенда
+
 ## Nginx
 
 - [https://github.com/trimstray/nginx-admins-handbook](https://github.com/trimstray/nginx-admins-handbook) - Книга администраторов nginx
