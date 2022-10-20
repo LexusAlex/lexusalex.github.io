@@ -28,8 +28,8 @@ tags:
 
 Для меня это складывается в несколько инструкций:
 
-1. Устанавливаем систему из образа [https://mirror.yandex.ru/ubuntu-cdimage/xubuntu/releases/22.04.1/release/](https://mirror.yandex.ru/ubuntu-cdimage/xubuntu/releases/22.04.1/release/)\
-2. Установка нормальной версии firefox. Весь нужный код одной командой:
+- Устанавливаем систему из образа [https://mirror.yandex.ru/ubuntu-cdimage/xubuntu/releases/22.04.1/release/](https://mirror.yandex.ru/ubuntu-cdimage/xubuntu/releases/22.04.1/release/)\
+- Установка нормальной версии firefox. Весь нужный код одной командой:
 
 ```shell
 sudo snap remove firefox && sudo add-apt-repository ppa:mozillateam/ppa && echo '
@@ -40,20 +40,20 @@ Pin-Priority: 1001
 ```
 Если по какой-то причинам нужно более подробно разобрать что происходит выше [https://omgubuntu.ru/how-to-install-firefox-deb-apt-ubuntu-22-04/](https://omgubuntu.ru/how-to-install-firefox-deb-apt-ubuntu-22-04/)
 
-3. Общие обновление и upgrade
+- Общие обновление и upgrade
 ```shell
 sudo apt update && sudo apt upgrade && sudo apt full-upgrade && sudo apt autoremove && sudo apt --purge autoremove
 ```
 
 Если было много обновлений рекомендуется перезагрузиться.
 
-4. Установка нужного ПО
+- Установка нужного ПО
 
 ```shell
 sudo apt install -y xfce4-xkb-plugin libreoffice libreoffice-gnome vlc ark network-manager-openvpn-gnome && sudo add-apt-repository -y ppa:git-core/ppa && sudo apt-get update && sudo apt install git -y
 ```
 
-5. Настройка git, делать в уже с клонированном репозитории.
+- Настройка git, делать в уже с клонированном репозитории.
 
 ```shell
 git config --global core.excludesfile ~/.gitignore
@@ -63,14 +63,14 @@ git config --global user.email alexsey_89@bk.ru
 git config --global init.defaultBranch main
 ```
 
-6. Перенести строку пуска вниз, добавить иконку переключения языка, добавить русский язык.
-7. docker docker compose
+- Перенести строку пуска вниз, добавить иконку переключения языка, добавить русский язык.
+- docker docker compose
 
 ```shell
 sudo apt-get update && sudo apt-get install -y ca-certificates curl gnupg lsb-release && sudo mkdir -p /etc/apt/keyrings && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null && sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```
 
-8. ansible
+- ansible
 
 ```shell
 sudo apt update && sudo apt install -y software-properties-common && sudo add-apt-repository --yes --update ppa:ansible/ansible && sudo apt install -y ansible
