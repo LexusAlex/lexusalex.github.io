@@ -36,11 +36,15 @@ nav_order: 10
 
 - [https://github.com/fullstack-development/front-end-best-practices](https://github.com/fullstack-development/front-end-best-practices) - Общие хорошие практики написания кода для фронтенда
 
+### CSS
+
+- [https://grid.malven.co/](https://grid.malven.co/) - Гриды свойства наглядно
+
 ### Сервисы
 
 - [https://caninclude.glitch.me/](https://caninclude.glitch.me/) - Сервис проверки какие теги в какие можно вкладывать
 - [https://caniuse.com/](https://caniuse.com/) - Что поддерживается в современных браузерах
-- 
+
 ## Nginx
 
 - [https://github.com/trimstray/nginx-admins-handbook](https://github.com/trimstray/nginx-admins-handbook) - Книга администраторов nginx
