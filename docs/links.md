@@ -36,6 +36,10 @@ nav_order: 10
 
 - [https://github.com/fullstack-development/front-end-best-practices](https://github.com/fullstack-development/front-end-best-practices) - Общие хорошие практики написания кода для фронтенда
 
+### HTML
+
+- [https://validator.w3.org](https://validator.w3.org) - Валидатор html документов
+
 ### CSS
 
 - [https://grid.malven.co/](https://grid.malven.co/) - Гриды свойства наглядно
