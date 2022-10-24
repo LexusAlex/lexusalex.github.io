@@ -12,7 +12,7 @@ tags:
 - css
 ---
 
-# Работа над макетом
+# Работа над версткой
 {: .no_toc }
 
 <details open markdown="block">
