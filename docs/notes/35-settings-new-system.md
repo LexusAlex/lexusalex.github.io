@@ -6,7 +6,7 @@ title: Настройка новой системы
 parent: Заметки
 description: Как быстро продолжить работать на новой системе 
 date: 2022-10-20 12:10:00 +3
-last_modified_date: 2022-10-20 12:10:00 +3
+last_modified_date: 2022-10-24 10:19:00 +3
 tags:
 - linux
 ---
@@ -50,7 +50,7 @@ sudo apt update && sudo apt upgrade && sudo apt full-upgrade && sudo apt autorem
 - Установка нужного ПО
 
 ```shell
-sudo apt install -y xfce4-xkb-plugin libreoffice libreoffice-gnome vlc ark network-manager-openvpn-gnome && sudo add-apt-repository -y ppa:git-core/ppa && sudo apt-get update && sudo apt install git -y
+sudo apt install -y xfce4-xkb-plugin libreoffice libreoffice-gnome vlc ark network-manager-openvpn-gnome make && sudo add-apt-repository -y ppa:git-core/ppa && sudo apt-get update && sudo apt install git -y
 ```
 
 - Настройка git, делать в уже с клонированном репозитории.
@@ -67,7 +67,7 @@ git config --global init.defaultBranch main
 - docker docker compose
 
 ```shell
-sudo apt-get update && sudo apt-get install -y ca-certificates curl gnupg lsb-release && sudo mkdir -p /etc/apt/keyrings && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null && sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo apt-get update && sudo apt-get install -y ca-certificates curl gnupg lsb-release && sudo mkdir -p /etc/apt/keyrings && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null && sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin && sudo chmod 666 /var/run/docker.sock
 ```
 
 - ansible
@@ -76,5 +76,18 @@ sudo apt-get update && sudo apt-get install -y ca-certificates curl gnupg lsb-re
 sudo apt update && sudo apt install -y software-properties-common && sudo add-apt-repository --yes --update ppa:ansible/ansible && sudo apt install -y ansible
 ```
 
-продолжить...
+- phpstorm
+
+Скачать и запустить phpstorm. Настроить под себя а именно, установить плагины
+
+- Настройка проектов
+
+1. Зайти на github
+2. Создать локально ключ для работы с github и загрузить его на github
+```shell
+ssh-keygen -t ed25519 -C "alexsey_89@bk.ru"
+cat .ssh/id_ed25519.pub
+ssh -T git@github.com Проверяем что работает
+```
+3. Cклонировать нужные проекты git clone и запусть скрипт инициализации
 
