@@ -6,3 +6,5 @@ permalink: /js
 nav_order: 3
 ---
 # Javascript
+
+Простым языком для себя.
