@@ -35,6 +35,8 @@ nav_order: 10
 ## Frontend
 
 - [https://github.com/fullstack-development/front-end-best-practices](https://github.com/fullstack-development/front-end-best-practices) - Общие хорошие практики написания кода для фронтенда
+- [http://recommend.maxgraph.ru/](http://recommend.maxgraph.ru/) - Рекомендации по верстке сайта
+- [https://codeguide.maxgraph.ru/](https://codeguide.maxgraph.ru/) - Кодстаил
 
 ### HTML
 
@@ -43,6 +45,7 @@ nav_order: 10
 ### CSS
 
 - [https://grid.malven.co/](https://grid.malven.co/) - Гриды свойства наглядно
+- [https://habr.com/ru/post/656245/](https://habr.com/ru/post/656245/) - Про гриды
 
 ### Сервисы
 
