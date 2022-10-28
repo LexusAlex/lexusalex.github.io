@@ -31,6 +31,8 @@ nav_order: 10
 - [https://php.watch/](https://php.watch/) - Актуальная информация о php
 - [https://www.php.net/supported-versions.php](https://www.php.net/supported-versions.php) - Поддерживаемые версии php
 - [https://github.com/exakat/php-static-analysis-tools](https://github.com/exakat/php-static-analysis-tools) - Библиотеки для статического анализа кода
+- [https://www.yiiframework.com/status/3.0](https://www.yiiframework.com/status/3.0) - Пакеты yii3
+- [https://www.yiiframework.com/yii3-progress](https://www.yiiframework.com/yii3-progress) - Прогресс yii3
 
 ## Frontend
 
