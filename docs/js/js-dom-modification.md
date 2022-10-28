@@ -192,5 +192,5 @@ document.body.style.cssText=`color: red !important;
 
 // Но по сути тоже самое можно сдедать установим атрибут style, что мы делали выше
 
-getDefaultComputedStyle(document.body) // Получить стили по умолчанию для элемента
+getDefaultComputedStyle(document.body) // Получить стили по умолчанию для элемента, но отсюда ширину и высоту лучше не брать
 ```
