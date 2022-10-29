@@ -6,7 +6,7 @@ title: Размеры элементов и окна
 parent: js
 description: Работа с размерами элементов
 date: 2022-10-28 23:30:00 +3
-last_modified_date: 2022-10-28 23:30:00 +3
+last_modified_date: 2022-10-29 14:00:00 +3
 tags:
 - js
 
@@ -89,3 +89,27 @@ document.querySelector('.item').scrollTop = 0 // Прокрутить вверх
 
 
 # Размеры и прокрутка окна
+
+```javascript
+// Эти свойства вычитают полосы прокрутки, поэтому желательно использовать их
+document.documentElement.clientHeight // Высота элемента html
+document.documentElement.clientWidth // Ширина элемента html, в данном случае у меня это 1920
+
+let scrollHeight = Math.max(
+    document.body.scrollHeight, document.documentElement.scrollHeight,
+    document.body.offsetHeight, document.documentElement.offsetHeight,
+    document.body.clientHeight, document.documentElement.clientHeight
+);
+
+console.log('Полная высота документа с прокручиваемой частью: ' + scrollHeight);
+
+window.pageYOffset // На сколько была прокручена страница сверху вниз
+window.pageXOffset // Прокрутка слева направо
+// Если нужно прокрутить страницу относительно ее текущего положения
+// Главное что была прокрутка на странице
+window.scrollBy(100,0) // Вправо на 100px
+window.scrollBy(0,100) // Вниз на 100px
+window.scrollBy(10,10) // Вправо и вниз на 10px
+window.scrollTo(0,0) // Прокрутить вначало документа
+document.body.style.overflow = "hidden" // Запретить прокрутку документа
+```
