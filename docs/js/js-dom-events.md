@@ -6,7 +6,7 @@ title: DOM события
 parent: js
 description: Разберем работу событий в js
 date: 2022-10-29 15:00:00 +3
-last_modified_date: 2022-10-29 15:00:00 +3
+last_modified_date: 2022-10-30 01:00:00 +3
 tags:
 - js
 
@@ -113,4 +113,171 @@ document.getElementById('button2').removeEventListener('click',  clickButton)
 - Разделяйте обработку разных событий на разные методы
 - По ключевому слову `this` можно получить dom элемент на котором сработало событие
 
-## Всплытие событий
+## Вложенные события
+
+Рассмотрим пример
+
+```html
+<div id="bubble">
+    div 1 уровень
+    <div id="two">
+        div 2 уровень
+        <div id="three">
+            div 3 уровень
+            <div id="four">
+                div 4 уровень
+                <div id="five">
+                    div 5 уровень
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+```javascript
+document.getElementById('bubble').addEventListener('click', function (e) {
+    console.log('Сработало событие на элементе' + e.target.id);
+})
+```
+
+Событие `onclick` установлено для первого элемента `div`, но если кликнуть во вложенные элементы оно тоже сработает.
+И оно будет срабатывать на кликнутом элементе.
+
+Если установить обработчики на все 5 элементов, и кликнуть на какой-нибудь один, все сработают по всплытию вверх по цепочке предков
+
+Этот процесс называется «всплытием»
+
+- Большинство событий всплывают
+- По умолчанию событие идет вверх вызывая все обработчики на своем пути
+
+Прекратить всплытие события поможет свойство `event.stopPropagation()` и `stopImmediatePropagation()`
+
+Например, если кликнем на 5 div, сработают только 2
+
+```html
+<div id="bubble" onclick="console.log('Сработало событие на элементе' + event.target.id)">
+  div 1 уровень
+  <div id="two" onclick="console.log('Сработало событие на элементе' + event.target.id)">
+    div 2 уровень
+    <div id="three" onclick="event.stopPropagation(); console.log('Сработало событие на элементе' + event.target.id)">
+      div 3 уровень
+      <div id="four" onclick="console.log('Сработало событие на элементе' + event.target.id)">
+        div 4 уровень
+        <div id="five" onclick="console.log('Сработало событие на элементе' + event.target.id)">
+          div 5 уровень
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+- Но прекращать всплытие требуется довольно редко.
+
+События можно делегировать, например в дата атрибуты сохранять действие `data-action="save"`, а потом обрабатывать
+
+С помощью делегирования можно реализовать
+
+- Счетчики
+- Переключения
+
+Пример вложенного списка [https://plnkr.co/edit/3ESpATnBgiw8yWtT?p=preview&preview](https://plnkr.co/edit/3ESpATnBgiw8yWtT?p=preview&preview)
+
+## Действия браузера по умолчанию 
+
+
+Отменяем переход по ссылкам
+
+```html
+<a href="/" onclick="event.preventDefault()">Ссылка по которой нельзя перейти</a>
+<a href="/" onclick="return false">Ссылка по которой нельзя перейти</a>
+```
+
+Или еще пример. Запретим переход по ссылкам списка
+
+```html
+<ul class="list2">
+  <li><a href="/">1</a></li>
+  <li><a href="/">2</a></li>
+  <li><a href="/">3</a></li>
+  <li><a href="/">4</a></li>
+  <li><a href="/">5</a></li>
+</ul>
+```
+
+```javascript
+document.querySelector('.list2').addEventListener('click', function (e) {
+e.preventDefault();
+})
+```
+
+## Типы событий
+
+### mousedown
+
+Кнопка нажата над элементом
+
+```html
+<button onmousedown="console.log(event.type)">Кнопка</button>
+```
+
+### onmouseup
+
+Кнопка отпущена над элементом
+
+```html
+<button onmouseup="console.log(event.type)">Кнопка</button>
+```
+
+### mouseover
+
+Курсор мыши появляется над элементом
+
+```html
+<button onmouseover="console.log(event.type)" onmouseout="console.log(event.type)">Кнопка</button>
+```
+
+### mouseout
+
+Курсор мыши уходит с элемента
+
+```html
+<button onmouseover="console.log(event.type)" onmouseout="console.log(event.type)">Кнопка</button>
+```
+
+### mousemove
+
+Перемещение курсора в пределах элемента генерирует событие
+
+```html
+<button onmousemove="console.log(event.type)">Кнопка</button>
+```
+
+### click
+
+Выполнение сначала `mousedown` затем `mouseup`, при нажатии левой кнопкой мыши
+
+```html
+<button onclick="console.log(event.type)">Кнопка</button>
+```
+
+### dbclick
+
+Двойной клик на элементе
+
+```html
+<button ondblclick="console.log(event.type)">Кнопка</button>
+```
+
+### contextmenu
+
+Нажатие правой кнопкой мыши на элементе
+
+```html
+<button oncontextmenu="console.log(event.type)">Кнопка</button>
+```
+
+
+- Если вызываются несколько событий на элементе, порядок их фиксирован
+- `event.button` - находится цифра какая кнопка была нажата
