@@ -6,7 +6,7 @@ title: Настройка новой системы
 parent: Заметки
 description: Как быстро продолжить работать на новой системе 
 date: 2022-10-20 12:10:00 +3
-last_modified_date: 2022-10-24 10:19:00 +3
+last_modified_date: 2022-11-02 09:34:00 +3
 tags:
 - linux
 ---
@@ -88,7 +88,7 @@ sudo apt update && sudo apt install -y software-properties-common && sudo add-ap
 2. Создать локально ключ для работы с github и загрузить его на github
 ```shell
 ssh-keygen -t ed25519 -C "alexsey_89@bk.ru"
-cat .ssh/id_ed25519.pub
+cat ~/.ssh/id_ed25519.pub
 ssh -T git@github.com Проверяем что работает
 ```
 3. Cклонировать нужные проекты git clone и запусть скрипт инициализации
