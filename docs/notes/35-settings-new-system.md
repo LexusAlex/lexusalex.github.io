@@ -76,6 +76,8 @@ sudo apt-get update && sudo apt-get install -y ca-certificates curl gnupg lsb-re
 sudo apt update && sudo apt install -y software-properties-common && sudo add-apt-repository --yes --update ppa:ansible/ansible && sudo apt install -y ansible
 ```
 
+Сейчас по умолчанию ставится другой архиватор Engrampa Arhive Manager
+
 - phpstorm
 
 Скачать и запустить phpstorm. Настроить под себя а именно, установить плагины
