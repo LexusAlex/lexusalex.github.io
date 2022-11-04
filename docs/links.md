@@ -51,6 +51,10 @@ nav_order: 10
 - [https://grid.malven.co/](https://grid.malven.co/) - Гриды свойства наглядно
 - [https://habr.com/ru/post/656245/](https://habr.com/ru/post/656245/) - Про гриды
 
+### JavaScript
+
+ [https://youmightnotneedjquery.com/](https://youmightnotneedjquery.com/) - Jquery или JavaScript
+
 ### Сервисы
 
 - [https://caninclude.glitch.me/](https://caninclude.glitch.me/) - Сервис проверки какие теги в какие можно вкладывать
