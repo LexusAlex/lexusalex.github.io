@@ -278,6 +278,9 @@ e.preventDefault();
 <button oncontextmenu="console.log(event.type)">Кнопка</button>
 ```
 
+### Drag'n'Drop
+
+
 
 - Если вызываются несколько событий на элементе, порядок их фиксирован
 - в свойстве `event.button` - находится цифра какая кнопка была нажата
