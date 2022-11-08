@@ -190,3 +190,5 @@ GET /education/group-uc/create/?group_id=5965 HTTP/1.1
 #### URI
 
 Уникальный идентификатор ресурса, к которому применить запрос.
+
+https://habr.com/ru/company/nix/blog/304518/
