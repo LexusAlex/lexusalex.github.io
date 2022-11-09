@@ -40,12 +40,15 @@ nav_order: 10
 ### Пакеты
 
 - [https://github.com/heiglandreas/holidayChecker](https://github.com/heiglandreas/holidayChecker) - Библиотека для проверки выходных и праздничных дней
+- [https://github.com/fp4php/functional](https://github.com/fp4php/functional) - Функциональное программирование на php
+- [https://github.com/Nex-Otaku/minimal-filesystem](https://github.com/Nex-Otaku/minimal-filesystem) - Работа с файлами на php
 
 ## Frontend
 
 - [https://github.com/fullstack-development/front-end-best-practices](https://github.com/fullstack-development/front-end-best-practices) - Общие хорошие практики написания кода для фронтенда
 - [http://recommend.maxgraph.ru/](http://recommend.maxgraph.ru/) - Рекомендации по верстке сайта
 - [https://codeguide.maxgraph.ru/](https://codeguide.maxgraph.ru/) - Кодстаил
+- [https://quilljs.com/](https://quilljs.com/) - WYSIWYG редактор
 
 ### HTML
 
