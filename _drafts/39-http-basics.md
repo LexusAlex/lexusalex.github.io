@@ -239,13 +239,96 @@ https://habr.com/ru/company/nix/blog/304518/
 
 Существует пять классов кодов состояния
 
+Первая цифра определяет класс ответа
+
 ##### 1xx Информационные
+
+Коды информируют о процессе передачи. Введены в версии HTTP 1.1.
+Клиент должен быть готов принять такие коды от сервера как обычный ответ сервера
+Сами сообщения содержат только стартовую строку ответа.
+
+* 100 Continue - Клиент может продолжать пересылать заголовки
+* 101 Switching Protocols - Сервер переключаем протоколы, заголовок Upgrade
+* 102 Processing - Запрос принят
+* 103 Early Hints - Используется если заголовки полного ответа не могут быть быстро сформированы
 ##### 2xx Успешно
+
+Запрос клиента успешно пришел и обработан сервером
+
+* 200 OK - Данные клиента успешно добавлены в заголовки либо в тело сообщения
+* 201 Created - Был создан новый ресурс
+* 202 Accepted
+* 203 Non-Authoritative Information
+* 204 No Content
+* 205 Reset Content
+* 206 Partial Content
+* 207 Multi-Status
+* 208 Already Reported
+* 226 IM Used
 ##### 3xx Перенаправления
+* 300 Multiple Choices
+* 301 Moved Permanently
+* 302 Moved Temporarily
+* 302 Found
+* 303 See Other
+* 304 Not Modified
+* 305 Use Proxy
+* 306 зарезервировано;
+* 307 Temporary Redirect
+* 308 Permanent Redirect
 ##### 4xx Ошибка клиента
+* 400 Bad Request
+* 401 Unauthorized
+* 402 Payment Required
+* 403 Forbidden
+* 404 Not Found
+* 405 Method Not Allowed
+* 406 Not Acceptable
+* 407 Proxy Authentication Required
+* 408 Request Timeout
+* 409 Conflict
+* 410 Gone
+* 411 Length Required
+* 412 Precondition Failed
+* 413 Payload Too Large
+* 414 URI Too Long
+* 415 Unsupported Media Type
+* 416 Range Not Satisfiable
+* 417 Expectation Failed
+* 418 I’m a teapot
+* 419 Authentication Timeout (not in RFC 2616)
+* 421 Misdirected Request;
+* 422 Unprocessable Entity
+* 423 Locked
+* 424 Failed Dependency
+* 425 Too Early
+* 426 Upgrade Required
+* 428 Precondition Required
+* 429 Too Many Requests
+* 431 Request Header Fields Too Large
+* 449 Retry With
+* 451 Unavailable For Legal Reasons
+* 499 Client Closed Request
 ##### 5xx Ошибка сервера
-
-
+* 500 Internal Server Error
+* 501 Not Implemented
+* 502 Bad Gateway
+* 503 Service Unavailable
+* 504 Gateway Timeout
+* 505 HTTP Version Not Supported
+* 506 Variant Also Negotiates
+* 507 Insufficient Storage
+* 508 Loop Detected
+* 509 Bandwidth Limit Exceeded
+* 510 Not Extended
+* 511 Network Authentication Required
+* 520 Unknown Error
+* 521 Web Server Is Down
+* 522 Connection Timed Out
+* 523 Origin Is Unreachable
+* 524 A Timeout Occurred
+* 525 SSL Handshake Failed
+* 526 Invalid SSL Certificate
 ### Поля заголовков ответа
 
 Позволяют серверу передавать дополнительную информацию об ответе
@@ -262,3 +345,32 @@ https://habr.com/ru/company/nix/blog/304518/
 
 ### Пустая строка
 ### Тело сообщения
+
+https://http.dev/
+
+## Заголовки
+
+Помимо специальных заголовков ответа и запроса бывают
+
+- Общие
+- Заголовки сущности
+
+### Общие заголовки
+
+Cache-control
+Connection
+Date
+Pragma
+Trailer
+Transfer-Encoding
+Upgrade
+Via
+Warning
+Accept
+Accept-Charset
+Accept-Encoding
+Accept-Language
+Authorization
+Cookie
+Expect
+From
