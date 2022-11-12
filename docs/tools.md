@@ -4,6 +4,7 @@ title: Инструменты и технологии
 comments: true
 summary: Алексей Шмелев - книги
 permalink: /tools
+description: Инструменты
 nav_order: 6
 ---
 

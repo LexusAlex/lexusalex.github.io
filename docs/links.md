@@ -4,6 +4,7 @@ title: Ссылки
 comments: true
 summary: Алексей Шмелев - ссылки
 permalink: /links
+description: Ссылки
 nav_order: 10
 ---
 

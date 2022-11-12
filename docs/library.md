@@ -4,6 +4,7 @@ title: Библиотека
 comments: true
 summary: Алексей Шмелев - библиотека
 permalink: /library
+description: Библиотека
 nav_order: 7
 ---
 

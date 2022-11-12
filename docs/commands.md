@@ -3,6 +3,7 @@ layout: default
 title: Команды
 comments: true
 summary: Алексей Шмелев - команды
+description: Команды
 permalink: /commands
 nav_order: 8
 ---

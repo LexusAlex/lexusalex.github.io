@@ -4,6 +4,7 @@ title: Резюме
 comments: true
 summary: Алексей Шмелев - Резюме
 permalink: /resume
+description: Резюме
 nav_order: 5
 ---
 
