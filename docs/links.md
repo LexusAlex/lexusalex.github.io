@@ -77,4 +77,9 @@ nav_order: 10
 
 ### Bash
 
-- [https://github.com/dylanaraps/pure-bash-bible](https://github.com/dylanaraps/pure-bash-bible) - Встроенные методы и функции работы с bash
+- [https://github.com/dylanaraps/pure-bash-bible](https://github.com/dylanaraps/pure-bash-bible) - Встроенные методы и функции работы с bash<
+
+## Блоги
+
+- [https://leonidchernenko.ru/](https://leonidchernenko.ru/)
+- [https://otis22.github.io/](https://otis22.github.io/)
