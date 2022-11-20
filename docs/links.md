@@ -37,6 +37,7 @@ nav_order: 10
 - [https://github.com/exakat/php-static-analysis-tools](https://github.com/exakat/php-static-analysis-tools) - Библиотеки для статического анализа кода
 - [https://www.yiiframework.com/status/3.0](https://www.yiiframework.com/status/3.0) - Пакеты yii3
 - [https://www.yiiframework.com/yii3-progress](https://www.yiiframework.com/yii3-progress) - Прогресс yii3
+- [https://caniphp.com](https://caniphp.com) - В какой версии, что было добавлено
 
 ### Пакеты
 
@@ -83,3 +84,4 @@ nav_order: 10
 
 - [https://leonidchernenko.ru/](https://leonidchernenko.ru/)
 - [https://otis22.github.io/](https://otis22.github.io/)
+- [https://viktorprogger.name](https://viktorprogger.name)
