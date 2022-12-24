@@ -136,7 +136,6 @@ document.querySelector('.test').insertAdjacentHTML('beforebegin','<div class="be
 document.querySelector('.test').insertAdjacentHTML('afterend','<div class="afterend"><ul class="my-ul"><li>Элемент 1</li><li>Элемент 2</li></ul></div>'); // Вставка после указанного элемента
 ```
 
-
 ## Замена
 
 ### Замена одного узла на другой
@@ -160,6 +159,8 @@ document.querySelector('.test').children[0].replaceWith(element2);
 document.querySelector('.test').remove();
 ```
 
+## Клонирование
+
 ## Получение элементов
 
 ```javascript
@@ -168,4 +169,19 @@ document.querySelector('#list'); // Тоже самое по идентифик�
 document.querySelector('[user-id="4"]'); // Найдем элмент по атрибуту
 document.querySelectorAll('.element')[1].innerText // Получить контент из коллекции элементов
 
+```
+
+## Навигация по DOM дереву
+
+```javascript
+document.body.childNodes // Коллекция NodeList всех дочерних элементов включая текстовые
+document.body.children // Получить коллекцию HTML Collection только html элементы
+document.body.firstChild // Получение первого элемента коллекции
+document.body.lastChild // Получение последнего элемента коллекции
+document.body.parentNode // Родительский узел
+document.body.parentElement // Родительский html элемент
+document.head.nextSibling // Следующий соседний узел
+document.body.previousSibling // Предыдущий соседний узел
+document.body.children[0].lastElementChild // Последний элемент коллекции
+document.body.children[0].lastElementChild.previousElementSibling.parentElement.parentElement // Можно строить столь угодно длинные цепочки
 ```
