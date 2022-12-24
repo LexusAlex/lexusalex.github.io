@@ -6,7 +6,7 @@ title: JS DOM
 parent: Заметки
 description: JS DOM. Необходимый минимум
 date: 2022-12-22 22:30:00 +3
-last_modified_date: 2022-12-22 22:30:00 +3
+last_modified_date: 2022-12-24 17:00:00 +3
 tags:
 - javascript
 ---
@@ -24,19 +24,25 @@ tags:
 </details>
 ---
 
-## Создание элементов
+Стараемся пользоваться только актуальными вещами.
+
+## Создание
+
+### Создание элементов
 
 ```javascript
 let element = document.createElement('div'); // div
 ```
 
-## Создание текстового узла
+### Создание текстового узла
 
 ```javascript
 let text = document.createTextNode('Контент'); // #text
 ```
 
-## Вставка элементов в конец родителя
+## Вставка
+
+### Вставка элементов в конец родителя
 
 Чаще всего используется именно эта вставка элементов
 
@@ -62,7 +68,7 @@ li6.textContent = '55 элемент списка';
 ul.insertAdjacentElement('beforeend',li6)
 ```
 
-## Вставка элементов в начало родителя
+### Вставка элементов в начало родителя
 
 ```javascript
 
@@ -85,21 +91,21 @@ li5.textContent = '-2 элемент списка';
 ul.insertAdjacentElement('afterbegin',li5)
 ```
 
-## Вставка элемента до элемента
+### Вставка элемента до элемента
 
 ```javascript
 document.querySelector('.test').before(document.createElement('div'));
 document.querySelector('.test').insertAdjacentElement('beforebegin',document.createElement('div'))
 ```
 
-## Вставка элемента после элемента
+### Вставка элемента после элемента
 
 ```javascript
 document.querySelector('.test').after(document.createElement('div'));
 document.querySelector('.test').insertAdjacentElement('afterbegin',document.createElement('div'))
 ```
 
-## Вставка текста внутрь, до и после элемента
+### Вставка текста внутрь, до и после элемента
 
 ```javascript
 element.textContent = 'Текст для вставки'; // Вставка теста
@@ -111,7 +117,7 @@ document.querySelector('.my-ul').insertAdjacentText('beforebegin','текст be
 document.querySelector('.my-ul').insertAdjacentText('afterend','текст afterend')  // После элемента
 ```
 
-## Вставка html внутрь, до и после элемента
+### Вставка html внутрь, до и после элемента
 
 Наверное самый простой способ вставки html внутрь элемента
 
@@ -128,4 +134,38 @@ element.insertAdjacentHTML('afterbegin','<div class="afterbegin"><ul><li>Эле�
 element.insertAdjacentHTML('beforeend','<div class="beforeend"><ul><li>Элемент 1</li><li>Элемент 2</li></ul></div>'); // В конец выбранного элемента
 document.querySelector('.test').insertAdjacentHTML('beforebegin','<div class="beforebegin"><ul><li>Элемент 1</li><li>Элемент 2</li></ul></div>'); // Вставка выше указанного элемента
 document.querySelector('.test').insertAdjacentHTML('afterend','<div class="afterend"><ul class="my-ul"><li>Элемент 1</li><li>Элемент 2</li></ul></div>'); // Вставка после указанного элемента
+```
+
+
+## Замена
+
+### Замена одного узла на другой
+
+```javascript
+let element = document.createElement('div');
+element.textContent = 'элемент 1';
+
+let element2 = document.createElement('div');
+element2.textContent = 'элемент 2';
+
+document.querySelector('.test').append(element);
+document.querySelector('.test').children[0].replaceWith(element2);
+```
+
+## Удалить
+
+### Удаление узла
+
+```javascript
+document.querySelector('.test').remove();
+```
+
+## Получение элементов
+
+```javascript
+document.getElementById('list'); // По идентификатору
+document.querySelector('#list'); // Тоже самое по идентификатору
+document.querySelector('[user-id="4"]'); // Найдем элмент по атрибуту
+document.querySelectorAll('.element')[1].innerText // Получить контент из коллекции элементов
+
 ```
