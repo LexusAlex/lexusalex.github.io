@@ -36,9 +36,96 @@ let element = document.createElement('div'); // div
 let text = document.createTextNode('Контент'); // #text
 ```
 
-## Вставка текста внутрь элемента
+## Вставка элементов в конец родителя
+
+Чаще всего используется именно эта вставка элементов
+
+```javascript
+ul = document.createElement('ul');
+li = document.createElement('li');
+li.textContent = '1 элемент списка';
+ul.append(li);
+
+li2 = document.createElement('li');
+li2.textContent = '2 элемент списка';
+ul.append(li2);
+
+ul.append(li,li2, 'Какой-то текст'); // Можно вставлять сразу несколько элементов и тектовых узлов
+document.querySelector('.test').append(ul);
+```
+
+Или так, как альтернативный вариант
+
+```javascript
+li6 = document.createElement('li');
+li6.textContent = '55 элемент списка';
+ul.insertAdjacentElement('beforeend',li6)
+```
+
+## Вставка элементов в начало родителя
+
+```javascript
+
+li3 = document.createElement('li');
+li3.textContent = '0 элемент списка';
+
+li4 = document.createElement('li');
+li4.textContent = '-1 элемент списка';
+
+ul.prepend(li4, li3);
+
+document.querySelector('.test').append(ul);
+```
+
+Или так
+
+```javascript
+li5 = document.createElement('li');
+li5.textContent = '-2 элемент списка';
+ul.insertAdjacentElement('afterbegin',li5)
+```
+
+## Вставка элемента до элемента
+
+```javascript
+document.querySelector('.test').before(document.createElement('div'));
+document.querySelector('.test').insertAdjacentElement('beforebegin',document.createElement('div'))
+```
+
+## Вставка элемента после элемента
+
+```javascript
+document.querySelector('.test').after(document.createElement('div'));
+document.querySelector('.test').insertAdjacentElement('afterbegin',document.createElement('div'))
+```
+
+## Вставка текста внутрь, до и после элемента
 
 ```javascript
 element.textContent = 'Текст для вставки'; // Вставка теста
-element.append(text); // Вставка тестового узла
+element.append(text); // Вставка тестового узла внутрь, что дает тот же самый результат
+
+document.querySelector('.my-ul').insertAdjacentText('afterbegin','текст afterbegin') // В начало элемента
+document.querySelector('.my-ul').insertAdjacentText('beforeend','текст beforeend') // В конец элемента
+document.querySelector('.my-ul').insertAdjacentText('beforebegin','текст beforebegin') // До элемента
+document.querySelector('.my-ul').insertAdjacentText('afterend','текст afterend')  // После элемента
+```
+
+## Вставка html внутрь, до и после элемента
+
+Наверное самый простой способ вставки html внутрь элемента
+
+! Важно понимать что строка - это не html элемент
+
+```javascript
+element.innerHTML = '<div class="div"><ul><li>Элемент 1</li><li>Элемент 2</li></ul></div>';
+```
+
+Или использовать метод `insertAdjacentHTML`
+
+```javascript
+element.insertAdjacentHTML('afterbegin','<div class="afterbegin"><ul><li>Элемент 1</li><li>Элемент 2</li></ul></div>'); // В начало выбранного элемента
+element.insertAdjacentHTML('beforeend','<div class="beforeend"><ul><li>Элемент 1</li><li>Элемент 2</li></ul></div>'); // В конец выбранного элемента
+document.querySelector('.test').insertAdjacentHTML('beforebegin','<div class="beforebegin"><ul><li>Элемент 1</li><li>Элемент 2</li></ul></div>'); // Вставка выше указанного элемента
+document.querySelector('.test').insertAdjacentHTML('afterend','<div class="afterend"><ul class="my-ul"><li>Элемент 1</li><li>Элемент 2</li></ul></div>'); // Вставка после указанного элемента
 ```
