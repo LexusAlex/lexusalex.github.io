@@ -6,7 +6,7 @@ title: JS DOM
 parent: Заметки
 description: JS DOM. Необходимый минимум
 date: 2022-12-22 22:30:00 +3
-last_modified_date: 2022-12-24 17:00:00 +3
+last_modified_date: 2022-12-25 19:00:00 +3
 tags:
 - javascript
 ---
@@ -161,6 +161,12 @@ document.querySelector('.test').remove();
 
 ## Клонирование
 
+```javascript
+let list = document.getElementById('list');
+let cloneNode = list.cloneNode(true); // Склонировать полностью все вложенные элементы
+document.body.append(cloneNode);
+```
+
 ## Получение элементов
 
 ```javascript
@@ -184,4 +190,16 @@ document.head.nextSibling // Следующий соседний узел
 document.body.previousSibling // Предыдущий соседний узел
 document.body.children[0].lastElementChild // Последний элемент коллекции
 document.body.children[0].lastElementChild.previousElementSibling.parentElement.parentElement // Можно строить столь угодно длинные цепочки
+```
+
+## События
+
+
+
+## Local Storage
+
+Храним данные в браузере
+
+```javascript
+
 ```
