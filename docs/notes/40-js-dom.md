@@ -6,7 +6,7 @@ title: JS DOM
 parent: Заметки
 description: JS DOM. Необходимый минимум
 date: 2022-12-22 22:30:00 +3
-last_modified_date: 2022-12-25 19:00:00 +3
+last_modified_date: 2022-12-28 14:00:00 +3
 tags:
 - javascript
 ---
@@ -192,9 +192,86 @@ document.body.children[0].lastElementChild // Последний элемент 
 document.body.children[0].lastElementChild.previousElementSibling.parentElement.parentElement // Можно строить столь угодно длинные цепочки
 ```
 
+## Поиск родителя
+
+`closest` возвращает ближайший родительский элемент или сам элемент
+
+```javascript
+let li = event.target.closest('li'); // Найти ближайшего родителя включая текущий элемент
+```
+
 ## События
 
+Задание события. Простейшая демонстрация события, это добавление/удаление элемента по клику
 
+```javascript
+let ul = document.createElement('ul');
+document.body.prepend(ul);
+
+let buttonClose = document.createElement('button');
+buttonClose.textContent = 'Удалить элемент';
+document.body.prepend(buttonClose);
+
+let buttonCreate = document.createElement('button');
+buttonCreate.textContent = 'Добавить элемент';
+document.body.prepend(buttonCreate);
+
+// Привязка к событию
+buttonCreate.addEventListener('click', (e) => {
+   let li = document.createElement('li');
+   li.textContent = 'Элемент';
+   ul.append(li);
+});
+
+// Привязка к событию
+buttonClose.addEventListener('click', (e) => {
+   let lis = document.querySelectorAll('ul > li');
+   let last = lis[lis.length - 1];
+   if (lis.length !== 0) {
+     last.remove();
+   }
+});
+````
+
+### Добавить обработчик на событие
+
+```javascript
+button.addEventListener('click', (e) => {
+   
+});
+```
+
+### Делегирование событий
+
+Очень важный прием при однотипных объектах.
+Событие необходимо вещать на родительский элемент.
+При этом абсолютно не важно сколько элементов при этом будут обрабатываться 10,100 или 100000
+
+```javascript
+// Делегирование событий, вешаем на родительский элемент, в нем проверяем по чему кликнули
+ul.addEventListener('click', (e) => {
+    let li = event.target.closest('li');
+
+    if (!li) {
+        return false;
+    }
+    
+    // если ul не содержит li, то ничего не делаем
+    if (!ul.contains(li)) {
+        return false;
+    }
+    // Что-то делаем с элементом, в данном случае применяем стиль
+    hover(li);
+});
+let selected;
+function hover(li) {
+    if (selected) {
+        selected.style.backgroundColor = '';
+    }
+    selected = li;
+    selected.style.backgroundColor = 'gray';
+}
+```
 
 ## Local Storage
 
