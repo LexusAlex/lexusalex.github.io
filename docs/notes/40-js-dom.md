@@ -197,12 +197,12 @@ document.body.children[0].lastElementChild.previousElementSibling.parentElement.
 `closest` возвращает ближайший родительский элемент или сам элемент
 
 ```javascript
-let li = event.target.closest('li'); // Найти ближайшего родителя включая текущий элемент
+let li = event.target.closest('li'); // Найти ближайшего родителя включая текущий элемент, в данном случае нашили текущий - это li
 ```
 
 ## События
 
-Задание события. Простейшая демонстрация события, это добавление/удаление элемента по клику
+Задание события. Простейшая демонстрация события, это добавление/удаление элемента по клику в списке:
 
 ```javascript
 let ul = document.createElement('ul');
@@ -241,6 +241,12 @@ button.addEventListener('click', (e) => {
 });
 ```
 
+### Удалить обработчик
+
+```javascript
+ul.removeEventListener('click',colorStr) // Код должен быть таким же ка  и при здании слушателя
+```
+
 ### Делегирование событий
 
 Очень важный прием при однотипных объектах.
@@ -250,6 +256,7 @@ button.addEventListener('click', (e) => {
 ```javascript
 // Делегирование событий, вешаем на родительский элемент, в нем проверяем по чему кликнули
 ul.addEventListener('click', (e) => {
+    // Текущий кликнутый элемент
     let li = event.target.closest('li');
 
     if (!li) {
