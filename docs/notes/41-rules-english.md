@@ -19,7 +19,7 @@ tags:
     Содержание
   </summary>
   {: .text-delta }
-1. TOC
+- TOC
 {:toc}
 </details>
 ---
