@@ -150,6 +150,7 @@ tags:
 * `The bike is mine` - Велосипед мой
 * `Are those shoes mine?` — Те туфли мои?
 * `He is a friend of mine` - Он один из моих друзей
+* `a friend of mine` - Один мой друг
 ###### 2 лицо
 
 * `yours` - твой, твоя, твое, твои
@@ -179,6 +180,7 @@ tags:
 
 * `their` - их
 * `I’ve never seen their dog.` - Я никогда не видел их собаку.
+* `We gave them our telephone number, and they gave us theirs` - Мы дали им наш номер телефона, а они дали нам свой
 ##### Без существительного
 ###### 1 лицо
 
@@ -193,6 +195,7 @@ tags:
 
 * `yours` - ваш, ваша, ваше, ваши
 * `You check my test and I'll check yours` - Вы проверяете мой тест, а я проверю ваш
+* `Now we are going to open our presents and then we will look at yours` - Сейчас мы откроем наши подарки, а затем посмотрим на ваши
 
 
 ###### 3 лицо
