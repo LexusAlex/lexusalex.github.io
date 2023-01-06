@@ -6,7 +6,7 @@ title: Правила английского
 parent: Заметки
 description: Пусть будут так же и правила английского
 date: 2023-01-05 20:00:00 +3
-last_modified_date: 2023-01-05 20:00:00 +3
+last_modified_date: 2023-01-06 23:40:00 +3
 tags:
 - words
 ---
@@ -202,7 +202,36 @@ tags:
 
 * `theirs` - их
 * `This house isn't theirs` - Этот дом не их
-### Примеры
+### Указательные местоимения
+#### Единственное число
+##### this - Этот, эта, это
+
+- Рядом к нам во времени и пространстве
+- `this week` - эта неделя
+- `Look at this key!` - Посмотри на этот ключ
+- `this way please` - Сюда пожалуйста
+
+##### that - То, та, тот
+
+- Далеко от нас во времени и пространстве
+- `that week` - та неделя
+- `Is that cat over there yours?` - Та кошка твоя?
+- `that's all right` - Все в порядке
+
+#### Множественное число
+##### these - Эти
+
+- Рядом с нами
+- `these weeks` - Эти недели
+- `I will need all these keys` - Мне понадобятся все эти ключи
+
+##### those - Те
+
+- Далеко от нас
+- `those weeks` - Те недели
+- `I’d like to feed those cats.` — Я бы хотел накормить тех котов.
+
+### Примеры местоимениями
 
 * `They told them that their house not theirs. It was their grandfather's` - Они сказали им, что их дом не принадлежит им. Это принадлежало их дедушке
 * `He asked him to take his car, because his was out of order` - Он попросил его взять его машину, потому что его машина вышла из строя
