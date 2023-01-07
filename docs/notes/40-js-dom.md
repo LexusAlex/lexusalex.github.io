@@ -233,6 +233,17 @@ while (j < document.body.childNodes.length) {
 
 ```
 
+## Перебор массива
+
+```javascript
+array.forEach((item, i) => {
+    let li = document.createElement('li');
+    li.textContent = item.title;
+    ul.append(li);
+    console.log(item)
+})
+```
+
 ## Атрибуты элемента
 
 Коллекцию, атрибутов как и любую другую коллекцию можно перебирать
@@ -435,10 +446,59 @@ response2Function().then((result) => (
 ));
 ```
 
+### Загрузка данных
+
+```javascript
+await fetch('/my/url', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(data)
+});
+```
+
 ## Local Storage
 
 Храним данные в браузере
 
-```javascript
+Преимущества
 
+- Не отправляются на сервер при каждом запросе
+- Объект `localStorage` один на все вкладки браузера
+- Данные не удаляются из-за срока давности
+
+### Добавление данных в хранилище
+
+```javascript
+localStorage.setItem('test1', 1);
+localStorage.setItem('test2', 2);
+```
+
+### Изменить значение ключа
+
+```javascript
+localStorage.test1 = 12321321;
+```
+
+### Получить значение ключа
+
+```javascript
+localStorage.test1 // 12321321
+localStorage.getItem('test1') // 12321321 - Именно этот способ предпочтительнее
+```
+
+### Удалить ключ
+
+```javascript
+delete localStorage.test1;
+```
+
+### Перебор ключей
+
+```javascript
+for(let i=0; i<localStorage.length; i++) {
+  let key = localStorage.key(i);
+  console.log(`${key}: ${localStorage.getItem(key)}`);
+}
 ```
