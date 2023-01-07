@@ -6,7 +6,7 @@ title: JS DOM
 parent: Заметки
 description: JS DOM. Необходимый минимум
 date: 2022-12-22 22:30:00 +3
-last_modified_date: 2022-12-28 14:00:00 +3
+last_modified_date: 2022-01-07 17:00:00 +3
 tags:
 - javascript
 ---
@@ -159,6 +159,14 @@ document.querySelector('.test').children[0].replaceWith(element2);
 document.querySelector('.test').remove();
 ```
 
+### Удаление всех элементов в коллекции
+
+```javascript
+for (const el of [...document.querySelectorAll('li')]) {
+  el.remove();
+}
+```
+
 ## Клонирование
 
 ```javascript
@@ -198,6 +206,124 @@ document.body.children[0].lastElementChild.previousElementSibling.parentElement.
 
 ```javascript
 let li = event.target.closest('li'); // Найти ближайшего родителя включая текущий элемент, в данном случае нашили текущий - это li
+```
+
+## Перебор коллекции
+
+Самый эффективный способ перебрать коллекцию - это цикл `for of`
+
+```javascript
+for (let node of lis) {
+    console.log(node);
+  }
+```
+
+Так же - это можно делать с помощью классических циклов `for` и `while`
+
+```javascript
+for (let i = 0; i < document.body.childNodes.length; i++) {
+    console.log( document.body.childNodes[i] );
+}
+
+let j = 0;
+while (j < document.body.childNodes.length) {
+    console.log( document.body.childNodes[j] );
+    j++;
+}
+
+```
+
+## Атрибуты элемента
+
+Коллекцию, атрибутов как и любую другую коллекцию можно перебирать
+
+```javascript
+document.querySelector('ul').attributes // Получим коллекцию атрибутов NamedNodeMap у элемента ul
+```
+
+### Установка атрибута
+
+```javascript
+document.querySelector('ul').setAttribute('id', 'ul') // Установили атрибут
+document.querySelector('ul').setAttribute('title', 'Это элемент ul') // Установили еще атрибут
+```
+
+### Получить значение атрибута
+
+```javascript
+document.querySelector('ul').getAttribute('title') // "Это элемент ul"
+```
+
+### Удалить атрибут
+
+```javascript
+document.querySelector('ul').removeAttribute('title')
+```
+
+### Проверка на существование атрибутов
+
+```javascript
+document.querySelector('ul').hasAttribute('id') // true
+document.querySelector('ul').hasAttributes() // Иммется ли у элемента один или более атрибутов
+```
+
+### Свойства атрибута
+
+```javascript
+document.querySelector('ul').attributes[0].nodeName // имя атрибута id
+document.querySelector('ul').attributes[0].name // имя атрибута id
+document.querySelector('ul').attributes[0].nodeType // 2 тип узла
+document.querySelector('ul').attributes[0].nodeValue  // ul значение атрибута
+document.querySelector('ul').attributes[0].value // ul значение атрибута
+```
+
+## Data атрибуты элемента
+
+Используются для указания дополнительной информации в разметке
+
+```javascript
+document.querySelector('ul').children[1].dataset.user = 1 // Установить data атрибут
+document.querySelector('ul').children[1].dataset.user = 5476567 // Отредактировать data атрибут
+delete document.querySelector('ul').children[1].dataset.user // Правильно удалить data атрибут можно так
+```
+
+## Работа с классами
+
+Работать с классами можно, как с обычными атрибутами, но гораздо лучше работать с коллекцией `ClassList`
+
+```javascript
+document.querySelector('ul').classList // Коллекция классов элемента DOMTokenList []
+```
+
+### Добавить класс
+
+```javascript
+document.querySelector('ul').classList.add('one', 'two', 'three') // Добавить три класса к элементу
+```
+
+### Удалить класс
+
+```javascript
+document.querySelector('ul').classList.remove('one', 'two') // Удалить два класса
+```
+
+### Добавить/Убрать класс
+
+```javascript
+document.querySelector('ul').classList.toggle('test') // Если данного класса не было у элемента, он будет добавлен
+document.querySelector('ul').classList.toggle('test') // Если класс есть у элемента, он будет удален
+```
+
+### Проверить наличие класса
+
+```javascript
+document.querySelector('ul').classList.contains('test') // Проверка на наличие класса у элемента
+```
+
+### Заменить класс
+
+```javascript
+document.querySelector('ul').classList.replace('test','test2') // Заменить test на test2
 ```
 
 ## События
@@ -278,6 +404,35 @@ function hover(li) {
     selected = li;
     selected.style.backgroundColor = 'gray';
 }
+```
+
+## Сетевые запросы
+
+### Получение данных
+
+```javascript
+async function responseFunction() {
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+  if (response.ok) {
+    return response.json();
+  } else {
+    return 'Ошибка запроса' + response.status;
+ }
+}
+
+//или так, что практически тоже самое, но кода меньше
+async function response2Function() {
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+        return response.json();
+    } catch (e) {
+        console.error('Произошла ошибка!', e);
+    }
+}
+
+response2Function().then((result) => (
+  console.log(result)
+));
 ```
 
 ## Local Storage
