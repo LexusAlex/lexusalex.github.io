@@ -6,7 +6,7 @@ title: Правила английского
 parent: Заметки
 description: Пусть будут так же и правила английского
 date: 2023-01-05 20:00:00 +3
-last_modified_date: 2023-01-06 23:40:00 +3
+last_modified_date: 2023-01-08 16:00:00 +3
 tags:
 - words
 ---
@@ -235,3 +235,124 @@ tags:
 
 * `They told them that their house not theirs. It was their grandfather's` - Они сказали им, что их дом не принадлежит им. Это принадлежало их дедушке
 * `He asked him to take his car, because his was out of order` - Он попросил его взять его машину, потому что его машина вышла из строя
+
+## To be
+
+Быть, существовать, иметься.
+Глагол be никогда не опускается
+
+### Настоящее время
+#### Единственное число
+##### +
+###### I`m - I am
+
+* `I'm young` - Я молодой
+* `I am teacher` - Я учитель
+
+###### he's - he is
+
+* `He is rich` - Он богатый
+* `He is busy` - Он занят
+
+###### she's - she is
+
+* `She's my friend `- Она мой друг
+
+###### it's - it is
+
+* `it's summer` - Это лето
+* `It is good` - Это хорошо
+
+##### -
+
+###### I'm not - I am
+
+* `I'm not right` - Я не прав
+
+###### he isn't - he is not
+
+* `He isn't in London now` - Он не в Лондоне сейчас
+
+###### she isn't - she is not
+
+* `She is not my cousin` - Она не моя кузина
+
+###### it isn't - it is not
+
+* `It s not really important` - На самом деле это не так важно
+
+##### ?
+
+###### Am I ?
+
+* `Am I right or am I wrong?` - Я прав или я не прав?
+
+###### Is he ?
+
+* `Is he in London now?` - Он в Лондоне сейчас?
+
+###### Is she ?
+
+* `Is she your cousin?` - Она твоя кузина?
+
+###### Is it ?
+
+* `Is it really important?` - Это на самом деле важно
+
+#### Множественное число
+##### +
+###### we're - we are
+
+* `We're your neighbours` - Мы твои соседи
+* `We are here` - Мы здесь
+
+###### you are - you're
+
+* `You're our new programmers` - Вы наш новый программист
+
+###### they are - trey're
+
+* `Trey're tourists from Australia` - Они туристы из Австралии
+
+##### -
+
+##### we are not - we aren't
+
+* `We aren't friends any longer` - Мы не больше не друзья
+
+##### you are not - you aren't
+
+* `You aren't good partners` - Вы не очень хорошие партнеры
+
+##### they are not - they aren't
+
+* `They aren't good lawyers` - Они не хорошие адвокаты
+
+##### ?
+
+###### Are we ?
+
+* `Are we no longer friends?` - Мы больше не друзья?
+
+###### Are you ?
+
+* `Are you good partners?` - Вы хорошие партнеры?
+
+###### Are they ?
+
+* `Are they lawyers` - Они хорошие адовкаты?
+
+### Устоявшиеся фразы
+
+* `to be in` - быть дома ...
+* `to be in order` - быть исправным, работать
+* `to be out/away` - отсутствовать, не быть дома ...
+* `to be out of order` - сломаться, не работать
+* `to be eager` - очень хотеть
+* `to be over` - закончиться
+* `to be sorry` - сожалеть
+* `to be on duty` - дежурить
+* `to be fond of` - увлекаться чем то
+* `to be sure` - быть уверенным
+* `to be hungry,thirsty,hot,smart, miserable` - Быть ...
+* `to out of service` - быть вне зоны обслуживания
