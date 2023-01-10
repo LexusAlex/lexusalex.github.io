@@ -6,7 +6,7 @@ title: Правила английского
 parent: Заметки
 description: Пусть будут так же и правила английского
 date: 2023-01-05 20:00:00 +3
-last_modified_date: 2023-01-08 23:00:00 +3
+last_modified_date: 2023-01-10 23:00:00 +3
 tags:
 - words
 ---
@@ -341,7 +341,7 @@ tags:
 
 ###### Are they ?
 
-* `Are they lawyers` - Они хорошие адовкаты?
+* `Are they lawyers` - Они хорошие адовокаты?
 
 ### Устоявшиеся фразы
 
@@ -362,6 +362,19 @@ tags:
 
 Смена лицо идет в случае если 1 лицо, логично менять на 2 лицо
 
-
 * `I am here - Are you here? - I am not here` - Я здесь - Ты здесь? - Я не здесь
 * `We are busy - Are you busy - We aren't busy` - Мы заняты - Вы заняты? - Мы не заняты
+
+### Исключения и нюансы
+
+* `Is your life interesting?` - Твоя жизнь интересная?
+
+### Пары слов
+
+* `strong - weak` - сильный - слабый
+* `right - left` - правый - левый
+* `intellegent - stupid` - умный - глупый
+* `good - bad` - хороший - плохой
+* `wonderful - terrible` - прекрасный - ужасный
+* `high - low` - высокий - низкий
+* `short - long` - короткий - длинный
