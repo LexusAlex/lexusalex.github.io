@@ -369,12 +369,27 @@ tags:
 
 * `Is your life interesting?` - Твоя жизнь интересная?
 
-### Пары слов
+### Пары слов - антонимы
 
 * `strong - weak` - сильный - слабый
-* `right - left` - правый - левый
+* `right - wrong` - правда - ложь
 * `intellegent - stupid` - умный - глупый
 * `good - bad` - хороший - плохой
-* `wonderful - terrible` - прекрасный - ужасный
+* `wonderful - awful` - прекрасный - ужасный
 * `high - low` - высокий - низкий
 * `short - long` - короткий - длинный
+* `cold - hot` - холодный - горячий
+* `expensive - cheap` - дорогой - дешевый
+* `warm - cold` - горячий - холодный
+* `heavy - light` - тяжелый - легкий
+* `rich - poor` - богатый - бедный 
+* `difficult - easy` - трудный - легкий 
+* `wet - dry` - мокрый - сухой
+* `happy - upset` - счастливый - несчастный
+* `full - empty` - полный - пустой 
+* `big - small` - большой - маленький 
+* `busy - free` - занятой - свободный
+* `old - young` - старый - молодой
+* `early - late` - рано - поздной
+* `glad - sad` - радостный - грустный
+* `false - true` - ложь - правда
