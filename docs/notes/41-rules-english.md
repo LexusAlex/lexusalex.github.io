@@ -369,7 +369,32 @@ tags:
 
 * `Is your life interesting?` - Твоя жизнь интересная?
 
-### Пары слов - антонимы
+## It is - There is
+
+### It is
+
+Употребляется в безличных предложениях если речи идет о:
+
+* Времени
+  * `What time is it?` - Сколько времени?
+  * `It's 12 o'clock` - 12 часов 
+  * `it's early` - еще рано
+  * `it's late` - уже поздно 
+  * `it's noon` - полдень
+  * `it's night` - ночь 
+  * `it's lunchtime` - время обеда
+  * `it's time to start the class` - время начала занятий
+* День, месяц, время года
+  * `It's Monday` - Понедельник 
+  * `It's November` - Ноябрь 
+  * `It's summer` - лето
+* Расстояния
+  * `it's far from here to the park` - Далеко до парка.
+  * `It's long way` - Это долгий путь 
+  * `How far is it to the metro station?` - Как далеко до станции метро?
+  * `It isn't far` - Не далеко
+
+## Пары слов - антонимы
 
 * `strong - weak` - сильный - слабый
 * `right - wrong` - правда - ложь
@@ -394,7 +419,7 @@ tags:
 * `glad - sad` - радостный - грустный
 * `false - true` - ложь - правда
 
-### Фразы и вопросы
+## Фразы и вопросы
 
 * `Hello, how are you?` - Привет как ты?
 * `Are you all right?` - Ты, в порядке?
