@@ -6,7 +6,7 @@ title: Правила английского
 parent: Заметки
 description: Пусть будут так же и правила английского
 date: 2023-01-05 20:00:00 +3
-last_modified_date: 2023-01-10 23:00:00 +3
+last_modified_date: 2023-01-14 13:00:00 +3
 tags:
 - words
 ---
@@ -393,3 +393,37 @@ tags:
 * `early - late` - рано - поздной
 * `glad - sad` - радостный - грустный
 * `false - true` - ложь - правда
+
+### Фразы и вопросы
+
+* `Hello, how are you?` - Привет как ты?
+* `Are you all right?` - Ты, в порядке?
+* `How is life` - Как жизнь?
+* `I am happy to see you` - Я счастлив видеть вас
+* `It's Monday today` - Сегодня понедельник
+* `It's always hard day` - Это всегда трудны день
+* `I'm very busy` - Я очень занят
+* `I'm sorry, I am wrong, and you are right` - Извините, я не прав, а ты права
+* `I'm happy to hear it` - Я счастлив слышать это
+* `It's true` - Это верно
+* `These facts are real` - Эти факты реальны 
+* `He is in?` - Он дома?
+* `Not, he is out` - Нет, его нет
+* `It's ten o'clock now` - Сейчас 10 часов
+* `I'm at the office` - Я в офисе
+* `I'm a manager` - Я менеджер
+* `My group is very big` - Моя группа очень большая
+* `I'm sorry, but it's a very difficult question` - Я извиняюсь, но это очень трудимый вопрос
+* `They are nice people` - Они милые люди
+* `He is wonderful teacher` - Он прекрасный учитель
+* `My son is a lazy, but a good boy` - Мой сын ленивый, но хороший мальчик
+* `He is a criminal` - Он преступник
+* `You are an angel, you are an wonder` - Ты ангел, ты чудо
+* `It's military secret` - Это военная тайна
+* `Honey is very useful` - Мед, очень полезен
+* `` -
+* `` -
+* `` -
+* `` -
+* `` -
+* `` -
