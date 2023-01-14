@@ -401,7 +401,7 @@ tags:
 * `How is life` - Как жизнь?
 * `I am happy to see you` - Я счастлив видеть вас
 * `It's Monday today` - Сегодня понедельник
-* `It's always hard day` - Это всегда трудны день
+* `It's always hard day` - Это всегда трудный день
 * `I'm very busy` - Я очень занят
 * `I'm sorry, I am wrong, and you are right` - Извините, я не прав, а ты права
 * `I'm happy to hear it` - Я счастлив слышать это
@@ -421,9 +421,14 @@ tags:
 * `You are an angel, you are an wonder` - Ты ангел, ты чудо
 * `It's military secret` - Это военная тайна
 * `Honey is very useful` - Мед, очень полезен
-* `` -
-* `` -
-* `` -
-* `` -
-* `` -
-* `` -
+* `We are ready, but Kate ist'n ready yet` - Мы готовы, а Катя еще нет
+* `The tea is a hot` - Чай горячий
+* `I am from Moscow, and where are you from?` - Я из Москвы, а вы откуда?
+* `My dog is my best friend` - Моя собака, мой лучший друг
+* `Yes, dogs are true friends` - Да, собаки верные друзья
+* `My computer is out of order` - Мой компьютер не работает
+* `May I work on yours?` - Можно я поработаю на твоем
+* `I'm very sorry, but ist'n out of order too` - Мне очень жаль, но он тоже не работает
+* `Is lesson over?` - Урок окончен?
+* `No, it isn't over yet` - Нет, еще не окончен
+* `Call back later` - Позвоните позднее
