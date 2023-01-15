@@ -431,7 +431,9 @@ tags:
 * `There were a lot of people in the streets` - На улице было много людей
 * `There was a strong wind yesterday` - Вчера был сильный ветер
 * `There is a good comedy on TV today` - Сегодня по телевизору хорошая комедия
-* `` - 
+* `Once there lived` - Однажды здесь жил 
+* `Once upon a time there was` - Когда-то давным-давно здесь жил 
+* `Once there was a king who was very cruel` - жил-был король, который был очень жесток
 
 ## Пары слов - антонимы
 
@@ -496,3 +498,8 @@ tags:
 * `Is lesson over?` - Урок окончен?
 * `No, it isn't over yet` - Нет, еще не окончен
 * `Call back later` - Позвоните позднее
+* `it's never too late` - Никогда не бывает слишком поздно
+* `where there's much talk, there's little work` - Там, где много разговоров, мало работы
+* `` - 
+* `` - 
+* `` - 
