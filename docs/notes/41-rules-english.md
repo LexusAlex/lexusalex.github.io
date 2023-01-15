@@ -393,6 +393,45 @@ tags:
   * `It's long way` - Это долгий путь 
   * `How far is it to the metro station?` - Как далеко до станции метро?
   * `It isn't far` - Не далеко
+* Природных явлений
+  * `it's fine weather today` - Сегодня прекрасная погода
+  * `it's a foggy day today` - Сегодня туман
+  * `it snows in Russia in winter` - Зимой в России снег
+  * `it raints a lot in autumn` - Осенью часто идут дожди
+  * `it looks like rain(show)` - Похоже на дождь (снег)\
+* Состояния
+  * `it's nice to be young` - Приятно быть молодым
+  * `it's easy to be polite` - Легко быть вежливым
+  * `it was good to visit you` - Было приятно навестить вас
+  * `it's cool to be bodyguard` - Круто быть телохранителем
+  * `it was awful to lose the game` - Было ужасно проиграть эту игру
+  * `It's interesting to travel` - Путешествовать интересно
+  * `nice` - милый
+  * `easy` - легкий 
+  * `hard` - сложный 
+  * `good` - хороший
+  * `necessary` - необходимый 
+  * `difficult` - трудный
+  * `interesting` - интересный 
+  * `cool` - крутой 
+  * `exciting` - захватывающий
+  * `wonderful` - прекрасный
+  * `thrilling` - волнующий
+  * `awful` - ужасный 
+  * `terrible` - страшный
+  * `important` - важный
+  * `It's a small world` - Мир тесен
+  * `It's up to you to decide` - Тебе решать
+
+### There is
+
+Наличие чего-то или кого-то в определенный момент времени или в определенным месте
+
+* `There is a file on the desk` - На столе лежит папка
+* `There were a lot of people in the streets` - На улице было много людей
+* `There was a strong wind yesterday` - Вчера был сильный ветер
+* `There is a good comedy on TV today` - Сегодня по телевизору хорошая комедия
+* `` - 
 
 ## Пары слов - антонимы
 
