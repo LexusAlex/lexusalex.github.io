@@ -6,7 +6,7 @@ title: Правила английского
 parent: Заметки
 description: Пусть будут так же и правила английского
 date: 2023-01-05 20:00:00 +3
-last_modified_date: 2023-01-14 13:00:00 +3
+last_modified_date: 2023-01-16 23:00:00 +3
 tags:
 - words
 ---
@@ -500,6 +500,14 @@ tags:
 * `Call back later` - Позвоните позднее
 * `it's never too late` - Никогда не бывает слишком поздно
 * `where there's much talk, there's little work` - Там, где много разговоров, мало работы
-* `` - 
-* `` - 
-* `` - 
+* `There is no rose without a thorn` - Нет розы без шипа
+* `There is nothing new under the moon` - Нет ничего нового под луной
+* `It's never late to learn` - Учиться никогда не поздно
+* `There is no smoke without fire` - Нет дыма без огня
+* `There is a black sheep in every flock` - В каждом стаде есть паршивая овца
+* `There is no fool like an old fool` - Нет дурака лучше старого дурака 
+* `There is no medicine like hope` - Нет лекарства лучше надежды
+* `There is no place like home` - Нет места лучше дома 
+* `This is a small world` - Это маленький мир
+* `Where there is a will, there is a way` - Там, где есть воля, есть и способ 
+* `There is no place like home when you're not feeling well` - Нет лучшего места, чем дом, когда ты плохо себя чувствуешь
