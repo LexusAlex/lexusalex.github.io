@@ -6,7 +6,7 @@ title: Часто используемые команды в linux
 parent: Заметки
 description: Просто список команд
 date: 2023-01-15 01:00:00 +3
-last_modified_date: 2023-01-15 01:00:00 +3
+last_modified_date: 2023-01-16 16:00:00 +3
 tags:
 - linux
 ---
@@ -48,4 +48,13 @@ sudo apt install php
 sudo apt remove php
 # Удалить полностью вместе с конфигурацией
 sudo apt purge php
+```
+
+## Поиск
+
+### Поиск по содержимому файлов
+
+```shell
+# В самом простом виде, когда нужно просто найти что-то в файлах
+grep -rnw /var/www -e "строка поиска"
 ```
