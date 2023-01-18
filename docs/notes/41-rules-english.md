@@ -6,7 +6,7 @@ title: Правила английского
 parent: Заметки
 description: Пусть будут так же и правила английского
 date: 2023-01-05 20:00:00 +3
-last_modified_date: 2023-01-16 23:00:00 +3
+last_modified_date: 2023-01-18 23:10:00 +3
 tags:
 - words
 ---
@@ -427,6 +427,10 @@ tags:
 
 Наличие чего-то или кого-то в определенный момент времени или в определенным месте
 
+There is… описывает наличие кого-то или чего-то в определенном месте.
+
+Соответствует русскому — ГДЕ-ТО ЧТО-ТО ЕСТЬ — Там много…, Тут (есть)…, хотя может употребляться и без места: Есть небольшая проблема. — There is a little problem.
+
 * `There is a file on the desk` - На столе лежит папка
 * `There were a lot of people in the streets` - На улице было много людей
 * `There was a strong wind yesterday` - Вчера был сильный ветер
@@ -511,3 +515,6 @@ tags:
 * `This is a small world` - Это маленький мир
 * `Where there is a will, there is a way` - Там, где есть воля, есть и способ 
 * `There is no place like home when you're not feeling well` - Нет лучшего места, чем дом, когда ты плохо себя чувствуешь
+* `There is a bike parking near metro station` - Рядом со станцией метро есть велопарковка
+* `It is a safe place` - Это безопасное место
+* `` -
