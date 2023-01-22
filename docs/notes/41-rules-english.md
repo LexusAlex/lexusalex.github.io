@@ -518,3 +518,8 @@ There is… описывает наличие кого-то или чего-то
 * `There is a bike parking near metro station` - Рядом со станцией метро есть велопарковка
 * `It is a safe place` - Это безопасное место
 * `` -
+
+## Ссылки
+
+[Про глагол get](https://stordar.ru/top-verbs-get/)
+[Поиск фраз](https://getyarn.io)
