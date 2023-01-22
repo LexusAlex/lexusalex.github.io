@@ -6,7 +6,7 @@ title: Mysql
 parent: Заметки
 description: Просто список запросов
 date: 2023-01-17 17:15:00 +3
-last_modified_date: 2023-01-17 17:15:00 +3
+last_modified_date: 2023-01-22 18:14:00 +3
 tags:
 - mysql
 ---
@@ -28,14 +28,14 @@ tags:
 
 ## Очистка таблицы
 
-```mysql
+```sql
 -- Очистка таблицы от данных
 TRUNCATE my_table_name
 ```
 
 ## Вставка данных
 
-```mysql
+```sql
 -- Простая вставка одной строки, с четким соответствием столбцов
 INSERT INTO table2 (a, b, c, d, e) VALUES (1, 2, 3, 4, 5);
 -- Или так, в неуказанные столбцы будет вставлен NULL
