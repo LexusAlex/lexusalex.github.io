@@ -423,6 +423,14 @@ tags:
   * `It's a small world` - Мир тесен
   * `It's up to you to decide` - Тебе решать
 
+  * `It's a beautiful flat in the city center` Красивая квартира в центре - города
+  * `It‘s such a cool idea!` Это такая классная идея
+  * `It‘s awful here! `Тут ужасно!
+  * `it is getting cold` - Становиться холодно
+  * `it is usually gets dark very early` - Обычно темнеет очень рано
+  * `it was a peak hour` - Это час пик
+  * `Yes, it isn't windy` - Да не ветренно
+
 ### There is
 
 Наличие чего-то или кого-то в определенный момент времени или в определенным месте
@@ -431,6 +439,10 @@ There is… описывает наличие кого-то или чего-то
 
 Соответствует русскому — ГДЕ-ТО ЧТО-ТО ЕСТЬ — Там много…, Тут (есть)…, хотя может употребляться и без места: Есть небольшая проблема. — There is a little problem.
 
+В городе театры
+
+В Греции транспорт
+
 * `There is a file on the desk` - На столе лежит папка
 * `There were a lot of people in the streets` - На улице было много людей
 * `There was a strong wind yesterday` - Вчера был сильный ветер
@@ -438,6 +450,8 @@ There is… описывает наличие кого-то или чего-то
 * `Once there lived` - Однажды здесь жил 
 * `Once upon a time there was` - Когда-то давным-давно здесь жил 
 * `Once there was a king who was very cruel` - жил-был король, который был очень жесток
+* `There is a little problem.` - Есть небольшая проблема
+* `There is no wind today` - Cегодня, нет ветра
 
 ## Пары слов - антонимы
 

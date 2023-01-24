@@ -218,7 +218,7 @@ award
 aware
 awareness
 away
-awful
+awful - ужасный
 baby
 back
 background
@@ -2581,7 +2581,7 @@ succeed
 success
 successful
 successfully
-such
+such - подобный
 sudden
 suddenly
 sue
