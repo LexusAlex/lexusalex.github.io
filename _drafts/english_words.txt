@@ -222,7 +222,7 @@ awful - ужасный
 baby
 back
 background
-bad
+bad - плохой
 badly
 bag
 bake
@@ -254,7 +254,7 @@ beautiful
 beauty
 because
 become
-bed
+bed - кровать
 bedroom
 beer
 before
@@ -313,7 +313,7 @@ boom
 boot
 border
 born
-borrow
+borrow - одолжить
 boss
 both
 bother
@@ -346,7 +346,7 @@ broken
 brother
 brown
 brush
-buck
+buck - бакс
 budget
 build
 building
@@ -442,7 +442,7 @@ chemical
 chest
 chicken
 chief
-child
+child - ребенок
 childhood
 Chinese
 chip
@@ -656,7 +656,7 @@ crop
 cross
 crowd
 crucial
-cry
+cry - плакать
 cultural
 culture
 cup
@@ -1031,7 +1031,7 @@ favorite
 fear
 feature
 federal
-fee
+fee - взнос
 feed
 feel
 feeling
@@ -1179,7 +1179,7 @@ glance
 glass
 global
 glove
-go
+go - идти
 goal
 God
 gold
@@ -1246,7 +1246,7 @@ heart
 heat
 heaven
 heavily
-heavy
+heavy - тяжелый
 heel
 height
 helicopter
@@ -1286,7 +1286,7 @@ homeless
 honest
 honey
 honor
-hope
+hope - надеяться
 horizon
 horror
 horse
@@ -1434,7 +1434,7 @@ issue
 it
 Italian
 item
-its
+its - это
 itself
 jacket
 jail
@@ -1489,7 +1489,7 @@ lap
 large
 largely
 last
-late
+late - поздно
 later
 Latin
 latter
@@ -1619,7 +1619,7 @@ matter
 may
 maybe
 mayor
-me
+me - меня
 meal
 mean
 meaning
@@ -1766,8 +1766,8 @@ normal
 normally
 north
 northern
-nose
-not
+nose - нос
+not - не
 note
 nothing
 notice
@@ -1875,7 +1875,7 @@ pair
 pale
 Palestinian
 palm
-pan
+pan - кастрюля
 panel
 pant
 paper
@@ -1961,7 +1961,7 @@ planet
 planning
 plant
 plastic
-plate
+plate - тарелка
 platform
 play
 player
@@ -2117,7 +2117,7 @@ quarter
 quarterback
 question
 quick
-quickly
+quickly - быстро
 quiet
 quietly
 quit
@@ -2283,7 +2283,7 @@ routine
 row
 rub
 rule
-run
+run - бежать
 running
 rural
 rush
@@ -2301,7 +2301,7 @@ salt
 same
 sample
 sanction
-sand
+sand - песок
 satellite
 satisfaction
 satisfy
@@ -2350,7 +2350,7 @@ self
 sell
 Senate
 senator
-send
+send - посылать
 senior
 sense
 sensitive
@@ -2372,7 +2372,7 @@ several
 severe
 sex
 sexual
-shade
+shade - тень
 shadow
 shake
 shall
@@ -2386,7 +2386,7 @@ shell
 shelter
 shift
 shine
-ship
+ship - корабль
 shirt
 shit
 shock
@@ -2509,7 +2509,7 @@ spiritual
 split
 spokesman
 sport
-spot
+spot - пятно
 spread
 spring
 square
@@ -2519,7 +2519,7 @@ stable
 staff
 stage
 stair
-stake
+stake - доля
 stand
 standard
 standing
@@ -2594,8 +2594,8 @@ suicide
 suit
 summer
 summit
-sun
-super
+sun - солнце
+super - супер
 supply
 support
 supporter
@@ -2637,7 +2637,7 @@ talk
 tall
 tank
 tap
-tape
+tape - лента
 target
 task
 taste
@@ -2889,7 +2889,7 @@ wake
 walk
 wall
 wander
-want
+want - хотеть
 war
 warm
 warn
@@ -2991,7 +2991,7 @@ yes
 yesterday
 yet
 yield
-you
+you - ты, вы
 young
 your
 yours
