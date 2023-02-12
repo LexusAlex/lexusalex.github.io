@@ -6,7 +6,7 @@ title: Часто используемые команды в linux
 parent: Заметки
 description: Просто список команд
 date: 2023-01-15 01:00:00 +3
-last_modified_date: 2023-02-11 17:00:00 +3
+last_modified_date: 2023-02-12 19:00:00 +3
 tags:
 - linux
 ---
@@ -73,7 +73,9 @@ du -sh /var/www/* | sort -hr
 
 [https://mirror.yandex.ru/ubuntu-cdimage/xubuntu/releases/22.04.1/release/](https://mirror.yandex.ru/ubuntu-cdimage/xubuntu/releases/22.04.1/release/)
 
-Готовим загрузочную флешку с помощью [https://unetbootin.github.io/](https://unetbootin.github.io/). Если ставим на виртуалку, то ставим как есть.
+Готовим загрузочную флешку с помощью [https://unetbootin.github.io/](https://unetbootin.github.io/). 
+
+Если ставим на виртуалку, то ставим как есть.
 
 #### VMware
 
@@ -94,8 +96,14 @@ Pin-Priority: 1001
 
 - Переносим пуск вниз
 - Система возможно предложит скачать языковой пакет
-- Обновление всего `sudo apt update && sudo apt upgrade && sudo apt full-upgrade && sudo apt autoremove && sudo apt --purge autoremove`
-- Ставим ПО `sudo apt install -y xfce4-xkb-plugin libreoffice libreoffice-gnome vlc ark network-manager-openvpn-gnome make && sudo add-apt-repository -y ppa:git-core/ppa && sudo apt-get update && sudo apt install git -y`
+- Обновление всего 
+  ```shell
+  sudo apt update && sudo apt upgrade && sudo apt full-upgrade && sudo apt autoremove && sudo apt --purge autoremove
+  ```
+- Ставим ПО 
+  ```shell
+  sudo apt install -y xfce4-xkb-plugin libreoffice libreoffice-gnome vlc ark network-manager-openvpn-gnome make && sudo add-apt-repository -y ppa:git-core/ppa && sudo apt-get update && sudo apt install git -y
+  ```
 - Добавить иконку переключения языка (panel -> add new items) + установить русский язык (settings -> keyboard alt+shift)
 
 #### Настройка git
@@ -108,6 +116,8 @@ git config --global core.excludesfile ~/.gitignore && echo '.idea/' >> ~/.gitign
 #### docker и docker-compose
       
 Актуальная инструкция [https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu/)
+ 
+Или все одной командой
 
 ```shell
 sudo apt-get update && sudo apt-get install \
@@ -123,11 +133,13 @@ sudo apt-get update && sudo apt-get install \
 
 Актуальная инструкция [https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html#installing-ansible-on-ubuntu](https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html#installing-ansible-on-ubuntu)
 
+Или все одной командой
+
 ```shell
 sudo apt update && sudo apt install software-properties-common && sudo add-apt-repository --yes --update ppa:ansible/ansible && sudo apt install ansible
 ```
 
-После установки основного ПО у меня занять 14 Gb
+После установки основного ПО у меня занято 14 Gb
 
 #### phpstorm
 
