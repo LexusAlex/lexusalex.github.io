@@ -6,7 +6,7 @@ title: Часто используемые команды в linux
 parent: Заметки
 description: Просто список команд
 date: 2023-01-15 01:00:00 +3
-last_modified_date: 2023-02-12 19:00:00 +3
+last_modified_date: 2023-02-19 21:40:00 +3
 tags:
 - linux
 ---
@@ -25,6 +25,7 @@ tags:
 ---
 
 Просто список команд, часто используемых команд в linux.
+Так же типовые настройки серверов и рабочих станций.
 Собираем все в одном месте.
 
 ## Работа с пакетами
@@ -69,7 +70,8 @@ du -sh /var/www/* | sort -hr
 ## Настройка новых рабочих станций
 
 ### Xubuntu desktop
-Качаем 
+
+Качаем операционку
 
 [https://mirror.yandex.ru/ubuntu-cdimage/xubuntu/releases/22.04.1/release/](https://mirror.yandex.ru/ubuntu-cdimage/xubuntu/releases/22.04.1/release/)
 
@@ -145,7 +147,7 @@ sudo apt update && sudo apt install software-properties-common && sudo add-apt-r
 
 1. Качаем [https://www.jetbrains.com/ru-ru/phpstorm/](https://www.jetbrains.com/ru-ru/phpstorm/)
 2. Распаковываем помощью архиватора arc в корень домашней папки
-3. Скачиваем https://cloud.mail.ru/public/XfYk/uD5yj7eE4 и распаковываем архив
+3. Скачиваем [https://cloud.mail.ru/public/XfYk/uD5yj7eE4](https://cloud.mail.ru/public/XfYk/uD5yj7eE4) и распаковываем архив
 4. Переносим папку ja-netfilter-all в директорию phpstorm и запускаем ja-netfilter-all/scripts/install.sh
 5. log out в системе
 6. Запускам phpstorm bin/phpstorm.sh и вводим key
@@ -155,3 +157,26 @@ sudo apt update && sudo apt install software-properties-common && sudo add-apt-r
 1. Генерируем ключ на локальной машине `ssh-keygen -t ed25519 -C "alexsey_89@bk.ru" cat ~/.ssh/id_ed25519.pub`
 2. Копируем его на github
 3. `ssh -T git@github.com` проверяем, что все работает
+
+### Ubuntu server
+
+Скачиваем [https://mirror.yandex.ru/ubuntu-releases/22.04/](https://mirror.yandex.ru/ubuntu-releases/22.04/)
+
+Ставим и обращаем внимание на разметку диска lvm, чтобы не оставалось свободного пространства.
+
+#### Первоначальная настройка
+
+1. `ssh alex@192.168.88.136` - Заходим на свежеустановленный сервер
+2. `service sshd status` - Проверяем ssh
+3. `sudo passwd root` - Задаем пароль root
+4. `sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config && sed -i 's/#Port 22/Port 60022/g' /etc/ssh/sshd_config && systemctl restart ssh` - Меняем настройки ssh
+5. `exit exit` - Выходим с сервера
+6. `ssh-copy-id -i ~/.ssh/id_ed25519.pub -p 60022 root@192.168.88.136` - Находясь на хосте с ansible копируем ключ на сервер, для доступа root пользователю
+7. `ssh -p 60022 root@192.168.88.136` - Пробуем заходить
+8. Далее все делаем с помощью ansible
+
+#### Ansible
+
+Создал репозиторий с первоначальным набором ролей [https://github.com/LexusAlex/ansible-start](https://github.com/LexusAlex/ansible-start)
+
+Для разворачивания проектов нужно добавлять свои роли
