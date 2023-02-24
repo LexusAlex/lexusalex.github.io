@@ -6,7 +6,7 @@ title: Часто используемые команды в linux
 parent: Заметки
 description: Просто список команд
 date: 2023-01-15 01:00:00 +3
-last_modified_date: 2023-02-19 21:40:00 +3
+last_modified_date: 2023-02-24 23:40:00 +3
 tags:
 - linux
 ---
@@ -65,6 +65,23 @@ grep -rnw /var/www -e "строка поиска"
 ```shell
 # Поиск больших файлов и каталогов на сервере + сортировка 
 du -sh /var/www/* | sort -hr
+```
+
+## Docker
+
+```shell
+# Элементы докера
+docker system df
+# Очистить тома
+docker volume prune -a
+# Удалить контейнеры
+docker container prune -a
+# Удалить образы
+docker image prune
+# Удалить сети
+docker network prune
+ # Удалить все полностью
+docker system prune -a
 ```
 
 ## Настройка новых рабочих станций
