@@ -75,7 +75,7 @@ docker system df
 # Очистить тома
 docker volume prune -a
 # Удалить контейнеры
-docker container prune -a
+docker container prune
 # Удалить образы
 docker image prune
 # Удалить сети
