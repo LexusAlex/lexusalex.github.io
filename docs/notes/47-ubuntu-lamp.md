@@ -62,7 +62,7 @@ service apache2 status
 sudo vim /etc/apache2/sites-available/mysite.local.conf
 ```
 
-````apacheconf
+````text
 <VirtualHost *:80>
     ServerName mysite.local
     ServerAdmin webmaster@localhost
@@ -124,7 +124,7 @@ sudo vim /etc/mysql/mariadb.conf.d/50-server.cnf
 sudo service mariadb reload
 ````
 
-````mysql
+````sql
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'ПАРОЛЬ' WITH GRANT OPTION;
 ````
 
@@ -142,25 +142,25 @@ docker run --name phpmyadmin -d -e PMA_HOST=192.168.88.138 -p 8080:80 phpmyadmin
 
 Создаем базу данных для сайта который нам нужен
  
-````shell
+````sql
 CREATE DATABASE my_site_database DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 ````
 Создаем пользователя, который будет управлять этой БД, при необходимости запрещаем заходить с других хостов
 
-```shell
+```sql
 CREATE USER 'my_site_database'@'%' IDENTIFIED BY 'mySuperSecretPassword';
 ````
 
 Добавляем привилегии к базе данных, нашему новому пользователю
 
-````shell
+````sql
 GRANT SELECT, INSERT, UPDATE, DELETE ON `my_site_database`.* TO 'my_site_database'@'%';
 FLUSH PRIVILEGES;
 ````
 
 Добавить/Удалить привилегии
 
-```shell
+```sql
 GRANT CREATE ON `my_site_database`.* TO 'my_site_database'@'%';
 REVOKE CREATE ON `my_site_database`.* TO 'my_site_database'@'%';
 FLUSH PRIVILEGES;
