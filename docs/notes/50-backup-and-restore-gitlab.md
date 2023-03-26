@@ -36,7 +36,7 @@ tags:
 Делаем резервную копию командой
 
 ```shell
-gitlab-rake gitlab:backup:create
+sudo gitlab-rake gitlab:backup:create
 ```
 
 2 файла при этом не будут забэкаплены: 
