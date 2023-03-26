@@ -6,7 +6,7 @@ title: Часто используемые команды в linux
 parent: Заметки
 description: Просто список команд
 date: 2023-01-15 01:00:00 +3
-last_modified_date: 2023-02-24 23:40:00 +3
+last_modified_date: 2023-03-26 10:30:00 +3
 tags:
 - linux
 ---
@@ -186,11 +186,12 @@ sudo apt update && sudo apt install software-properties-common && sudo add-apt-r
 1. `ssh alex@192.168.88.136` - Заходим на свежеустановленный сервер
 2. `service sshd status` - Проверяем ssh
 3. `sudo passwd root` - Задаем пароль root
-4. `sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config && sed -i 's/#Port 22/Port 60022/g' /etc/ssh/sshd_config && systemctl restart ssh` - Меняем настройки ssh
-5. `exit exit` - Выходим с сервера
-6. `ssh-copy-id -i ~/.ssh/id_ed25519.pub -p 60022 root@192.168.88.136` - Находясь на хосте с ansible копируем ключ на сервер, для доступа root пользователю
-7. `ssh -p 60022 root@192.168.88.136` - Пробуем заходить
-8. Далее все делаем с помощью ansible
+4. `su root` - Заходим под root
+5. `sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config && sed -i 's/#Port 22/Port 60022/g' /etc/ssh/sshd_config && systemctl restart ssh` - Меняем настройки ssh
+6. `exit exit` - Выходим с сервера
+7. `ssh-copy-id -i ~/.ssh/id_ed25519.pub -p 60022 root@192.168.88.136` - Находясь на хосте с ansible копируем ключ на сервер, для доступа root пользователю
+8. `ssh -p 60022 root@192.168.88.136` - Пробуем заходить
+9. Далее все делаем с помощью ansible
 
 #### Ansible
 
