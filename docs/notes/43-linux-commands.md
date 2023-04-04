@@ -66,7 +66,8 @@ grep -rnw /var/www -e "строка поиска"
 # Поиск больших файлов и каталогов на сервере + сортировка 
 du -sh /var/www/* | sort -hr
 ```
- 
+
+
 ## Копирование файлов
 
 ```shell
@@ -80,6 +81,13 @@ du -sh /var/www/* | sort -hr
 # ssh-copy-id -i ~/.ssh/id_rsa.pub root@srv2
 #3. Копируем фаил находясь на srv_host
 scp root@srv1:/var/log.txt root@srv2:/tmp
+```
+
+## Создание файлов
+
+```shell
+# Создать структуру, например для каталогизации фильмов, товаров, чего угодно, одной командой
+mkdir -p year/{1990..2021}/{1..12}/{A..Z}
 ```
 
 ## Docker
@@ -97,6 +105,17 @@ docker image prune
 docker network prune
  # Удалить все полностью
 docker system prune -a
+```
+
+## git
+
+```shell
+# Как делать push/pull в несколько репозиториев
+# Создаем link на каждый из репозиториев
+git remote add repo ssh://.....
+# Делаем push/pull
+git push --all
+git pull --all
 ```
 
 ## Настройка новых рабочих станций
