@@ -6,7 +6,7 @@ title: Часто используемые команды в linux
 parent: Заметки
 description: Просто список команд
 date: 2023-01-15 01:00:00 +3
-last_modified_date: 2023-04-26 18:50:00 +3
+last_modified_date: 2023-04-08 18:50:00 +3
 tags:
 - linux
 ---
@@ -114,7 +114,7 @@ docker system prune -a
 # Создаем link на каждый из репозиториев
 git remote add repo ssh://.....
 # Делаем push/pull
-git push --all
+git push origin && git push gitlab
 git pull --all
 ```
 
