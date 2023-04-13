@@ -6,7 +6,7 @@ title: Mysql
 parent: Заметки
 description: Просто список запросов
 date: 2023-01-17 17:15:00 +3
-last_modified_date: 2023-01-22 18:14:00 +3
+last_modified_date: 2023-04-13 10:30:00 +3
 tags:
 - mysql
 ---
@@ -42,4 +42,20 @@ INSERT INTO table2 (a, b, c, d, e) VALUES (1, 2, 3, 4, 5);
 INSERT INTO table2 SET a=1, b=2, c=3;
 -- Множественная вставка нескольких значений
 INSERT INTO table2 (a, b, c, d, e) VALUES (1, 2, 3, 4, 5), (NULL,2, NULL, 4, 5), (NULL, NULL, NULL, NULL,5);
+```
+
+## Выборка и вставка данных
+
+Частая операция дублирование данных, хотелось это делать одной командой
+
+```sql
+INSERT INTO
+    `table1` (`number_doc`,`date_doc`)
+SELECT
+    `number_doc`,
+    `date_doc`,
+FROM
+    `table1`
+WHERE
+    id = 66608
 ```
