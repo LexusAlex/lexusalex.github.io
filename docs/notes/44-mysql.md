@@ -6,7 +6,7 @@ title: Mysql
 parent: Заметки
 description: Просто список запросов
 date: 2023-01-17 17:15:00 +3
-last_modified_date: 2023-04-13 10:30:00 +3
+last_modified_date: 2023-04-17 10:30:00 +3
 tags:
 - mysql
 ---
@@ -58,4 +58,13 @@ FROM
     `table1`
 WHERE
     id = 66608
+```
+
+## Удалить все таблицы
+
+```sql
+-- Сформируем запросы на удаление таблиц
+SELECT concat('DROP TABLE IF EXISTS ', table_name, ';')
+FROM information_schema.tables
+WHERE table_schema = 'site.com';
 ```
