@@ -13,17 +13,6 @@ tags:
 ---
 
 # jsx в react
-{: .no_toc }
-
-<details open markdown="block">
-  <summary>
-    Содержание
-  </summary>
-  {: .text-delta }
-- TOC
-{:toc}
-</details>
----
 
 JSX - это некое расширение javascript синтаксиса, позволяющее писать html код.
 
