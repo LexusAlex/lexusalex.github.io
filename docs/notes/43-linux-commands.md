@@ -6,7 +6,7 @@ title: Часто используемые команды в linux
 parent: Заметки
 description: Просто список команд
 date: 2023-01-15 01:00:00 +3
-last_modified_date: 2023-04-08 18:50:00 +3
+last_modified_date: 2023-04-23 20:57:00 +3
 tags:
 - linux
 ---
@@ -158,6 +158,7 @@ Pin-Priority: 1001
   sudo apt install -y xfce4-xkb-plugin libreoffice libreoffice-gnome vlc ark network-manager-openvpn-gnome make && sudo add-apt-repository -y ppa:git-core/ppa && sudo apt-get update && sudo apt install git -y
   ```
 - Добавить иконку переключения языка (panel -> add new items) + установить русский язык (settings -> keyboard alt+shift)
+- [https://celluloid-player.github.io/](https://celluloid-player.github.io/) Плеер для видосов
 
 #### Настройка git
 
