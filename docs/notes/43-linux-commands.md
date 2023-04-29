@@ -115,7 +115,6 @@ docker system prune -a
 git remote add repo ssh://.....
 # Делаем push/pull
 git push origin && git push gitlab
-git pull --all
 ```
 
 ## Настройка новых рабочих станций
@@ -209,6 +208,10 @@ sudo apt update && sudo apt install software-properties-common && sudo add-apt-r
 1. Генерируем ключ на локальной машине `ssh-keygen -t ed25519 -C "alexsey_89@bk.ru" cat ~/.ssh/id_ed25519.pub`
 2. Копируем его на github
 3. `ssh -T git@github.com` проверяем, что все работает
+
+#### http клиент
+
+[https://insomnia.rest/download](https://insomnia.rest/download)
 
 ### Ubuntu server
 
