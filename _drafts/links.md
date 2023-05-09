@@ -85,3 +85,5 @@ nav_order: 10
 - [https://leonidchernenko.ru/](https://leonidchernenko.ru/)
 - [https://otis22.github.io/](https://otis22.github.io/)
 - [https://viktorprogger.name](https://viktorprogger.name)
+
+https://www.patterns.dev/
