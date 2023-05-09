@@ -1,11 +1,9 @@
 ---
 layout: default
-nav_order: 1
-permalink: linux-ssh-keys
+nav_order: 31
+permalink: 31-linux-ssh-keys
 title: Создание и настройка ssh ключей
-parent: ssh
-grand_parent: linux
-has_children: true
+parent: Заметки
 description: Входим на сервер без пароля, безопасно и просто
 date: 2022-08-07 18:40:00 +3
 last_modified_date: 2022-08-07 18:40:00 +3
