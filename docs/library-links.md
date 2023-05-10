@@ -24,4 +24,5 @@ nav_order: 9
 ## Javascript
 ### NextJs
 
-- Next.Знакомство [https://www.youtube.com/watch?v=F9Vaac3h0pg](https://www.youtube.com/watch?v=F9Vaac3h0pg) Отличное вводное видео про Next js.
+- Next.Знакомство. Отличное вводное видео про Next js.
+  [https://www.youtube.com/watch?v=F9Vaac3h0pg](https://www.youtube.com/watch?v=F9Vaac3h0pg) 
