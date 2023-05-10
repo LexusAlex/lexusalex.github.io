@@ -25,4 +25,9 @@ nav_order: 9
 ### NextJs
 
 - Next.Знакомство. Отличное вводное видео про Next js.
-  [https://www.youtube.com/watch?v=F9Vaac3h0pg](https://www.youtube.com/watch?v=F9Vaac3h0pg) 
+  [https://www.youtube.com/watch?v=F9Vaac3h0pg](https://www.youtube.com/watch?v=F9Vaac3h0pg)
+
+## Работа с данными
+
+- Валидация данных в формах. Отличное объяснение про то как организовывать валидацию данных.
+  [http://yugeon-dev.blogspot.com/2010/09/blog-post.html](http://yugeon-dev.blogspot.com/2010/09/blog-post.html)
