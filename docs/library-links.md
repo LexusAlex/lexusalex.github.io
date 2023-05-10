@@ -2,7 +2,7 @@
 layout: default
 title: Библиотека ссылок
 comments: true
-summary: Алексей Шмелев - команды
+summary: Алексей Шмелев - Библиотека ссылок
 description: Библиотека ссылок
 permalink: /library-links
 nav_order: 9
