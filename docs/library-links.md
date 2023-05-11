@@ -5,7 +5,7 @@ comments: true
 summary: Алексей Шмелев - Библиотека ссылок
 description: Библиотека ссылок
 permalink: /library-links
-nav_order: 9
+nav_order: 7
 ---
 
 # Библиотека ссылок
@@ -22,6 +22,7 @@ nav_order: 9
 ---
 
 ## Javascript
+
 ### NextJs
 
 - Next.Знакомство. Отличное вводное видео про Next js.
