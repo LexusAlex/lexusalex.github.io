@@ -11,7 +11,7 @@ nav_order: 8
 # Вопросы и решения
 {: .no_toc }
 
-<details open markdown="block">
+<details close markdown="block">
   <summary>
     Содержание
   </summary>
