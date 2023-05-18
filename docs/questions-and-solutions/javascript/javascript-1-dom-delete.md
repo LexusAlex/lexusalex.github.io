@@ -12,6 +12,7 @@ last_modified_date: 2023-05-18 14:00:00 +3
 tags:
 - javascript
 - js
+- questions-and-solutions
 ---
 
 # Удаление узлов в DOM

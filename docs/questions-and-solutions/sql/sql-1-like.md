@@ -12,6 +12,7 @@ last_modified_date: 2023-05-16 23:00:00 +3
 tags:
   - mysql
   - sql
+  - questions-and-solutions
 ---
 
 # Как найти строку по шаблону с помощью оператора LIKE
