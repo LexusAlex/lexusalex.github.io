@@ -3,7 +3,7 @@ layout: default
 nav_order: 1
 permalink: git-1-revert
 title: Команда git revert
-parent: linux-cli
+parent: git
 grand_parent: Вопросы и решения
 has_children: true
 description: Добавить новый коммит отменяющий действия предыдущего
