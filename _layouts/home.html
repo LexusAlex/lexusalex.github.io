@@ -23,4 +23,97 @@ layout: default
             {% endif %}
         {% endfor %}
     </table>
+
+    <h2>Вопросы и решения</h2>
+
+    <h3>sql</h3>
+    <table>
+        <tr>
+            <td>#</td>
+            <td>Название</td>
+            <td>Дата</td>
+        </tr>
+        {% for page in sortedNotes %}
+            {% if page.parent == 'sql' %}
+            <tr>
+                <td><small>{{ page.nav_order }}.</small></td>
+                <td><a href="{{ page.url }}">{{ page.title }}</a></td>
+                <td><small>{% include date.html date=page.date %}</small></td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+
+    <h3>javascript</h3>
+    <table>
+        <tr>
+            <td>#</td>
+            <td>Название</td>
+            <td>Дата</td>
+        </tr>
+        {% for page in sortedNotes %}
+            {% if page.parent == 'javascript' %}
+            <tr>
+                <td><small>{{ page.nav_order }}.</small></td>
+                <td><a href="{{ page.url }}">{{ page.title }}</a></td>
+                <td><small>{% include date.html date=page.date %}</small></td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+
+    <h3>linux-cli</h3>
+    <table>
+        <tr>
+            <td>#</td>
+            <td>Название</td>
+            <td>Дата</td>
+        </tr>
+        {% for page in sortedNotes %}
+            {% if page.parent == 'linux-cli' %}
+            <tr>
+                <td><small>{{ page.nav_order }}.</small></td>
+                <td><a href="{{ page.url }}">{{ page.title }}</a></td>
+                <td><small>{% include date.html date=page.date %}</small></td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+
+    <h3>git</h3>
+    <table>
+        <tr>
+            <td>#</td>
+            <td>Название</td>
+            <td>Дата</td>
+        </tr>
+        {% for page in sortedNotes %}
+            {% if page.parent == 'git' %}
+            <tr>
+                <td><small>{{ page.nav_order }}.</small></td>
+                <td><a href="{{ page.url }}">{{ page.title }}</a></td>
+                <td><small>{% include date.html date=page.date %}</small></td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+
+    <h3>php</h3>
+    <table>
+        <tr>
+            <td>#</td>
+            <td>Название</td>
+            <td>Дата</td>
+        </tr>
+        {% for page in sortedNotes %}
+            {% if page.parent == 'php' %}
+            <tr>
+                <td><small>{{ page.nav_order }}.</small></td>
+                <td><a href="{{ page.url }}">{{ page.title }}</a></td>
+                <td><small>{% include date.html date=page.date %}</small></td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+
 </div>

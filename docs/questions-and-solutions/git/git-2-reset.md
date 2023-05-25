@@ -7,8 +7,8 @@ parent: git
 grand_parent: Вопросы и решения
 has_children: true
 description: Универсальная отмена изменений
-date: 2023-05-20 22:00:00 +3
-last_modified_date: 2023-05-20 22:00:00 +3
+date: 2023-05-24 22:00:00 +3
+last_modified_date: 2023-05-24 22:00:00 +3
 tags:
 - git
 - questions-and-solutions
