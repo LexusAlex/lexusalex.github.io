@@ -32,3 +32,10 @@ nav_order: 7
 
 - Валидация данных в формах. Отличное объяснение про то как организовывать валидацию данных.
   [http://yugeon-dev.blogspot.com/2010/09/blog-post.html](http://yugeon-dev.blogspot.com/2010/09/blog-post.html)
+
+## Базы данных
+
+### Click house
+
+- ClickHouse. Из разработки внутри Яндекса в самостоятельную компанию. Подкаст про то как создавался Click house
+  [https://music.yandex.ru/album/9294155/track/113911486](https://music.yandex.ru/album/9294155/track/113911486)
