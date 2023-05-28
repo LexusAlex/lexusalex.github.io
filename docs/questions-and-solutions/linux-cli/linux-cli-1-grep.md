@@ -2,7 +2,7 @@
 layout: default
 nav_order: 1
 permalink: linux-cli-1-grep
-title: Поиск по содержимому файлов
+title: Поиск по содержимому файлов, команда grep
 parent: linux-cli
 grand_parent: Вопросы и решения
 has_children: true
