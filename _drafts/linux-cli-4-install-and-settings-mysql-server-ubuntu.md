@@ -50,7 +50,8 @@ mysql --version
 mysqld --version
 ```
 
-По умолчанию пароль для пользователя root не установлен
+По умолчанию пароль для пользователя root не установлен, зайдем в консоль
 
+`sudo mysql`
 
 https://www.cyberciti.biz/faq/installing-mysql-server-on-ubuntu-22-04-lts-linux/
