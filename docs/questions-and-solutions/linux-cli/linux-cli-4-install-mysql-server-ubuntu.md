@@ -1,17 +1,17 @@
 ---
 layout: default
 nav_order: 4
-permalink: linux-cli-4-install-and-settings-mysql-server-ubuntu
+permalink: linux-cli-4-install-mysql-server-ubuntu
 title: Установка mysql сервера в ubuntu
 parent: linux-cli
 grand_parent: Вопросы и решения
 has_children: true
 description: Как установить и предварительно настроить mysql сервер в ubuntu
-date: 2023-06-11 15:30:00 +3
-last_modified_date: 2023-06-11 15:30:00 +3
+date: 2023-06-17 18:30:00 +3
+last_modified_date: 2023-06-17 18:30:00 +3
 tags:
 - linux
-- docker
+- mysql
 - questions-and-solutions
 ---
 
@@ -105,14 +105,18 @@ STATUS; # Информация о mysql сервере
 SHOW VARIABLES LIKE "%version%"; # Переменные сервера
 ```
 
-Создадим пользователя
+Создадим пользователя:
 
 ```sql
 CREATE DATABASE demo;
 CREATE USER 'demouser'@'%' IDENTIFIED BY 'aa95C72_5355a345errtDFG';
-GRANT SELECT, INSERT, UPDATE, DELETE ON demo.* TO 'demouser'@'%';  # GRANT ALL PRIVILEGES ON demo.* TO 'demouser'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON demo.* TO 'demouser'@'%'; # Задаем права # GRANT ALL PRIVILEGES ON demo.* TO 'demouser'@'%';
 SELECT USER,host FROM mysql.user;
 SHOW GRANTS FOR demouser;
 ```
 
-https://www.cyberciti.biz/faq/installing-mysql-server-on-ubuntu-22-04-lts-linux/
+Теперь под пользователем можно заходить
+
+`mysql -u demouser -p`
+
+Базовая установка и настройка на этом завершена.
