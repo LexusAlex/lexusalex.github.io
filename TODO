@@ -6,6 +6,4 @@
 Важно отметить, что команда git status не отображает истинное представление раздела проиндексированных файлов. Вывод git status отображает различия между историей коммитов и разделом проиндексированных файлов
 
 Настройки базы mysql
-Права доступа GRANT и REVOKE
-Создание админа
-https://oracleplsql.ru/grant-revoke-privileges-mysql.html
+https://www.cyberciti.biz/faq/how-to-create-mysql-admin-user-superuser-account/
