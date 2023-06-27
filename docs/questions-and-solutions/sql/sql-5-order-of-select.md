@@ -2,11 +2,11 @@
 layout: default
 nav_order: 5
 permalink: sql-5-order-of-select
-title: Порядок выполнения select запроса
+title: Порядок выполнения SELECT запроса
 parent: sql
 grand_parent: Вопросы и решения
 has_children: true
-description: Из чего состоит select запрос
+description: Из чего состоит SELECT запрос
 date: 2023-06-27 11:30:00 +3
 last_modified_date: 2023-06-27 11:30:00 +3
 tags:
@@ -15,7 +15,7 @@ tags:
   - questions-and-solutions
 ---
 
-# Порядок выполнения select запроса
+# Порядок выполнения SELECT запроса
 {: .no_toc }
 
 В каком же порядке выполняется sql запрос
