@@ -6,7 +6,7 @@ title: Обновление строк таблицы, команда UPDATE
 parent: sql
 grand_parent: Вопросы и решения
 has_children: true
-description: Как обновить данные с помощью оператора UPDATE
+description: Как обновить данные с помощью оператора UPDATE в mysql
 date: 2023-06-30 17:00:00 +3
 last_modified_date: 2023-07-03 15:30:00 +3
 tags:
