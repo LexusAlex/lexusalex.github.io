@@ -6,13 +6,13 @@ title: Обновление строк таблицы, команда UPDATE
 parent: sql
 grand_parent: Вопросы и решения
 has_children: true
-description: Как обновить данные с помощью оператора UPDATE в mysql
+description: Как обновить данные с помощью оператора UPDATE
 date: 2023-06-30 17:00:00 +3
-last_modified_date: 2023-07-03 15:30:00 +3
+last_modified_date: 2023-07-03 16:00:00 +3
 tags:
-  - mysql
-  - sql
-  - questions-and-solutions
+- mysql
+- sql
+- questions-and-solutions
 ---
 
 # Обновление строк таблицы, команда UPDATE
@@ -37,10 +37,8 @@ UPDATE history SET description='Новое описание1',time=DEFAULT,row_i
 # LIMIT обновляемых записей
 UPDATE history SET description='Новое описание1',time=DEFAULT,row_id=DEFAULT WHERE user_id = 21 LIMIT 1
 
-# Можно обновить несколько таблиц в одном запросе, иногда может быть необходимость
-                                                                             
-UPDATE history,user_profiles
-SET history.row_id = 123, user_profiles.description = '123'
-WHERE history.id = 30 AND user_profiles.user_id  = 21;                                                                             
+# Можно обновить несколько таблиц в одном запросе
                                                                              
 ````
+
+!TODO продолжить про обновление нескольких таблиц и обновление с объединением.
