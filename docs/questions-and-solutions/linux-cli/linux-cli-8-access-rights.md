@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Разберемся с правами доступа в linux
 date: 2023-07-04 17:30:00 +3
-last_modified_date: 2023-07-04 17:30:00 +3
+last_modified_date: 2023-07-05 17:00:00 +3
 tags:
 - linux
 - questions-and-solutions
@@ -164,6 +164,17 @@ sudo usermod -a -G test_group alex
 sudo gpasswd -d alex test_group
 # Создать тестового пользователя
 sudo useradd -m test_user
+
+TODO разобраться с группой владельцем
+
+## Создадим файл от alex -rw-rw-r-- alex alex testfile
+## Теперь нужно пользователю test_user разрешить редактировать фаил, для этого пользователя test_user добавить в группу alex;l;
+
+#sudo usermod -a -G alex test_user
+#sudo usermod -a -G test_user alex
+
+
+# После изменения нужно выйти из cli и заново зайти
 ````
 
-TODO доделать группа владельца файла
+
