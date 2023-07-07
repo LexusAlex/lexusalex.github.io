@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Разберемся с правами доступа в linux
 date: 2023-07-04 17:30:00 +3
-last_modified_date: 2023-07-05 17:00:00 +3
+last_modified_date: 2023-07-07 17:00:00 +3
 tags:
 - linux
 - questions-and-solutions
@@ -165,16 +165,71 @@ sudo gpasswd -d alex test_group
 # Создать тестового пользователя
 sudo useradd -m test_user
 
-TODO разобраться с группой владельцем
+# Теперь проверим группы
+# Создадим пару пользователей
+sudo useradd -m user1 -s /bin/bash
+sudo useradd -m user2 -s /bin/bash
 
-## Создадим файл от alex -rw-rw-r-- alex alex testfile
-## Теперь нужно пользователю test_user разрешить редактировать фаил, для этого пользователя test_user добавить в группу alex;l;
+# Создадим папки и проставим им авторство
+sudo mkdir /var/www/user1
+sudo mkdir /var/www/user2
+sudo chown -R user1:user1 /var/www/user1
+sudo chown -R user2:user2 /var/www/user2
 
-#sudo usermod -a -G alex test_user
-#sudo usermod -a -G test_user alex
+# Создадим группу и добавим ее нашим двум пользователям
+sudo groupadd developer
+# Группа Пользователь
+sudo usermod -a -G user1 user2
+sudo usermod -a -G user2 user1
+# После изменения нужно выйти из cli и заново зайти права должны сработать
+# Отзовем группу user1 у пользователя user2
+sudo gpasswd -d user2 user1 # Права будут отозваны, но это стработает если выйти из cli
 
+# Еще одна ситуация, представим сайты и разработчики
+# Пользователь владелец всех сайтов
+sudo useradd -m site -s /bin/bash
+# Создадим 5 сайтов
+sudo mkdir /var/www/site{1..5}
+# Автор site их всех
+sudo chown -R site:site /var/www/site{1..5}
+# Разрешим групповым пользователям создавать папки
+sudo chmod g+w /var/www/site{1..5}
+# Создадим первого пользователя который будет работать с сайтами
+sudo useradd -m petr -s /bin/bash
 
-# После изменения нужно выйти из cli и заново зайти
+# Добавим права в две стороны
+sudo usermod -a -G site petr
+sudo usermod -a -G petr site
+# Создаем файлы и папки
+# Отзываем разрешения
+sudo gpasswd -d petr site # Все доступ пропал
+
+# Попробуем сэмулировать ситуацию когда нужно динамически давать доступ к сайту
+sudo mkdir /var/www/project{1..3}
+# Но здесь для каждого проекта создается отдельный пользователь
+sudo useradd -m project1 -s /bin/bash
+sudo useradd -m project2 -s /bin/bash
+sudo useradd -m project3 -s /bin/bash
+# Назначаем их владельцами своих директорий
+sudo chown -R project1:project1 /var/www/project1
+sudo chown -R project2:project2 /var/www/project2
+sudo chown -R project3:project3 /var/www/project3
+# У нас есть три проекта, каждый проект под своим пользователем
+# Разрешим создавать файлы и папки групповым пользователям
+sudo chmod g+w /var/www/project{1..3}
+# Теперь создадим разработчика
+sudo useradd -m alexey -s /bin/bash
+# Ему нужен доступ ко второму проекту
+sudo usermod -a -G project2 alexey
+# Проверяем
+touch file
+echo 'test' >> README.md
+mkdir dir
+# Создаем еще одного пользователя
+sudo useradd -m max -s /bin/bash
+sudo usermod -a -G project2 max
+
+TODO
 ````
 
 
