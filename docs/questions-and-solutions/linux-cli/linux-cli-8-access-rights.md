@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Разберемся с правами доступа в linux
 date: 2023-07-04 17:30:00 +3
-last_modified_date: 2023-07-07 17:00:00 +3
+last_modified_date: 2023-07-10 15:00:00 +3
 tags:
 - linux
 - questions-and-solutions
@@ -228,8 +228,6 @@ mkdir dir
 # Создаем еще одного пользователя
 sudo useradd -m max -s /bin/bash
 sudo usermod -a -G project2 max
-
-TODO
 ````
 
 
