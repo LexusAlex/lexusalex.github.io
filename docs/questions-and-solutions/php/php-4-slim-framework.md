@@ -30,7 +30,7 @@ tags:
 
 Исследуем работу slim framework 4
 
-Как работает slim
+Как работает slim:
 
 1. Создание объекта Slim\App
 2. Определение маршрутов, получается массив с объектами типа Route
@@ -39,7 +39,43 @@ tags:
 5. Вызывается объект App, отправляет текущий запрос объекту маршрута заданного заранее
 6. Если все ок вызывается стек middleware для маршрута, далее код маршрута
 7. Если маршрут не найден вызывается NotFound или Not Allowed
+ 
 
+````php
+// Базовое использование
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\RequestHandlerInterface;
+use Slim\Factory\AppFactory;
+use Slim\Psr7\Response;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$app = AppFactory::create();
+
+
+$app->add(function (Request $request, RequestHandlerInterface $handler) {
+    echo 'one middleware'.'<br>';
+    return $handler->handle($request);
+});
+
+$app->add(function (Request $request, RequestHandlerInterface $handler) {
+    echo 'two middleware'.'<br>';
+    return $handler->handle($request);
+});
+
+$app->get('/', function (Request $request, Response $response) {
+    echo 'main page'.'<br>';
+    return $response;
+})->add(function (Request $request, RequestHandlerInterface $handler){
+    echo 'route middleware one'.'<br>';return $handler->handle($request);}
+)->add(function (Request $request, RequestHandlerInterface $handler){
+    echo 'route middleware two'.'<br>';return $handler->handle($request);}
+)->add(function (Request $request, RequestHandlerInterface $handler){
+    echo 'route middleware three'.'<br>';return $handler->handle($request);}
+);
+
+$app->run();
+````
 ````php
 <?php
 use Slim\Factory\AppFactory;
