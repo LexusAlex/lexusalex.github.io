@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Исследование работы slim framework 4
 date: 2023-07-12 17:00:00 +3
-last_modified_date: 2023-07-12 17:00:00 +3
+last_modified_date: 2023-07-13 17:00:00 +3
 tags:
 - php
 - slim-framework
@@ -29,6 +29,16 @@ tags:
 ---
 
 Исследуем работу slim framework 4
+
+Как работает slim
+
+1. Создание объекта Slim\App
+2. Определение маршрутов, получается массив с объектами типа Route
+3. Запуск приложения
+4. Вход в стек middleware и выполнение всех middleware
+5. Вызывается объект App, отправляет текущий запрос объекту маршрута заданного заранее
+6. Если все ок вызывается стек middleware для маршрута, далее код маршрута
+7. Если маршрут не найден вызывается NotFound или Not Allowed
 
 ````php
 <?php
@@ -56,13 +66,13 @@ AppFactory::setContainer($container);
 # Psr\Http\Message\ResponseInterface 
 # Psr\Http\Message\ServerRequestInterface
 $app->get('/', function (Request $request, Response $response, array $args) {
-    # Внутри доступны два объекта и должен вернутся Response
+    # Внутри доступны два объекта и должен вернутся нужный нам Response
     # Slim\Psr7\Request
     # Slim\Psr7\Response
     return $response;
 });
 
-# Запускам приложение
+# Запускаем приложение
 $app->run();
 # Маршруты хранятся здесь
 $app->getRouteCollector()->getRoutes()
