@@ -239,49 +239,6 @@ $app->get('/controller4', HomeAction::class);
 $app->get('/controller5', Action::class);
 ````
 
-
-
-````php
-<?php
-use Slim\Factory\AppFactory;
-
-require __DIR__ . '/../vendor/autoload.php';
-
-# Создание приложения стандартным образом
-# По сути приложение - это объект роутинга
-
-# В параметрах функции указываются
-# ResponseFactoryInterface - реализация psr-7 Response 
-# ContainerInterface - Контейнер psr-11
-# CallableResolverInterface
-# RouteCollectorInterface
-# RouteResolverInterface
-# MiddlewareDispatcherInterface - Менеджер middleware
-$app = AppFactory::create();
-# Любой из элементов выше можно переопределить для этого есть соответствующие методы
-# Например добавим контейнер psr-11
-AppFactory::setContainer($container);
-
-# Определяем маршрут
-# Паттерн - callable function
-# Psr\Http\Message\ResponseInterface 
-# Psr\Http\Message\ServerRequestInterface
-$app->get('/', function (Request $request, Response $response, array $args) {
-    # Внутри доступны два объекта и должен вернутся нужный нам Response
-    # Slim\Psr7\Request
-    # Slim\Psr7\Response
-    return $response;
-});
-
-# Запускаем приложение
-$app->run();
-# Маршруты хранятся здесь
-$app->getRouteCollector()->getRoutes()
-# Под капотом slim вызывает RoutingMiddleware
-
-TODO
-````
-
 ## Запрос
 
 Каждый маршрут получает текущий Request, полученный сервером, мы используем реализацию psr-7 от slim Slim\Psr7\Request.
