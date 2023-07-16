@@ -5,4 +5,4 @@ has_children: true
 permalink: /questions-and-solutions
 nav_order: 8
 ---
-# questions and solutions
+# Вопросы и решения

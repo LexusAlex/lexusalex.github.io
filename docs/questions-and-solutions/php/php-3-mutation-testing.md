@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Что такое мутационное тестирование
 date: 2023-05-27 15:00:00 +3
-last_modified_date: 2023-05-23 15:00:00 +3
+last_modified_date: 2023-05-27 15:00:00 +3
 tags:
 - php
 - test

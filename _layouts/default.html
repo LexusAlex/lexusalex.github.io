@@ -88,16 +88,17 @@ layout: table_wrappers
         </li>
         {%- endfor -%}
       </ul>-->
-
     </nav>
     <footer class="site-footer">
-      <ul style="font-size: 10px; padding-left: 0px; margin-top: 5px">
-        <li><a href="mailto:alexsey_89@bk.ru">alexsey_89@bk.ru</a></li>
-        <li><a href="https://github.com/LexusAlex" target="_blank">https://github.com/LexusAlex</a></li>
-        <li><a href="https://vk.com/id297664343" target="_blank">https://vk.com/id297664343</a></li>
+      <ul class="nav-list">
+        <li class="nav-list-item"><small><a href="mailto:alexsey_89@bk.ru">alexsey_89@bk.ru</a></small></li>
+        <li class="nav-list-item"><small><a href="https://github.com/LexusAlex" target="_blank">https://github.com/LexusAlex</a></small></li>
+        <li class="nav-list-item"><small><a href="https://vk.com/id297664343" target="_blank">https://vk.com/id297664343</a></small></li>
+        <li class="nav-list-item"><small><a href="https://t.me/lexusalextg" target="_blank">Блог в telegram</a></small></li>
       </ul>
       <div>©Алексей Шмелев, {{ 'now' | date: "%Y" }} г.</div>
     </footer>
+
   </div>
   <div class="main" id="top">
     <div id="main-header" class="main-header">
@@ -161,23 +162,16 @@ layout: table_wrappers
         {% endif %}
       {% endunless %}
       <div id="main-content" class="main-content" role="main">
+        <small>{% include date.html date=page.date %}</small>
         {% if site.heading_anchors != false %}
           {% include vendor/anchor_headings.html html=content beforeHeading="true" anchorBody="<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><use xlink:href=\"#svg-link\"></use></svg>" anchorClass="anchor-heading" anchorAttrs="aria-labelledby=\"%html_id%\"" %}
+        <hr>
+        <div>Возник вопрос или предложение пиши на почту
+          <small><a href="mailto:alexsey_89@bk.ru">alexsey_89@bk.ru</a></small> или в
+          <small><a href="https://t.me/lexusalextg">Телеграмм канал</a></small>
+        </div>
         {% else %}
           {{ content }}
-        {% endif %}
-
-        {% if page.has_children == true and page.has_toc != false %}
-          <hr>
-          <h2 class="text-delta">Содержание</h2>
-          <ul>
-            {%- assign children_list = pages_list | where: "parent", page.title | where: "grand_parent", page.parent -%}
-            {% for child in children_list %}
-              <li>
-                {{ child.nav_order }}. <a href="{{ child.url | absolute_url }}">{{ child.title }}</a>{% if child.summary %} - {{ child.summary }}{% endif %} <small>{% include date.html date=child.date %}</small>
-              </li>
-            {% endfor %}
-          </ul>
         {% endif %}
 
         {% capture footer_custom %}
@@ -185,8 +179,21 @@ layout: table_wrappers
         {% endcapture %}
         {% if footer_custom != "" or site.last_edit_timestamp or site.gh_edit_link %}
         {% if page.date %}
-          <small>Дата публикации: {% include date.html date=page.date %}</small>
+          <hr>
+        <div><small>Дата публикации: {% include date.html date=page.date %}</small></div>
         {% endif %}
+          {% if page.has_children == true and page.has_toc != false %}
+          <hr>
+          <h2 class="text-delta">Содержание</h2>
+          <ul>
+            {%- assign children_list = pages_list | where: "parent", page.title | where: "grand_parent", page.parent -%}
+            {% for child in children_list %}
+            <li>
+              {{ child.nav_order }}. <a href="{{ child.url | absolute_url }}">{{ child.title }}</a>{% if child.summary %} - {{ child.summary }}{% endif %} <small>{% include date.html date=child.date %}</small>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
           <hr>
           <footer>
             {% if site.back_to_top %}
