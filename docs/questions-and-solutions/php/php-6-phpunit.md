@@ -122,7 +122,7 @@ public function testSolution3()
 
 ## Утверждения
 
-Внутри методов пишут утверждения, некоторые примеры
+Внутри методов пишут утверждения, некоторые примеры:
 
 ````php
 public function testSolution1()
@@ -169,6 +169,10 @@ public function testSolution1()
 // Если код выбрасывает исключения - это тоже можно тестировать
 $this->expectException(DomainException::class); // Указываем класс которое исключение ожидается
 throw new DomainException();
+
+// Так же есть возможность проверить сообщение, возвращаемое исключением
+$this->expectException(UnexpectedValueException::class);
+$this->expectExceptionMessage('`stdClass` must implement Psr\Container\ContainerInterface');
 ```
 
 ## Печать строки в поток
@@ -182,6 +186,8 @@ echo 'String';
 
 ## Незавершенные тесты
 ## Пропущенные тесты
+## Моки
+## Стабы
 
 TODO
 
