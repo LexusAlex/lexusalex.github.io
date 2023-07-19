@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Исследование unit тестирования на примере phpunit
 date: 2023-07-18 15:00:00 +3
-last_modified_date: 2023-07-18 15:00:00 +3
+last_modified_date: 2023-07-19 12:00:00 +3
 tags:
 - php
 - phpunit
@@ -28,22 +28,28 @@ tags:
 </details>
 ---
 
-Вводная про unit тестирование [https://lexusalex.ru/5-php-phpunit](https://lexusalex.ru/5-php-phpunit)
+Вводная статья про unit тестирование [https://lexusalex.ru/5-php-phpunit](https://lexusalex.ru/5-php-phpunit)
 
-Запускать phpunit можно с ключами, что менее удобно, гораздо удобнее создать конфигурационный файл `phpunit.xml` 
+## Установка
 
-```shell
-# Установка
+````shell
+# Установка стандартная через composer
 composer require --dev phpunit/phpunit
 # Проверка версии
 ./vendor/bin/phpunit --version # PHPUnit 10.2.6 by Sebastian Bergmann and contributors.
-# Генерирование конфига
+````
+
+## Настройка
+
+Запускать phpunit можно с ключами в cli, что менее удобно, гораздо удобнее создать конфигурационный файл `phpunit.xml` 
+
+```shell
+
+# Генерирование конфига в xml
 ./vendor/bin/phpunit --generate-configuration
 # Указание конфигурационного файла
 ./vendor/bin/phpunit --colors=always --configuration=etc/phpunit.xml
 ```
-
-## XML Configuration
 
 Основные ключи конфигурационного файла
 
@@ -57,7 +63,127 @@ testsuites
     testsuite - Где искать тесты, список каталогов, так же можно указать имя    
 ````
 
-Тесты это что - это код, который проверяет другой код
+Пример базовой конфигурации, переделанной под мои нужды:
+
+````xml
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="../vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="../tests/bootstrap.php"
+         cacheDirectory="../var/cache/.phpunit.result.cache"
+         executionOrder="random"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutTodoAnnotatedTests="true">
+    <testsuites>
+        <testsuite name="default">
+            <directory>../tests</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <ini name="error_reporting" value="-1"/>
+        <env name="APPLICATION_ENVIRONMENT" value="test" force="true"/>
+        <env name="APPLICATION_DEBUG" value="1" force="true"/>
+    </php>
+</phpunit>
+````
+
+## Написание тестов
+
+````php
+// Название файла должно совпадать с названием класса в таком виде [Название]Test
+// Тогда phpunit распознает что это тест
+<?php
+declare(strict_types=1);
+
+use PHPUnit\Framework\TestCase;
+
+class SolutionTest extends TestCase
+{
+    
+}
+
+// Внутри добавляются тестовые методы
+// Обычно один метод проверяет один case
+public function testSolution1()
+{
+
+}
+
+public function testSolution2()
+{
+
+}
+
+public function testSolution3()
+{
+
+}
+````
+
+## Утверждения
+
+Внутри методов пишут утверждения, некоторые примеры
+
+````php
+public function testSolution1()
+{
+    // Наличие key в массиве
+    self::assertArrayHasKey('key',['key' => 123]);
+    // Указанного ключа нет в массиве
+    self::assertArrayNotHasKey('key',['key2' => 123]);
+    // Имеется ли значение в массиве
+    self::assertContains(1, [1,2,3,4]);
+    // Значения в массиве нет
+    self::assertNotContains(1, [2,3,4]);
+    // Количество элементов в массиве
+    self::assertCount(1, [2]);
+    // Сколько элементов нет в массиве
+    self::assertNotCount(2, [2]);
+    // Пустое значение
+    self::assertEmpty('');
+    // Эквивалентные значения
+    self::assertEquals(1,1);
+    // Не эквивалентные значения
+    self::assertNotEquals(3,1);
+    // true
+    self::assertTrue(print_r(''));
+    // false
+    self::assertFalse(false);
+    // тип и значение должны совпадать
+    self::assertSame([1],[1]);
+    // тип или значение не должны совпадать
+    self::assertNotSame('1',1);
+    // Сравнить две строки, без учета регистра
+    self::assertStringContainsStringIgnoringCase('STR','str');
+    // Сравнить размеры двух массивов
+    self::assertSameSize([1],[1]);
+    // Больше чем
+    self::assertGreaterThan(1,2);
+}
+````
+Документация с полным перечнем [https://docs.phpunit.de/en/10.2/assertions.html](https://docs.phpunit.de/en/10.2/assertions.html)
+
+## Исключения
+
+```php
+// Если код выбрасывает исключения - это тоже можно тестировать
+$this->expectException(DomainException::class); // Указываем класс которое исключение ожидается
+throw new DomainException();
+```
+
+## Печать строки в поток
+
+Если код выдает побочный эффект как строка, это тоже можно отловить
+
+````php
+$this->expectOutputString('String');
+echo 'String';
+````
+
+## Незавершенные тесты
+## Пропущенные тесты
+
+TODO
 
 ````php
 // Тест для проверок
@@ -136,5 +262,3 @@ class SolutionTest extends TestCase
     // Тесты могут быть зависимы друг от друга, хоть это не приветствуется
 }
 ````
-
-TODO
