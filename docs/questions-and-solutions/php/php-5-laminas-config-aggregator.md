@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Библиотка laminas-config-aggregator для объединения конфигураций приложения
 date: 2023-07-17 14:00:00 +3
-last_modified_date: 2023-07-17 14:00:00 +3
+last_modified_date: 2023-07-21 13:30:00 +3
 tags:
 - php
 - questions-and-solutions
@@ -57,7 +57,7 @@ $config = new ConfigAggregator([
     new \Laminas\ConfigAggregator\ArrayProvider([ConfigAggregator::ENABLE_CACHE => true]),
 ], '/tmp/config-cache.php');
 
-// Для того чтобы сбросить кеш просто удалите файл
+// Для того чтобы сбросить кеш просто удалите файл. Удобно если конфигурацию не нужно часто менять, еще и работает быстрее
 ```
 
 Преимущество данной библиотеки состоит в корректном перезаписывании многомерных массивов, чего добиться встроенными функциями php сложно.
