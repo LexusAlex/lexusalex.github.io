@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Исследование unit тестирования на примере phpunit
 date: 2023-07-18 15:00:00 +3
-last_modified_date: 2023-07-20 11:00:00 +3
+last_modified_date: 2023-07-22 21:30:00 +3
 tags:
 - php
 - phpunit
@@ -177,7 +177,7 @@ $this->expectExceptionMessage('`stdClass` must implement Psr\Container\Container
 
 ## Печать строки в поток
 
-Если код выдает побочный эффект как строка, это тоже можно отловить
+Если код выдает побочный эффект как строка, это тоже можно отловить, таким образом
 
 ````php
 $this->expectOutputString('String');
@@ -185,13 +185,85 @@ echo 'String';
 ````
 
 ## Незавершенные тесты
+
+````php
+// Этим можно управлять указав, что тест незавершенный
+$this->markTestIncomplete('Завершу позже'); // I
+````
+
 ## Пропущенные тесты
+
+````php
+// Тест можно пропускать, при каких - то условиях
+$this->markTestSkipped('Пропускаю'); // S
+// Тесты могут быть зависимы друг от друга, хоть это не приветствуется
+````
+
+## Stub
+
+Объект, который заменяет реальный объект и создает его заглушку.
+
+В стаб передаются название класса или название интерфейса.
+
+Посмотрим на примере:
+
+````php
+<?php
+// Класс который нужно заменить
+namespace Test;
+
+class Original
+{
+    public function send(string $y)
+    {
+       return false;
+    }
+}
+
+// Тестовый класс
+namespace Test;
+
+use PHPUnit\Framework\TestCase;
+
+class SolutionTest extends TestCase
+{
+    public function testSolution()
+    {
+        // Если это интерфейс он на лету создает реализацию этого интерфейса и объект этого класса
+        // Если это класс создает объект этого класса примерно с таким названием Mock_Original_23a89a53. Переопределяет все его методы
+       $stub = $this->createStub(Original::class);
+       // Помимо всех оригинальных методов, phpunit добавляет свои
+       // Например наш метод send должен вернуть true, делается это так
+       $stub->method('send')->willReturn(true);
+       // Теперь метод send возвращает true
+       $stub->send(4));
+       
+       // Так же метод может бросить нужное нам исключение, но в исходно коде все останется так же
+       $stub->method('send')->willThrowException(new \RuntimeException());
+       
+       // Еще имеем возможность вернуть аргумент по порядковому номеру
+       $stub->method('send')->willReturnArgument(0);
+       $stub->send(44) // Здесь вернется 44 как первый агрумент метода
+       
+       // Можно возарщать функцию
+       $stub->method('send')->willReturnCallback(function (){return 55;});
+       $stub->send() // 55
+       
+       // Можно вернуть сам объект стаба, если это необходимо
+       $stub->method('send')->willReturnSelf();
+       print_r($stub->send());
+       
+       // В итоге мы на лету генерируем то, что должен возвращать метод
+       // При этом очень удобно работать с классами с небольшим набором методов
+       // Стаб это просто заглушка которая возвращает результат
+    }
+}
+````
+
 ## Mock
 
-Моки проверяют как выполняется код, он должен выполнится определенным образом
-
-Моки это такие классы-заглушки тестовые двойники, 
-которы будут сделаны на основании заменяемого класса описывающие поведение
+Мок в отличие от стаба проверяет как выполняется код, он должен выполнится определенным образом.
+Здесь важное слово - это поведение метода, его можно настроить как требуется
 
 ````php
 // Объект заменяемого класса, это и есть мок
@@ -199,59 +271,71 @@ echo 'String';
 // Все методы исходного класса возвращают null, без его вызова
 //методы с правом доступа final, private, protected и static не могут быть подменены
 $mock = $this->createMock(\Test\Original::class);
-// Далее нужно вернуть, что нам нужно из метода
-//$mock->method('sendMail')->willReturn('Нужное нам значение');
-// Вернуть сам объект заглушку
-$mock->method('sendMail')->willReturnSelf();
-$mock->expects($this->once())->method('sendMail')->with($this->equalTo('4'));
 
-// Если метод возврщает несколько значений, можно создать карту аргументов
-//$mock->method('sendMail')->willReturnMap([['t'],['g']]);
-
-//
-//print_r($mock->sendMail(4));
-self::assertSame('Нужное нам значение', $mock->sendMail(1));
+$mock->expects($this->any())->method('send')->with($this->equalTo('4'))->will($this->returnValue(false));
+$mock->method('send')->willReturn(false);
 ````
-
-## Stub
-
-Объект, который заменяет реальный объект
-
-Для проверки входящий взаимодействий используйте заглушку, а для проверки исходящих взаимодействий — мок.
 
 ## Фикстуры
 
-Настройка окружения для теста
+Обобщенно - это настройка окружения для теста. Нужно для подготовительной работы для начала выполнения теста и окончания.
+ 
+Метод `tearDown` - запускается перед `setUp`
 
-TODO статья не закончена, доделать до конца
+Метод `setUp` - запускается перед тестом.
 
 ````php
-// Тест для проверок
+class SolutionTest extends TestCase
+{
+    protected function setUp(): void
+    {
+        echo 'setUp';
+    }
+
+    protected function tearDown(): void
+    {
+        echo 'tearDown';
+    }
+
+
+    public function testSolution0()
+    {
+        echo 'testSolution0';
+    }
+
+    public function testSolution1()
+    {
+        echo 'testSolution1';
+    }
+
+    public function testSolution2()
+    {
+        echo 'testSolution2';
+    }
+}
+
+// Результат получается такой
+//tearDownsetUptestSolution0RtearDownsetUptestSolution2RtearDownsetUptestSolution1R
+````
+
+## Data Providers
+
+Дата провайдеры - это такая штука, когда нужно прогнать несколько значений через один assert
+
+Удобно тестировать например почтовые адреса
+
+````php
+
 <?php
 
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
-// Название класса совпадает с названием файла
-// Фаил с приставкой *Test
 class SolutionTest extends TestCase
 {
-    // Tестовый метод называется с приставкой test*
-    // Обычно один метод проверяет один case
-    public function testSolution1()
-    {
-        // Утверждение
-        $this->assertSame('1234','1234');
-        // Тестировать утверждения можно так
-        $this->expectException(InvalidArgumentException::class);
-        // Здесь код, который выбросит исключение
-        throw new \InvalidArgumentException();
-    }
-    
-    // Дата провайдеры - это такая штука, когда нужно прогнать несколько значений через один assert
-    // Удобно тестировать например почтовые адреса 
-    public static function Solution2(): array
+
+    public static function Solution(): array
     {
         return [
             [0, 0, 0],
@@ -260,7 +344,7 @@ class SolutionTest extends TestCase
             [1, 2, 3],
         ];
     }
-    #[DataProvider('Solution2')]
+    #[DataProvider('Solution')]
     public function testAdd(int $a, int $b, int $expected): void
     {
         $this->assertSame($expected, $a + $b);
@@ -272,33 +356,5 @@ class SolutionTest extends TestCase
     //'two' => [0, 1, 1],
     //'three' => [1, 0, 1],
     //'four' => [1, 2, 3],
-    
-    public function testSolution3()
-    {
-        // Можно проверить, то что в поток вывода печатается строка, следующим образом
-        $this->expectOutputString('bar');
-        echo 'bar';
-    }
-    
-    // Если в тесте ничего нет, он считается незавершенным
-    public function testSolution4()
-    {
-
-    }
-    
-    // Этим можно управлять указав, что тест незавершенный
-    $this->markTestIncomplete('Завершу позже'); // I
-    
-    // Тест можно пропускать, при каких - то условиях
-    public function testSolution5()
-    {
-        self::assertTrue(true);
-        self::assertTrue(true);
-        self::assertTrue(true);
-        self::assertTrue(true);
-        $this->markTestSkipped('Пропускаю'); // S
-    }
-    
-    // Тесты могут быть зависимы друг от друга, хоть это не приветствуется
 }
 ````
