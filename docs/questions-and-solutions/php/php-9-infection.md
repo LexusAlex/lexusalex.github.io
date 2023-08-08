@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Библиотека для мутационного тестирования infection
 date: 2023-08-07 17:00:00 +3
-last_modified_date: 2023-08-07 17:00:00 +3
+last_modified_date: 2023-08-08 15:00:00 +3
 tags:
 - php
 - questions-and-solutions
@@ -29,12 +29,16 @@ tags:
 
 В общем виде заметку-введение про мутационное тестирование уже писал [https://lexusalex.ru/php-3-mutation-testing](https://lexusalex.ru/php-3-mutation-testing) 
 
-Сегодня настроим фреймворк infection для использования
+Сегодня настроим фреймворк infection для использования. 
+
+Установка стандартная через composer
 
 ````shell
 # Установка
 composer --dev require infection/infection
 ````
+
+## Настройка 
 
 При первом запуске infection если нет конфига он будет создан.
 
@@ -59,7 +63,7 @@ infection.json5
 }
 ````
 
-Полное описание опции конфигурации [https://infection.github.io/guide/usage.html](https://infection.github.io/guide/usage.html)
+Полное описание опции конфигурации в документации [https://infection.github.io/guide/usage.html](https://infection.github.io/guide/usage.html)
 
 Infection работает в паре с phpunit coverage (или это только у меня так), нужно указать путь до папки с покрытием кода.
 
@@ -90,22 +94,22 @@ class C
 
 то есть Mutation Code Coverage: 100%
 
-Пишем тест под это
+Пишем тест под это и покрываем все случаи
 
 ````php
 $c = new C();
 self::assertEquals(6, $c->one(2,4));
 ````
 
-Теперь метрики равны, то есть имеем хорошие тесты
+Вот теперь мы покрыли все случаи, и метрики будут 100%
 
-Mutation Score Indicator (MSI): 100%
+Важно понимать, что мутационное тестирование это не хаотичное преобразование кода, 
+а абсолютно предсказуемый и понятный процесс, который, при наличии одинаковых входных мутационных операторов, 
+всегда выдает один и тот же список мутаций.
 
-Mutation Code Coverage: 100%
+## Мутаторы
 
-Covered Code MSI: 100%
-
-TODO
+Мутаторов много, буду рассматривать здесь каждый отдельный случай.
 
 
 
