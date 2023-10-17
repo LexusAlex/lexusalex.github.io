@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Процесс установки postresql на ubuntu сервер
 date: 2023-07-01 23:30:00 +3
-last_modified_date: 2023-10-15 22:30:00 +3
+last_modified_date: 2023-10-18 00:10:00 +3
 tags:
 - linux
 - postgresql
@@ -80,8 +80,8 @@ sudo -u postgres psql
 # Выйти из консоли
 postgres=# exit  или \q
 # Статус подключения
-postgres=# \conninfo
-# Переключаемся под пользователем postgres
+postgres=# \conninfo # You are connected to database "postgres" as user "postgres" via socket in "/var/run/postgresql" at port "5432".
+ # Переключаемся под пользователем postgres
 sudo -i -u postgres
 # И заходим уже без проблем, так как мы подключились под пользователем postgres
 psql
@@ -89,5 +89,29 @@ psql
 ALTER USER postgres PASSWORD 'SuperPass2_@A';
 # Теперь можем зайти используя пароль
 sudo -u postgres psql -h localhost -U postgres
+## Это в другую статью
+# Пользователи и их роли
+postgres-# \du 
+                             List of roles
+ Role name |                         Attributes                         
+-----------+------------------------------------------------------------
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS
+# Список баз данных 
+postgres-# \list 
+                                                       List of databases
+   Name    |  Owner   | Encoding | Locale Provider |   Collate   |    Ctype    | ICU Locale | ICU Rules |   Access privileges   
+-----------+----------+----------+-----------------+-------------+-------------+------------+-----------+-----------------------
+ postgres  | postgres | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | 
+ template0 | postgres | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =c/postgres          +
+           |          |          |                 |             |             |            |           | postgres=CTc/postgres
+ template1 | postgres | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =c/postgres          +
+           |
+           |          |                 |             |             |            |           | postgres=CTc/postgres
+# Подключиться к базе данных
+postgres-# \c <название базы данных>
+# Список таблиц
+postgres-# \dt
+# Информация об определенной таблице
+postgres-# \d django_admin_log
 ````
 
