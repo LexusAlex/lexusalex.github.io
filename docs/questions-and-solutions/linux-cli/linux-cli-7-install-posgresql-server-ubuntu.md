@@ -90,12 +90,7 @@ ALTER USER postgres PASSWORD 'SuperPass2_@A';
 # Теперь можем зайти используя пароль
 sudo -u postgres psql -h localhost -U postgres
 ## Это в другую статью
-# Пользователи и их роли
-postgres-# \du 
-                             List of roles
- Role name |                         Attributes                         
------------+------------------------------------------------------------
- postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS
+
 # Список баз данных 
 postgres-# \list 
                                                        List of databases
