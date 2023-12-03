@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Процесс установки postresql на ubuntu сервер
 date: 2023-07-01 23:30:00 +3
-last_modified_date: 2023-10-18 00:10:00 +3
+last_modified_date: 2023-12-03 14:00:00 +3
 tags:
 - linux
 - postgresql
@@ -72,9 +72,9 @@ sudo systemctl start postgresql
 
 ````shell
 # Проверяем версию
-sudo psql --version  # psql (PostgreSQL) 16.0 (Ubuntu 16.0-1.pgdg22.04+1)
+sudo psql --version  # psql (PostgreSQL) 16.1 (Ubuntu 16.1-1.pgdg22.04+1)
 # Или так
-sudo -u postgres psql -c "SELECT version();" # PostgreSQL 16.0 (Ubuntu 16.0-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+sudo -u postgres psql -c "SELECT version();" # PostgreSQL 16.1 (Ubuntu 16.1-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
 # Заходим под пользователем postgres и сразу зайдем в консоль
 sudo -u postgres psql
 # Выйти из консоли
@@ -89,6 +89,8 @@ psql
 ALTER USER postgres PASSWORD 'SuperPass2_@A';
 # Теперь можем зайти используя пароль
 sudo -u postgres psql -h localhost -U postgres
+
+-----------------------------
 ## Это в другую статью
 
 # Список баз данных 
