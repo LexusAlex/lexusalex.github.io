@@ -116,4 +116,22 @@ layout: default
         {% endfor %}
     </table>
 
+    <h3>html / css</h3>
+    <table>
+        <tr>
+            <td>#</td>
+            <td>Название</td>
+            <td>Дата</td>
+        </tr>
+        {% for page in sortedNotes %}
+        {% if page.parent == 'html-css' %}
+        <tr>
+            <td><small>{{ page.nav_order }}.</small></td>
+            <td><a href="{{ page.url }}">{{ page.title }}</a></td>
+            <td><small>{% include date.html date=page.date %}</small></td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+
 </div>
