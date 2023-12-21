@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remove collection</title>
+</head>
+<body>
+<button class="button">Удалить коллекцию элементов</button>
+
+<div class="element" style="border: #2459a7 solid 1px">Element 1</div>
+<div class="element" style="border: #2459a7 solid 1px">Element 2</div>
+<div class="element" style="border: #2459a7 solid 1px">Element 3</div>
+<div class="element" style="border: #2459a7 solid 1px">Element 4</div>
+<div class="element" style="border: #2459a7 solid 1px">Element 5</div>
+
+<script>
+    document.querySelector(".button").addEventListener('click', () => {
+        let collection = document.querySelectorAll('.element'); // Коллекция элементов которые нужно удалить
+        if (collection.length !== 0) {
+            for (const element of collection) {
+                element.remove(); // Удаляем сразу все
+            }
+        }
+    });
+</script>
+</body>
+</html>

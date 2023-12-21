@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remove child</title>
+</head>
+<body>
+
+<button class="button">Удалить дочерние элементы поочередно</button>
+<br>
+Элементы
+<div class="parent">
+    <div class="child">child1</div>
+    <div class="child">child2</div>
+    <div class="child">child3</div>
+    <div class="child">child4</div>
+</div>
+
+Удаленные
+<div class="deleted"></div>
+<script>
+    let parent = document.querySelector('.parent'); // Выбираем родительский элемент
+    let deleted = document.querySelector('.deleted'); // Выбираем контейнер для удаленных элементов
+    document.querySelector(".button").addEventListener('click', (e) => {
+        let child = parent.firstElementChild; // Элемент который нужно удалить
+        if (child !== null) {
+            let deletedElement = parent.removeChild(child); // Удаляем элемент, при этом из функции будет возвращен удаленный элемент
+            deleted.append(deletedElement);
+        }
+    });
+</script>
+</body>
+</html>
