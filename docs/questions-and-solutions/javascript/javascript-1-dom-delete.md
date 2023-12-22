@@ -103,13 +103,13 @@ $('#selector_for_remove').remove() // Удалили сам элемент и п
 
 ### Пример 1.5 Удаление отдельного элемента
 
-<iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/1/1.5-remove-jquery.html" height="180" width="100%"></iframe>
+<iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/1/1.5-remove-jquery.html" height="100" width="100%"></iframe>
 
 [Открыть пример 1.5 в новой вкладке](/assets/demo/qs/javascript/1/1.5-remove-jquery.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
 
 ### Пример 1.6 Удаление нескольких элементов
 
-<iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/1/1.6-remove-jquery-multiple.html" height="180" width="100%"></iframe>
+<iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/1/1.6-remove-jquery-multiple.html" height="150" width="100%"></iframe>
 
 [Открыть пример 1.6 в новой вкладке](/assets/demo/qs/javascript/1/1.6-remove-jquery-multiple.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
 
@@ -119,3 +119,5 @@ $('#selector_for_remove').remove() // Удалили сам элемент и п
 - [Пример 1.2](https://raw.githubusercontent.com/LexusAlex/lexusalex.github.io/master/assets/demo/qs/javascript/1/1.2-remove-collection.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
 - [Пример 1.3](https://raw.githubusercontent.com/LexusAlex/lexusalex.github.io/master/assets/demo/qs/javascript/1/1.3-remove-child.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
 - [Пример 1.4](https://raw.githubusercontent.com/LexusAlex/lexusalex.github.io/master/assets/demo/qs/javascript/1/1.4-remove-child-multiply.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
+- [Пример 1.5](https://raw.githubusercontent.com/LexusAlex/lexusalex.github.io/master/assets/demo/qs/javascript/1/1.5-remove-jquery.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
+- [Пример 1.6](https://raw.githubusercontent.com/LexusAlex/lexusalex.github.io/master/assets/demo/qs/javascript/1/1.6-remove-jquery-multiple.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
