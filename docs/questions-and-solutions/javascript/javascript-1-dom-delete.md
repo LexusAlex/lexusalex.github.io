@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Как удалить узел в javascript
 date: 2023-05-18 14:00:00 +3
-last_modified_date: 2023-12-21 23:00:00 +3
+last_modified_date: 2023-12-22 23:30:00 +3
 tags:
 - javascript
 - js
@@ -87,7 +87,7 @@ if (child !== null) {
 
 Еще пример, отдельная кнопка для удаления каждого элемента.
 
-### Пример 1.4
+### Пример 1.4 Удаление отдельного элемента
 
 <iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/1/1.4-remove-child-multiply.html" height="180" width="100%"></iframe>
 
@@ -100,3 +100,22 @@ if (child !== null) {
 ```javascript
 $('#selector_for_remove').remove() // Удалили сам элемент и повешенные на него обработчики
 ```
+
+### Пример 1.5 Удаление отдельного элемента
+
+<iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/1/1.5-remove-jquery.html" height="180" width="100%"></iframe>
+
+[Открыть пример 1.5 в новой вкладке](/assets/demo/qs/javascript/1/1.5-remove-jquery.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
+
+### Пример 1.6 Удаление нескольких элементов
+
+<iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/1/1.6-remove-jquery-multiple.html" height="180" width="100%"></iframe>
+
+[Открыть пример 1.6 в новой вкладке](/assets/demo/qs/javascript/1/1.6-remove-jquery-multiple.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
+
+## Исходный код
+
+- [Пример 1.1](https://raw.githubusercontent.com/LexusAlex/lexusalex.github.io/master/assets/demo/qs/javascript/1/1.1-remove.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
+- [Пример 1.2](https://raw.githubusercontent.com/LexusAlex/lexusalex.github.io/master/assets/demo/qs/javascript/1/1.2-remove-collection.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
+- [Пример 1.3](https://raw.githubusercontent.com/LexusAlex/lexusalex.github.io/master/assets/demo/qs/javascript/1/1.3-remove-child.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
+- [Пример 1.4](https://raw.githubusercontent.com/LexusAlex/lexusalex.github.io/master/assets/demo/qs/javascript/1/1.4-remove-child-multiply.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
