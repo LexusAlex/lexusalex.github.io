@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search getElementById</title>
+</head>
+<body>
+<button class="getElementById">Найти элемент с помощью document.getElementById('element')</button>
+
+<div id="element">Element 1</div>
+
+   <script>
+       document.querySelector(".getElementById").addEventListener('click', () => {
+           let element = document.getElementById('element');
+           element.style.backgroundColor = 'red';
+       });
+   </script>
+</body>
+</html>

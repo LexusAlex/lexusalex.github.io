@@ -2,13 +2,13 @@
 layout: default
 nav_order: 1
 permalink: javascript-1-dom-delete
-title: Удаление узлов в DOM
+title: Удаление элементов в DOM
 parent: javascript
 grand_parent: Вопросы и решения
 has_children: true
-description: Как удалить узел в javascript
+description: Как удалить элемент в javascript
 date: 2023-05-18 14:00:00 +3
-last_modified_date: 2023-12-22 23:30:00 +3
+last_modified_date: 2023-12-23 12:30:00 +3
 tags:
 - javascript
 - js
@@ -16,7 +16,7 @@ tags:
 - questions-and-solutions
 ---
 
-# Удаление узлов в DOM
+# Удаление элементов в DOM
 {: .no_toc }
 
 <details open markdown="block">
@@ -112,6 +112,11 @@ $('#selector_for_remove').remove() // Удалили сам элемент и п
 <iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/1/1.6-remove-jquery-multiple.html" height="150" width="100%"></iframe>
 
 [Открыть пример 1.6 в новой вкладке](/assets/demo/qs/javascript/1/1.6-remove-jquery-multiple.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
+
+
+## Примечания
+
+- jquery метод remove не возвращает ошибок если удаляемый элемент не найден
 
 ## Исходный код
 

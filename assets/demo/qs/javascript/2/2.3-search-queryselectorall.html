@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search querySelectorAll</title>
+</head>
+<body>
+<button class="querySelectorAll">querySelectorAll</button>
+
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li class="list">3</li>
+    <li>4</li>
+    <li class="list">5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li class="list">9</li>
+    <li class="list">10</li>
+</ul>
+
+   <script>
+       document.querySelector(".querySelectorAll").addEventListener('click', () => {
+           let elements = document.querySelectorAll('ul > li.list');
+           for (let elem of elements) {
+               elem.style.backgroundColor = 'red';
+           }
+       });
+   </script>
+</body>
+</html>

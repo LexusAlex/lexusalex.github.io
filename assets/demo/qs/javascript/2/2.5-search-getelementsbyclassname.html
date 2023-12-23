@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search getElementsByClassName</title>
+</head>
+<body>
+<button class="getElementsByClassName">getElementsByClassName</button>
+
+<div class="one two">элемент с двумя классами</div>
+
+   <script>
+       document.querySelector(".getElementsByClassName").addEventListener('click', () => {
+           let elements = document.getElementsByClassName('one two');
+           for (let elem of elements) {
+               elem.style.backgroundColor = 'red';
+           }
+
+           //console.log(elements);
+       });
+   </script>
+</body>
+</html>
