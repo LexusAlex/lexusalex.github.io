@@ -74,7 +74,7 @@ element.querySelector('#child-element');
 
 ### Пример 2.2 querySelector
 
-<iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/2/2.2-search-queryselector.html" height="100" width="100%"></iframe>
+<iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/2/2.2-search-queryselector.html" height="185" width="100%"></iframe>
 
 [Открыть пример 2.2 в новой вкладке](/assets/demo/qs/javascript/2/2.2-search-queryselector.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
 
@@ -90,7 +90,7 @@ let elements = document.querySelectorAll('ul > li.list'); // Получим ко
 
 ### Пример 2.3 querySelectorAll
 
-<iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/2/2.3-search-queryselectorall.html" height="100" width="100%"></iframe>
+<iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/2/2.3-search-queryselectorall.html" height="270" width="100%"></iframe>
 
 [Открыть пример 2.3 в новой вкладке](/assets/demo/qs/javascript/2/2.3-search-queryselectorall.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
 
@@ -100,7 +100,7 @@ let elements = document.querySelectorAll('ul > li.list'); // Получим ко
 
 ### Пример 2.4 getElementsByTagName()
 
-<iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/2/2.4-search-getelementsbytagname.html" height="100" width="100%"></iframe>
+<iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/2/2.4-search-getelementsbytagname.html" height="270" width="100%"></iframe>
 
 [Открыть пример 2.4 в новой вкладке](/assets/demo/qs/javascript/2/2.4-search-getelementsbytagname.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
 
