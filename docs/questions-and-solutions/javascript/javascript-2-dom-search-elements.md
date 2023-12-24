@@ -114,6 +114,10 @@ let elements = document.querySelectorAll('ul > li.list'); // Получим ко
 
 [Открыть пример 2.5 в новой вкладке](/assets/demo/qs/javascript/2/2.5-search-getelementsbyclassname.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
 
+## jquery $()
+
+С использованием jquery поиск элементов упрощается.
+
 ## Резюме
 
 ## Примечания
