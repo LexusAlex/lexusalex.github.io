@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create array</title>
+</head>
+<body>
+<button class="array-from-string">Array.from() - строка</button>
+<button class="array-from-list">Array.from() - NodeList</button>
+
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+
+<script>
+
+    document.querySelector(".array-from-string").addEventListener('click', (e) => {
+        let string = 'Строка на русском языке';
+        console.log(e.target.innerText += Array.from(string));
+        console.log(Array.from(string));
+    });
+
+    document.querySelector(".array-from-list").addEventListener('click', (e) => {
+        let list = document.querySelectorAll('li');
+        e.target.innerText += Array.from(list, function (li){ return li.tagName});
+    });
+
+</script>
+</body>
+</html>

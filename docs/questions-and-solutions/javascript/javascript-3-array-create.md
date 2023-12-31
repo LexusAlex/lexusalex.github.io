@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Как создать массив в js
 date: 2023-12-24 22:30:00 +3
-last_modified_date: 2023-12-24 22:30:00 +3
+last_modified_date: 2023-12-29 20:30:00 +3
 tags:
 - javascript
 - js
@@ -41,11 +41,11 @@ let array2 = new Array(); // используется крайне редко
 
 Может пригодиться например если нужно коллекцию `NodeList` научить быть массивом.
 
-То есть создаем массив на основе структур где есть `lenght`.
+То есть создаем массив на основе структур, где есть свойство `lenght`.
 
-Смотрите пример 3.1
+Подробнее в следующей заметке.
 
-### Пример 3.1
+## Пример 3.1 Создание массива
 
 <iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/3/3.1-create-array.html" height="100" width="100%"></iframe>
 
