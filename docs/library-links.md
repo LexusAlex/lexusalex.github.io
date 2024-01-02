@@ -23,11 +23,8 @@ nav_order: 7
 
 ## Javascript
 
-### NextJs
-
-- Next.Знакомство. Отличное вводное видео про Next js.
-  [https://www.youtube.com/watch?v=F9Vaac3h0pg](https://www.youtube.com/watch?v=F9Vaac3h0pg)
-
+- Без jquery
+  [https://youmightnotneedjquery.com/](https://youmightnotneedjquery.com/)
 ## Работа с данными
 
 - Валидация данных в формах. Отличное объяснение про то как организовывать валидацию данных.
@@ -39,3 +36,10 @@ nav_order: 7
 
 - ClickHouse. Из разработки внутри Яндекса в самостоятельную компанию. Подкаст про то как создавался Click house
   [https://music.yandex.ru/album/9294155/track/113911486](https://music.yandex.ru/album/9294155/track/113911486)
+
+## php
+
+- Стандарты psr php
+  [https://www.php-fig.org/psr/](https://www.php-fig.org/psr/)
+- Пакеты
+  [https://packagist.org/](https://packagist.org/)

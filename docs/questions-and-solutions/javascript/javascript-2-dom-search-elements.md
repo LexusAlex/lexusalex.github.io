@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Способы поиска элементов в DOM дереве
 date: 2023-12-23 23:00:00 +3
-last_modified_date: 2023-12-23 23:00:00 +3
+last_modified_date: 2024-01-02 13:00:00 +3
 tags:
 - javascript
 - js
@@ -118,7 +118,31 @@ let elements = document.querySelectorAll('ul > li.list'); // Получим ко
 
 С использованием jquery поиск элементов упрощается.
 
+Поиск идет по любому селектору который передается в конструктор функции `$()`
+
+Примеры:
+
+````javascript
+$("*")
+$(".myClass")
+$("div")
+$("#myDiv")
+$("div, span, p.myClass")
+$("div, p, span")
+$("a[hreflang|='en']")
+````
+
 ## Резюме
+
+Что же выбрать.
+
+Если нужно найти по идентификатору используем `getElementById`.
+
+Более общий поиск одного элемента `querySelector`.
+
+Если элементов много по одному селектору тогда нам подойдет `querySelectorAll`
+
+Этого вполне достаточно.
 
 ## Примечания
 
@@ -126,4 +150,10 @@ let elements = document.querySelectorAll('ul > li.list'); // Получим ко
 - Передав `*` можно получить всех потомков родителя
 - Все методы `getElementsBy*` возвращают живую коллекцию.
 
-## Исходный код
+## Исходный код примеров
+
+- [Пример 2.1](https://github.com/LexusAlex/lexusalex.github.io/blob/master/assets/demo/qs/javascript/2/2.1-search-getelementbyid.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
+- [Пример 2.2](https://github.com/LexusAlex/lexusalex.github.io/blob/master/assets/demo/qs/javascript/2/2.2-search-queryselector.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
+- [Пример 2.3](https://github.com/LexusAlex/lexusalex.github.io/blob/master/assets/demo/qs/javascript/2/2.3-search-queryselectorall.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
+- [Пример 2.4](https://github.com/LexusAlex/lexusalex.github.io/blob/master/assets/demo/qs/javascript/2/2.4-search-getelementsbytagname.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
+- [Пример 2.5](https://github.com/LexusAlex/lexusalex.github.io/blob/master/assets/demo/qs/javascript/2/2.5-search-getelementsbyclassname.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
