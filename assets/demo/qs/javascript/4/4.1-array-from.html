@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create array</title>
+    <title>Array.from()</title>
 </head>
 <body>
 <button class="array-from-string">Array.from() - строка</button>
 <button class="array-from-list">Array.from() - NodeList</button>
+<button class="array-from-object">Array.from() - Object</button>
+<button class="array-from-set">Array.from() - Set</button>
+<button class="array-from-sequence">Array.from() - sequence number</button>
+<button class="array-from-map">Array.from() - sequence Map</button>
 
 <ul>
     <li>1</li>
@@ -19,14 +23,36 @@
 
     document.querySelector(".array-from-string").addEventListener('click', (e) => {
         let string = 'Строка на русском языке';
-        console.log(e.target.innerText += Array.from(string));
+        e.target.innerText += Array.from(string);
         console.log(Array.from(string));
     });
 
     document.querySelector(".array-from-list").addEventListener('click', (e) => {
         let list = document.querySelectorAll('li');
         e.target.innerText += Array.from(list, function (li){ return li.tagName});
+        console.log(Array.from(list, function (li){ return li}));
     });
+
+    document.querySelector(".array-from-object").addEventListener('click', (e) => {
+        let object = {0: [1], 1: [2], length:2};
+        console.log(Array.from(object));
+    });
+
+    document.querySelector(".array-from-set").addEventListener('click', (e) => {
+        const set = new Set(["Россия", "Россия", "USA", 1, 3, 7, 89, "Россия"]); // Уникальные элементы
+        console.log(Array.from(set));
+    });
+
+    document.querySelector(".array-from-sequence").addEventListener('click', (e) => {
+        const nums = Array.from({length: 100}, function (value, index){return index});
+        console.log(nums);
+    });
+
+    document.querySelector(".array-from-map").addEventListener('click', (e) => {
+        const map = new Map([[1,1],[2,2],[3,3]]);
+        console.log(Array.from(map));  // Array(3) [ (2) […], (2) […], (2) […] ]
+    });
+
 
 </script>
 </body>
