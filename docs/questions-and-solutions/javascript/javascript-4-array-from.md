@@ -105,7 +105,7 @@ Array.from({length: 100}, function (value, index){return index}); // Array(100) 
 
 В примере 4.1 все случаи рассмотренные выше
 
-<iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/4/4.1-array-from.html" height="100" width="100%"></iframe>
+<iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/4/4.1-array-from.html" height="162" width="100%"></iframe>
 
 [Открыть пример 4.1 в новой вкладке](/assets/demo/qs/javascript/4/4.1-array-from.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
 
