@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>array add push merge</title>
+</head>
+<body>
+<p>Добавить элементы 'six','seven','eight' в конец массива из другого массива c помощью push и вывести его на экран ['one', 'two', 'three', 'four', 'five']</p>
+<div class="parent">
+    <button class="array-add" id="0">Добавить в конец массива из другого массива</button>
+</div>
+
+<div class="result">
+
+</div>
+
+<script>
+    document.querySelector(".parent").addEventListener('click', (e) => {
+        let array = ['one', 'two', 'three', 'four', 'five'];
+        document.querySelector('.result').innerHTML = '';
+         array.push(...['six','seven','eight']);
+        document.querySelector('.result').innerHTML = array;
+        console.log(array);
+    });
+
+</script>
+</body>
+</html>

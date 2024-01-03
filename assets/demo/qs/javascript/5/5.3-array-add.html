@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>array add</title>
+</head>
+<body>
+<p>Добавить элемент в конец массива и вывести его на экран ['one', 'two', 'three', 'four', 'five']</p>
+<div class="parent">
+    <button class="array-add" id="0">Добавить в конец массива</button>
+</div>
+
+<div class="result">
+
+</div>
+
+<script>
+
+    document.querySelector(".parent").addEventListener('click', (e) => {
+        let array = ['one', 'two', 'three', 'four', 'five'];
+        document.querySelector('.result').innerHTML = '';
+        array[array.length] = 'six';
+        document.querySelector('.result').innerHTML = array[array.length - 1];
+        console.log(array.length);
+    });
+
+</script>
+</body>
+</html>

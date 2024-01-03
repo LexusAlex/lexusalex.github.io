@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>array read</title>
+</head>
+<body>
+<p>Читаем элементы массива ['one', 'two', 'three', 'four', 'five']</p>
+<div class="parent">
+    <button class="array-read" id="0">0</button>
+    <button class="array-read" id="1">1</button>
+    <button class="array-read" id="2">2</button>
+    <button class="array-read" id="3">3</button>
+    <button class="array-read" id="4">4</button>
+    <button class="array-read" id="9999">Неизвестный элемент</button>
+</div>
+
+<div class="result">
+
+</div>
+
+<script>
+
+    document.querySelector(".parent").addEventListener('click', (e) => {
+        let array = ['one', 'two', 'three', 'four', 'five'];
+        document.querySelector('.result').innerHTML = '';
+        document.querySelector('.result').innerHTML = array[e.target.getAttribute('id')];
+        console.log(array[e.target.getAttribute('id')]);
+    });
+
+</script>
+</body>
+</html>

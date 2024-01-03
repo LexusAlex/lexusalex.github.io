@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>array delete pop</title>
+</head>
+<body>
+<p>Удалить последний элемент (pop) из массива и вывести на экран массив и удаленный элемент ['one', 'two', 'three', 'four', 'five']</p>
+<div class="parent">
+    <button class="array-pop" id="0">Удалить последний элемент</button>
+</div>
+
+<div class="result">
+
+</div>
+
+<script>
+
+    document.querySelector(".parent").addEventListener('click', (e) => {
+        let array = ['one', 'two', 'three', 'four', 'five'];
+        document.querySelector('.result').innerHTML = '';
+        let res = array.pop();
+        document.querySelector('.result').innerHTML = array + ' удаленный элемент : ' + res;
+        console.log(res);
+    });
+
+</script>
+</body>
+</html>

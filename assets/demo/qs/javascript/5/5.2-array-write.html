@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>array write</title>
+</head>
+<body>
+<p>Меняем элементы массива ['one', 'two', 'three', 'four', 'five']</p>
+<div class="parent">
+    <button class="array" id="0">one на один</button>
+    <button class="array" id="1">two на два</button>
+    <button class="array" id="2">three на три</button>
+    <button class="array" id="3">four на четыре</button>
+    <button class="array" id="4">five на пять</button>
+</div>
+
+<div class="result">
+
+</div>
+
+<script>
+
+    document.querySelector(".parent").addEventListener('click', (e) => {
+        let array = ['one', 'two', 'three', 'four', 'five'];
+        document.querySelector('.result').innerHTML = '';
+        let new_values = ['один', 'два', 'три', 'четыре', 'пять'];
+        let old_value = array[e.target.getAttribute('id')];
+        let new_value = array[e.target.getAttribute('id')] = new_values[e.target.getAttribute('id')];
+        document.querySelector('.result').innerHTML = 'было '+ old_value +' '+ 'стало ' + new_value;
+        console.log(array[e.target.getAttribute('id')]);
+    });
+
+</script>
+</body>
+</html>
