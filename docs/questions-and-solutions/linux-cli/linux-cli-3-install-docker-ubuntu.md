@@ -72,5 +72,5 @@ sudo chmod 666 /var/run/docker.sock
 
 Как оказалось docker compose так просто не обновляется, его надо обновлять вручную по мануалу [https://docs.docker.com/compose/install/linux/#install-the-plugin-manually](https://docs.docker.com/compose/install/linux/#install-the-plugin-manually)
 
-Только тогда получим самую последнюю версию
+Только тогда получим самую последнюю версию. С обычным docker при этом все в порядке.
 
