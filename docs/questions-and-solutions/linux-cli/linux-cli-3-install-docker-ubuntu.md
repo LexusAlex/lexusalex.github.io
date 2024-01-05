@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Как установить docker и docker-compose в ubuntu 
 date: 2023-06-09 14:30:00 +3
-last_modified_date: 2023-06-09 14:30:00 +3
+last_modified_date: 2024-01-05 15:30:00 +3
 tags:
 - linux
 - docker
@@ -67,4 +67,10 @@ sudo apt-get update && sudo apt-get install ca-certificates curl gnupg && sudo i
 ```shell
 sudo chmod 666 /var/run/docker.sock
 ```
+
+## update 05.01.24
+
+Как оказалось docker compose так просто не обновляется, его надо обновлять вручную по мануалу [https://docs.docker.com/compose/install/linux/#install-the-plugin-manually](https://docs.docker.com/compose/install/linux/#install-the-plugin-manually)
+
+Только тогда получим самую последнюю версию
 
