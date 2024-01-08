@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>promise base</title>
+</head>
+<body>
+<script>
+
+    fetch('https://fakerapi.it/api/v1/books')
+        .then(res => res.json())
+        .then(json => console.log(json.data));
+</script>
+</body>
+</html>
