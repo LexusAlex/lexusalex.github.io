@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>array traversing</title>
+</head>
+<body>
+<script>
+
+    let array = Array.from({length: 30}, function (value, index){return index});
+    for (let i = 0; i < array.length; i+= 1) {
+        //console.log(array[i]);
+    }
+
+    for (let i = array.length - 1; i >= 0; i-= 1) {
+        //console.log(array[i]);
+    }
+
+    for (let number of array) {
+        console.log(number);
+    }
+
+</script>
+</body>
+</html>
