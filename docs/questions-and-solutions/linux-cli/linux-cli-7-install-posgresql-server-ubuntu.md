@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Процесс установки postresql на ubuntu сервер
 date: 2023-07-01 23:30:00 +3
-last_modified_date: 2023-12-03 14:00:00 +3
+last_modified_date: 2024-01-14 14:00:00 +3
 tags:
 - linux
 - postgresql
@@ -55,6 +55,11 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-
 sudo apt update
 ````
 
+Проверяем доступность свежих версий
+````shell
+sudo apt-cache search postgresql | grep postgresql
+````
+
 Ставим postgres, поставится последняя стабильная версия на данный момент
 
 ````shell
@@ -89,26 +94,7 @@ psql
 ALTER USER postgres PASSWORD 'SuperPass2_@A';
 # Теперь можем зайти используя пароль
 sudo -u postgres psql -h localhost -U postgres
-
------------------------------
-## Это в другую статью
-
-# Список баз данных 
-postgres-# \list 
-                                                       List of databases
-   Name    |  Owner   | Encoding | Locale Provider |   Collate   |    Ctype    | ICU Locale | ICU Rules |   Access privileges   
------------+----------+----------+-----------------+-------------+-------------+------------+-----------+-----------------------
- postgres  | postgres | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | 
- template0 | postgres | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =c/postgres          +
-           |          |          |                 |             |             |            |           | postgres=CTc/postgres
- template1 | postgres | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =c/postgres          +
-           |
-           |          |                 |             |             |            |           | postgres=CTc/postgres
-# Подключиться к базе данных
-postgres-# \c <название базы данных>
-# Список таблиц
-postgres-# \dt
-# Информация об определенной таблице
-postgres-# \d django_admin_log
 ````
+
+Базовая установка и настройка на этом завершена.
 
