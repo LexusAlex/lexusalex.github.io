@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>array map 2</title>
+</head>
+<body>
+
+<div id="elements"></div>
+<script>
+
+    let array = Array.from({length: 30}, function (value, index){return index});
+
+    let new_array = array.map(function (value, index, array) {
+        return value + this.test;
+    }, {'test': 8});
+
+    let div = document.getElementById('elements');
+    div.innerHTML += ' array :'+ new_array.toString() + '<br>';
+
+</script>
+</body>
+</html>

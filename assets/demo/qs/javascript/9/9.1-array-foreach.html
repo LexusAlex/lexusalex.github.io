@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>array foreach</title>
+</head>
+<body>
+
+<div id="elements"></div>
+<script>
+
+    let array = Array.from({length: 30}, function (value, index){return index});
+
+    //array.forEach(console.log)
+
+    array.forEach((value, index, array) => {
+        let div = document.getElementById('elements');
+        div.innerHTML += 'value : '+value + ' index : '+index + ' array :'+ array.toString() + '<br>';
+        console.log(value, index , array);
+    });
+
+</script>
+</body>
+</html>

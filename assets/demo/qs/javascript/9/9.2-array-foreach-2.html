@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>array foreach 2</title>
+</head>
+<body>
+
+<div id="elements"></div>
+<script>
+
+    let array = Array.from({length: 30}, function (value, index){return index});
+
+    array.forEach((value, index, array) => {
+        let div = document.getElementById('elements');
+        array[index] = value * 5;
+        div.innerHTML += ' array :'+ array.toString() + '<br>';
+    });
+
+</script>
+</body>
+</html>
