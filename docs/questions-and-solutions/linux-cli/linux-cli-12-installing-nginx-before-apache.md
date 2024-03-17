@@ -47,7 +47,7 @@ service apache2 status
 
 Сразу прописываем хост и порт `127.0.0.1:8080`
 
-````apacheconf
+````text
 # /etc/apache2/sites-available/crm.prod.conf
 <VirtualHost 127.0.0.1:8080>
         ServerName crm.prod
@@ -87,7 +87,7 @@ sudo a2ensite crm.prod.conf
 sudo systemctl reload apache2
 ````
 
-# Ставим nginx
+## Ставим nginx
 
 Поставим последнюю стабильную версию. Команды с официального сайта
 
@@ -111,15 +111,13 @@ sudo systemctl status nginx
 
 Конфиг хоста для 80 порта
 
-````nginx configuration
+````text
 server {
         server_name crm.prod;
         charset off;
         index index.php;
         access_log /var/log/nginx/crm.prod.access.log;
         error_log /var/log/nginx/crm.prod.error.log notice;
-
-
         ssi on;
         set $root_path /var/www/crm.prod/public;
         root $root_path;
@@ -184,7 +182,7 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/privat
 
 Добавим еще одну директиву server в наш конфиг `nginx` и включим `http2` что идет из коробки
 
-````nginx configuration
+````text
 server {
         ssl_certificate /etc/ssl/certs/crm.prod.pem;
         ssl_certificate_key /etc/ssl/private/crm.prod.key;
