@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>array delete shift</title>
+</head>
+<body>
+<p>Добавить элемент на 2 позицию без удаления 'one', 'two', 'three', 'four', 'five' в начало c помощью splice и вывести его на экран ['one', 'two', 'two2', 'three', 'four', 'five']</p>
+<div class="parent">
+    <button class="array-add" id="0">Добавить элемент</button>
+</div>
+<div class="result">
+</div>
+<script>
+    document.querySelector(".parent").addEventListener('click', (e) => {
+        let array = ['one', 'two', 'three', 'four', 'five'];
+        document.querySelector('.result').innerHTML = '';
+        let res = array.splice(2,0,'two2');
+        document.querySelector('.result').innerHTML = array;
+        console.log(res);
+    });
+</script>
+</body>
+</html>

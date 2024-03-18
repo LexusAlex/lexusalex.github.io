@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Работаем с массивом. Читаем, меняем, добавляем и удаляем элементы
 date: 2024-01-03 22:15:00 +3
-last_modified_date: 2024-01-03 22:15:00 +3
+last_modified_date: 2024-03-18 12:40:00 +3
 tags:
 - javascript
 - js
@@ -171,6 +171,22 @@ delelem // one - удаленный элемент
 
 [Открыть пример 5.7 в новой вкладке](/assets/demo/qs/javascript/5/5.7-array-shift.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
 
+## Вставка элемента
+
+Метод `splice()` изменяет содержимое массива, удаляя или заменяя существующие элементы и/или добавляя новые элементы.
+
+```javascript
+let array = ['one', 'two', 'three', 'four', 'five'];
+let splice = `array.splice(2, 0 , 'two2')`;   // one,two,two2,three,four
+splice // two2 - новый элемент вставлен на 2 позицию, 0 элементов удалено
+```
+
+#### Пример 5.7.1 slice
+
+<iframe class="" loading="lazy" title="" src="/assets/demo/qs/javascript/5/5.7.1-array-slice.html" height="162" width="100%"></iframe>
+
+[Открыть пример 5.7.1 в новой вкладке](/assets/demo/qs/javascript/5/5.7.1-array-slice.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
+
 ## Обращение к последнему элементу массива
 
 Чтобы обратится к последнему элементу можно воспользоваться двумя способами
@@ -184,4 +200,8 @@ array.at(-1); // five
 ## Примечания
 
 - Чем больше элементов содержит массив, тем больше времени потребуется для того, чтобы их переместить, больше операций с памятью. То есть методы `shift/unshift` работают медленнее, если важен порядок элементов используем `push`
+
+## Update
+
+- 18.03.2024 - Добавлен раздел "Вставка элемента", где описана возможность вставки элемента в любую часть массива. Спасибо Паше! 
 
