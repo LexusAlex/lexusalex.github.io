@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Как установить mariadb сервер в ubuntu
 date: 2023-06-17 19:00:00 +3
-last_modified_date: 2023-06-17 19:00:00 +3
+last_modified_date: 2024-03-19 09:00:00 +3
 tags:
 - linux
 - mariadb
@@ -65,3 +65,13 @@ mysql -u root -p
 ```
 
 Пользователя можно создать аналогичным способом указанным в статье [https://lexusalex.ru/47-ubuntu-lamp#mariadb](https://lexusalex.ru/47-ubuntu-lamp#mariadb)
+
+Для удаленного подключения под пользователем root, нужно создать учетку удаленного подключения. В идеале точечно указать ip
+
+````sql
+CREATE USER 'root'@'1.1.1.1' IDENTIFIED BY 'superpass'; 
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'1.1.1.1';
+FLUSH PRIVILEGES;
+````
+
+Ну и естественно разрешить запуск со всех хостов.
