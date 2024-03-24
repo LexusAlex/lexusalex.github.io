@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Рассмотрим базовое использование react компонентов
 date: 2024-03-19 23:00:00 +3
-last_modified_date: 2024-03-23 23:00:00 +3
+last_modified_date: 2024-03-24 14:30:00 +3
 tags:
 - javascript
 - react
@@ -95,9 +95,44 @@ import Button from 'react-bootstrap/Button';
 <Button variant="primary" onClick={handleShow}>
     demo
 </Button>
+
 ````
+При этом в готовых компонентах уже зашита и логика работы с ними.
+
+## Импорт и экспорт компонентов
  
-При это в готовых компонентах уже зашита и логика работы с ним.
+По умолчанию компонент должен экспортироваться по дефолту. В одном файле можно объявить несколько компонентов, например
+
+````jsx
+// Component.jsx
+
+export function Component1()
+{
+    return (
+        <>Component 1</>
+    )
+}
+
+export function Component2()
+{
+    return (
+        <>Component 2</>
+    )
+}
+
+export default function Component3()
+{
+    return (
+        <>Component 3</>
+    )
+}
+````
+
+Импорт компонентов в другом файле:
+
+````jsx
+import Component3, {Component1, Component2} from "../Component";
+````
 
 ## Стили компонентов
 
@@ -121,7 +156,7 @@ import style from "./Button.module.css";
     Launch demo modal
 </Button>
 ````
- 
+
 ## Передача данных между компонентами
 
 Очень важно уметь переиспользовать компоненты. Но как передавать данные между компонентами. Это называется props
@@ -197,7 +232,86 @@ export default function Items() {
     </Row>
   )
 }
+````
 
+Таким образом компонент стал гибким и настраиваемым
+
+Так же `jsx` можно передать внутрь как дочерний элемент, к примеру
+
+````jsx
+// Card.jsx - комопонент обертка
+import {Alert} from "react-bootstrap";
+
+export default function Card({children})
+{
+  return (
+    <Alert variant="success">
+      {children}
+    </Alert>
+  )
+}
+
+// Использование
+<Card>
+    <Footer></Footer>
+</Card>
+````
+
+## Условная отрисовка
+
+Очень часто нужно, что-то показывать, а что-то нет, рассмотрим на примере списка
+
+````jsx
+import List from "./List";
+// Lists.jsx - компонент выводящий весь список
+export default function Lists()
+{
+  return (
+    <ul>
+      <List name={'Первый пункт списка'} visible={true}></List>
+      <List name={'Второй пункт списка'} visible={false}></List>
+      <List name={'Третий пункт списка'} visible={true}></List>
+    </ul>
+  )
+}
+
+// Немного прообгрейдим компонент и вынесем данные в массив
+export default function Lists()
+{
+    const data = [
+        ['Первый пункт списка', true],
+        ['Второй пункт списка', false],
+        ['Третий пункт списка', true],
+    ];
+    // Будем проходить циклом
+    const elem = data.map(element => <List name={element[0]} visible={element[1]}></List>);
+    return (<ul>{elem}</ul>
+    )
+}
+
+// Но что если нужно вывести определенные активные элементы списка
+export default function Lists()
+{
+    const data = [
+        ['Первый пункт списка', true],
+        ['Второй пункт списка', false],
+        ['Третий пункт списка', true],
+    ];
+    // Отфильтруем нужные нам элементы
+    const filter = data.filter(element => element[1] === false);
+    // Так же выводим как и в примере выше
+    const elem = filter.map(element => <List key={element[0]} name={element[0]} visible={element[1]}></List>);
+    return (<ul>{elem}</ul>
+    )
+}
+
+// List.jsx- элемент списка
+export default function List ({name, visible})
+{
+    // Здесь проверяем банальным тернарным оператором
+    let item = (visible ? <del>{name}</del> : name);
+    return <li>{item}</li>
+}
 ````
 
 ## Особенности компонентов
@@ -206,5 +320,7 @@ export default function Items() {
 - Мы описываем что хотим видеть в компонентах - декларативное программирование
 - Компонент нужно всегда экспортировать по дефолту
 - в `{}` внутри компонента - это любой валидный js код, который выводит либо строку, либо другой react компонент
-- Между компонентами можно передавать данные с помощью `props`
-- Удобно использовать композицию элементов
+- Между компонентами можно передавать данные с помощью `props`, так же как и в обычной функции можно указать дефолтное значение
+- Удобно использовать композицию элементов.я
+- У каждого элемента должен быть уникальный ключ строка или число, чтобы react знал что перерисовывать `key={element[0]}`, главное чтобы это был статичный id
+- Каждый компонент должен быть чистым - то есть при одинаковых входных параметров должен быть один и тот же результат. Нужно жить без глобальных переменных. 
