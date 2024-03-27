@@ -136,7 +136,7 @@ tags:
   <img src="/assets/images/questions/html-css/1/1.5.png" alt="reset"  data-action="zoom" width="400" height="400">
 </figure>
 
-
+## Области (grid-template-areas)
 
 
 -------------------------
