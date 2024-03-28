@@ -119,9 +119,30 @@ Grid представляет собой набор горизонтальных
 
 ## Ряды grid-template-rows
 
-### grid-auto-rows
+Количество и ширина строк настраивается аналогично `grid-template-columns`
 
-Задается автоматическая ширина неявных гридов, например:
+````css
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 100vh);
+    grid-gap: 5px;
+}
+.e-6 {
+    grid-column: 2 / 5;
+}
+````
+
+<figure>
+<figcaption>Рисунок 1.7 </figcaption>
+  <img src="/assets/images/questions/html-css/1/1.7.png" alt="reset"  data-action="zoom" width="" height="400">
+</figure>
+
+### grid-auto-rows и grid-auto-columns
+
+По умолчанию ширина и высота неявных гридов = высоте контента (текст + отступы).
+
+Чтоб контролировать размеры строк и столбцов, в неявном гриде есть свойства `grid-auto-rows / grid-auto-columns`
 
 ````css
 .container {
@@ -136,7 +157,33 @@ Grid представляет собой набор горизонтальных
 }
 ````
 
-### grid-auto-columns
+Еще пример:
+
+````html
+<div class="container">
+    <div class="element e-1">1</div>
+    <div class="element e-2">2</div>
+    <div class="element e-3">3</div>
+    <div class="element e-4">4</div>
+    <div class="element e-5">5</div>
+    <div class="element e-6">6</div>
+</div>
+````
+
+````css
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 100px);
+    /*Осталось 2 необработанные староки, чтобы не полагатся на контент, поставим размер ряда на всю ширину контента*/
+    grid-auto-rows: 100vh;
+}
+````
+
+<figure>
+<figcaption>Рисунок 1.6 неявные гриды</figcaption>
+  <img src="/assets/images/questions/html-css/1/1.6.png" alt="reset"  data-action="zoom" width="" height="400">
+</figure>
 
 ## Линии (grid-column-start и grid-column-end) и (grid-row-start и grid-row-end)
 
@@ -193,7 +240,7 @@ Grid представляет собой набор горизонтальных
 
 <figure>
 <figcaption>Рисунок 1.3 Расположение элементов по линиям</figcaption>
-  <img src="/assets/images/questions/html-css/1/1.3.png" alt="reset"  data-action="zoom" width="400" height="400">
+  <img src="/assets/images/questions/html-css/1/1.3.png" alt="reset"  data-action="zoom" width="" height="400">
 </figure>
 
 ## Ячейка
@@ -221,13 +268,21 @@ Grid представляет собой набор горизонтальных
 
 <figure>
 <figcaption>Рисунок 1.4 отступы между ячейками</figcaption>
-  <img src="/assets/images/questions/html-css/1/1.4.png" alt="reset"  data-action="zoom" width="400" height="400">
+  <img src="/assets/images/questions/html-css/1/1.4.png" alt="reset"  data-action="zoom" width="" height="400">
 </figure>
 
 <figure>
 <figcaption>Рисунок 1.5 отступы между ячейками</figcaption>
-  <img src="/assets/images/questions/html-css/1/1.5.png" alt="reset"  data-action="zoom" width="400" height="400">
+  <img src="/assets/images/questions/html-css/1/1.5.png" alt="reset"  data-action="zoom" width="" height="400">
 </figure>
+
+### Пример 1.1 Раскладка элементов по линиям
+
+<iframe class="" loading="lazy" title="" src="/assets/demo/qs/html-css/1/1.1-grid.html" height="100" width="100%"></iframe>
+
+[Открыть пример 1.1 в новой вкладке](/assets/demo/qs/html-css/1/1.1-grid.html){:target="_blank"}{:rel="nofollow noopener noreferrer"}
+
+
 
 
 
