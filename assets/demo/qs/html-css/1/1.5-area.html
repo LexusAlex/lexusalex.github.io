@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Area</title>
+</head>
+<style>
+    .container {
+        display: grid;
+        /*
+        grid-template:
+              "header header" 100px
+              "aside main"
+              "footer footer" 100px
+              / 20vh auto;
+              */
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: 50px 350px 50px;
+        grid-template-areas:
+        "h h h h h h h h h h h h"
+        ". . m m c c c c c c . ."
+        "f f f f f f f f f f f f";
+        gap: 7px;
+    }
+
+    @media screen and (max-width: 640px) {
+        .container {
+            grid-template-areas:
+            "m m m m m m h h h h h h"
+            "c c c c c c c c c c c c"
+            "f f f f f f f f f f f f";
+        }
+    }
+
+    .header {
+        grid-area: h;
+    }
+    .aside {
+        grid-area: m;
+    }
+    .main {
+        grid-area: c;
+    }
+    .footer {
+        grid-area: f;
+    }
+
+    .element {
+        padding: 5px;
+        font-size: 21px;
+        background: #d6eebe;
+        border: 2px dashed #aaa;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="element header">header</div>
+        <div class="element aside">aside</div>
+        <div class="element main">main</div>
+        <div class="element footer">footer</div>
+    </div>
+</body>
+</html>

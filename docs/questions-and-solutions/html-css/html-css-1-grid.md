@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Изучаем grid
 date: 2024-03-26 14:00:00 +3
-last_modified_date: 2024-03-28 14:00:00 +3
+last_modified_date: 2024-03-29 14:00:00 +3
 tags:
 - css
 - questions-and-solutions
@@ -135,7 +135,7 @@ Grid представляет собой набор горизонтальных
 
 <figure>
 <figcaption>Рисунок 1.7 </figcaption>
-  <img src="/assets/images/questions/html-css/1/1.7.png" alt="reset"  data-action="zoom" width="" height="400">
+  <img src="/assets/images/questions/html-css/1/1.7.png" alt="reset"  data-action="zoom" width="" height="">
 </figure>
 
 ### grid-auto-rows и grid-auto-columns
@@ -154,6 +154,8 @@ Grid представляет собой набор горизонтальных
     grid-auto-rows: 100vh;
     /*Строки минимум 50px в высоту максимум auto*/
     grid-auto-rows: minmax(50px,auto);
+    /*Если есть контент то минимальная высота строки 100px максимальная неограниченно*/
+    grid-auto-rows: minmax(100px, auto);
 }
 ````
 
@@ -184,6 +186,8 @@ Grid представляет собой набор горизонтальных
 <figcaption>Рисунок 1.6 неявные гриды</figcaption>
   <img src="/assets/images/questions/html-css/1/1.6.png" alt="reset"  data-action="zoom" width="" height="400">
 </figure>
+
+Еще пример создания адаптивных колонок
 
 ## Линии (grid-column-start и grid-column-end) и (grid-row-start и grid-row-end)
 
@@ -250,6 +254,12 @@ Grid представляет собой набор горизонтальных
 ## Область
 
 Грид область объединяет несколько ячеек внутри строки или колонки
+
+### grid-area
+
+Существует еще один способ задания областей - это `grid-area`.
+
+
 
 ## Отступы grid-column-gap и grid-row-gap
 
