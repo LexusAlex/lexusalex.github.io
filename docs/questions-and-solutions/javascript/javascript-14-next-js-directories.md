@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Типы директорий в next.js
 date: 2024-04-03 23:00:00 +3
-last_modified_date: 2024-04-03 23:00:00 +3
+last_modified_date: 2024-04-04 23:00:00 +3
 tags:
 - javascript
 - next-js
@@ -38,6 +38,35 @@ tags:
 
 ## Директория app
 
-## Директория pages
+app router
 
-TODO
+Это директория `app` с файлами:
+
+````jsx
+// app/layout.jsx
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+    <body>{children}</body>
+    </html>
+  )
+}
+
+// app/page.jsx
+export default function Page() {
+    return <h1>Hello</h1>
+}
+````
+
+## Директория pages
+ 
+pages router
+
+````jsx
+// pages/index.jsx
+export default function Index() {
+    return <h1>index</h1>
+}
+````
+
+Выбор роутера за вами, но предпочтительней app router
