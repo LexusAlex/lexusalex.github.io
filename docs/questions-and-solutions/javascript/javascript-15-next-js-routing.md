@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Маршруты в next.js
 date: 2024-04-06 12:00:00 +3
-last_modified_date: 2024-04-07 12:00:00 +3
+last_modified_date: 2024-04-07 13:00:00 +3
 tags:
 - javascript
 - next-js
