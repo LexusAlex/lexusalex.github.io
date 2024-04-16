@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Местоимения в английском
 date: 2024-04-14 23:00:00 +3
-last_modified_date: 2024-04-15 23:00:00 +3
+last_modified_date: 2024-04-16 23:00:00 +3
 tags:
 - english
 - questions-and-solutions
@@ -31,17 +31,21 @@ tags:
 
 | Именительные падеж <br/>(Кто?, Что?) | Объектный падеж <br/>(Кому?, Кого?, Кем?) | Притяжательный падеж <br/>(Чей?) <br/>Местоимение + существительное | Притяжательный падеж <br/>Абсолютная форма |     Возвратные      |
 |:------------------------------------:|:-----------------------------------------:|:-------------------------------------------------------------------:|:------------------------------------------:|:-------------------:|
-|             [I](#i) — я              |              me — мне, меня               |                           [my](#my) — мой                           |                 mine - мой                 |       Myself        |
-|            [he](#he) — он            |              him — ему, его               |                         	[his](#his) — его                          |                 his — его                  |      	Himself       |
-|          [she](#she) — она           |               her — ей, ее                |                          [her](#her) — ее                           |                 hers - ee                  |      	Herself       |
-|        [it](#it) — оно (это)         |            it — ему/ей, его/ее            |                        	[its](#its) — его/ее                        |                     -                      |          -          |
-|            [we](#we) — мы            |               us — нам, нас               |                          [our](#our) — наш                          |                 ours - наш                 |      Ourselves      |  
-|         [you](#you) — вы, ты         |        you — вам, вас, тебя, тебе         |                   	[your](#your) — ваш, твой,свои                   |             yours — ваш, твой              | Yourself,Yourselves |
-|         [they](#they) — они          |               them — им, их               |                        [their](#their) — их                         |                theirs - их                 |     Themselves      |
+|             [I](#i) — я              |           [me](#me) — мне, меня           |                           [my](#my) — мой                           |                 mine - мой                 |       Myself        |
+|            [he](#he) — он            |          [him](#him) — ему, его           |                         	[his](#his) — его                          |                 his — его                  |      	Himself       |
+|          [she](#she) — она           |           [her](#her) — ей, ее            |                          [her](#her) — ее                           |                 hers - ee                  |      	Herself       |
+|        [it](#it) — оно (это)         |        [it](#it) — ему/ей, его/ее         |                        	[its](#its) — его/ее                        |                     -                      |          -          |
+|            [we](#we) — мы            |           [us](#us) — нам, нас            |                          [our](#our) — наш                          |                 ours - наш                 |      Ourselves      |  
+|         [you](#you) — вы, ты         |    [you](#you) — вам, вас, тебя, тебе     |                   	[your](#your) — ваш, твой,свои                   |             yours — ваш, твой              | Yourself,Yourselves |
+|         [they](#they) — они          |          [them](#them) — им, их           |                        [their](#their) — их                         |                theirs - их                 |     Themselves      |
 
  
 ## I
 1. I do my work well - Я делаю мою работу хорошо
+2. My name is Victor. I am your new manager. Меня зовут Виктор. Я ваш новый менеджер
+
+## Me
+1. I came to Moscow at five o'clock. My friends met me at the station. Я приехал в Москву в пять часов. Мои друзья встретили меня на вокзале.
 
 ## My
 1. I love my family - Я люблю свою семью.
@@ -51,18 +55,23 @@ tags:
 2. He likes his job - Он любит свои работу
 3. He washes his car every week - Он моет свою машину каждую неделю
 
+## Him
+1. He loves you. Do you love him? Он любит тебя. Ты любишь его?
+
 ## His
 1. He loves his girl. Он любит свою девочку.
 
 ## She
 1. She checks her e-mail regularly - Она регулярно проверяет свою почту
 2. Is she sorry for her friends? - Ей жаль своих друзей?
+3. Mrs. Grant is our teacher. She is very competent. Миссис Грант наш учитель. Она очень компетентна.
 
 ## Her
 1. She cares for her boyfriend - Она заботится о своем друге.
 
 ## It
 1. I like English, but I find it difficult - Мне нравится английский, но я нахожу его сложным 
+2. Denis has a new bike. It is cool. He is happy. У Дениса появился новый велосипед. Это круто. Он счастлив.
 
 ## Its
 1. It`s a very old theatre. Its history is very interesting. Это очень старый театр. Его история очень интересная
@@ -71,6 +80,10 @@ tags:
 
 ## We
 1. We know our duties - Мы знаем свои обязанности.
+2. Fred and I are cousins. We are good friends. Мы с фредом двоюродные братья. Мы хорошие друзья
+
+## Us
+1. My Granny likes to come to our place. She spends her weekends with us. Моя бабушка любит приезжать к нам. Она проводит с нами выходные
 
 ## Our
 1. We must look after our children - Мы должны заботиться о наших детях
@@ -87,8 +100,13 @@ tags:
 
 ## They
 1. They often visit their relatives - Они часто навещают своих родственников
+2. The pupils are in class now. They are taking test. Ученики сейчас в классе. Они сдают тест
+
+## Them
+1. Nobody knows these people. Do you know them? Никто не знает этих людей. Ты знаешь их
 
 ## Their
 1. They are worried about their future. Они беспокоятся о своем будущем
+2. Children should obey their parents. Did you obey your parents? Дети подчиняются их родителям. Ты подчиняешься своим родителям? 
 
 
