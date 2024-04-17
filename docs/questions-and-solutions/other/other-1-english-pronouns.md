@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Местоимения в английском
 date: 2024-04-14 23:00:00 +3
-last_modified_date: 2024-04-16 23:00:00 +3
+last_modified_date: 2024-04-17 23:00:00 +3
 tags:
 - english
 - questions-and-solutions
@@ -49,6 +49,7 @@ tags:
 
 ## My
 1. I love my family - Я люблю свою семью.
+2. I am a good pupil. My marks are excellent. Я хороший ученик. У меня отличные оценки.
 
 ## He
 1. He seldom gives interviews - Он редко дает интервью
@@ -60,6 +61,7 @@ tags:
 
 ## His
 1. He loves his girl. Он любит свою девочку.
+2. Martin hopes that his life will be happy. Мартин надеется, что его жизнь будет счастливой.
 
 ## She
 1. She checks her e-mail regularly - Она регулярно проверяет свою почту
@@ -68,10 +70,12 @@ tags:
 
 ## Her
 1. She cares for her boyfriend - Она заботится о своем друге.
+2. Nina spends her holidays in the South. Нина проводит свой отпуск на юге.
 
 ## It
 1. I like English, but I find it difficult - Мне нравится английский, но я нахожу его сложным 
 2. Denis has a new bike. It is cool. He is happy. У Дениса появился новый велосипед. Это круто. Он счастлив.
+3. Would you like me to help you? I am ready to do it. Хотели бы вы, чтобы я вам помог? Я готов сделать это
 
 ## Its
 1. It`s a very old theatre. Its history is very interesting. Это очень старый театр. Его история очень интересная
@@ -97,6 +101,7 @@ tags:
 1. You love your friends - Ты любишь своих друзей
 2. You can leave your things here - Вы можете оставить свои вещи здесь
 3. Mind your own business - Занимайся своим делом
+4. Where is your travel card? Miss? I've lost it. Где ваш проездной билет? Я ее потеряла.
 
 ## They
 1. They often visit their relatives - Они часто навещают своих родственников
