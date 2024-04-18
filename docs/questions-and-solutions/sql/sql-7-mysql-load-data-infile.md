@@ -1,8 +1,8 @@
 ---
 layout: default
 nav_order: 7
-permalink: sql-7-load-data-infile
-title: Загрузка данных из файла LOAD DATA IN FILE
+permalink: sql-7-mysql-load-data-infile
+title: Загрузка данных из файла LOAD DATA IN FILE в mysql
 parent: sql
 grand_parent: Вопросы и решения
 has_children: true
@@ -15,7 +15,7 @@ tags:
   - questions-and-solutions
 ---
 
-# Загрузка данных из файла LOAD DATA IN FILE
+# Загрузка данных из файла LOAD DATA IN FILE в mysql
 {: .no_toc }
 
 ```sql

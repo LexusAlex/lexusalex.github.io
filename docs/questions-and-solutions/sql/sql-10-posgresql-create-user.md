@@ -1,8 +1,8 @@
 ---
 layout: default
 nav_order: 10
-permalink: sql-10-create-user-postgresql
-title: Создание пользователя в postgresql
+permalink: sql-10-postgresql-create-user
+title: Создание пользователя в postgresql в postgresql
 parent: sql
 grand_parent: Вопросы и решения
 has_children: true

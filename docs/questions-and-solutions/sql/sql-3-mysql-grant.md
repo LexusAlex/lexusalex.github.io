@@ -1,12 +1,12 @@
 ---
 layout: default
 nav_order: 3
-permalink: sql-3-grant
-title: Права пользователей, команда GRANT
+permalink: sql-3-mysql-grant
+title: Права пользователей, команда GRANT в mysql
 parent: sql
 grand_parent: Вопросы и решения
 has_children: true
-description: Работа с правами пользователей, команда GRANT
+description: Работа с правами пользователей, команда GRANT в mysql
 date: 2023-06-18 23:00:00 +3
 last_modified_date: 2023-06-18 23:00:00 +3
 tags:
@@ -15,7 +15,7 @@ tags:
   - questions-and-solutions
 ---
 
-# Права пользователей, команда GRANT
+# Права пользователей, команда GRANT в mysql
 {: .no_toc }
 
 Итак, мы создали [пользователей](https://lexusalex.ru/sql-2-create-user), теперь их нужно наделить нужными правами:

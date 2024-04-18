@@ -1,8 +1,8 @@
 ---
 layout: default
 nav_order: 6
-permalink: sql-6-insert-into
-title: Вставка данных c помощью INSERT
+permalink: sql-6-mysql-insert-into
+title: Вставка данных c помощью INSERT в mysql
 parent: sql
 grand_parent: Вопросы и решения
 has_children: true
@@ -15,7 +15,7 @@ tags:
   - questions-and-solutions
 ---
 
-# Вставка данных c помощью INSERT
+# Вставка данных c помощью INSERT в mysql
 {: .no_toc }
 
 Вставка по формуле таблица - столбцы - значения

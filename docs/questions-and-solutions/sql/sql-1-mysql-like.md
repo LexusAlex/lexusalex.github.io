@@ -1,8 +1,8 @@
 ---
 layout: default
 nav_order: 1
-permalink: sql-1-like
-title: Как найти строку по шаблону с помощью оператора LIKE
+permalink: sql-1-mysql-like
+title: Как найти строку по шаблону с помощью оператора LIKE в mysql
 parent: sql
 grand_parent: Вопросы и решения
 has_children: true
@@ -15,7 +15,7 @@ tags:
   - questions-and-solutions
 ---
 
-# Как найти строку по шаблону с помощью оператора LIKE
+# Как найти строку по шаблону с помощью оператора LIKE в mysql
 {: .no_toc }
 
 Оператор `LIKE` используется в выражениях sql для поиска строк подходящих под шаблон.

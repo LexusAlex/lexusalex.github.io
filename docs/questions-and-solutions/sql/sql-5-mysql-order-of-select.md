@@ -1,8 +1,8 @@
 ---
 layout: default
 nav_order: 5
-permalink: sql-5-order-of-select
-title: Порядок выполнения SELECT запроса
+permalink: sql-5-mysql-order-of-select
+title: Порядок выполнения SELECT запроса в mysql
 parent: sql
 grand_parent: Вопросы и решения
 has_children: true
@@ -15,7 +15,7 @@ tags:
   - questions-and-solutions
 ---
 
-# Порядок выполнения SELECT запроса
+# Порядок выполнения SELECT запроса в mysql
 {: .no_toc }
 
 В каком же порядке выполняется sql запрос

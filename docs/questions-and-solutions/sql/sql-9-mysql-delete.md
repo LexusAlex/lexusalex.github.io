@@ -1,8 +1,8 @@
 ---
 layout: default
 nav_order: 9
-permalink: sql-9-update
-title: Удаление строк таблицы, команда DELETE/TRUNCATE
+permalink: sql-9-mysql-delete
+title: Удаление строк таблицы, команда DELETE/TRUNCATE в mysql
 parent: sql
 grand_parent: Вопросы и решения
 has_children: true
@@ -15,7 +15,7 @@ tags:
 - questions-and-solutions
 ---
 
-# Удаление строк таблицы, команда DELETE/TRUNCATE
+# Удаление строк таблицы, команда DELETE/TRUNCATE в mysql
 {: .no_toc }
 
 ````sql

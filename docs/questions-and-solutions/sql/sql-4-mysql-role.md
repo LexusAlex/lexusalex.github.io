@@ -1,8 +1,8 @@
 ---
 layout: default
 nav_order: 4
-permalink: sql-4-role
-title: Управление ролями, создание и использование
+permalink: sql-4-mysql-role
+title: Управление ролями, создание и использование в mysql
 parent: sql
 grand_parent: Вопросы и решения
 has_children: true
@@ -15,7 +15,7 @@ tags:
   - questions-and-solutions
 ---
 
-# Управление ролями, создание и использование
+# Управление ролями, создание и использование в mysql
 {: .no_toc }
 
 Роль - это набор привилегий который можно применить к пользователю. 

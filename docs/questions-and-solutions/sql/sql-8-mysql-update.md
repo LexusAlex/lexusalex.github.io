@@ -1,8 +1,8 @@
 ---
 layout: default
 nav_order: 8
-permalink: sql-8-update
-title: Обновление строк таблицы, команда UPDATE
+permalink: sql-8-mysql-update
+title: Обновление строк таблицы, команда UPDATE в mysql
 parent: sql
 grand_parent: Вопросы и решения
 has_children: true
@@ -15,7 +15,7 @@ tags:
 - questions-and-solutions
 ---
 
-# Обновление строк таблицы, команда UPDATE
+# Обновление строк таблицы, команда UPDATE в mysql
 {: .no_toc }
 
 Оператор UPDATE работает по шаблону `UPDATE Таблица Условие Сортировка Лимит`

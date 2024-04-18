@@ -1,8 +1,8 @@
 ---
 layout: default
 nav_order: 2
-permalink: sql-2-create-user
-title: Работа с пользователями , команда CREATE USER
+permalink: sql-2-mysql-create-user
+title: Работа с пользователями , команда CREATE USER в mysql
 parent: sql
 grand_parent: Вопросы и решения
 has_children: true
@@ -15,7 +15,7 @@ tags:
   - questions-and-solutions
 ---
 
-# Работа с пользователями , команда CREATE USER
+# Работа с пользователями , команда CREATE USER в mysql
 {: .no_toc }
 
 Самое важное, что нужно понимать, что пользователь в mysql представляет пару имя - удаленный хост с которого он подключается
