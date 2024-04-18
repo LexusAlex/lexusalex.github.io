@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Местоимения в английском
 date: 2024-04-14 23:00:00 +3
-last_modified_date: 2024-04-17 23:00:00 +3
+last_modified_date: 2024-04-18 23:00:00 +3
 tags:
 - english
 - questions-and-solutions
@@ -46,6 +46,7 @@ tags:
 
 ## Me
 1. I came to Moscow at five o'clock. My friends met me at the station. Я приехал в Москву в пять часов. Мои друзья встретили меня на вокзале.
+2. The secret is between you and me. Секрет между тобой и мной.
 
 ## My
 1. I love my family - Я люблю свою семью.
@@ -58,6 +59,8 @@ tags:
 
 ## Him
 1. He loves you. Do you love him? Он любит тебя. Ты любишь его?
+2. He wanted her to go to a movie with him. Он хотел, чтобы она пошла с ним в кино.
+3. His boss considered him the best worker. His boss considered him the best worker
 
 ## His
 1. He loves his girl. Он любит свою девочку.
@@ -81,6 +84,7 @@ tags:
 1. It`s a very old theatre. Its history is very interesting. Это очень старый театр. Его история очень интересная
 2. I read this book, but I don't remember its author. Я читаю книгу, но не помню ее автора
 3. It's a good dictionary, but its price is very high. Это хороший словарь, но дорогой
+4. Sveta loves her dog. Its name is Rex. Света любит свою собаку. Ее имя Рекс. 
 
 ## We
 1. We know our duties - Мы знаем свои обязанности.
@@ -109,6 +113,7 @@ tags:
 
 ## Them
 1. Nobody knows these people. Do you know them? Никто не знает этих людей. Ты знаешь их
+2. They are nice people. I like them. Они прекрасные люди. Они мне нравятся.
 
 ## Their
 1. They are worried about their future. Они беспокоятся о своем будущем
