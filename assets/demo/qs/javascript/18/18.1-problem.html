@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise start</title>
+</head>
+<body>
+      <script>
+          function request(url, success, error) {
+             const xhr = new XMLHttpRequest();
+
+             xhr.open('GET', url); // инициализация запроса (async)
+             xhr.send(); // отправка запроса
+             xhr.onload = () => {
+               if (xhr.status !== 200) {
+                 return xhr.statusText;
+               } else {
+                 const result = JSON.parse(xhr.response).data[0];
+                 success(result);
+               }
+             };
+
+             xhr.onerror = () => {
+               const e = new Error('Failed request');
+               error(e);
+             };
+           }
+
+          // Запросы последующий зависит от предыдущих
+          // 1. https://fakerapi.it/api/v1/addresses?_quantity=1
+          // 2. https://fakerapi.it/api/v1/custom?_quantity=1&city=city&streetName=streetName
+          // 3. https://fakerapi.it/api/v1/custom?_quantity=1&phone=phone&
+
+           function getInfo() {
+             request(
+               'https://fakerapi.it/api/v1/addresses?_quantity=1',
+               (result) => {
+                 console.log(result);
+                 request(
+                   'https://fakerapi.it/api/v1/custom?_quantity=1&city=city&streetName=streetName',
+                   (result2) => {
+                     console.log(result2);
+                     request(
+                       'https://fakerapi.it/api/v1/custom?_quantity=1&phone=phone&',
+                       (result3) => {
+                         console.log(result3);
+                         request("https://fakerapi.it/api/v1/addresses?_quantity=1", (result4) => {
+                             console.log(result4);
+                             request("https://fakerapi.it/api/v1/images?_quantity=1&_type=kittens&_height=300", (result5) => {
+                                 console.log(result5);
+                             }, (err5) => {
+                                 console.log(err5);
+                             })
+                         }, (err4) => {
+                             console.log(err4);
+                         })
+                       },
+                       (err3) => {
+                         console.error(err3);
+                       }
+                     );
+                   },
+                   (err2) => {
+                     console.error(err2);
+                   }
+                 );
+               },
+               (err) => {
+                 console.error(err);
+               }
+             );
+           }
+
+           getInfo();
+      </script>
+</body>
+</html>

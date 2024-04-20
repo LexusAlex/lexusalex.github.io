@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise</title>
+</head>
+<body>
+<script>
+    const promise = new Promise((resolve) => {
+        resolve(10);
+    })
+
+    promise.then((res) => {
+        return res;
+    }).then((res) => {
+        res = res + 10;
+        if (res === 20) {
+            throw Error('some error');
+        }
+        console.log(res);
+        return res;
+    }).then((res) => {
+        console.log(res);
+        return res + 10;
+    }).catch((error) => {
+        console.log(error);
+    }).finally(() => {
+        console.log('finally');
+    })
+</script>
+</body>
+</html>

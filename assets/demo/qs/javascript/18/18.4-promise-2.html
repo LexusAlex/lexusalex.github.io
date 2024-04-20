@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise 2</title>
+</head>
+<body>
+   <script>
+      const p = new Promise((resolve, reject) => {
+          setTimeout(() => {
+              // fetch любой ассинхронный код
+              resolve({id: 1, name: 'Test'});
+          }, 3000)
+      })
+
+      p.then((res) => {
+          console.log(res);
+          return res;
+      }).then((res) => {
+          setTimeout(() => {
+              // fetch
+              console.log({id: 2, name: 'Test2'});
+          }, 3000)
+          return res;
+      })
+
+   </script>
+</body>
+</html>
