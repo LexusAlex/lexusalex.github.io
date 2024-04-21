@@ -27,7 +27,7 @@ tags:
 </details>
 ---
 
-Общая таблица.
+Общая таблица личные и притяжательные местоимения.
 
 | Именительные падеж <br/>(Кто?, Что?) | Объектный падеж <br/>(Кому?, Кого?, Кем?) | Притяжательный падеж <br/>(Чей?) <br/>Местоимение + существительное | Притяжательный падеж <br/>Абсолютная форма |     Возвратные      |
 |:------------------------------------:|:-----------------------------------------:|:-------------------------------------------------------------------:|:------------------------------------------:|:-------------------:|
@@ -37,7 +37,7 @@ tags:
 |        [it](#it) — оно (это)         |        [it](#it) — ему/ей, его/ее         |                        	[its](#its) — его/ее                        |                     -                      |          -          |
 |            [we](#we) — мы            |           [us](#us) — нам, нас            |                          [our](#our) — наш                          |                 ours - наш                 |      Ourselves      |  
 |         [you](#you) — вы, ты         |    [you](#you) — вам, вас, тебя, тебе     |                   	[your](#your) — ваш, твой,свои                   |             yours — ваш, твой              | Yourself,Yourselves |
-|         [they](#they) — они          |          [them](#them) — им, их           |                        [their](#their) — их                         |                theirs - их                 |     Themselves      |
+|         [they](#they) — они          |          [them](#them) — им, их           |                        [their](#their) — их                         |           [theirs](#theirs) - их           |     Themselves      |
 
  
 ## I
@@ -47,12 +47,14 @@ tags:
 ## Me
 1. I came to Moscow at five o'clock. My friends met me at the station. Я приехал в Москву в пять часов. Мои друзья встретили меня на вокзале.
 2. The secret is between you and me. Секрет между тобой и мной.
-3. I must hurry. My friend is waiting for me. Я тороплюсь. Мой друг опаздывает ко мне. 
+3. I must hurry. My friend is waiting for me. Я тороплюсь. Мой друг опаздывает ко мне.
+4. They called me yesterday. Они звонили мне вчера.
 
 ## My
 1. I love my family - Я люблю свою семью.
 2. I am a good pupil. My marks are excellent. Я хороший ученик. У меня отличные оценки.
 3. That's my email. I have to read it. Это мое письмо я должен его прочитать.
+4. I lost my keys. I hope I left them at the office. Я потерял мои ключи. Я надеюсь что оставил их в офисе.
 
 ## He
 1. He seldom gives interviews - Он редко дает интервью
@@ -63,6 +65,7 @@ tags:
 1. He loves you. Do you love him? Он любит тебя. Ты любишь его?
 2. He wanted her to go to a movie with him. Он хотел, чтобы она пошла с ним в кино.
 3. His boss considered him the best worker. His boss considered him the best worker
+4. He asked him (Max) to take his car, because his was out od order. Он попросил его (Макса) взять его машину, потому что его машина вышла из строя.
 
 ## His
 1. He loves his girl. Он любит свою девочку.
@@ -77,6 +80,7 @@ tags:
 1. She cares for her boyfriend - Она заботится о своем друге.
 2. Nina spends her holidays in the South. Нина проводит свой отпуск на юге.
 3. When you see Susan, give her my best regards. Когда увидишь Сюзан передай ее наилучшие пожелания.
+4. She invited us to her party. Она была приглашена на нашу вечеринку.
 
 ## It
 1. I like English, but I find it difficult - Мне нравится английский, но я нахожу его сложным 
@@ -98,9 +102,11 @@ tags:
 ## We
 1. We know our duties - Мы знаем свои обязанности.
 2. Fred and I are cousins. We are good friends. Мы с фредом двоюродные братья. Мы хорошие друзья
+3. We were happy about it. Мы были рады этому
 
 ## Us
 1. My Granny likes to come to our place. She spends her weekends with us. Моя бабушка любит приезжать к нам. Она проводит с нами выходные
+2. Let us go to the cinema, shall we. Давайте сходим в кино?
 
 ## Our
 1. We must look after our children - Мы должны заботиться о наших детях
@@ -125,9 +131,21 @@ tags:
 1. Nobody knows these people. Do you know them? Никто не знает этих людей. Ты знаешь их
 2. They are nice people. I like them. Они прекрасные люди. Они мне нравятся.
 3. They may be late. Don't wait for them. Они могут опоздать. Не ждите их.
+4. I talked to them with pleasure. Я разговаривал с ними с удовольствием
 
 ## Their
 1. They are worried about their future. Они беспокоятся о своем будущем
 2. Children should obey their parents. Did you obey your parents? Дети подчиняются их родителям. Ты подчиняешься своим родителям? 
+
+## Theirs
+1. They told them (their friends) that their house was not theirs. Они сказали им (своим друзьям), что их дом им не принадлежит.
+
+Указательные местоимения
+
+|       this       | that     | these | those |
+|:----------------:|----------|-------|-------|
+| Этот<br/>Эта,это | То,та,то | Эти   | Те    |
+
+
 
 
