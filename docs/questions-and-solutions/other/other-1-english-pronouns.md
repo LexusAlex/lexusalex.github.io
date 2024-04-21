@@ -27,7 +27,7 @@ tags:
 </details>
 ---
 
-Общая таблица личные и притяжательные местоимения.
+## Личные и притяжательные местоимения.
 
 | Именительные падеж <br/>(Кто?, Что?) | Объектный падеж <br/>(Кому?, Кого?, Кем?) | Притяжательный падеж <br/>(Чей?) <br/>Местоимение + существительное | Притяжательный падеж <br/>Абсолютная форма |     Возвратные      |
 |:------------------------------------:|:-----------------------------------------:|:-------------------------------------------------------------------:|:------------------------------------------:|:-------------------:|
@@ -40,49 +40,49 @@ tags:
 |         [they](#they) — они          |          [them](#them) — им, их           |                        [their](#their) — их                         |           [theirs](#theirs) - их           |     Themselves      |
 
  
-## I
+### I
 1. I do my work well - Я делаю мою работу хорошо
 2. My name is Victor. I am your new manager. Меня зовут Виктор. Я ваш новый менеджер
 
-## Me
+### Me
 1. I came to Moscow at five o'clock. My friends met me at the station. Я приехал в Москву в пять часов. Мои друзья встретили меня на вокзале.
 2. The secret is between you and me. Секрет между тобой и мной.
 3. I must hurry. My friend is waiting for me. Я тороплюсь. Мой друг опаздывает ко мне.
 4. They called me yesterday. Они звонили мне вчера.
 
-## My
+### My
 1. I love my family - Я люблю свою семью.
 2. I am a good pupil. My marks are excellent. Я хороший ученик. У меня отличные оценки.
 3. That's my email. I have to read it. Это мое письмо я должен его прочитать.
 4. I lost my keys. I hope I left them at the office. Я потерял мои ключи. Я надеюсь что оставил их в офисе.
 
-## He
+### He
 1. He seldom gives interviews - Он редко дает интервью
 2. He likes his job - Он любит свои работу
 3. He washes his car every week - Он моет свою машину каждую неделю
 
-## Him
+### Him
 1. He loves you. Do you love him? Он любит тебя. Ты любишь его?
 2. He wanted her to go to a movie with him. Он хотел, чтобы она пошла с ним в кино.
 3. His boss considered him the best worker. His boss considered him the best worker
 4. He asked him (Max) to take his car, because his was out od order. Он попросил его (Макса) взять его машину, потому что его машина вышла из строя.
 
-## His
+### His
 1. He loves his girl. Он любит свою девочку.
 2. Martin hopes that his life will be happy. Мартин надеется, что его жизнь будет счастливой.
 
-## She
+### She
 1. She checks her e-mail regularly - Она регулярно проверяет свою почту
 2. Is she sorry for her friends? - Ей жаль своих друзей?
 3. Mrs. Grant is our teacher. She is very competent. Миссис Грант наш учитель. Она очень компетентна.
 
-## Her
+### Her
 1. She cares for her boyfriend - Она заботится о своем друге.
 2. Nina spends her holidays in the South. Нина проводит свой отпуск на юге.
 3. When you see Susan, give her my best regards. Когда увидишь Сюзан передай ее наилучшие пожелания.
 4. She invited us to her party. Она была приглашена на нашу вечеринку.
 
-## It
+### It
 1. I like English, but I find it difficult - Мне нравится английский, но я нахожу его сложным 
 2. Denis has a new bike. It is cool. He is happy. У Дениса появился новый велосипед. Это круто. Он счастлив.
 3. Would you like me to help you? I am ready to do it. Хотели бы вы, чтобы я вам помог? Я готов сделать это
@@ -92,55 +92,55 @@ tags:
 7. Whose fax is it? Чей это факс
 8. Your bag is beautiful. Is it new? Ваша сумка красивая. Она новая?
 
-## Its
+### Its
 1. It`s a very old theatre. Its history is very interesting. Это очень старый театр. Его история очень интересная
 2. I read this book, but I don't remember its author. Я читаю книгу, но не помню ее автора
 3. It's a good dictionary, but its price is very high. Это хороший словарь, но дорогой
 4. Sveta loves her dog. Its name is Rex. Света любит свою собаку. Ее имя Рекс. 
 5. The cat ate its food happily. Кот с удовольсвием ел свою еду.
 
-## We
+### We
 1. We know our duties - Мы знаем свои обязанности.
 2. Fred and I are cousins. We are good friends. Мы с фредом двоюродные братья. Мы хорошие друзья
 3. We were happy about it. Мы были рады этому
 
-## Us
+### Us
 1. My Granny likes to come to our place. She spends her weekends with us. Моя бабушка любит приезжать к нам. Она проводит с нами выходные
 2. Let us go to the cinema, shall we. Давайте сходим в кино?
 
-## Our
+### Our
 1. We must look after our children - Мы должны заботиться о наших детях
 
-## You
+### You
 1. You seldom water your flowers - Ты редко поливаешь свои цветы
 2. Do you cook your own meals? - Ты сам готовишь себе еду?
 3. Do you call your parents every day? - Ты звонишь своим родителям каждый день?
 
-## Your
+### Your
 1. You love your friends - Ты любишь своих друзей
 2. You can leave your things here - Вы можете оставить свои вещи здесь
 3. Mind your own business - Занимайся своим делом
 4. Where is your travel card? Miss? I've lost it. Где ваш проездной билет? Я ее потеряла.
 5. I would like you to give your phone number. Позвольте мне взять ваш номер телефона.
 
-## They
+### They
 1. They often visit their relatives - Они часто навещают своих родственников
 2. The pupils are in class now. They are taking test. Ученики сейчас в классе. Они сдают тест
 
-## Them
+### Them
 1. Nobody knows these people. Do you know them? Никто не знает этих людей. Ты знаешь их
 2. They are nice people. I like them. Они прекрасные люди. Они мне нравятся.
 3. They may be late. Don't wait for them. Они могут опоздать. Не ждите их.
 4. I talked to them with pleasure. Я разговаривал с ними с удовольствием
 
-## Their
+### Their
 1. They are worried about their future. Они беспокоятся о своем будущем
 2. Children should obey their parents. Did you obey your parents? Дети подчиняются их родителям. Ты подчиняешься своим родителям? 
 
-## Theirs
+### Theirs
 1. They told them (their friends) that their house was not theirs. Они сказали им (своим друзьям), что их дом им не принадлежит.
 
-Указательные местоимения
+## Указательные местоимения
 
 |       this       | that     | these | those |
 |:----------------:|----------|-------|-------|
