@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Местоимения в английском
 date: 2024-04-14 23:00:00 +3
-last_modified_date: 2024-04-23 23:00:00 +3
+last_modified_date: 2024-04-24 23:00:00 +3
 tags:
 - english
 - questions-and-solutions
@@ -36,7 +36,7 @@ tags:
 |          [she](#she) — она           |           [her](#her) — ей, ее            |                          [her](#her) — ее                           |                 hers - ee                  |      	Herself       |
 |        [it](#it) — оно (это)         |        [it](#it) — ему/ей, его/ее         |                        	[its](#its) — его/ее                        |                     -                      |          -          |
 |            [we](#we) — мы            |           [us](#us) — нам, нас            |                          [our](#our) — наш                          |                 ours - наш                 |      Ourselves      |  
-|         [you](#you) — вы, ты         |    [you](#you) — вам, вас, тебя, тебе     |                   	[your](#your) — ваш, твой,свои                   |             yours — ваш, твой              | Yourself,Yourselves |
+|         [you](#you) — вы, ты         |    [you](#you) — вам, вас, тебя, тебе     |                   	[your](#your) — ваш, твой,свои                   |        [yours](#yours) — ваш, твой         | Yourself,Yourselves |
 |         [they](#they) — они          |          [them](#them) — им, их           |                        [their](#their) — их                         |           [theirs](#theirs) - их           |     Themselves      |
 
  
@@ -57,7 +57,6 @@ tags:
 4. I lost my keys. I hope I left them at the office. Я потерял мои ключи. Я надеюсь что оставил их в офисе.
 
 ### Mine
-
 1. This computer belongs to me. It's mine. Этот компьютер принадлежит мне. Это мое.
 
 ### He
@@ -102,6 +101,7 @@ tags:
 3. It's a good dictionary, but its price is very high. Это хороший словарь, но дорогой
 4. Sveta loves her dog. Its name is Rex. Света любит свою собаку. Ее имя Рекс. 
 5. The cat ate its food happily. Кот с удовольсвием ел свою еду.
+6. The cat washed itself with its paws. Кошка умывается лапами.
 
 ### We
 1. We know our duties - Мы знаем свои обязанности.
@@ -126,6 +126,11 @@ tags:
 3. Mind your own business - Занимайся своим делом
 4. Where is your travel card? Miss? I've lost it. Где ваш проездной билет? Я ее потеряла.
 5. I would like you to give your phone number. Позвольте мне взять ваш номер телефона.
+ 
+### Yours
+1. Is this umbrella yours, Helen? Yes it's my umbrella. Это твой зонт, Хелен? Да, это мой зонт.
+2. Excuse me. Is this file or yours? It's mine Прошу прощения. Это ваш файл? Это мой.
+3. You check my test and I'll check yours. Ты проверь мой тест, а я проверю твой.
 
 ### They
 1. They often visit their relatives - Они часто навещают своих родственников
