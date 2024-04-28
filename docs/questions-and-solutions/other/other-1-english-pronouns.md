@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Местоимения в английском
 date: 2024-04-14 23:00:00 +3
-last_modified_date: 2024-04-24 23:00:00 +3
+last_modified_date: 2024-04-29 23:00:00 +3
 tags:
 - english
 - questions-and-solutions
@@ -35,7 +35,7 @@ tags:
 |            [he](#he) — он            |          [him](#him) — ему, его           |                         	[his](#his) — его                          |                 his — его                  |      	Himself       |
 |          [she](#she) — она           |           [her](#her) — ей, ее            |                          [her](#her) — ее                           |                 hers - ee                  |      	Herself       |
 |        [it](#it) — оно (это)         |        [it](#it) — ему/ей, его/ее         |                        	[its](#its) — его/ее                        |                     -                      |          -          |
-|            [we](#we) — мы            |           [us](#us) — нам, нас            |                          [our](#our) — наш                          |                 ours - наш                 |      Ourselves      |  
+|            [we](#we) — мы            |           [us](#us) — нам, нас            |                          [our](#our) — наш                          |            [ours](#ours) - наш             |      Ourselves      |  
 |         [you](#you) — вы, ты         |    [you](#you) — вам, вас, тебя, тебе     |                   	[your](#your) — ваш, твой,свои                   |        [yours](#yours) — ваш, твой         | Yourself,Yourselves |
 |         [they](#they) — они          |          [them](#them) — им, их           |                        [their](#their) — их                         |           [theirs](#theirs) - их           |     Themselves      |
 
@@ -49,6 +49,7 @@ tags:
 2. The secret is between you and me. Секрет между тобой и мной.
 3. I must hurry. My friend is waiting for me. Я тороплюсь. Мой друг опаздывает ко мне.
 4. They called me yesterday. Они звонили мне вчера.
+5. He asked me a difficult question. I couldn't answer it. Он задал мне сложный вопрос. Я не смог на него ответить
 
 ### My
 1. I love my family - Я люблю свою семью.
@@ -67,12 +68,14 @@ tags:
 ### Him
 1. He loves you. Do you love him? Он любит тебя. Ты любишь его?
 2. He wanted her to go to a movie with him. Он хотел, чтобы она пошла с ним в кино.
-3. His boss considered him the best worker. His boss considered him the best worker
+3. His boss considered him the best worker. Его босс поблагодарил его за отличную работу
 4. He asked him (Max) to take his car, because his was out od order. Он попросил его (Макса) взять его машину, потому что его машина вышла из строя.
+5. He called him yesterday.He called them back at once. Он позвонил ему вчера.Он сразу же перезвонил им
 
 ### His
 1. He loves his girl. Он любит свою девочку.
 2. Martin hopes that his life will be happy. Мартин надеется, что его жизнь будет счастливой.
+3. The teacher told Boris that the best paper was his.Учитель сказал Борису, что лучшая работа была у него
 
 ### She
 1. She checks her e-mail regularly - Она регулярно проверяет свою почту
@@ -83,7 +86,7 @@ tags:
 1. She cares for her boyfriend - Она заботится о своем друге.
 2. Nina spends her holidays in the South. Нина проводит свой отпуск на юге.
 3. When you see Susan, give her my best regards. Когда увидишь Сюзан передай ее наилучшие пожелания.
-4. She invited us to her party. Она была приглашена на нашу вечеринку.
+4. She invited us to her party. We thanked her. Она была приглашена на нашу вечеринку. Мы поблагодарили ее.
 
 ### It
 1. I like English, but I find it difficult - Мне нравится английский, но я нахожу его сложным 
@@ -115,6 +118,9 @@ tags:
 ### Our
 1. We must look after our children - Мы должны заботиться о наших детях
 
+### Ours
+1. She is a cousin of ours. Our mothers are sisters. Она наша двоюродная сестра. Наши матери - сестры.
+
 ### You
 1. You seldom water your flowers - Ты редко поливаешь свои цветы
 2. Do you cook your own meals? - Ты сам готовишь себе еду?
@@ -131,6 +137,7 @@ tags:
 1. Is this umbrella yours, Helen? Yes it's my umbrella. Это твой зонт, Хелен? Да, это мой зонт.
 2. Excuse me. Is this file or yours? It's mine Прошу прощения. Это ваш файл? Это мой.
 3. You check my test and I'll check yours. Ты проверь мой тест, а я проверю твой.
+4. He is a friend of yours, Peter , isn't he? Он твой друг Питер?
 
 ### They
 1. They often visit their relatives - Они часто навещают своих родственников
