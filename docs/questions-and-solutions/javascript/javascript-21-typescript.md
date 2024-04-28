@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Базовые знания о typescript
 date: 2024-04-21 23:00:00 +3
-last_modified_date: 2024-04-28 17:00:00 +3
+last_modified_date: 2024-04-29 00:06:00 +3
 tags:
 - javascript
 - typescript
@@ -73,6 +73,32 @@ one = (a:string, b:boolean): string => {
 }
 ````
 
+### Пример
+
+````typescript
+ enum Status {
+    'published' = 'published',
+    'draft' = 'draft',
+    'deleted' = 'deleted',
+}
+async function getFaqs(req:{
+    topicId:number,
+    status: Status}): Promise<
+    {
+        "question":string,
+        "a":string,
+        "tags": string[],
+        "likes": number
+        "status": Status
+    }[]> {
+    const res = await fetch('/faqs', {
+        method: 'POST',
+        body: JSON.stringify(req)
+    });
+    return await res.json();
+}
+````
+
 ## Объект
 
 ````typescript
@@ -109,19 +135,89 @@ const a7: [number, ...string[]] = [1, 'str', 'str', 'str'] // Неогранич
 const a8: [number, ...string[]] = [1] // Тоже валидный код
 const a9: readonly [number, ...string[]] = [1] // Только для чтения
 ````
+
  
 ## Enum 
+  
+Ограниченный набор значений.
+Удобно использовать для ролей пользователей, каких-то ограниченных величин
+
+````typescript
+enum StatusCode {
+    SUCCESS = 1,
+    INFO = 2,
+    FAILED = 3,
+    TIMEOUT = () => {return 5},
+}
+
+const res = {
+    message: 'Hello World!',
+    status: StatusCode.SUCCESS,
+}
+````
+
+В js это будет функция, что не очень быстро работает. 
+
+Если не нужен динамический расчет, то enum может быть константным
+
+````typescript
+const enum StatusCode {
+    SUCCESS = 1,
+    INFO = 2,
+    FAILED = 3
+}
+
+const res = {
+    message: 'Hello World!',
+    status: StatusCode.SUCCESS,
+}
+````
+ 
+На выходе js получаем, что не нужно рассчитывать и это офигенно.
+
+````js
+"use strict";
+const res = {
+    message: 'Hello World!',
+    status: 1 /* StatusCode.SUCCESS */,
+};
+
+````
+    
+## Union
+
+Несколько типов 
+
+````typescript
+let ab:boolean|string = 'str';
+let bc:number|boolean|string = true;
+function log(id: string|number|boolean) { // Любой из указанных типов
+    // Cужение типов, конкретный тип в конкретных условиях
+    if (typeof id === 'string') {
+       console.log(id.charAt());
+   } 
+}
+
+function logO( obj: {a: number} | {b: number}) {
+    if ('a' in obj) {
+
+    }
+}
+````
+
+## Literal
+
+````typescript
+const t:'post'|'get' = 'get'; // Любое из двух значений
+const a:1 = 1; // тип 1
+const t1:1|2|7 = 7;
+function test(): 1 | "test" { // Функция возвращает либо 1 либо test
+    return "test";
+}
+````
 
 
 ````typescript
-
-let n:null = null;
-let u:undefined = undefined;
-let any:any = [];
-let ab:boolean|string = 'str';
-let bc:number|boolean|string = true;
-
-;
 
 // type
 type U = {test: string};
@@ -160,4 +256,4 @@ let o7:ob[] = [
 ];
 ````
 
-TO BE CONTINUE... 017 Enums.mp4
+TO BE CONTINUE...
