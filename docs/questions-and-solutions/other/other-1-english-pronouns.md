@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Местоимения в английском
 date: 2024-04-14 23:00:00 +3
-last_modified_date: 2024-04-29 23:00:00 +3
+last_modified_date: 2024-04-30 23:00:00 +3
 tags:
 - english
 - questions-and-solutions
@@ -32,8 +32,8 @@ tags:
 | Именительные падеж <br/>(Кто?, Что?) | Объектный падеж <br/>(Кому?, Кого?, Кем?) | Притяжательный падеж <br/>(Чей?) <br/>Местоимение + существительное | Притяжательный падеж <br/>Абсолютная форма |     Возвратные      |
 |:------------------------------------:|:-----------------------------------------:|:-------------------------------------------------------------------:|:------------------------------------------:|:-------------------:|
 |             [I](#i) — я              |           [me](#me) — мне, меня           |                           [my](#my) — мой                           |            [mine](#mine) - мой             |       Myself        |
-|            [he](#he) — он            |          [him](#him) — ему, его           |                         	[his](#his) — его                          |                 his — его                  |      	Himself       |
-|          [she](#she) — она           |           [her](#her) — ей, ее            |                          [her](#her) — ее                           |                 hers - ee                  |      	Herself       |
+|            [he](#he) — он            |          [him](#him) — ему, его           |                         	[his](#his) — его                          |             [his](#his) — его              |      	Himself       |
+|          [she](#she) — она           |           [her](#her) — ей, ее            |                          [her](#her) — ее                           |             [hers](#hers) - ee             |      	Herself       |
 |        [it](#it) — оно (это)         |        [it](#it) — ему/ей, его/ее         |                        	[its](#its) — его/ее                        |                     -                      |          -          |
 |            [we](#we) — мы            |           [us](#us) — нам, нас            |                          [our](#our) — наш                          |            [ours](#ours) - наш             |      Ourselves      |  
 |         [you](#you) — вы, ты         |    [you](#you) — вам, вас, тебя, тебе     |                   	[your](#your) — ваш, твой,свои                   |        [yours](#yours) — ваш, твой         | Yourself,Yourselves |
@@ -69,7 +69,7 @@ tags:
 1. He loves you. Do you love him? Он любит тебя. Ты любишь его?
 2. He wanted her to go to a movie with him. Он хотел, чтобы она пошла с ним в кино.
 3. His boss considered him the best worker. Его босс поблагодарил его за отличную работу
-4. He asked him (Max) to take his car, because his was out od order. Он попросил его (Макса) взять его машину, потому что его машина вышла из строя.
+4. He asked him (Max) to take his car, because his was out of order. Он попросил его (Макса) взять его машину, потому что его машина вышла из строя.
 5. He called him yesterday.He called them back at once. Он позвонил ему вчера.Он сразу же перезвонил им
 
 ### His
@@ -88,6 +88,9 @@ tags:
 3. When you see Susan, give her my best regards. Когда увидишь Сюзан передай ее наилучшие пожелания.
 4. She invited us to her party. We thanked her. Она была приглашена на нашу вечеринку. Мы поблагодарили ее.
 
+### Hers
+1. Helen is clever. That bright idea was hers.Хелен умна. Эта блестящая идея принадлежала ей.
+
 ### It
 1. I like English, but I find it difficult - Мне нравится английский, но я нахожу его сложным 
 2. Denis has a new bike. It is cool. He is happy. У Дениса появился новый велосипед. Это круто. Он счастлив.
@@ -105,6 +108,7 @@ tags:
 4. Sveta loves her dog. Its name is Rex. Света любит свою собаку. Ее имя Рекс. 
 5. The cat ate its food happily. Кот с удовольсвием ел свою еду.
 6. The cat washed itself with its paws. Кошка умывается лапами.
+7. This coffee is very good. I like its smell. Этот кофе очень хорош. Я люблю его запах.
 
 ### We
 1. We know our duties - Мы знаем свои обязанности.
@@ -120,6 +124,7 @@ tags:
 
 ### Ours
 1. She is a cousin of ours. Our mothers are sisters. Она наша двоюродная сестра. Наши матери - сестры.
+2. They showed their credit cards, but we couldn't find ours.Они показали свои кредитные карточки, но мы не смогли найти наши
 
 ### You
 1. You seldom water your flowers - Ты редко поливаешь свои цветы
@@ -138,6 +143,7 @@ tags:
 2. Excuse me. Is this file or yours? It's mine Прошу прощения. Это ваш файл? Это мой.
 3. You check my test and I'll check yours. Ты проверь мой тест, а я проверю твой.
 4. He is a friend of yours, Peter , isn't he? Он твой друг Питер?
+5. You scratch my back, and I'll scratch yours. Ты почеши мне спинку, а я почешу тебе.
 
 ### They
 1. They often visit their relatives - Они часто навещают своих родственников
