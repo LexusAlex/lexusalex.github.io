@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Базовые знания о typescript
 date: 2024-04-21 23:00:00 +3
-last_modified_date: 2024-04-29 00:06:00 +3
+last_modified_date: 2024-04-30 11:00:00 +3
 tags:
 - javascript
 - typescript
@@ -36,11 +36,9 @@ tags:
 - Невозможность понять структуру данных
 
 Typescript надмножество javascript
-
 ## Конфигурация
 
 Конфигурация по дефолту `tsconfig.json`
-
 ## Простые типы
 
 number,string,boolean
@@ -58,7 +56,6 @@ let bool:boolean = true;
 let bool2:boolean = false;
 const a:number = 1 + 123;
 ````
-
 ## Функции
 
 Типы лучше всегда указывать явно
@@ -98,7 +95,6 @@ async function getFaqs(req:{
     return await res.json();
 }
 ````
-
 ## Объект
 
 ````typescript
@@ -116,8 +112,7 @@ let o3:{officeId:number, isOpened:boolean,contacts: {phone:string, email: string
         }
     }
 }
-```` 
-
+````
 ## Массивы
 
 ````typescript
@@ -135,8 +130,6 @@ const a7: [number, ...string[]] = [1, 'str', 'str', 'str'] // Неогранич
 const a8: [number, ...string[]] = [1] // Тоже валидный код
 const a9: readonly [number, ...string[]] = [1] // Только для чтения
 ````
-
- 
 ## Enum 
   
 Ограниченный набор значений.
@@ -183,7 +176,6 @@ const res = {
 };
 
 ````
-    
 ## Union
 
 Несколько типов 
@@ -204,7 +196,6 @@ function logO( obj: {a: number} | {b: number}) {
     }
 }
 ````
-
 ## Literal
 
 ````typescript
@@ -214,46 +205,110 @@ const t1:1|2|7 = 7;
 function test(): 1 | "test" { // Функция возвращает либо 1 либо test
     return "test";
 }
-````
-
+```` 
+## Алиасы для типов
+ 
+Дополнительное отображение типов
 
 ````typescript
+type httpMethod =  'get' | 'post' | 'put' | 'patch' | 'delete';
+const method : httpMethod = 'get';
 
-// type
-type U = {test: string};
+// Типизция обьекта, удобно переиспользование обьекта
+type User = {
+    name: number,
+    email: number,
+    skills: number[]
 
-// interface
-interface U2 {
-  test: string
+}
+let user:User = {
+    name: 1,
+    email: 2,
+    skills: [1,2,3,4,5,6,7,8,9,10]
 }
 
-interface U3 {
-    // опционнальный параметр
-  test?: string
-}
-
-const o3:U = {test:"234"};
-const o4:U2 = {test:"234"};
-const o5:U3 = {};
-
-
-type ob = {
+// Типы можно свмещать друг с другом
+type One = {
+    id: string,
     name: string,
-    age: number
-    more ?: () => {data: string}
 }
 
-let o7:ob[] = [
-    {
-        name: 'alex',
-        age: 23,
-        more: () => { return {data: '123'};}
+type Two = {
+    test: number
+}
+
+type Three = One & Two;
+
+let u: Three = {
+    name: 's',
+    id: 'w',
+    test: 1
+}
+
+// Но так мы выбираем только один обьект
+// Их можно комбиннировать на любом уровне вложенности
+type One = {
+    id: string,
+    name: string,
+}
+
+type Two = {
+    test: number
+}
+
+type Three = One | Two;
+
+let u: Three = {
+    test: 1
+}
+```` 
+## Interfaces
+ 
+````typescript
+// Базовый пример
+interface One {
+    id: string,
+    name: string,
+}
+
+let u:One = {
+    name: '1',
+    id: '2'
+}
+
+// Наследование интерфейсов
+interface One {
+    id: string,
+    name: string,
+}
+
+// Можно наследовать так же несколько интерфейсов сразу
+interface Two extends One {
+    role: number,
+    createdDate: Date
+}
+
+let u1:Two = {
+    name: '1',
+    id: '2',
+    role: 5,
+    createdDate: new Date(),
+}
+
+// Описываем методы
+interface App {
+    log: (id: number) => number
+}
+
+let u2:App = {
+    log(id:number){
+        return id;
     },
-    {
-        name: 'alex2',
-        age: 50
-    },
-];
+}
 ````
 
-TO BE CONTINUE...
+В интерфейсах можно доопределить свойства
+
+> В интерфейсах нужно всегда писать однозначное определение его свойств
+
+Types and Interfaces
