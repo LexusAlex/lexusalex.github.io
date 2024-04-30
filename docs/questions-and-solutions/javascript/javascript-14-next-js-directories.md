@@ -43,7 +43,7 @@ app router
 Это директория `app` с файлами:
 
 ````jsx
-// app/layout.jsx
+// app/layout.jsx корневой layout обязан быть
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

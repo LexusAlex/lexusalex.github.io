@@ -47,7 +47,23 @@ export default function Post({ params: {slug} }) {
 }
 ````
 
-Дополняется по мере изучения
+## Получение и вывод данных с сервера
+
+````typescript jsx
+async function getData(){
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+
+  return res.json()
+}
+export default async function Test() {
+  const data = await getData();
+   return (<>{data.map(function(d){ return d.body; })}</>)
+}
+````
 
 
 
