@@ -3,7 +3,6 @@ layout: default
 ---
 
 {{ content }}
-<h2>Заметки</h2>
 
 {% assign sortedNotes = site.pages | sort: 'nav_order' | reverse %}
 <div>
@@ -135,6 +134,7 @@ layout: default
         {% endfor %}
     </table>
 
+    <h2>Заметки</h2>
     <table>
         <tr>
             <td style="width: 7px">#</td>
