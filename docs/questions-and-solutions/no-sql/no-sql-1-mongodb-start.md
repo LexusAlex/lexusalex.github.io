@@ -10,7 +10,7 @@ description: Изучаем mongodb
 date: 2024-04-18 13:00:00 +3
 last_modified_date: 2024-04-18 13:00:00 +3
 tags:
-- english
+- mongodb
 - questions-and-solutions
 ---
 
