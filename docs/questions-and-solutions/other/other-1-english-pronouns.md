@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Местоимения в английском
 date: 2024-04-14 23:00:00 +3
-last_modified_date: 2024-04-30 23:00:00 +3
+last_modified_date: 2024-05-01 23:00:00 +3
 tags:
 - english
 - questions-and-solutions
@@ -59,11 +59,14 @@ tags:
 
 ### Mine
 1. This computer belongs to me. It's mine. Этот компьютер принадлежит мне. Это мое.
+2. He is a friend of mine. Он один из моих друзей.
+3. His car is opposite the office, and where is mine? . Его машина напротив офиса, а где же моя?
 
 ### He
 1. He seldom gives interviews - Он редко дает интервью
 2. He likes his job - Он любит свои работу
 3. He washes his car every week - Он моет свою машину каждую неделю
+4. He didn't have mobile phone,and she gave him mine. У него не было мобильного телефона, и она дала ему свой.
 
 ### Him
 1. He loves you. Do you love him? Он любит тебя. Ты любишь его?
@@ -137,6 +140,7 @@ tags:
 3. Mind your own business - Занимайся своим делом
 4. Where is your travel card? Miss? I've lost it. Где ваш проездной билет? Я ее потеряла.
 5. I would like you to give your phone number. Позвольте мне взять ваш номер телефона.
+6. It's your problem, not ours. Это твоя проблема не наша.
  
 ### Yours
 1. Is this umbrella yours, Helen? Yes it's my umbrella. Это твой зонт, Хелен? Да, это мой зонт.
@@ -144,6 +148,8 @@ tags:
 3. You check my test and I'll check yours. Ты проверь мой тест, а я проверю твой.
 4. He is a friend of yours, Peter , isn't he? Он твой друг Питер?
 5. You scratch my back, and I'll scratch yours. Ты почеши мне спинку, а я почешу тебе.
+6. May I work in yours? Можно я поработаю за твоим?
+7. This money is yours. Эти деньги ваши.
 
 ### They
 1. They often visit their relatives - Они часто навещают своих родственников
@@ -158,9 +164,11 @@ tags:
 ### Their
 1. They are worried about their future. Они беспокоятся о своем будущем
 2. Children should obey their parents. Did you obey your parents? Дети подчиняются их родителям. Ты подчиняешься своим родителям? 
+3. It's their mistake, not ours. Это их ошибка, а не наша
 
 ### Theirs
 1. They told them (their friends) that their house was not theirs. Они сказали им (своим друзьям), что их дом им не принадлежит.
+2. We gave them our phone number, and they gave us theirs. Мы дали им наш номер телефона, а они дали нам свой.
 
 ## Указательные местоимения
 
