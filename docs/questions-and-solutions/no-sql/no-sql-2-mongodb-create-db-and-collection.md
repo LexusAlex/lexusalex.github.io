@@ -1,7 +1,7 @@
 ---
 layout: default
 nav_order: 2
-permalink: no-sql-1-mongodb-create-db-and-collections
+permalink: no-sql-2-mongodb-create-db-and-collections
 title: Mongodb. Создание базы и коллекции
 parent: no-sql
 grand_parent: Вопросы и решения
