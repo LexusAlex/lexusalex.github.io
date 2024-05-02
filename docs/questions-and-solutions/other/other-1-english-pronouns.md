@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Местоимения в английском
 date: 2024-04-14 23:00:00 +3
-last_modified_date: 2024-05-01 23:00:00 +3
+last_modified_date: 2024-05-02 23:00:00 +3
 tags:
 - english
 - questions-and-solutions
@@ -84,6 +84,7 @@ tags:
 1. She checks her e-mail regularly - Она регулярно проверяет свою почту
 2. Is she sorry for her friends? - Ей жаль своих друзей?
 3. Mrs. Grant is our teacher. She is very competent. Миссис Грант наш учитель. Она очень компетентна.
+4. She told me her story, and I told her mine. Она рассказала мне свою историю, а я - свою
 
 ### Her
 1. She cares for her boyfriend - Она заботится о своем друге.
@@ -117,6 +118,7 @@ tags:
 1. We know our duties - Мы знаем свои обязанности.
 2. Fred and I are cousins. We are good friends. Мы с фредом двоюродные братья. Мы хорошие друзья
 3. We were happy about it. Мы были рады этому
+4. Now we are going to open our presents, and then we shall (we'll) look at yours. Сейчас мы откроем наши подарки, а потом посмотрим на ваши.
 
 ### Us
 1. My Granny likes to come to our place. She spends her weekends with us. Моя бабушка любит приезжать к нам. Она проводит с нами выходные
@@ -141,6 +143,7 @@ tags:
 4. Where is your travel card? Miss? I've lost it. Где ваш проездной билет? Я ее потеряла.
 5. I would like you to give your phone number. Позвольте мне взять ваш номер телефона.
 6. It's your problem, not ours. Это твоя проблема не наша.
+7. I am sorry, I took your pen instead of mine. That's all right. Извини, я взял твою ручку вместо меня. Все впорядке 
  
 ### Yours
 1. Is this umbrella yours, Helen? Yes it's my umbrella. Это твой зонт, Хелен? Да, это мой зонт.
