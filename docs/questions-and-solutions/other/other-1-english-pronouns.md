@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Местоимения в английском
 date: 2024-04-14 23:00:00 +3
-last_modified_date: 2024-05-02 23:00:00 +3
+last_modified_date: 2024-05-05 23:00:00 +3
 tags:
 - english
 - questions-and-solutions
@@ -79,6 +79,7 @@ tags:
 1. He loves his girl. Он любит свою девочку.
 2. Martin hopes that his life will be happy. Мартин надеется, что его жизнь будет счастливой.
 3. The teacher told Boris that the best paper was his.Учитель сказал Борису, что лучшая работа была у него
+4. His voice is stronger, then hers? Его голос сильнее чем ее?
 
 ### She
 1. She checks her e-mail regularly - Она регулярно проверяет свою почту
@@ -135,6 +136,7 @@ tags:
 1. You seldom water your flowers - Ты редко поливаешь свои цветы
 2. Do you cook your own meals? - Ты сам готовишь себе еду?
 3. Do you call your parents every day? - Ты звонишь своим родителям каждый день?
+4. You scratch my back and I'll scratch yours. Ты почеши мне спинку, а я почешу твою
 
 ### Your
 1. You love your friends - Ты любишь своих друзей
@@ -143,7 +145,8 @@ tags:
 4. Where is your travel card? Miss? I've lost it. Где ваш проездной билет? Я ее потеряла.
 5. I would like you to give your phone number. Позвольте мне взять ваш номер телефона.
 6. It's your problem, not ours. Это твоя проблема не наша.
-7. I am sorry, I took your pen instead of mine. That's all right. Извини, я взял твою ручку вместо меня. Все впорядке 
+7. I am sorry, I took your pen instead of mine. That's all right. Извини, я взял твою ручку вместо меня. Все впорядке
+8. It's your head-ache, not mine. Это твоя головная боль, не моя
  
 ### Yours
 1. Is this umbrella yours, Helen? Yes it's my umbrella. Это твой зонт, Хелен? Да, это мой зонт.
@@ -153,6 +156,7 @@ tags:
 5. You scratch my back, and I'll scratch yours. Ты почеши мне спинку, а я почешу тебе.
 6. May I work in yours? Можно я поработаю за твоим?
 7. This money is yours. Эти деньги ваши.
+8. Is this xerox yours or his? Этот ксерокс ваш или его?
 
 ### They
 1. They often visit their relatives - Они часто навещают своих родственников
@@ -168,6 +172,7 @@ tags:
 1. They are worried about their future. Они беспокоятся о своем будущем
 2. Children should obey their parents. Did you obey your parents? Дети подчиняются их родителям. Ты подчиняешься своим родителям? 
 3. It's their mistake, not ours. Это их ошибка, а не наша
+4. Their house is bigger, then ours. Их дом больше чем наш.
 
 ### Theirs
 1. They told them (their friends) that their house was not theirs. Они сказали им (своим друзьям), что их дом им не принадлежит.
@@ -193,6 +198,9 @@ tags:
 ### These (мн. число)
 
 Что ближе к говорящему
+
+1. these weeks - эти недели
+2. these years - эти года
 
 ### That (ед. число)
 
