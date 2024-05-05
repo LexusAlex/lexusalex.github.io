@@ -34,3 +34,8 @@ use tasks_board // Создать и переключится на базу
 db.createCollection('one'); // Сразу же создаем коллекцию, иначе ничего не получится
 db.getSiblingDB("tasks_board").getCollection("one") // Обратиться к бд можно след образом
 ````
+
+````text
+db.one.countDocuments() // Всего документов в коллекции
+db // Имя активной базы
+````
