@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Местоимения в английском
 date: 2024-04-14 23:00:00 +3
-last_modified_date: 2024-05-05 23:00:00 +3
+last_modified_date: 2024-05-06 23:00:00 +3
 tags:
 - english
 - questions-and-solutions
@@ -189,25 +189,26 @@ tags:
 
 Что ближе к говорящему
 
-1. this week - эта неделя
-2. this year - этот год
-3. this file - этот файл
-4. this method - этот метод
-5. this child - этот ребенок
+1. This is my neighbour, Tanya. Это моя соседка Таня
+2. Do you like this idea? Тебе нравится эта идея?
 
 ### These (мн. число)
 
 Что ближе к говорящему
 
-1. these weeks - эти недели
-2. these years - эти года
+1. These shoes are too small for me. Эти ботинки тоже мне малы. 
 
 ### That (ед. число)
 
 Что дальше от говорящего
+ 
+1. Who is that over there? Кто вон там?
+2. That was so long ago. Это было так давно.
 
 ### Those (мн. число)
 
 Что дальше от говорящего
+
+1. Those were happy days! Те счастливые дни
 
 
