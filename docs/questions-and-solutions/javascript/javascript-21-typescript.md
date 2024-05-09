@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Базовые знания о typescript
 date: 2024-04-21 23:00:00 +3
-last_modified_date: 2024-04-30 11:00:00 +3
+last_modified_date: 2024-05-09 21:16:00 +3
 tags:
 - javascript
 - typescript
@@ -312,3 +312,69 @@ let u2:App = {
 > В интерфейсах нужно всегда писать однозначное определение его свойств
 
 Types and Interfaces
+## Классы
+
+````typescript
+class Point {
+    private readonly x: number;
+    y: number;
+
+    constructor(x: number, y: number) {
+        this.x = x;
+        this.y = y;
+    }
+
+    private func():number {
+        this.y = 6;
+        return this.y + 1;
+    }
+
+    protected a() {
+
+    }
+}
+
+class d3P extends Point {
+    private z:number;
+    constructor(x: number, y: number, z: number) {
+       super(x, y);
+       this.z = z;
+       this.a();
+   }
+
+    protected a(name?: string) {
+        
+    }
+}
+
+class StaticTest{
+  static c = 'sdfd';
+  static test() {}
+}
+
+// Нельзя сделать инстанс
+abstract class Test4 {
+    met(){}
+}
+
+class Test5 extends Test4 {
+    
+}
+
+interface C {
+    test:() => void
+}
+
+class D implements C {
+    test(): void {
+    }
+
+}
+
+const point = new Point(5,6);
+point.y = 5;
+
+const d3 = new d3P(1,2,3);
+
+const s = StaticTest.c;
+````
