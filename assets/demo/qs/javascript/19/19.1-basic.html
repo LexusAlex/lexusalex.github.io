@@ -6,19 +6,13 @@
 </head>
 <body>
     <script>
-        fetch('https://fakerapi.it/api/v1/addresses')
-            .then((res) => {
-                return res.json();
-            }).then((res) => {
-            //console.log(res.data);
-        })
 
         async function one(){
             const response = await fetch('https://fakerapi.it/api/v1/addresses');
             return response.json();
         }
 
-        console.log(one().then((data) => {console.log(data.data)}));
+        one().then((data) => {console.log(data.data)});
     </script>
 </body>
 </html>

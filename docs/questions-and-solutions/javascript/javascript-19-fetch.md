@@ -8,11 +8,12 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Используем fetch запросы в javascript
 date: 2024-04-20 17:00:00 +3
-last_modified_date: 2024-04-20 19:00:00 +3
+last_modified_date: 2024-05-10 13:00:00 +3
 tags:
   - javascript
   - js
   - async
+  - await
   - questions-and-solutions
 ---
 
@@ -61,13 +62,15 @@ console.log(one());
 
 Ключевое слово await используется, чтобы дождаться выполнения асинхронной операции
 
+async дает право использовать внутри функции ключевое слово await
+
 ````javascript
 async function one(){
     const response = await fetch('https://fakerapi.it/api/v1/addresses');
-    return response.json();
+    return await (response.json());
 }
 
-console.log(one().then((data) => {console.log(data.data)}));
+one().then((data) => {console.log(data.data)});
 ````
 
 async/await упрощают работу с промисами.
@@ -78,5 +81,3 @@ async/await упрощают работу с промисами.
 - Легче отлаживать
 
 Await нельзя использовать вне асинхронной функции
-
-TODO Promise.all()
