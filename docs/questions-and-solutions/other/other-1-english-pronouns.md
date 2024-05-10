@@ -8,7 +8,7 @@ grand_parent: Вопросы и решения
 has_children: true
 description: Местоимения в английском
 date: 2024-04-14 23:00:00 +3
-last_modified_date: 2024-05-06 23:00:00 +3
+last_modified_date: 2024-05-10 23:00:00 +3
 tags:
 - english
 - questions-and-solutions
@@ -147,6 +147,7 @@ tags:
 6. It's your problem, not ours. Это твоя проблема не наша.
 7. I am sorry, I took your pen instead of mine. That's all right. Извини, я взял твою ручку вместо меня. Все впорядке
 8. It's your head-ache, not mine. Это твоя головная боль, не моя
+9. Your idea is good, but his is better. Твоя идея хороша, но его идея лучше
  
 ### Yours
 1. Is this umbrella yours, Helen? Yes it's my umbrella. Это твой зонт, Хелен? Да, это мой зонт.
@@ -191,12 +192,21 @@ tags:
 
 1. This is my neighbour, Tanya. Это моя соседка Таня
 2. Do you like this idea? Тебе нравится эта идея?
+3. Do you like this photo? Тебе нравится это фото
+4. Who told you this story? Кто рассказал вам эту историю?
+5. I am so tired of this life! Я устал от этой жизни
+6. This news is great. Это отличная новость
+7. This is very serious. Это очень серьезно
+8. This is your disk, and where is mine? Это твой диск, а где же мой?
 
 ### These (мн. число)
 
 Что ближе к говорящему
 
-1. These shoes are too small for me. Эти ботинки тоже мне малы. 
+1. These shoes are too small for me. Эти ботинки тоже мне малы.
+2. Why did you choose these magazines? Почему ты выбрала эти магазины.
+3. These are my text-books. Это мои учебники
+4. These are my friends. Это мои друзья.
 
 ### That (ед. число)
 
@@ -204,11 +214,17 @@ tags:
  
 1. Who is that over there? Кто вон там?
 2. That was so long ago. Это было так давно.
+3. You are so kind. That's why I like you. Вы так добры. Вот почему вы мне нравитесь.
+4. Give me that book from the shelf. Да мне ту книгу с полки.
+5. Did you hear that noise last night?. That was the rain. Вы слышали шум прошлой ночью
+6. That was your mistake. Это была твоя ошибка
 
 ### Those (мн. число)
 
 Что дальше от говорящего
 
 1. Those were happy days! Те счастливые дни
+2. Who are those people over there? Кто эти люди там?
+3. Those events changed her life. Эти события изменили ее жизнь
 
 
