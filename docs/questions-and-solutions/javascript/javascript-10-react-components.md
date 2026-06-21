@@ -163,6 +163,7 @@ import style from "./Button.module.css";
 
 Для примера создадим компонент `Item` отображающий элемент списка, в данном случае это карточка, может быть чего угодно.
 
+{% raw %}
 ````jsx
 import {Card} from "react-bootstrap";
 // На вход компоненту передаем props - это объект с данными
@@ -187,6 +188,7 @@ export default function Item(props) {
     );
 }  
 ````
+{% endraw %}
  
 Создадим еще один компонент `Items`, который будет выводить item
 

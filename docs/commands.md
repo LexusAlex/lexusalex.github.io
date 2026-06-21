@@ -450,6 +450,7 @@ ansible -i infrastructure/backend/development/ansible/inventory.ini -m user -a "
 
 ### playbook
 
+{% raw %}
 ```yaml
 ---
 - name: user # название плейбука
@@ -505,6 +506,7 @@ ansible -i infrastructure/backend/development/ansible/inventory.ini -m user -a "
       debugger: always # независимо не от чего включить режим дебага винтерактивном режиме, удобно при отладке    
   become: true # разрешить sudo
 ```
+{% endraw %}
 
 ```shell
 ansible-playbook -i infrastructure/backend/development/ansible/inventory.ini user.yml # выполнить playbook user
@@ -614,6 +616,7 @@ ansible-playbook -i indentory all.yml --tags "test" # запустить зад�
 
 Если пакет предоставляет возможность указать список, то нужно использовать эту возможность
 
+{% raw %}
 ```yaml
 ---
 - name: Circle|lookup
@@ -633,6 +636,7 @@ ansible-playbook -i indentory all.yml --tags "test" # запустить зад�
         debug:
             msg: "{{ lookup('file', '../mata/main.yml')}}" # найти указанный файл
 ```
+{% endraw %}
 
 #### Шаблоны
 

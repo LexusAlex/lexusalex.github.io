@@ -1,0 +1,28 @@
+// Notes index table — keep date column visible, prevent horizontal scroll
+.notes-index {
+  table-layout: fixed;
+  width: 100%;
+
+  col.col-date {
+    width: 7rem;
+  }
+
+  th,
+  td {
+    min-width: 0;
+  }
+
+  td:first-child {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+
+    a {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+  }
+
+  td:last-child {
+    white-space: nowrap;
+  }
+}
